@@ -1,26 +1,27 @@
-// Load nouns from JSON and populate table
+// Nouns data
+const nounsData = [
+  {"nomen": "Apfel", "gen": "der", "traducere": "măr", "exemplu": "Der Apfel ist rot."},
+  {"nomen": "Haus", "gen": "das", "traducere": "casă", "exemplu": "Das Haus ist groß."},
+  {"nomen": "Blume", "gen": "die", "traducere": "floare", "exemplu": "Die Blume ist schön."},
+  {"nomen": "Auto", "gen": "das", "traducere": "mașină", "exemplu": "Das Auto ist schnell."}
+];
+
+// Load nouns and populate table
 document.addEventListener('DOMContentLoaded', () => {
   const tableBody = document.querySelector('#nounsTable tbody');
   const searchInput = document.getElementById('searchInput');
 
-  fetch('../data/nouns.json')
-    .then(response => response.json())
-    .then(data => {
-      renderTable(data);
+  renderTable(nounsData);
 
-      // Live search
-      searchInput.addEventListener('input', () => {
-        const term = normalize(searchInput.value.toLowerCase());
-        const filtered = data.filter(item =>
-          normalize(item.nomen.toLowerCase()).includes(term) ||
-          normalize(item.traducere.toLowerCase()).includes(term)
-        );
-        renderTable(filtered);
-      });
-    })
-    .catch(err => {
-      console.error("Eroare la încărcarea fișierului nouns.json:", err);
-    });
+  // Live search
+  searchInput.addEventListener('input', () => {
+    const term = normalize(searchInput.value.toLowerCase());
+    const filtered = nounsData.filter(item =>
+      normalize(item.nomen.toLowerCase()).includes(term) ||
+      normalize(item.traducere.toLowerCase()).includes(term)
+    );
+    renderTable(filtered);
+  });
 
   // Function to render the table
   function renderTable(items) {
@@ -39,12 +40,21 @@ document.addEventListener('DOMContentLoaded', () => {
       row.appendChild(audioCell);
 
       // TEXT COLUMNS
-      row.innerHTML += `
-        <td>${item.nomen}</td>
-        <td>${item.gen}</td>
-        <td>${item.traducere}</td>
-        <td>${item.exemplu}</td>
-      `;
+      const nomenCell = document.createElement('td');
+      nomenCell.textContent = item.nomen;
+      row.appendChild(nomenCell);
+
+      const genCell = document.createElement('td');
+      genCell.textContent = item.gen;
+      row.appendChild(genCell);
+
+      const traducereCell = document.createElement('td');
+      traducereCell.textContent = item.traducere;
+      row.appendChild(traducereCell);
+
+      const exempluCell = document.createElement('td');
+      exempluCell.textContent = item.exemplu;
+      row.appendChild(exempluCell);
 
       tableBody.appendChild(row);
     });
