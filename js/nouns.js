@@ -3,7 +3,7 @@ const nounsData = [
   {"nomen": "Apfel", "gen": "der", "traducere": "măr", "exemplu": "Der Apfel ist rot."},
   {"nomen": "Haus", "gen": "das", "traducere": "casă", "exemplu": "Das Haus ist groß."},
   {"nomen": "Blume", "gen": "die", "traducere": "floare", "exemplu": "Die Blume ist schön."},
-  {"nomen": "Auto", "gen": "das", "traducere": "mașină", "exemplu": "Das Auto ist schnell."}
+  {"nomen": "Auto", "gen": "das", "traducere": "mașină", "exemplu": "Das Auto ist schnell."},
   {"nomen": "Rose",  "gen": "die", "traducere": "trandafir", "exemplu": "Die Rose ist schön."},
   {"nomen": "Brille", "gen": "die", "traducere": "ochelari",  "exemplu": "Meine Brille liegt auf dem Tisch."},
   {"nomen": "Schere", "gen": "die", "traducere": "foarfecă",  "exemplu": "Die Schere ist scharf."}
