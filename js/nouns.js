@@ -1,12 +1,12 @@
 // Nouns data
 const nounsData = [
-  {"nomen": "Apfel", "gen": "der", "traducere": "măr", "exemplu": "Der Apfel ist rot."},
-  {"nomen": "Haus", "gen": "das", "traducere": "casă", "exemplu": "Das Haus ist groß."},
-  {"nomen": "Blume", "gen": "die", "traducere": "floare", "exemplu": "Die Blume ist schön."},
-  {"nomen": "Auto", "gen": "das", "traducere": "mașină", "exemplu": "Das Auto ist schnell."},
-  {"nomen": "Rose",  "gen": "die", "traducere": "trandafir", "exemplu": "Die Rose ist schön."},
-  {"nomen": "Brille", "gen": "die", "traducere": "ochelari",  "exemplu": "Meine Brille liegt auf dem Tisch."},
-  {"nomen": "Schere", "gen": "die", "traducere": "foarfecă",  "exemplu": "Die Schere ist scharf."}
+  {"nomen": "Apfel",  "gen": "der", "plural": "Äpfel",   "traducere": "măr",      "exemplu": "Der Apfel ist rot."},
+  {"nomen": "Haus",   "gen": "das", "plural": "Häuser",  "traducere": "casă",     "exemplu": "Das Haus ist groß."},
+  {"nomen": "Blume",  "gen": "die", "plural": "Blumen",  "traducere": "floare",   "exemplu": "Die Blume ist schön."},
+  {"nomen": "Auto",   "gen": "das", "plural": "Autos",   "traducere": "mașină",   "exemplu": "Das Auto ist schnell."},
+  {"nomen": "Rose",   "gen": "die", "plural": "Rosen",   "traducere": "trandafir","exemplu": "Die Rose ist schön."},
+  {"nomen": "Brille", "gen": "die", "plural": "Brillen", "traducere": "ochelari", "exemplu": "Meine Brille liegt auf dem Tisch."},
+  {"nomen": "Schere", "gen": "die", "plural": "Scheren",  "traducere": "foarfecă", "exemplu": "Die Schere ist scharf."}
 ];
 
 // Load nouns and populate table
@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const term = normalize(searchInput.value.toLowerCase());
     const filtered = nounsData.filter(item =>
       normalize(item.nomen.toLowerCase()).includes(term) ||
-      normalize(item.traducere.toLowerCase()).includes(term)
+      normalize((item.traducere || "").toLowerCase()).includes(term) ||
+      normalize((item.plural || "").toLowerCase()).includes(term)
     );
     renderTable(filtered);
   });
@@ -48,8 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
       row.appendChild(nomenCell);
 
       const genCell = document.createElement('td');
-      genCell.textContent = item.gen;
+      genCell.textContent = item.gen || "";
       row.appendChild(genCell);
+
+      const pluralCell = document.createElement('td');
+      pluralCell.textContent = item.plural || "";
+      row.appendChild(pluralCell);
 
       const traducereCell = document.createElement('td');
       traducereCell.textContent = item.traducere;
