@@ -1,0 +1,55 @@
+[
+  {
+    "type": "truefalse",
+    "question": "Das Wort 'Apfel' ist ein Verb.",
+    "correctAnswer": "No"
+  },
+  {
+    "type": "truefalse",
+    "question": "Die Zahl 3 heißt auf Deutsch 'drei'.",
+    "correctAnswer": "Yes"
+  },
+  {
+    "type": "fill",
+    "question": "Übersetze in Deutsch: 'car' = _______",
+    "correctAnswer": "Auto"
+  },
+  {
+    "type": "fill",
+    "question": "Wie sagt man 'book' auf Deutsch?",
+    "correctAnswer": "Buch"
+  },
+  {
+    "type": "multiple",
+    "question": "Welcher Artikel passt zu 'Tisch'?",
+    "options": ["Der", "Die", "Das"],
+    "correctAnswer": "Der"
+  },
+  {
+    "type": "multiple",
+    "question": "Wie sagt man 'Good morning' auf Deutsch?",
+    "options": ["Guten Abend", "Guten Morgen", "Gute Nacht"],
+    "correctAnswer": "Guten Morgen"
+  },
+  {
+    "type": "truefalse",
+    "question": "Das Wort 'gehen' bedeutet 'to go'.",
+    "correctAnswer": "Yes"
+  },
+  {
+    "type": "fill",
+    "question": "Ergänze: Ich ____ müde.",
+    "correctAnswer": "bin"
+  },
+  {
+    "type": "multiple",
+    "question": "Wähle das richtige Pluralwort für 'Kind':",
+    "options": ["Kinden", "Kinder", "Kinds"],
+    "correctAnswer": "Kinder"
+  },
+  {
+    "type": "truefalse",
+    "question": "Das Nomen 'Haus' ist feminin.",
+    "correctAnswer": "No"
+  }
+]

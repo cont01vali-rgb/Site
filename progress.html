@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progres</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="nav-item">🏠 Acasă</a>
+      <a href="learn.html" class="nav-item">📚 Lecții</a>
+      <a href="tests/general-test.html" class="nav-item">🧩 Test general</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Rezultatele testelor</h2>
+    <div id="progress-list"></div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const list = document.getElementById('progress-list');
+      const data = JSON.parse(localStorage.getItem('testHistory') || '[]');
+      if (data.length === 0) {
+        list.innerHTML = "<p>Nu există teste salvate încă.</p>";
+        return;
+      }
+
+      list.innerHTML = data.map(entry => {
+        let color = 'red';
+        if (entry.score >= 80) color = 'green';
+        else if (entry.score >= 21) color = 'orange';
+        return `
+          <div class="progress-entry" style="border-left: 6px solid ${color}; padding:8px; margin:5px; background:#fff;">
+            <p><b>Data:</b> ${entry.date}</p>
+            <p><b>Scor:</b> ${entry.score}% din ${entry.total} întrebări</p>
+          </div>
+        `;
+      }).join('');
+    });
+  </script>
+</body>
+</html>

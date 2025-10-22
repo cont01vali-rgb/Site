@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testare generală</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script defer src="../js/main.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="../index.html" class="nav-item">🏠 Acasă</a>
+      <a href="../learn.html" class="nav-item">📚 Lecții</a>
+      <a href="general-test.html" class="nav-item active">🧩 Test general</a>
+      <a href="../progress.html" class="nav-item">📊 Progres</a>
+    </nav>
+  </header>
+
+  <main class="general-test">
+    <h2>Testare generală</h2>
+
+    <div id="difficulty-selection">
+      <p>Alege nivelul de dificultate:</p>
+      <button onclick="startGeneralTest('easy')">Ușor (10 întrebări / 20 min)</button>
+      <button onclick="startGeneralTest('medium')">Mediu (15 întrebări / 20 min)</button>
+      <button onclick="startGeneralTest('hard')">Greu (25 întrebări / 25 min)</button>
+      <button onclick="startGeneralTest('hero')">Erou (40 întrebări / 35 min)</button>
+    </div>
+
+    <div id="test-container" style="display:none;">
+      <p id="timer">⏱️ Timp rămas: <span id="time-left"></span></p>
+      <div id="question-area"></div>
+      <div id="controls">
+        <button id="next-question">Următoarea întrebare</button>
+      </div>
+    </div>
+
+    <div id="result-container" style="display:none;">
+      <h3>Rezultat final</h3>
+      <p id="score-percentage"></p>
+      <button onclick="saveAndGoProgress()">Vezi progresul</button>
+    </div>
+  </main>
+</body>
+</html>
