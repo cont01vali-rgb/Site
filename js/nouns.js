@@ -74,6 +74,8 @@ const nounsData = [
 document.addEventListener('DOMContentLoaded', () => {
   const tableBody = document.querySelector('#nounsTable tbody');
   const searchInput = document.getElementById('searchInput');
+  let currentData = nounsData;
+  let selectedRowIndex = -1;
 
   renderTable(nounsData);
 
@@ -85,14 +87,61 @@ document.addEventListener('DOMContentLoaded', () => {
       normalize((item.traducere || "").toLowerCase()).includes(term) ||
       normalize((item.plural || "").toLowerCase()).includes(term)
     );
+    currentData = filtered;
+    selectedRowIndex = -1;
     renderTable(filtered);
   });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    const rows = tableBody.querySelectorAll('tr');
+    if (rows.length === 0) return;
+
+    // Arrow Down
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (selectedRowIndex < rows.length - 1) {
+        selectedRowIndex++;
+        updateSelection(rows);
+      }
+    }
+    // Arrow Up
+    else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (selectedRowIndex > 0) {
+        selectedRowIndex--;
+        updateSelection(rows);
+      } else if (selectedRowIndex === -1 && rows.length > 0) {
+        selectedRowIndex = 0;
+        updateSelection(rows);
+      }
+    }
+    // Enter - play audio
+    else if (e.key === 'Enter' && selectedRowIndex >= 0 && selectedRowIndex < currentData.length) {
+      e.preventDefault();
+      const item = currentData[selectedRowIndex];
+      playPronunciation(item.nomen);
+    }
+  });
+
+  // Update visual selection
+  function updateSelection(rows) {
+    rows.forEach((row, index) => {
+      if (index === selectedRowIndex) {
+        row.classList.add('selected-row');
+        row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        row.classList.remove('selected-row');
+      }
+    });
+  }
 
   // Function to render the table
   function renderTable(items) {
     tableBody.innerHTML = "";
-    items.sort((a, b) => a.nomen.localeCompare(b.nomen, 'de'));
-    items.forEach(item => {
+    const sorted = [...items].sort((a, b) => a.nomen.localeCompare(b.nomen, 'de'));
+    currentData = sorted;
+    sorted.forEach(item => {
       const row = document.createElement('tr');
 
       // AUDIO COLUMN

@@ -203,3 +203,9 @@ th {
 .audio-btn:hover {
   color: #1877f2;
 }
+
+.selected-row {
+  background-color: #3d84c6;
+  color: white;
+  transition: background-color 0.2s ease;
+}
