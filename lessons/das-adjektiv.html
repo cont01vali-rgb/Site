@@ -17,28 +17,39 @@
     </nav>
 </header>
 
-  <main class="container">
-    <h1>Das Adjektiv</h1>
-    <p>Tagul <span style="color: #A52A2A; font-weight: bold;">der</span> este folosit pentru substantivele de gen masculin.</p>
+<main class="container">
+  <h1>Das Adjektiv</h1>
 
+  <!-- Teorie pentru lecție -->
+  <p>Adjectivele sunt cuvinte care <strong>descriu un substantiv sau un pronume</strong>, indicând calitatea, starea sau caracteristica acestuia.</p>
+  
+  <h2>Funcții ale adjectivelor</h2>
+  <ul>
+    <li><strong>Atributiv</strong> – se află înaintea substantivului și se acordă cu acesta. Ex: <em>die <span style="color:red;">rote</span> Blume</em></li>
+    <li><strong>Predicativ</strong> – se află după verbul de legătură (sein, werden, bleiben) și nu se acordă. Ex: <em>Die Blume ist <span style="color:red;">rot</span>.</em></li>
+    <li><strong>Adverbial</strong> – descrie un verb sau un alt adjectiv. Ex: <em>Er läuft <span style="color:red;">schnell</span>.</em></li>
+  </ul>
 
-    <input type="text" id="searchInput" placeholder="Caută un cuvânt (germană sau română)...">
+  <h2>Reguli de bază</h2>
+  <p>Adjectivele care stau înaintea substantivului primesc terminații diferite în funcție de gen, număr și caz. Ele pot exprima culoare, mărime, stare, emoție, caracter sau origine.</p>
 
-    <table id="nounsTable">
-      <thead>
-        <tr>
-          <th></th> <!-- pentru iconița audio -->
-          <th>Nomen</th>
-          <th>Gen</th>
-          <th>Plural</th>
-          <th>Traducere</th>
-          <th>Exemplu</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Cuvintele se încarcă automat din JSON -->
-      </tbody>
-    </table>
-  </main>
+  <input type="text" id="searchInput" placeholder="Caută un adjectiv (germană sau română)...">
+
+  <table id="adjektivTable">
+    <thead>
+      <tr>
+        <th></th> <!-- pentru iconița audio -->
+        <th>Adjektiv</th>
+        <th>Comparativ</th>
+        <th>Superlativ</th>
+        <th>Traducere</th>
+        <th>Exemplu</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Adjectivele se încarcă automat din JSON -->
+    </tbody>
+  </table>
+</main>
 </body>
 </html>

@@ -1,9 +1,9 @@
-lessons/lesson1.html - Das deutsche Alphabet
-lessons/lesson2.html -
-lessons/lesson3.html -
-lessons/lesson4.html -
-lessons/lesson5.html -
-lessons/lesson6.html -
-lessons/lesson7.html -
-lessons/lesson8.html -
-lessons/lesson9.html -
+Actualizare 23/10/25 07:20
+-exercitii pentru lectia das-nomen
+-implementare script site test
+
+Probleme de remediat:
+-exercitii neintuitive, probleme la imagini
+-modificare exercitii
+-reparare buton asculta in test1/2 (este mai jos decat ar trebuii si blocheaza alte butoane)
+-adaugare pagini la lectia Das Nomen

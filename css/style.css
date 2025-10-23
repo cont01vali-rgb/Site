@@ -116,9 +116,10 @@ body {
 
 .answers {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .ans-btn, .btn {
@@ -130,6 +131,8 @@ body {
   cursor: pointer;
   font-size: 1em;
   transition: background 0.3s;
+  padding: 0.45rem 0.8rem;
+  min-width: 160px;
 }
 
 .ans-btn:hover, .btn:hover {
@@ -138,6 +141,7 @@ body {
 
 .ans-btn.selected {
   background: #00a86b;
+  outline: 3px solid rgba(43,120,200,0.18);
 }
 
 .feedback {
@@ -147,24 +151,15 @@ body {
 
 .test-controls {
   margin-top: 15px;
-}
-
-.ans-btn {
-  background: #0078d7;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 18px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background 0.3s;
-}
-
-.ans-btn:hover {
-  background: #005fa3;
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
 }
 
 .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
   width: 90%;
   margin: 40px auto;
   font-family: Arial, sans-serif;
@@ -208,4 +203,78 @@ th {
   background-color: #3d84c6;
   color: white;
   transition: background-color 0.2s ease;
+}
+
+/* centru pentru zona de întrebări */
+#questionArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.6rem;
+    padding: 0.6rem;
+}
+
+/* imaginea și inputul din exercițiile img/fill */
+#questionArea img {
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+#questionArea input[type="text"],
+#questionArea input#fill-input {
+    width: 100%;
+    max-width: 480px;
+    box-sizing: border-box;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: center; /* textul la centru */
+    font-size: 1rem;
+}
+
+/* butoane și liste de răspunsuri centrate */
+.answers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.ans-btn, .btn {
+    padding: 0.45rem 0.8rem;
+    border: none;
+    background: #2b78c8;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.96rem;
+    min-width: 160px;
+}
+
+.ans-btn.selected {
+    outline: 3px solid rgba(43,120,200,0.18);
+    background: #1f63a6;
+}
+
+.test-controls {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 0.6rem;
+}
+
+/* feedback */
+.feedback {
+    font-weight: 600;
+}
+
+/* responsive */
+@media (max-width: 520px) {
+    #questionArea img { max-width: 90%; }
+    .ans-btn, .btn { min-width: 140px; font-size: 0.92rem; }
 }
