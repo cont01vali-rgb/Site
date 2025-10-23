@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Das deutsche Alphabet</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script defer src="../js/lesson1-tts.js"></script>
 </head>
 <body>
 <header>
@@ -20,16 +21,31 @@
 
     <p>În această lecție vei învăța alfabetul limbii germane și pronunția sunetelor speciale: <strong>Umlaute</strong> și <strong>Doppellaute</strong>.</p>
 
+    <div class="alphabet-row" style="margin:0.6rem 0;">
+      <button class="tts-btn" data-text="Das Alphabet: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z Ä Ö Ü" aria-label="Ascultă alfabetul">🔊 Ascultă alfabetul</button>
+    </div>
+
     <img src="../assets/alfabetul.png" alt="Alfabetul german" class="lesson-image">
 
     <section>
         <h2>Umlaute</h2>
         <ul>
-            <li><strong>ä</strong> — der Lärm, der Käse, die Säge, das Gefäß</li>
-            <li><strong>ü</strong> — die Überraschung, das Frühstück</li>
-            <li><strong>ö</strong> — das Öl, Österreich, die Lösung</li>
-            <li><strong>ß</strong> — die Straße  
-                <br><em>Se citește ca „s”. În germană se numește <strong>„scharfes s”</strong> și există doar ca literă mică.</em>
+            <li>
+              <button class="tts-btn" data-phoneme="ä" aria-label="Pronunță ä">🔊</button>
+              <strong>ä</strong> — Käse, Lärm
+            </li>
+            <li>
+              <button class="tts-btn" data-phoneme="ü" aria-label="Pronunță ü">🔊</button>
+              <strong>ü</strong> — Überraschung, Frühstück
+            </li>
+            <li>
+              <button class="tts-btn" data-phoneme="ö" aria-label="Pronunță ö">🔊</button>
+              <strong>ö</strong> — Öl, Österreich
+            </li>
+            <li>
+              <button class="tts-btn" data-text="Scharfes s, ß wie in Straße">🔊</button>
+              <strong>ß</strong> — die Straße  
+              <br><em>Se citește ca „s”. În germană se numește <strong>„scharfes s”</strong> și există doar ca literă mică.</em>
             </li>
         </ul>
     </section>
@@ -37,26 +53,60 @@
     <section>
         <h2>Doppellaute (Diftongi)</h2>
         <ul>
-            <li><strong>au</strong> — das Auto, laut, kaufen, laufen</li>
-            <li><strong>ei (ai)</strong> — das Ei, der Eimer, die Meinung, weinen, der Reis, der Preis</li>
-            <li><strong>eu (oi)</strong> — die Leute, heute, Europa, neu</li>
-            <li><strong>ie (ii)</strong> — exprimă un „i” lung: der Frieden, die Miete, liegen  
-                <br><em>[Traducere: Se folosește pentru a pronunța „i” mai lung decât de obicei.]</em>
+            <li>
+              <button class="tts-btn" data-phoneme="au" aria-label="Pronunță au">🔊</button>
+              <strong>au</strong> — das Auto, laut, kaufen, laufen
             </li>
-            <li><strong>ai</strong> — der Mais, der Kaiser, der Mai, der Hai, Raimund</li>
-            <li><strong>äu (oi)</strong> — die Mäuse, die Bäume, die Häuser, die Träume, läuten, häufig</li>
+            <li>
+              <button class="tts-btn" data-phoneme="ei" aria-label="Pronunță ei">🔊</button>
+              <strong>ei</strong> — das Ei, Eimer, Meinung, Reis
+            </li>
+            <li>
+              <button class="tts-btn" data-phoneme="eu" aria-label="Pronunță eu">🔊</button>
+              <strong>eu</strong> — Leute, heute, Europa, neu
+            </li>
+            <li>
+              <button class="tts-btn" data-phoneme="ie" aria-label="Pronunță ie">🔊</button>
+              <strong>ie</strong> — Frieden, Miete, liegen
+            </li>
+            <li>
+              <button class="tts-btn" data-phoneme="ai" aria-label="Pronunță ai">🔊</button>
+              <strong>ai</strong> — Mais, Mai
+            </li>
+            <li>
+              <button class="tts-btn" data-phoneme="äu" aria-label="Pronunță äu">🔊</button>
+              <strong>äu</strong> — Mäuse, Bäume
+            </li>
         </ul>
     </section>
 
     <section>
         <h2>Alte combinații importante</h2>
         <ul>
-            <li><strong>ch</strong> — die Milch, machen, lachen, brechen, ich</li>
-            <li><strong>sch (ș)</strong> — das Schloss, Schule, Schweiz, Schach</li>
-            <li><strong>st (șt)</strong> — der Stein, stehen, die Stadt, der Staat</li>
-            <li><strong>sp (șp)</strong> — die Speise, spielen, spät, sprechen, Sport</li>
-            <li><strong>tt</strong> — pronunțat rapid: die Mitte, die Bitte, das Bett, die Butter</li>
-            <li><strong>pp</strong> — pronunțat rapid: die Gruppe, die Puppe, die Lippe, die Suppe, die Kappe</li>
+            <li>
+              <button class="tts-btn" data-phoneme="ch" aria-label="Pronunță ch">🔊</button>
+              <strong>ch</strong> — Milch, machen
+            </li>
+            <li>
+              <button class="tts-btn" data-phoneme="sch" aria-label="Pronunță sch">🔊</button>
+              <strong>sch</strong> — Schloss, Schule
+            </li>
+            <li>
+              <button class="tts-btn" data-phoneme="st" aria-label="Pronunță st">🔊</button>
+              <strong>st</strong> — Stein, Stadt
+            </li>
+            <li>
+              <button class="tts-btn" data-phoneme="sp" aria-label="Pronunță sp">🔊</button>
+              <strong>sp</strong> — spielen, Sport
+            </li>
+            <li>
+              <button class="tts-btn" data-text="tt wie în Mitte, Beispiel: Mitte, Bitte, Bett">🔊</button>
+              <strong>tt</strong> — pronunțat rapid: die Mitte, die Bitte, das Bett, die Butter
+            </li>
+            <li>
+              <button class="tts-btn" data-text="pp wie în Gruppe, Beispiel: Gruppe, Puppe, Lippe">🔊</button>
+              <strong>pp</strong> — pronunțat rapid: die Gruppe, die Puppe, die Lippe, die Suppe, die Kappe
+            </li>
         </ul>
     </section>
 
