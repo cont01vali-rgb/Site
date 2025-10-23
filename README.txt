@@ -22,7 +22,7 @@ Imbunatatiri site:
 -lectie noua: 6.Das learnziel
 -testare adaugata pentru Das learnziel
 ==============================================================================================
-Actualizare
+Actualizare 23/10/25 15:56
 Probleme de remeidat:
 [FIX]-sterge butonul "Asculta toata saptamana" din lectia 9. Die Wochentage [FIX]
 -de facut test pentru lectia 7.
@@ -34,3 +34,5 @@ Probleme de remeidat:
 
 Imbunatatiri site:
 -lectii noi: 7. Buchstabiertafel ; 9.Die Wochentage ; 9.1.Die Jahreszeiten ; 9.2.Die Uhrzeit ; 9.3 Die Tageszeiten ; 9.4 Wann? ; 10. Das Schulsystem
+
+===========⚠︎ De incercat optimizare style.css ⚠︎================================================
