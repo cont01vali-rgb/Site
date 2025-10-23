@@ -464,7 +464,8 @@ body {
 
 /* article badges */
 .article-badge { display:inline-block; padding:4px 8px; border-radius:6px; background:#e6f9e6; color:#1d7a1d; font-weight:700; margin-left:6px; }
-.article-badge.neutral { background:#e8f2ff; color:#0e5aa8; }
+.article-badge.neutral { display:inline-block; padding:4px 8px; border-radius:6px; background:#e3f3ff; color:#4073e0; font-weight:700; margin-left:6px; }
+.article-badge.feminine { display:inline-block; padding:4px 8px; border-radius:6px; background:#fff0f6; color:#d6336c; font-weight:700; margin-left:6px;  }
 
 /* cards, rules, season cards */
 .intro-card, .rule-card, .season-card {

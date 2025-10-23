@@ -36,3 +36,13 @@ Imbunatatiri site:
 -lectii noi: 7. Buchstabiertafel ; 9.Die Wochentage ; 9.1.Die Jahreszeiten ; 9.2.Die Uhrzeit ; 9.3 Die Tageszeiten ; 9.4 Wann? ; 10. Das Schulsystem
 
 ===========⚠︎ De incercat optimizare style.css ⚠︎================================================
+Actualizare 23/10/25
+Probleme de remediat:
+background: #fdf900ff; -de facut test pentru lectia 7.
+background: #12529bff; -de sters butonul "Asculta exemple colocviale" din lectia 9.2.Die Uhrzeit
+background: #fdf900ff; -de stilizat lectia der die das, de adaugat cuvintele de exemple si terminatia de plural.
+background: #fdf900ff; -adaugare pagini la lectia Das Nomen
+background: #9f45b1ff; - /// ⚠︎ De incercat optimizare style.css ⚠︎ ///
+background: #fc003fff; -Probleme grave la testul pentru lectiile 9->9.4
+Sfat:copiaza tot sistemul testului de la Nomen si inlocuieste doar intrebarile
+================================================================================================

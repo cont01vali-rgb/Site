@@ -11,19 +11,20 @@
 <header>
   <nav class="navbar">
     <a href="../index.html" class="nav-item">🏠 Acasă</a>
-        <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
-        <a href="../tests/general-test.html" class="nav-item">🧩 Test general</a>
-        <a href="../progress.html" class="nav-item">📊 Progres</a>
+    <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
+    <a href="../tests/nouns-test.html" class="nav-item">🧩 Test Nomen</a>
+    <a href="../progress.html" class="nav-item">📊 Progres</a>
   </nav>
 </header>
 
-  <main class="container">
+  <main class="lesson-page">
     <h1>Das Nomen</h1>
     <p>Tagul <span style="color: #A52A2A; font-weight: bold;">der</span> este folosit pentru substantivele de gen masculin.</p>
     <p>Tagul <span style="color: #1e76b1; font-weight: bold;">die</span> este folosit pentru substantivele de gen feminin.</p>
     <p>Tagul <span style="color: #1fad56; font-weight: bold;">das</span> este folosit pentru substantivele de gen neutru.</p>
     <p>Substantivele în limba germană au genuri gramaticale, iar articolul definit indică genul acestora. Toate substantivele se scriu cu litera mare.</p>
 
+    
     <input type="text" id="searchInput" placeholder="Caută un cuvânt (germană sau română)...">
 
     <table id="nounsTable">
@@ -42,9 +43,13 @@
       </tbody>
     </table>
 
-    <div class="bottom-btn">
+    <!-- pagination info + controls -->
+    <div id="paginationInfo" class="center-row" style="margin-top:8px;color:#444"></div>
+    <div id="pagination" class="center-row" style="margin-top:8px;gap:8px;display:flex;flex-wrap:wrap;justify-content:center;"></div>
+
+    <div class="bottom-btn" id="testAnchor">
       <a href="../tests/nouns-test.html" class="test-button">Începe testul 📖</a>
-  </div>
-</main>
+    </div>
+  </main>
 </body>
 </html>
