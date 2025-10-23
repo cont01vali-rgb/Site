@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Die Uhrzeit</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script defer src="../js/lesson9-tts.js"></script>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <a href="../index.html" class="nav-item">🏠 Acasă</a>
+    <a href="../learn.html" class="nav-item active">📚 Mediu de învățare</a>
+  </nav>
+</header>
+
+<main class="lesson-page">
+  <h1>Die Uhrzeit <small style="font-weight:400;color:#666">— Ora</small></h1>
+
+  <div class="intro-card" style="background:#fff8e6;border-color:#f0df9a;">
+    <p><strong>„die Uhrzeit”</strong> = ora exactă / timpul de pe ceas. Plural: <strong>die Uhrzeiten</strong>. Articol: <span class="article-badge neutral">die</span>.</p>
+    <p><strong>Regula de bază:</strong> Când spui „Este ora ...” folosești: <code>Es ist ... Uhr.</code></p>
+  </div>
+
+  <div class="table-card" style="text-align:center;">
+    <img src="../assets/ceas.jpg" alt="Ceas" class="lesson-image" style="max-width:540px;margin:12px auto;border-radius:6px;" />
+  </div>
+
+  <section class="rule-card" style="margin-top:10px;">
+    <h3>Es ist ... Uhr (ore fixe)</h3>
+    <p>Es ist ein Uhr. / Es ist zwei Uhr. / ... / Es ist zwölf Uhr.</p>
+    <div style="margin-top:8px;">
+      <button class="tts-day" data-phoneme="Es ist ein Uhr">🔊 Es ist ein Uhr</button>
+      <button class="tts-day" data-phoneme="Es ist zwei Uhr">🔊 Es ist zwei Uhr</button>
+      <button class="tts-day" data-phoneme="Es ist zwölf Uhr">🔊 Es ist zwölf Uhr</button>
+    </div>
+  </section>
+
+  <section class="rule-card">
+    <h3>Întrebări frecvente</h3>
+    <table class="weekday-table" style="max-width:820px;">
+      <thead><tr><th>Întrebarea</th><th>Traducere</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Wie spät ist es?</strong></td><td>Cât este ceasul?</td>
+        </tr>
+        <tr>
+          <td><strong>Wie viel Uhr ist es?</strong></td><td>Câte ore sunt? / Cât e ora?</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="rule-card">
+    <h3>Minute — variante simple și colocviale</h3>
+    <p><strong>Variantă simplă:</strong> <code>Es ist [ora] Uhr [minute].</code></p>
+    <ul>
+      <li><button class="tts-day" data-phoneme="Es ist drei Uhr fünf">🔊</button> Es ist drei Uhr fünf. — 3:05</li>
+      <li><button class="tts-day" data-phoneme="Es ist sieben Uhr zwanzig">🔊</button> Es ist sieben Uhr zwanzig. — 7:20</li>
+      <li><button class="tts-day" data-phoneme="Es ist zehn Uhr dreißig">🔊</button> Es ist zehn Uhr dreißig. — 10:30</li>
+    </ul>
+
+    <p><strong>Coloquial:</strong></p>
+    <ul>
+      <li><button class="tts-day" data-phoneme="Es ist Viertel nach zwei">🔊</button> Es ist Viertel nach zwei. — 2:15</li>
+      <li><button class="tts-day" data-phoneme="Es ist halb drei">🔊</button> Es ist halb drei. — 2:30</li>
+      <li><button class="tts-day" data-phoneme="Es ist Viertel vor drei">🔊</button> Es ist Viertel vor drei. — 2:45</li>
+    </ul>
+
+    <div style="margin-top:8px;text-align:center;">
+      <button id="play-clock" class="tts-day btn" data-seq='["Es ist Viertel nach zwei","Es ist halb drei","Es ist Viertel vor drei"]'>🔊 Ascultă exemple colocviale</button>
+    </div>
+  </section>
+
+  <section class="rule-card">
+    <h3>Partiționarea zilei (pentru claritate)</h3>
+    <table class="weekday-table" style="max-width:820px;">
+      <thead><tr><th>Expresie</th><th>Traducere</th><th>Interval</th></tr></thead>
+      <tbody>
+        <tr><td><strong>am Morgen</strong></td><td>dimineața</td><td>05:00 – 10:00</td></tr>
+        <tr><td><strong>am Vormittag</strong></td><td>înainte de prânz</td><td>10:00 – 12:00</td></tr>
+        <tr><td><strong>am Mittag</strong></td><td>la prânz</td><td>12:00 – 13:00</td></tr>
+        <tr><td><strong>am Nachmittag</strong></td><td>după-amiaza</td><td>13:00 – 17:00</td></tr>
+        <tr><td><strong>am Abend</strong></td><td>seara</td><td>17:00 – 22:00</td></tr>
+        <tr><td><strong>in der Nacht</strong></td><td>noaptea</td><td>22:00 – 05:00</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="rule-card">
+    <h3>Expresii utile și prepoziția <code>um</code></h3>
+    <ul>
+      <li><button class="tts-day" data-phoneme="Ich stehe um sieben Uhr auf">🔊</button> Ich stehe <strong>um</strong> sieben Uhr auf. — Mă trezesc la 7.</li>
+      <li><button class="tts-day" data-phoneme="Der Kurs beginnt um neun Uhr">🔊</button> Der Kurs beginnt <strong>um</strong> neun Uhr. — Cursul începe la 9.</li>
+    </ul>
+  </section>
+
+  <section class="rule-card">
+    <h3>DIE BEGRÜSSUNGEN (Saluturi legate de oră)</h3>
+    <table class="weekday-table" style="max-width:820px;">
+      <thead><tr><th>Salut</th><th>Traducere</th><th>Interval</th></tr></thead>
+      <tbody>
+        <tr><td>Guten Morgen!</td><td>Bună dimineața!</td><td>05:00 – 11:00</td></tr>
+        <tr><td>Guten Tag!</td><td>Bună ziua!</td><td>11:00 – 17:00</td></tr>
+        <tr><td>Guten Abend!</td><td>Bună seara!</td><td>17:00 – 22:00</td></tr>
+        <tr><td>Gute Nacht!</td><td>Noapte bună!</td><td>22:00 – 05:00</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="lesson-navigation" style="display:flex;justify-content:space-between;gap:12px;margin-top:18px;">
+    <a class="btn" href="../lessons/die-jahreszeiten.html">← Prev (9.1. Die Jahreszeiten)</a>
+    <a class="btn" href="../lessons/die-tageszeiten.html">Next (9.3. Die Tageszeiten) →</a>
+  </div>
+</main>
+</body>
+</html>
