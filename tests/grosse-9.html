@@ -1,187 +1,36 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Test: Große 9</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <style>
-    /* centrare test (main-frame este deja definit în css) */
-    main.main-frame { padding: 18px; }
-    .section { background:#fff; padding:12px; border-radius:8px; margin-bottom:14px; max-width:900px; }
-    .q{ margin:8px 0; }
-    .audio-btn { margin-right:8px; }
-    .result { margin-top:8px; font-weight:700; }
-    .mc-row label { display:block; margin:6px 0; }
-    .tf-row label { display:block; margin:6px 0; }
-    .fill-row input { width: auto; min-width:120px; margin-left:6px; }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Test Grosse9</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script defer src="../js/grosse9.js"></script>                <!-- grosseData (must expune window.grosseData) -->
+  <script defer src="../data/grosse9-exercises.js"></script>    <!-- offline exercises (fallback) -->
+  <script defer src="../js/grosse9-test-runner.js"></script>    <!-- runner -->
 </head>
 <body>
 <header>
   <nav class="navbar">
     <a href="../index.html" class="nav-item">🏠 Acasă</a>
-    <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
+        <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
+        <a href="../tests/general-test.html" class="nav-item">🧩 Test general</a>
+        <a href="../progress.html" class="nav-item">📊 Progres</a>
   </nav>
 </header>
 
-<main class="main-frame" id="test-main">
-  <h1 id="test-title">Test: Große 9</h1>
-  <p class="small">Test axat pe: Die Wochentage, Die Jahreszeiten, Die Uhrzeit, Die Tageszeiten. Completează și trimite la final pentru scor.</p>
+<main class="container">
+  <h1>Test: Grosse9</h1>
+  <p id="progress">Întrebare <span id="qIndex">0</span>/<span id="qTotal">0</span> — Scor: <span id="score">0</span></p>
 
-  <!-- secțiuni goale: vor fi populate din data file -->
-  <div id="days-section" class="section"></div>
-  <div id="seasons-section" class="section"></div>
-  <div id="time-section" class="section"></div>
-  <div id="parts-section" class="section"></div>
+  <div id="questionArea"></div>
 
-  <div style="display:flex;gap:12px;align-items:center;">
-    <button id="gradeBtn" class="btn">Trimite și verifică</button>
-    <div id="score" class="result"></div>
-    <a href="../lessons/9-4-wann.html" class="btn" style="margin-left:auto;">Înapoi la lecție</a>
+  <div class="test-controls" style="margin-top:.8rem;">
+    <button id="verify-btn" class="btn">Verifică</button>
+    <button id="next-btn" class="btn" style="display:none;">Următoarea întrebare</button>
   </div>
+
+  <p id="feedback" class="feedback" style="min-height:1.2rem;margin-top:.6rem;"></p>
 </main>
-
-<!-- data file -->
-<script src="./data/grosse9.js"></script>
-
-<script>
-/* Renderer + logic: folosește window.grosse9Data */
-(function(){
-  if (!window.grosse9Data) {
-    console.error('grosse9Data lipsă');
-    return;
-  }
-  const data = window.grosse9Data.sections;
-
-  // utilitare
-  const esc = s => String(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const eq = (a,b)=> String(a||'').trim().toLowerCase() === String(b||'').trim().toLowerCase();
-
-  // Render funcții
-  function renderTF(container, items, namePrefix) {
-    const html = ['<h3>True / False</h3>'];
-    items.forEach((it, i) => {
-      const name = `${namePrefix}_tf${i}`;
-      html.push(`<div class="tf-row q"><label><input type="radio" name="${name}" value="true"> ${esc(it.q)}</label> <label><input type="radio" name="${name}" value="false"> (false)</label></div>`);
-    });
-    container.insertAdjacentHTML('beforeend', html.join(''));
-  }
-
-  function renderFill(container, items) {
-    container.insertAdjacentHTML('beforeend','<h3>Fill in the blank</h3>');
-    items.forEach(it => {
-      const id = it.id || ('fill_'+Math.random().toString(36).slice(2,7));
-      container.insertAdjacentHTML('beforeend', `<div class="fill-row q">${esc(it.q)} <input type="text" id="${id}" data-answer="${esc(it.a||'')}" /></div>`);
-    });
-  }
-
-  function renderMC(container, items, namePrefix) {
-    const html = ['<h3>Multiple Choice</h3>'];
-    items.forEach((it, i) => {
-      const name = `${namePrefix}_mc${i}`;
-      html.push(`<div class="mc-row q">${esc(it.q)}<br>`);
-      it.c.forEach((opt, j) => {
-        const isCorrect = opt === it.a;
-        html.push(`<label><input type="radio" name="${name}" value="${isCorrect ? 'true' : 'false'}"> ${esc(opt)}</label>`);
-      });
-      html.push(`</div>`);
-    });
-    container.insertAdjacentHTML('beforeend', html.join(''));
-  }
-
-  function renderAudio(container, items, prefix) {
-    container.insertAdjacentHTML('beforeend','<h3>Audio (scrie răspunsul) — redare vocală din browser</h3>');
-    items.forEach((it, i) => {
-      const id = `${prefix}_a${i+1}`;
-      container.insertAdjacentHTML('beforeend', `<div class="q">Ascultă și scrie: <button class="audio-btn" data-text="${it.a}" data-lang="de-DE">🔊</button> <input type="text" id="${id}" data-answer="${esc(it.a||'')}" /></div>`);
-    });
-  }
-
-  // render secțiuni
-  data.forEach(section => {
-    const container = document.getElementById(section.id);
-    if (!container) return;
-    container.insertAdjacentHTML('beforeend', `<h2>${esc(section.title)}</h2>`);
-    renderTF(container, section.tf || [], section.id);
-    renderFill(container, section.fill || []);
-    renderMC(container, section.mc || [], section.id);
-    renderAudio(container, section.audio || [], section.id);
-  });
-
-  // helpers
-  const checkAnswer = (id, userAnswer) => {
-    const el = document.getElementById(id);
-    if (!el) return false;
-    const correctAnswer = el.dataset.answer;
-    return eq(userAnswer, correctAnswer);
-  };
-
-  document.getElementById('gradeBtn').addEventListener('click', ()=>{
-    let total = 0, correct = 0;
-
-    // DAYS True/False
-    const tfAnswers = { tf1:'true', tf2:'false', tf3:'true', tf4:'true', tf5:'false', tf6:'true' };
-    Object.keys(tfAnswers).forEach(k=>{
-      total++; const sel = document.querySelector(`input[name="${k}"]:checked`);
-      if(sel && sel.value === tfAnswers[k]) correct++;
-    });
-
-    // Days fill
-    total++; if(eq(document.getElementById('f1').value,'Montag')) correct++;
-    total++; if(eq(document.getElementById('f2').value,'Mittwoch')) correct++;
-    total++; if(eq(document.getElementById('f3').value,'Sonntag')) correct++;
-    total++; if(eq(document.getElementById('f4').value,'Freitag')) correct++;
-    total++; if(eq(document.getElementById('f5').value,'Dienstag')) correct++;
-    total++; if(eq(document.getElementById('f6').value,'Samstag')) correct++;
-
-    // MC
-    total++; if(document.querySelector('input[name="mc1"]:checked')?.value === 'b') correct++;
-    total++; if(document.querySelector('input[name="mc2"]:checked')?.value === 'c') correct++;
-
-    // Audio day answers
-    total++; if(eq(document.getElementById('a1').value,'Montag')) correct++;
-    total++; if(eq(document.getElementById('a2').value,'duminică') || eq(document.getElementById('a2').value,'duminica')) correct++;
-    total++; if(eq(document.getElementById('a3').value,'Mittwoch')) correct++;
-    total++; if(document.getElementById('a4').value.toLowerCase()==='der') correct++;
-    total++; if(eq(document.getElementById('a5').value,'Dienstag')) correct++;
-
-    // Seasons T/F + fill + MC + audio
-    const s_tf = { s_tf1:'true', s_tf2:'false', s_tf3:'true', s_tf4:'false', s_tf5:'true' };
-    Object.keys(s_tf).forEach(k);{ total++; if(document.querySelector(`input[name="${k}"]:checked`)?.value === s_tf[k]) correct++; }
-    total++; if(eq(document.getElementById('s1').value,'Frühling')) correct++;
-    total++; if(eq(document.getElementById('s2').value,'Sommer')) correct++;
-    total++; if(eq(document.getElementById('s3').value,'Herbst')) correct++;
-    total++; if(eq(document.getElementById('s4').value,'Winter')) correct++;
-    total++; if(document.getElementById('s5').value.trim() !== '') correct++; // any non-empty acceptable
-    total++; if(document.querySelector('input[name="s_mc1"]:checked')?.value === 'b') correct++;
-    total++; if(eq(document.getElementById('s_a1').value,'Frühling')) correct++;
-
-    // Time T/F + fill + MC + audio
-    const t_tf = { t_tf1:'false', t_tf2:'true', t_tf3:'true' };
-    Object.keys(t_tf).forEach(k);{ total++; if(document.querySelector(`input[name="${k}"]:checked`)?.value === t_tf[k]) correct++; }
-    total++; if(eq(document.getElementById('t1').value,'Wie spät')) correct++;
-    total++; if(eq(document.getElementById('t2').value,'sieben')) correct++;
-    total++; if(eq(document.getElementById('t3').value,'Viertel')) correct++;
-    total++; if(document.querySelector('input[name="t_mc1"]:checked')?.value === 'a') correct++;
-    total++; if(eq(document.getElementById('t_a1').value,'7:30') || eq(document.getElementById('t_a1').value,'07:30')) correct++;
-
-    // Parts of the day
-    const p_tf = { p_tf1:'true', p_tf2:'false' };
-    Object.keys(p_tf).forEach(k); total++; if(document.querySelector(`input[name="${k}"]:checked`)?.value === p_tf[k]) correct++; }
-    total++; if(eq(document.getElementById('p1').value,'Morgen')) correct++;
-    total++; if(eq(document.getElementById('p2').value,'Vormittag')) correct++;
-
-    // Matching selects
-    total++; if(eq(document.getElementById('m1').value,'luni')) correct++;
-    total++; if(eq(document.getElementById('m2').value,'primăvară')) correct++;
-
-    // final score
-    document.getElementById('score').textContent = `Scor: ${correct} / ${total} (${Math.round(correct/total*100)}%)`;
-    // scroll to score
-    document.getElementById('score').scrollIntoView({behavior:'smooth'});
-  });
-})();
-</script>
 </body>
 </html>

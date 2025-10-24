@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Das Verb – Lecția</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script defer src="../js/verb.js"></script>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <a href="../index.html" class="nav-item">🏠 Acasă</a>
+        <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
+        <a href="../tests/general-test.html" class="nav-item">🧩 Test general</a>
+        <a href="../progress.html" class="nav-item">📊 Progres</a>
+  </nav>
+</header>
+
+<main class="lesson-page">
+  <h1>Das Adjektiv</h1>
+
+  <!-- Teorie pentru lecție -->
+  <p>Adjectivele sunt cuvinte care <strong>descriu un substantiv sau un pronume</strong>, indicând calitatea, starea sau caracteristica acestuia.</p>
+
+  <h2>Funcții ale adjectivelor</h2>
+    <ul>
+    <li><strong>Atributiv</strong> – se află înaintea substantivului și se acordă cu acesta. Ex: <em>die <span style="color:red;">rote</span> Blume</em></li>
+    <li><strong>Predicativ</strong> – se află după verbul de legătură (sein, werden, bleiben) și nu se acordă. Ex: <em>Die Blume ist <span style="color:red;">rot</span>.</em></li>
+    <li><strong>Adverbial</strong> – descrie un verb sau un alt adjectiv. Ex: <em>Er läuft <span style="color:red;">schnell</span>.</em></li>
+    </ul>
+
+  <h2>Reguli de bază</h2>
+  <p>Adjectivele care stau înaintea substantivului primesc terminații diferite în funcție de gen, număr și caz. Ele pot exprima culoare, mărime, stare, emoție, caracter sau origine.</p>
+
+  <input type="text" id="searchInput" placeholder="Caută un adjectiv (germană sau română)...">
+
+  <table id="adjektivTable">
+    <thead>
+      <tr>
+        <th></th> <!-- pentru iconița audio -->
+        <th>Adjektiv</th>
+        <th>Comparativ</th>
+        <th>Superlativ</th>
+        <th>Traducere</th>
+        <th>Exemplu</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Adjectivele se încarcă automat din JSON -->
+    </tbody>
+  </table>
+</main>
+</body>
+</html>

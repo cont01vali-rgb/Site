@@ -43,6 +43,16 @@ background: #12529bff; -de sters butonul "Asculta exemple colocviale" din lectia
 background: #fdf900ff; -de stilizat lectia der die das, de adaugat cuvintele de exemple si terminatia de plural.
 background: #fdf900ff; -adaugare pagini la lectia Das Nomen
 background: #9f45b1ff; - /// ⚠︎ De incercat optimizare style.css ⚠︎ ///
-background: #fc003fff; -Probleme grave la testul pentru lectiile 9->9.4
+[FIX]background: #fc003fff; -Probleme grave la testul pentru lectiile 9->9.4[FIX]
 Sfat:copiaza tot sistemul testului de la Nomen si inlocuieste doar intrebarile
 ================================================================================================
+Actualizare 24/10/25 07:21
+-de scos din testul "Grosse9" exercitiile cu verbe
+-de reparat lectia Das verbe
+-de integrat lectia Das Präsens cu Konjugation si de modificat butonul Konjugation care se va numi: Verbe Neregulate
+background: #fdf900ff; -de facut test pentru lectia 7.
+background: #12529bff; -de sters butonul "Asculta exemple colocviale" din lectia 9.2.Die Uhrzeit
+background: #fdf900ff; -de stilizat lectia der die das, de adaugat cuvintele de exemple si terminatia de plural.
+background: #fdf900ff; -adaugare pagini la lectia Das Nomen
+background: #9f45b1ff; - /// ⚠︎ De incercat optimizare style.css ⚠︎ ///
+=================================================================================================
