@@ -1,7 +1,7 @@
 /* General Test Engine
    - Exerciții pe categorii (după lecțiile existente)
    - Secțiune separată pentru AUDIO (// - audio)
-   - Dificultăți: easy/medium/hard/hero
+   - Dificultăți: easy/medium/hard/hero/crazy
    - TTS, timer, scor, salvare progres
 */
 
@@ -41,7 +41,7 @@
         ],
         mc: [
           { q:'Ce urmează după Donnerstag?', opts:['Dienstag','Freitag','Sonntag'], a:1, ex:'După joi (Donnerstag) urmează vineri (Freitag).' },
-          { q:'„Wednesday” înseamnă în germană:', opts:['Donnerstag','Dienstag','Mittwoch'], a:2 },
+          { q:'„Miercuri” înseamnă în germană:', opts:['Donnerstag','Dienstag','Mittwoch'], a:2 },
           { q:'Ce zi este „Sonntag”?', opts:['duminică','sâmbătă','luni'], a:0 }
         ],
         fill: [
@@ -102,7 +102,7 @@
       // Der/Die/Das (cu imagini)
       'der-die-das': {
         mc: [
-          { q:'„das Mädchen” are articolul...', opts:['der','die','das'], a:2, ex:'Sufixul -chen → genul neutru (das).' },
+          { q:'„Mädchen” are articolul...', opts:['der','die','das'], a:2, ex:'Sufixul -chen → genul neutru (das).' },
           { q:'„der Sommer” este...', opts:['masculin','feminin','neutru'], a:0 },
           { q:'Alege articolul corect:', img:'../assets/nouns/apfel.jpg', opts:['der','die','das'], a:0 },
           { q:'Alege articolul corect:', img:'../assets/nouns/rose.jpg', opts:['der','die','das'], a:1 },
@@ -143,9 +143,9 @@
           { q:'Terminație pentru „ihr” (Präsens):', opts:['-en','-t','-st'], a:1, ex:'ihr kommt, ihr macht (terminație -t).' }
         ],
         fill: [
-          { q:'ich komm__ (kommen, Präsens)', a:['e'] },
-          { q:'wir komm__ (kommen, Präsens)', a:['en'] },
-          { q:'er/sie/es geh__ (gehen, Präsens)', a:['t'] }
+          { q:'Care este terminatia verbului :ich komm__ (kommen, Präsens)', a:['e'] },
+          { q:'Care este terminatia verbului :wir komm__ (kommen, Präsens)', a:['en'] },
+          { q:'Care este terminatia verbului :er/sie/es geh__ (gehen, Präsens)', a:['t'] }
         ]
       },
 
@@ -215,8 +215,8 @@
       ],
       // - audio: Uhrzeit
       'die-uhrzeit': [
-        { q:'Ascultă și scrie ora (ex. 7:30):', tts:'Es ist halb acht', a:['7:30','07:30','7 30'] },
-        { q:'Ascultă și scrie: 8:45', tts:'Es ist Viertel vor neun', a:['8:45','08:45','8 45'] }
+        { q:'Ascultă și scrie ora: (ex. 23:42):', tts:'Es ist halb acht', a:['7:30','07:30','7 30'] },
+        { q:'Ascultă și scrie ora: (ex. 23:42):', tts:'Es ist Viertel vor neun', a:['8:45','08:45','8 45'] }
       ],
       // - audio: Tageszeiten
       'die-tageszeiten': [
@@ -235,12 +235,83 @@
     }
   };
 
+  // Mapare exerciții externe (data/general-exercises.js) în BANK
+  function mergeExternalExercisesIntoBank(B, ext) {
+    if (!ext) return;
+    const ensureCat = (cat) => {
+      if (!B.categories[cat]) B.categories[cat] = { tf:[], mc:[], fill:[] };
+      if (!B.audio[cat]) B.audio[cat] = [];
+      return B.categories[cat];
+    };
+    Object.entries(ext).forEach(([cat, items]) => {
+      if (!Array.isArray(items)) return;
+      const bucket = ensureCat(cat);
+      items.forEach(it => {
+        const t = String(it.type || '').toLowerCase();
+        const qText = it.question || '';
+        const ex = it.explanation ?? it.ex;
+        const img = it.img || it.image; // opțional
+        if (t === 'truefalse') {
+          bucket.tf.push({ q: qText, a: !!it.correct, ...(ex?{ex}:{}), ...(img?{img}:{}) });
+        } else if (t === 'multiple') {
+          const opts = Array.isArray(it.options) ? it.options.slice() : [];
+          let idx = Math.max(0, opts.findIndex(o => String(o) === String(it.correct)));
+          const out = { q: qText, opts, a: idx, ...(ex?{ex}:{}), ...(img?{img}:{}) };
+          if (it.word) out.tts = it.word; // MC cu audio
+          bucket.mc.push(out);
+        } else if (t === 'fill') {
+          const corr = Array.isArray(it.correct) ? it.correct : [it.correct];
+          bucket.fill.push({ q: qText, a: corr.filter(Boolean), ...(ex?{ex}:{}), ...(img?{img}:{}) });
+        } else if (t === 'audio') {
+          // audio cu opțiuni -> MC + tts; altfel -> secțiunea audio (răspuns scris)
+          if (Array.isArray(it.options) && it.options.length) {
+            const opts = it.options.slice();
+            let idx = Math.max(0, opts.findIndex(o => String(o) === String(it.correct)));
+            bucket.mc.push({ q: qText, opts, a: idx, tts: it.word, ...(ex?{ex}:{}), ...(img?{img}:{}) });
+          } else {
+            const corr = Array.isArray(it.correct) ? it.correct : [it.correct];
+            B.audio[cat].push({ q: qText, tts: it.word, a: corr.filter(Boolean) });
+          }
+        } else if (t === 'img') {
+          // dacă are opțiuni -> MC, altfel -> FILL, cu imagine
+          if (Array.isArray(it.options) && it.options.length) {
+            const opts = it.options.slice();
+            let idx = Math.max(0, opts.findIndex(o => String(o) === String(it.correct)));
+            bucket.mc.push({ q: qText || 'Alege varianta corectă', opts, a: idx, ...(img?{img}:{}), ...(ex?{ex}:{}) });
+          } else {
+            const corr = Array.isArray(it.correct) ? it.correct : [it.correct];
+            bucket.fill.push({ q: qText || 'Ce vezi în imagine?', a: corr.filter(Boolean), ...(img?{img}:{}), ...(ex?{ex}:{}) });
+          }
+        }
+      });
+    });
+  }
+
+  // Integrează banca externă (dacă există)
+  function waitForExternalExercises(timeout=5000) {
+    return new Promise(resolve => {
+      const start = Date.now();
+      const tick = () => {
+        if (window.generalExercises) {
+          try { 
+            mergeExternalExercisesIntoBank(BANK, window.generalExercises); 
+            return resolve(true);
+          } catch(e) { console.warn('Eroare încărcare exerciții externe:', e); }
+        }
+        if (Date.now() - start > timeout) return resolve(false);
+        setTimeout(tick, 50);
+      };
+      tick();
+    });
+  }
+
   // ====== Engine ======
   const LEVELS = {
-    easy:   { count: 10, minutes: 20 },
-    medium: { count: 15, minutes: 20 },
-    hard:   { count: 25, minutes: 25 },
-    hero:   { count: 40, minutes: 35 }
+    easy:   { count: 10, minutes: 12 },
+    medium: { count: 15, minutes: 15 },
+    hard:   { count: 25, minutes: 13 },
+    hero:   { count: 40, minutes: 15 },
+    crazy:  { count: 150, minutes: 40 }
   };
 
   let state = { questions:[], index:0, score:0, answered:false, difficulty:'easy', timerId:null, deadline:0, usedCategories:[], wrongs: [] };
@@ -262,20 +333,29 @@
     const byCat = pool.reduce((m,q)=> (m[q.cat]??=[]).push(q), {}), cats = Object.keys(byCat);
     const result = [];
     let ci = 0;
+    
+    // Prima fază: distribuie echilibrat pe categorii
     while (result.length < Math.min(count, pool.length) && cats.length) {
       const c = cats[ci % cats.length]; const arr = byCat[c];
       if (arr && arr.length) result.push(arr.shift());
       ci++;
       for (let i=cats.length-1;i>=0;i--) if (!byCat[cats[i]]?.length) cats.splice(i,1);
     }
+    
+    // A doua fază: dacă încă avem nevoie de întrebări și există în pool, le adăugăm
     if (result.length < count) {
-      const rest = pool.filter(q=>!result.includes(q));
-      result.push(...rest.slice(0, count - result.length));
+      const remaining = pool.filter(q => !result.some(r => r === q));
+      const needed = count - result.length;
+      result.push(...remaining.slice(0, needed));
     }
+    
     return result.slice(0, count);
   }
 
-  function startGeneralTest(levelKey='easy') {
+  async function startGeneralTest(levelKey='easy') {
+    // Așteptăm exercițiile externe
+    await waitForExternalExercises();
+    
     const level = LEVELS[levelKey] || LEVELS.easy;
     const { pool } = buildPool();
     const questions = pickQuestions(pool, level.count);
@@ -306,9 +386,10 @@
 
   function renderCurrent() {
     const q = state.questions[state.index]; const area = $('#question-area'); if (!q) return;
+    const canPlay = (q.type==='audio') || !!q.tts;
     let head = `<div class="q-head"><div style="display:flex;justify-content:space-between;align-items:center;">
       <div><strong>${state.index+1} / ${state.questions.length}</strong> · <span style="opacity:.8">${labelCat(q.cat)}</span></div>
-      ${q.type==='audio' ? `<button class="btn" id="playAudio">🔊 Ascultă</button>`:''}
+      ${canPlay ? `<button class="btn" id="playAudio">🔊 Ascultă</button>`:''}
     </div></div>`;
 
     const media = q.img ? `<div class="q-media"><img class="q-img" src="${q.img}" alt="media"></div>` : '';
@@ -332,9 +413,10 @@
     }
 
     area.innerHTML = head + body;
-    if (q.type === 'audio') {
-      $('#playAudio')?.addEventListener('click', ()=> speak(q.tts));
-      setTimeout(()=> speak(q.tts), 200);
+    if (canPlay) {
+      const say = () => speak(q.tts || q.tts || q.tts || q.tts); // q.tts pentru audio/MC audio
+      $('#playAudio')?.addEventListener('click', say);
+      setTimeout(say, 200);
     }
     state.answered = false; $('#check-question').disabled = false; $('#next-question').disabled = true;
   }
@@ -430,7 +512,7 @@
       'die-wochentage':'Wochentage','die-jahreszeiten':'Jahreszeiten','die-uhrzeit':'Uhrzeit','die-tageszeiten':'Tageszeiten',
       'der-die-das':'Der/Die/Das','das-nomen':'Das Nomen','das-adjektiv':'Das Adjektiv','das-verb':'Das Verb',
       'personalpronomen':'Personalpronomen','possessivpronomen':'Possessivpronomen','das-schulsystem':'Das Schulsystem',
-      'buchstabiertafel':'Buchstabiertafel'
+      'buchstabiertafel':'Alfabet','die-zahlen':'Zahlen','w-fragen':'W‑Fragen','grosse-9':'Große 9','das-lernziel':'Das Lernziel'
     }; return map[key] || key;
   }
 

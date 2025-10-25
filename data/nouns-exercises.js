@@ -90,6 +90,7 @@ window.nounsExercises = [
   {"type":"audio","question":"Ascultă și scrie forma de plural auzită.","word":"Kinder","options":["Kinder","Kinderes","Kinde"],"correct":"Kinder"},
   {"type":"audio","question":"Ascultă și traduce în română.","word":"Arbeit","options":["munca","adresa","copil"],"correct":"munca"},
   {"type":"audio","question":"Completează propoziția audio: Das _______ ist am 15. März.","word":"Geburtsdatum","options":["Geburtsdatum","Adresse","Monat"],"correct":"Geburtsdatum"},
+  {"type":"audio","question":"Completează propoziția audio: Ich habe viele _______ heute.","word":"Arbeiten","options":["Arbeiten","Brüder","Adressen"],"correct":"Arbeiten"},
 
   // === A1 noi: imagini (obiecte casă / veselă / fructe / legume)
   {"type":"img","question":"Ce vezi în imagine?","image":"tisch.jpg","answer":"Tisch"},
@@ -124,16 +125,19 @@ window.nounsExercises = [
   {"type":"fill","question":"Plural: der Stuhl → die ______","answer":"Stühle"},
   {"type":"fill","question":"Traducere RO: „______” (roșie – legumă)","answer":"Tomate"},
   {"type":"fill","question":"Plural: die Banane → die ______","answer":"Bananen"},
+  {"type":"fill","question":"Traducere RO: „______” (castron)","answer":"Schüssel"},
+  {"type":"fill","question":"Plural: die Schüssel → die ______","answer":"Schüsseln"},
 
   // === A1 noi: audio (pronunță cuvântul și răspunde)
   {"type":"audio","question":"Ascultă cuvântul și scrie ce auzi (germană).","word":"Lampe","options":["Lampe","Bett","Teller"],"correct":"Lampe"},
-  {"type":"audio","question":"Ascultă și alege articolul corect.","word":"Fenster","options":["der","die","das"],"correct":"das"}
-];
+  {"type":"audio","question":"Ascultă și alege articolul corect.","word":"Fenster","options":["der","die","das"],"correct":"das"},
+  {"type":"audio","question":"Ascultă și scrie forma de plural auzită.","word":"Kartoffeln","options":["Kartoffeln","Kartoffel","Kartoffeles"],"correct":"Kartoffeln"},
+  {"type":"audio","question":"Ascultă și traduce în română.","word":"Gabel","options":["furculiță","cuțit","lingură"],"correct":"furculiță"},
 
-window.nounsExercises = (window.nounsExercises || []).concat([
   // Antwort
   { type:"multiple", lemma:"Antwort", question:"Alege traducerea corectă pentru „Antwort”.", options:["răspuns","întrebare","temă"], correct:"răspuns", image:"antwort.jpg" },
   { type:"fill",     lemma:"Antwort", question:"Plural: die Antwort → die ______", answer:"Antworten" },
+  { type:"audio",    lemma:"Antwort", question:"Ascultă și alege cuvântul auzit.", word:"Antwort", options:["Antwort","Aufgabe","Ausbildung"], correct:"Antwort" },
 
   // Aufgabe
   { type:"multiple", lemma:"Aufgabe", question:"„Aufgabe” înseamnă...", options:["răspuns","exercițiu/sarcină","știre"], correct:"exercițiu/sarcină", image:"aufgabe.jpg" },
@@ -172,5 +176,34 @@ window.nounsExercises = (window.nounsExercises || []).concat([
   // Füllfeder
   { type:"multiple", lemma:"Füllfeder", question:"„Füllfeder” se traduce prin...", options:["creion","stilou","foarfecă"], correct:"stilou" },
   { type:"fill",     lemma:"Füllfeder", question:"Articol corect: ___ Füllfeder", answer:"die" },
-  { type:"audio",    lemma:"Füllfeder", question:"Ascultă și alege cuvântul auzit.", word:"Füllfeder", options:["Füllfeder","Lineal","Bleistift"], correct:"Füllfeder" }
-]);
+  { type:"audio",    lemma:"Füllfeder", question:"Ascultă și alege cuvântul auzit.", word:"Füllfeder", options:["Füllfeder","Lineal","Bleistift"], correct:"Füllfeder" },
+ 
+  // Obiecte din casă
+  { type:"img", question:"Ce vezi în imagine?", image:"kuche.jpg", answer:"Küche" },
+  { type:"img", question:"Ce vezi în imagine?", image:"sofa.jpg", answer:"Sofa" },
+  { type:"img", question:"Ce vezi în imagine?", image:"fernseher.jpg", answer:"Fernseher" },
+  { type:"img", question:"Ce vezi în imagine?", image:"computer.jpg", answer:"Computer" },
+  { type:"img", question:"Ce vezi în imagine?", image:"fenster.jpg", answer:"Fenster" },
+  { type:"multiple", question:"Articol corect pentru „Fenster”", options:["der","die","das"], correct:"das" },
+  { type:"multiple", question:"Articol corect pentru „Küche”", options:["der","die","das"], correct:"die" },
+  { type:"fill", question:"Plural: der Fernseher → die ______", answer:"Fernseher" },
+
+  // Îmbrăcăminte
+  { type:"img", question:"Ce vezi în imagine?", image:"jacke.jpg", answer:"Jacke" },
+  { type:"multiple", question:"Articol corect pentru „Jacke”", options:["der","die","das"], correct:"die" },
+  { type:"fill", question:"Traducere RO: ______ (geacă)", answer:"Jacke" },
+
+  // Locuri
+  { type:"img", question:"Ce vezi în imagine?", image:"schule.jpg", answer:"Schule" },
+  { type:"img", question:"Ce vezi în imagine?", image:"park.jpg", answer:"Park" },
+  { type:"multiple", question:"Articol corect pentru „Schule”", options:["der","die","das"], correct:"die" },
+  { type:"fill", question:"Plural: der Park → die ______", answer:"Parks" },
+
+  // Consum
+  { type:"multiple", question:"„Wasser” are plural?", options:["da","nu"], correct:"nu" },
+  { type:"multiple", question:"Articol corect pentru „Kaffee”", options:["der","die","das"], correct:"der" },
+
+  // Audio extra
+  { type:"audio", question:"Ascultă și alege articolul:", word:"Tür", options:["der","die","das"], correct:"die" },
+  { type:"audio", question:"Ascultă și selectează substantivul:", word:"Kühlschrank", options:["Kühlschrank","Fenster","Sofa"], correct:"Kühlschrank" }
+];

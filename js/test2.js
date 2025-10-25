@@ -57,6 +57,14 @@ const questions = [
   { type: "fill", question: "Traducerea în română a numărului „zweihundertachtundvierzig” este:", correct: "248" },
   { type: "fill", question: "Traducerea în română a numărului „sechshundertneunzehn” este:", correct: "619" },
   { type: "fill", question: "Traducerea în română a numărului „neunhundertfünfundachtzig” este:", correct: "985" },
+  { type: "fill", question: "Scrie în germană: „1000”", correct: "tausend" },
+  { type: "fill", question: "Scrie în germană: „1500”", correct: "eintausendfünfhundert" },
+  { type: "fill", question: "Scrie în germană: „2023”", correct: "zweitausenddreiundzwanzig" },
+  { type: "fill", question: "Scrie în germană: „1987”", correct: "eintausendneunhundertsiebenundachtzig" },
+  { type: "fill", question: "Scrie în germană: „2500”", correct: "zweitausendfünfhundert" },
+  { type: "fill", question: "Scrie în germană: „3001”", correct: "dreitausendeins" },
+  { type: "fill", question: "Scrie în germană: „4040”", correct: "viertausendvierzig" },
+  { type: "fill", question: "Scrie în germană: „5123”", correct: "fünftausendeinhundertdreiundzwanzig" },
 
 
   // ===== MULTIPLE =====
@@ -86,6 +94,11 @@ const questions = [
   { type: "multiple", question: "„sechshundertvierundachtzig” înseamnă:", options: ["șase sute optzeci și patru", "șaizeci și opt", "opt sute șaizeci și patru", "șase sute patruzeci și opt"], correct: "șase sute optzeci și patru" },
   { type: "multiple", question: "Cum se spune „999” în germană?", options: ["neunhundertneunundneunzig", "neunundneunzighundert", "neunzehnhundertneun", "neunhundertneunzig"], correct: "neunhundertneunundneunzig" },
   { type: "multiple", question: "Ce înseamnă „siebenhundertzweiundvierzig”?", options: ["șapte sute patruzeci și doi", "șaptezeci și doi", "șapte sute douăzeci și patru", "șaptezeci și patru"], correct: "șapte sute patruzeci și doi" },
+  { type: "multiple", question: "Cum se spune „1500” în germană?", options: ["eintausendfünfhundert", "fünfhundertsiebzig", "tausendfünfhundert", "eintausendsiebenhundert"], correct: "eintausendfünfhundert" },
+  { type: "multiple", question: "Ce înseamnă „zweitausenddreiundzwanzig”?", options: ["două mii douăzeci și trei", "două mii treizeci și doi", "două mii douăzeci și doi", "două mii treizeci și trei"], correct: "două mii douăzeci și trei" },
+  { type: "multiple", question: "Cum se spune „2024” în germană?", options: ["zweitausendvierundzwanzig", "zweitausendvierzig", "zweitausendvier", "zweitausendvierzehn"], correct: "zweitausendvierundzwanzig" },
+  { type: "multiple", question: "Ce înseamnă „eintausendachthundert”?", options: ["o mie opt sute", "o mie optzeci", "o mie optsprezece", "o mie nouă sute"], correct: "o mie opt sute" },
+  { type: "multiple", question: "Cum se spune „1503” în germană?", options: ["eintausendfünfhundertdrei", "eintausenddreihundertfünf", "fünfhundertdreiundtausend", "dreihundertfünfzehn"], correct: "eintausendfünfhundertdrei" },
 
 
   // ===== TRUE/FALSE =====
@@ -119,6 +132,14 @@ const questions = [
   { type: "truefalse", question: "„dreihundertachtzehn” este optsprezece sute trei.", correct: false },
   { type: "truefalse", question: "„fünfhundertvierundvierzig” este cinci sute patruzeci și patru.", correct: true },
   { type: "truefalse", question: "„vierhundert” înseamnă patruzeci.", correct: false },
+  { type: "truefalse", question: "„achtzig” este optzeci.", correct: true },
+  { type: "truefalse", question: "„neunzig” este nouăzeci.", correct: true },
+  { type: "truefalse", question: "„zweihundert” este două sute.", correct: true },
+  { type: "truefalse", question: "„siebenundsiebzig” este șaptezeci și șapte.", correct: true },
+  { type: "truefalse", question: "„dreiunddreißig” este treizeci și trei.", correct: true },
+  { type: "truefalse", question: "„fünfundvierzig” este cincizeci și patru.", correct: false },
+  { type: "truefalse", question: "„sechsundfünfzig” este cinzeci și șase.", correct: true },
+  { type: "truefalse", question: "„neunundachtzig” este optzeci și nouă.", correct: true },
 
 
 
@@ -148,7 +169,11 @@ const questions = [
   { type: "audio", question: "Ascultă și alege cuvântul corect:", word: "fünfhundertneunundneunzig", options: ["fünfhundertneunundneunzig", "fünfneunhundertneunzig", "neunhundertfünfundneunzig"], correct: "fünfhundertneunundneunzig" },
   { type: "audio", question: "Ascultă și alege cuvântul corect:", word: "sechshundertvierundzwanzig", options: ["sechshundertvierundzwanzig", "vierundsechshundertzwanzig", "sechshundertzwanzigvier"], correct: "sechshundertvierundzwanzig" },
   { type: "audio", question: "Ascultă și alege cuvântul corect:", word: "siebenhundertsiebenundsiebzig", options: ["siebenhundertsiebenundsiebzig", "siebenundsiebzighundert", "siebzigundsiebenhundert"], correct: "siebenhundertsiebenundsiebzig" },
-  { type: "audio", question: "Ascultă și alege cuvântul corect:", word: "neunhundertachtundsechzig", options: ["neunhundertachtundsechzig", "achtundneunzighundert", "sechshundertneunundachtzig"], correct: "neunhundertachtundsechzig" }
+  { type: "audio", question: "Ascultă și alege cuvântul corect:", word: "neunhundertachtundsechzig", options: ["neunhundertachtundsechzig", "achtundneunzighundert", "sechshundertneunundachtzig"], correct: "neunhundertachtundsechzig" },
+  { type: "audio", question: "Ascultă și alege numărul:", word: "sechsundvierzig", options: ["46", "64", "56"], correct: "46" },
+  { type: "audio", question: "Ascultă și alege varianta corectă:", word: "zweitausenddreiundzwanzig", options: ["2023", "2230", "2032"], correct: "2023" },
+  { type: "audio", question: "Ascultă și alege numărul:", word: "eintausendfünfhundert", options: ["1500", "1550", "1050"], correct: "1500" }
+  
 
 ]
 ;

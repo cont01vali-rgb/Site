@@ -1,12 +1,9 @@
 // Verb data
 const verbsData = [
-  {"verb":"kommen","traducere":"a veni","exemplu":"Ich komme aus Österreich."},
   {"verb":"wohnen","traducere":"a locui","exemplu":"Ich wohne in Graz."},
   {"verb":"heißen","traducere":"a se numi","exemplu":"Ich heiße Maria."},
-  {"verb":"gehen","traducere":"a merge","exemplu":"Wir gehen ins Kino."},
   {"verb":"lieben","traducere":"a iubi","exemplu":"Er liebt Musik."},
   {"verb":"lernen","traducere":"a învăța","exemplu":"Sie lernt Deutsch."},
-  {"verb":"sprechen","traducere":"a vorbi","exemplu":"Ich spreche Rumänisch und Deutsch."},
   {"verb":"arbeiten","traducere":"a lucra","exemplu":"Er arbeitet im Büro."},
   {"verb":"machen","traducere":"a face","exemplu":"Wir machen die Hausaufgaben."},
   {"verb":"spielen","traducere":"a se juca / a juca","exemplu":"Die Kinder spielen im Park."},
@@ -16,7 +13,6 @@ const verbsData = [
   {"verb":"kaufen","traducere":"a cumpăra","exemplu":"Sie kauft ein Brot."},
   {"verb":"trinken","traducere":"a bea","exemplu":"Wir trinken Wasser."},
   {"verb":"essen","traducere":"a mânca","exemplu":"Er isst eine Suppe."},
-  {"verb":"fahren","traducere":"a conduce / a călători","exemplu":"Ich fahre nach Wien."},
   {"verb":"lesen","traducere":"a citi","exemplu":"Sie liest ein Buch."},
   {"verb":"schreiben","traducere":"a scrie","exemplu":"Wir schreiben einen Brief."},
   {"verb":"hören","traducere":"a auzi / a asculta","exemplu":"Ich höre Musik."},
@@ -30,15 +26,12 @@ const verbsData = [
   {"verb":"frühstücken","traducere":"a lua micul dejun","exemplu":"Ich frühstücke um acht."},
 
   // A1 – Comunicare
-  {"verb":"fragen","traducere":"a întreba","exemplu":"Ich frage den Lehrer."},
   {"verb":"antworten","traducere":"a răspunde","exemplu":"Ich antworte schnell."},
-  {"verb":"sagen","traducere":"a spune","exemplu":"Ich sage die Wahrheit."},
   {"verb":"verstehen","traducere":"a înțelege","exemplu":"Ich verstehe dich."},
 
   // A1 – Percepție și mișcare
   {"verb":"sehen","traducere":"a vedea","exemplu":"Ich sehe den Film."},
   {"verb":"schauen","traducere":"a privi / a se uita","exemplu":"Ich schaue TV."},
-  {"verb":"laufen","traducere":"a alerga","exemplu":"Ich laufe im Park.","image":"laufen.jpg"},
   {"verb":"schwimmen","traducere":"a înota","exemplu":"Ich schwimme im Schwimmbad.","image":"schwimmen.jpg"},
   {"verb":"sitzen","traducere":"a sta jos","exemplu":"Ich sitze auf dem Stuhl.","image":"sitzen.jpg"},
   {"verb":"stehen","traducere":"a sta în picioare","exemplu":"Ich stehe im Bus."},
@@ -54,7 +47,64 @@ const verbsData = [
   {"verb":"telefonieren","traducere":"a vorbi la telefon","exemplu":"Ich telefoniere mit Maria."},
   {"verb":"suchen","traducere":"a căuta","exemplu":"Ich suche meine Brille."},
   {"verb":"finden","traducere":"a găsi","exemplu":"Ich finde den Schlüssel."},
-  {"verb":"bleiben","traducere":"a rămâne","exemplu":"Ich bleibe zu Hause."}
+  {"verb":"bleiben","traducere":"a rămâne","exemplu":"Ich bleibe zu Hause."},
+
+  // Verbe de mișcare și transport
+  {"verb":"kommen","traducere":"a veni","exemplu":"Ich komme morgen."},
+  {"verb":"gehen","traducere":"a merge (pe jos)","exemplu":"Ich gehe zur Schule."},
+  {"verb":"fahren","traducere":"a merge (cu mijlocul de transport)","exemplu":"Ich fahre mit dem Bus."},
+  {"verb":"fliegen","traducere":"a zbura","exemplu":"Wir fliegen nach Berlin."},
+  {"verb":"laufen","traducere":"a alerga","exemplu":"Er läuft jeden Tag.","image":"laufen.jpg"},
+  {"verb":"rennen","traducere":"a fugi","exemplu":"Das Kind rennt schnell."},
+
+  // Verbe de comunicare
+  {"verb":"sprechen","traducere":"a vorbi","exemplu":"Ich spreche Deutsch."},
+  {"verb":"sagen","traducere":"a spune","exemplu":"Ich sage die Wahrheit."},
+  {"verb":"fragen","traducere":"a întreba","exemplu":"Ich frage den Lehrer."},
+  {"verb":"erklären","traducere":"a explica","exemplu":"Der Lehrer erklärt die Regel."},
+  {"verb":"erzählen","traducere":"a povesti","exemplu":"Sie erzählt eine Geschichte."},
+
+  // Verbe de activități zilnice
+  {"verb":"aufstehen","traducere":"a se scula","exemplu":"Ich stehe um 7 Uhr auf."},
+  {"verb":"duschen","traducere":"a face duș","exemplu":"Ich dusche jeden Morgen."},
+  {"verb":"anziehen","traducere":"a se îmbrăca","exemplu":"Ich ziehe mich an."},
+  {"verb":"ausziehen","traducere":"a se dezbrăca","exemplu":"Er zieht sich aus."},
+  {"verb":"kämmen","traducere":"a se pieptăna","exemplu":"Sie kämmt sich die Haare."},
+  {"verb":"rasieren","traducere":"a se bărbieri","exemplu":"Er rasiert sich jeden Tag."},
+
+  // Verbe pentru casă și muncă
+  {"verb":"aufräumen","traducere":"a face ordine","exemplu":"Ich räume mein Zimmer auf."},
+  {"verb":"bügeln","traducere":"a călca (haine)","exemplu":"Sie bügelt das Hemd."},
+  {"verb":"staubsaugen","traducere":"a aspira","exemplu":"Er staubsaugt das Wohnzimmer."},
+  {"verb":"reparieren","traducere":"a repara","exemplu":"Ich repariere das Auto."},
+
+  // Verbe pentru sentiment și gândire
+  {"verb":"denken","traducere":"a gândi","exemplu":"Ich denke an dich."},
+  {"verb":"fühlen","traducere":"a simți","exemplu":"Ich fühle mich gut."},
+  {"verb":"hoffen","traducere":"a spera","exemplu":"Ich hoffe auf besseres Wetter."},
+  {"verb":"wünschen","traducere":"a dori","exemplu":"Ich wünsche dir alles Gute."},
+  {"verb":"träumen","traducere":"a visa","exemplu":"Ich träume von Urlaub."},
+
+  // Verbe pentru școală și învățare
+  {"verb":"studieren","traducere":"a studia","exemplu":"Er studiert Medizin."},
+  {"verb":"üben","traducere":"a exersa","exemplu":"Sie übt Klavier."},
+  {"verb":"wiederholen","traducere":"a repeta","exemplu":"Wir wiederholen die Lektion."},
+  {"verb":"merken","traducere":"a-și aminti","exemplu":"Ich merke mir die Nummer."},
+  {"verb":"vergessen","traducere":"a uita","exemplu":"Ich vergesse oft Namen."},
+
+  // Verbe pentru activități de timp liber
+  {"verb":"tanzen","traducere":"a dansa","exemplu":"Wir tanzen auf der Party."},
+  {"verb":"singen","traducere":"a cânta","exemplu":"Sie singt sehr schön."},
+  {"verb":"zeichnen","traducere":"a desena","exemplu":"Er zeichnet ein Bild."},
+  {"verb":"malen","traducere":"a picta","exemplu":"Sie malt ein Porträt."},
+  {"verb":"fotografieren","traducere":"a fotografia","exemplu":"Ich fotografiere die Landschaft."},
+
+  // Verbe pentru cumpărături și mâncare
+  {"verb":"verkaufen","traducere":"a vinde","exemplu":"Er verkauft sein Auto."},
+  {"verb":"kosten","traducere":"a costa","exemplu":"Das Buch kostet 15 Euro."},
+  {"verb":"schmecken","traducere":"a avea gust","exemplu":"Das Essen schmeckt gut."},
+  {"verb":"probieren","traducere":"a încerca/gusta","exemplu":"Ich probiere das neue Gericht."},
+  {"verb":"bestellen","traducere":"a comanda","exemplu":"Wir bestellen Pizza."}
 ];
 
 window.verbsData = verbsData;

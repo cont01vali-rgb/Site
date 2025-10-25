@@ -6,7 +6,13 @@ window.verbsExercises = [
   {"type":"audio","question":"Completează propoziția audio: Das ist _______ Lehrer.","word":"unser","options":["unser","euer","ihr"],"correct":"unser"},
   {"type":"audio","question":"Completează propoziția audio: Sie kauft _______ Kleid.","word":"ihr","options":["ihr","sein","mein"],"correct":"ihr"},
   {"type":"audio","question":"Completează propoziția audio: Ist das _______ Buch, Thomas?","word":"dein","options":["dein","sein","unser"],"correct":"dein"},
-  {"type":"audio","question":"Completează propoziția audio: Wir lieben _______ Kinder.","word":"unsere","options":["unsere","ihre","meine"],"correct":"unsere"},
+  {"type":"audio","question":"Completează propoziția audio: Wir iubim _______ Kinder.","word":"unsere","options":["unsere","ihre","meine"],"correct":"unsere"},
+  {"type":"audio","question":"Ascultă și alege ziua:", "word":"Donnerstag", "options":["Donnerstag","Dienstag","Sonntag"], "correct":"Donnerstag"},
+  {"type":"audio","question":"Ascultă și selectează anotimpul:", "word":"Herbst", "options":["Herbst","Frühling","Sommer"], "correct":"Herbst"},
+  {"type":"audio","question":"Ascultă și scrie ora:", "word":"Es ist Viertel vor zehn", "options":["9:45","10:15","10:45"], "correct":"9:45"},
+  {"type":"audio","question":"Ascultă și alege perioada zilei:", "word":"Abend", "options":["Abend","Morgen","Nacht"], "correct":"Abend"},
+  {"type":"audio","question":"Ascultă și alege prepoziția corectă pentru oră:", "word":"um", "options":["um","am","im"], "correct":"um"},
+  {"type":"audio","question":"Ascultă și alege prepoziția corectă pentru ziua săptămânii:", "word":"am", "options":["am","im","um"], "correct":"am"},
 
   {"type":"multiple","question":"Cum se spune în germană la 'cartea ta'?","options":["dein Buch","deine Buch","deiner Buch"],"correct":"dein Buch"},
   {"type":"multiple","question":"Alege varianta corectă: (apartamentul ei)","options":["ihre Wohnung","ihr Wohnung","ihrer Wohnung"],"correct":"ihre Wohnung"},
@@ -14,6 +20,12 @@ window.verbsExercises = [
   {"type":"multiple","question":"Alege forma corectă pentru 'fratele vostru'.","options":["euer Bruder","eure Bruder","euere Bruder"],"correct":"euer Bruder"},
   {"type":"multiple","question":"Cum spui în germană 'prietena mea'?","options":["meine Freundin","mein Freundin","meiner Freundin"],"correct":"meine Freundin"},
   {"type":"multiple","question":"Selectează varianta corectă: (părinții lor)","options":["ihre Eltern","ihr Eltern","ihren Eltern"],"correct":"ihre Eltern"},
+  {"type":"multiple","question":"Ce zi urmează după Dienstag?", "options":["Montag","Mittwoch","Donnerstag"], "correct":"Mittwoch" },
+  {"type":"multiple","question":"După „Herbst” urmează...", "options":["Sommer","Winter","Frühling"], "correct":"Winter" },
+  {"type":"multiple","question":"„Es ist Viertel nach acht” =", "options":["7:15","8:15","8:45"], "correct":"8:15" },
+  {"type":"multiple","question":"„am ____” pentru dimineață:", "options":["Nacht","Morgen","Abend"], "correct":"Morgen" },
+  {"type":"multiple","question":"Alege corect: Cursul începe ___ 8 Uhr.", "options":["im","am","um"], "correct":"um" },
+  {"type":"multiple","question":"Alege corect: Ich arbeite ___ Montag.", "options":["am","um","im"], "correct":"am" },
   {"type":"multiple","question":"Alege forma corectă pentru 'copilul tău'.","options":["dein Kind","deine Kind","deiner Kind"],"correct":"dein Kind"},
 
   {"type":"fill","question":"Completeaza: _____ lerne Deutsch. (eu)","answer":"Ich"},
@@ -35,6 +47,13 @@ window.verbsExercises = [
   {"type":"fill","question":"Completează: Ich mag _____ Lehrerin. (mea)","answer":"meine"},
   {"type":"fill","question":"Completează: Sie besucht _____ Bruder. (ei)","answer":"ihren"},
   {"type":"fill","question":"Completează: Wir verkaufen _____ Haus. (nostru)","answer":"unser"},
+  {"type":"fill","question":"Wochenende: Samstag și ______","answer":"Sonntag"},
+  {"type":"fill","question":"Im ______ ist es heiß. (vară – DE)","answer":"Sommer"},
+  {"type":"fill","question":"„Es ist fünf vor sieben” = ______","answer":"6:55"},
+  {"type":"fill","question":"Ich lerne am ____ (seară – DE)","answer":"Abend"},
+  {"type":"fill","question":"Ich lerne ____ zwei Stunden. (de – durată)","answer":"seit"},
+  {"type":"fill","question":"Der Kurs ist ____ 8 ____ 10 Uhr. (de la ... până la ... )","answer":"von 8 bis 10 Uhr"},
+
 
   {"type":"truefalse","question":"Forma corectă pentru 'al meu' în germană este 'mein'.","correct":true},
   {"type":"truefalse","question":"Pronumele 'euer' se folosește pentru persoana a treia plural.","correct":false},
@@ -45,5 +64,14 @@ window.verbsExercises = [
   {"type":"truefalse","question":"'Dein' se folosește pentru 'tine'.","correct":false},
   {"type":"truefalse","question":"'Unser' se folosește pentru 'al nostru' la singular neutru.","correct":true},
   {"type":"truefalse","question":"'Ihr' se folosește pentru 'Voi' la plural feminin.","correct":false},
-  {"type":"truefalse","question":"'Euer' se folosește pentru 'al vostru' la plural.","correct":true}
+  {"type":"truefalse","question":"'Euer' se folosește pentru 'al vostru' la plural.","correct":true},
+  {"type":"truefalse", "question":"„Freitag” vine înainte de „Donnerstag”.", "correct":false },
+  {"type":"truefalse", "question":"„Frühling” înseamnă toamna.", "correct":false },
+  {"type":"truefalse", "question":"„Es ist halb neun” = 9:30.", "correct":false },
+  {"type":"truefalse", "question":"„die Nacht” este feminin.", "correct":true },
+  {"type":"truefalse", "question":"„im Januar” este corect pentru lună.", "correct":true },
+  {"type":"truefalse", "question":"„am Freitag” este corect pentru ziua săptămânii.", "correct":true },
+  {"type":"truefalse", "question":"„um 10 Uhr” este corect pentru oră.", "correct":true },
+  {"type":"truefalse", "question":"După „Sommer” urmează „Herbst”.", "correct":true },
+  {"type":"truefalse", "question":"'Ihr' se folosește pentru 'al vostru' la plural.","correct":false}
 ];

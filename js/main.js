@@ -25,10 +25,11 @@ let totalTime = 0;
 // Pornirea testului general
 function startGeneralTest(level) {
   const difficultyMap = {
-    easy: { count: 10, time: 20 },
-    medium: { count: 15, time: 20 },
-    hard: { count: 25, time: 25 },
-    hero: { count: 40, time: 35 }
+    easy: { count: 10, time: 12 },
+    medium: { count: 15, time: 15 },
+    hard: { count: 25, time: 13 },
+    hero: { count: 40, time: 15 },
+    crazy: { count: 150, time: 40 }
   };
 
   const selected = difficultyMap[level];

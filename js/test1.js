@@ -22,6 +22,14 @@ const questions = [
   { type: "fill", question: "Completează: Cuvântul „die Lösung” conține Umlautul ____.", correct: "ö" },
   { type: "fill", question: "Completează: În germană, toate substantivele se scriu cu literă ____.", correct: "mare" },
   { type: "multiple", question: "Ce înseamnă cuvântul „Großschreibung”?", options: ["Scriere cu majusculă", "Scriere cu litere mici", "Scriere fonetică"], correct: "Scriere cu majusculă" },
+  { type: "truefalse", question: "În cuvinte ca „stehen”/„Stein”, „st” se pronunță ca „șt”.", correct: true },
+  { type: "truefalse", question: "„v” se pronunță întotdeauna ca „v” în germană.", correct: false },
+  { type: "multiple", question: "Alege diftongul corect pentru „Leute”.", options: ["eu", "ei", "ie"], correct: "eu" },
+  { type: "multiple", question: "Ce cuvânt conține „sch”?", options: ["Schule", "Stadt", "Karte"], correct: "Schule" },
+  { type: "fill", question: "Litera ß se numește „_____”.", correct: "Eszett" },
+  { type: "multiple", question: "Ce Umlaut apare în „Käse”?", options: ["ä", "ö", "ü"], correct: "ä" },
+  { type: "truefalse", question: "Toate substantivele în germană se scriu cu literă mare.", correct: true },
+  { type: "multiple", question: "Cum se citește „ie” în germană?", options: ["i lung", "ie separat", "e lung"], correct: "i lung" },
 
   // 3 întrebări audio
   { type: "audio", question: "Ascultă și alege cuvântul corect:", word: "Apfel", options: ["Apfel", "Apfeln", "Äpfel"], correct: "Apfel" },
@@ -33,7 +41,9 @@ const questions = [
   { type: "audio", question: "Ce litera auzi?", word: "ß", options: ["b", "ß", "s"], correct: "ß" },
   { type: "audio", question: "Ascultă și alege cuvântul corect:", word: "Lösung", options: ["Losung", "Lösung", "Lösang"], correct: "Lösung" },
   { type: "audio", question: "Ce litera auzi?", word: "ä", options: ["a", "ä", "e"], correct: "ä" },
-  { type: "audio", question: "Ce litera auzi?", word: "v", options: ["f", "w", "v"], correct: "v" }
+  { type: "audio", question: "Ce litera auzi?", word: "v", options: ["f", "w", "v"], correct: "v" },
+  { type: "audio", question: "Ascultă și alege cuvântul corect:", word: "Österreich", options: ["Österreich", "Osterreich", "Österraich"], correct: "Österreich" },
+  { type: "audio", question: "Ascultă și alege cuvântul corect:", word: "Mädchen", options: ["Mädchen", "Madchen", "Mädtschen"], correct: "Mädchen" }
 
 ];
 

@@ -13,9 +13,35 @@
       position: relative; padding: 12px; border-radius: 10px;
       background: #fff; border: 1px solid #e5e7eb;
       box-shadow: 0 1px 2px rgba(0,0,0,.05);
-      transition: transform .15s ease, box-shadow .15s ease;
+      transition: transform .15s ease, box-shadow .15s ease, opacity 0.4s ease;
     }
     .progress-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+    
+    /* Animații pentru switch */
+    .progress-card.slide-up {
+      animation: slideUp 0.5s ease-out forwards;
+    }
+    .progress-card.slide-down {
+      animation: slideDown 0.5s ease-out forwards;
+    }
+    .progress-card.fade-in {
+      animation: fadeInDown 0.5s ease-out forwards;
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100px); opacity: 0; }
+    }
+
+    @keyframes slideDown {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(100px); opacity: 0; }
+    }
+
+    @keyframes fadeInDown {
+      0% { transform: translateY(-30px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
     .card-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
     .pill { font-size:.8rem; padding:2px 8px; border-radius:999px; background:#f3f4f6; }
     .score { font-weight:700; }
@@ -45,6 +71,168 @@
     .muted { color:#6b7280; }
     .toolbar { display:flex; gap:8px; margin:10px 0; }
     .btn.small { font-size:.9rem; padding:6px 10px; }
+
+    /* Stiluri pentru pill-urile de dificultate */
+    .pill.diff-easy {
+      background: #dcfce7;
+      border: 1px solid #22c55e;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .pill.diff-medium {
+      background: #fed7aa;
+      border: 1px solid #f97316;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .pill.diff-hard {
+      background: #fecaca;
+      border: 1px solid #ef4444;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .pill.diff-hero {
+      background: #e9d5ff;
+      border: 1px solid #8b5cf6;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .pill.diff-crazy {
+      background: #000000;
+      border: 1px solid #ff0000;
+      color: #ff0000;
+      font-weight: 700;
+      animation: crazyPulse 2s ease-in-out infinite;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    }
+
+    .pill.diff-vocabulary {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      border: 1px solid #1d4ed8;
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+    }
+
+    .pill.diff-default {
+      background: #f3f4f6;
+      border: 1px solid #d1d5db;
+      color: #374151;
+    }
+
+    /* Animație pentru dificultatea Crazy */
+    @keyframes crazyPulse {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 16px rgba(255, 0, 0, 0.6), 0 0 24px rgba(255, 0, 0, 0.2);
+        transform: scale(1.05);
+      }
+    }
+
+    /* Toggle Switch (stil iPhone) */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .3s;
+      border-radius: 24px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    input:checked + .toggle-slider {
+      background-color: #3b82f6;
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
+
+    /* Animații pentru carduri */
+    .animate-in {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    
+    .fade-in-down {
+      animation: fadeInDown 0.6s ease-out forwards;
+    }
+    
+    .slide-up {
+      animation: slideUp 0.5s ease-in forwards;
+    }
+    
+    .slide-down {
+      animation: slideDown 0.5s ease-in forwards;
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+    }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+    }
   </style>
 </head>
 <body>
@@ -63,6 +251,14 @@
   <div class="toolbar">
     <button id="refreshBtn" class="btn small">Reîncarcă</button>
     <button id="clearBtn" class="btn small">Șterge istoricul</button>
+    
+    <!-- Toggle pentru comutare între generale și vocabular -->
+    <div style="display:flex; align-items:center; gap:8px; margin-left:auto;">
+      <label class="toggle-switch">
+        <input type="checkbox" id="vocabularyToggle">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
   </div>
 
   <div id="historyEmpty" class="question-card" style="display:none;">

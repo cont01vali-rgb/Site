@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Testare generală</title>
   <link rel="stylesheet" href="../css/style.css">
+  <script defer src="../data/general-exercises.js"></script>
   <script defer src="../js/general-test.js"></script>
   <style>
     /* Media în întrebări (imagini) */
@@ -12,6 +13,121 @@
     .q-media img.q-img {
       max-width: 260px; max-height: 180px; object-fit: contain;
       border-radius: 8px; background:#fff; border: 1px solid #e6e6e6;
+    }
+
+    /* Stiluri pentru butoanele de dificultate */
+    .btn.diff-easy {
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      border: 2px solid #22c55e;
+      color: #000;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+    }
+
+    .btn.diff-easy:hover {
+      background: linear-gradient(135deg, #bbf7d0 0%, #86efac 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(34, 197, 94, 0.3);
+    }
+
+    .btn.diff-medium {
+      background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+      border: 2px solid #f97316;
+      color: #000;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+    }
+
+    .btn.diff-medium:hover {
+      background: linear-gradient(135deg, #fdba74 0%, #fb923c 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(249, 115, 22, 0.3);
+    }
+
+    .btn.diff-hard {
+      background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+      border: 2px solid #ef4444;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+    }
+
+    .btn.diff-hard:hover {
+      background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
+    }
+
+    .btn.diff-hero {
+      background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%);
+      border: 2px solid #8b5cf6;
+      color: #000;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+    }
+
+    .btn.diff-hero:hover {
+      background: linear-gradient(135deg, #d8b4fe 0%, #c084fc 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(139, 92, 246, 0.3);
+    }
+
+    .btn.diff-crazy {
+      background: linear-gradient(135deg, #000000 0%, #1f1f1f 100%);
+      border: 2px solid #ff0000;
+      color: #ff0000;
+      font-weight: 700;
+      animation: crazyButtonPulse 2s ease-in-out infinite;
+      box-shadow: 0 4px 16px rgba(255, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn.diff-crazy:hover {
+      background: linear-gradient(135deg, #1f1f1f 0%, #000000 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 0, 0, 0.5);
+    }
+
+    .btn.diff-crazy::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.2), transparent);
+      animation: crazyShine 3s ease-in-out infinite;
+    }
+
+    /* Animații pentru butoanele de dificultate */
+    @keyframes crazyButtonPulse {
+      0%, 100% {
+        box-shadow: 0 4px 16px rgba(255, 0, 0, 0.3);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 6px 24px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.2);
+        transform: scale(1.02);
+      }
+    }
+
+    @keyframes crazyShine {
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    /* Îmbunătățiri generale pentru butoane */
+    .btn[class*="diff-"] {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn[class*="diff-"]:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
@@ -31,10 +147,11 @@
     <div id="difficulty-selection" class="question-card">
       <p>Alege nivelul de dificultate:</p>
       <div class="answers" style="gap:8px;">
-        <button class="btn" onclick="startGeneralTest('easy')">Ușor (10 întrebări / 20 min)</button>
-        <button class="btn" onclick="startGeneralTest('medium')">Mediu (15 întrebări / 20 min)</button>
-        <button class="btn" onclick="startGeneralTest('hard')">Greu (25 întrebări / 25 min)</button>
-        <button class="btn" onclick="startGeneralTest('hero')">Erou (40 întrebări / 35 min)</button>
+        <button class="btn diff-easy" onclick="startGeneralTest('easy')">Ușor (10 întrebări / 12 min)</button>
+        <button class="btn diff-medium" onclick="startGeneralTest('medium')">Mediu (15 întrebări / 15 min)</button>
+        <button class="btn diff-hard" onclick="startGeneralTest('hard')">Greu (25 întrebări / 13 min)</button>
+        <button class="btn diff-hero" onclick="startGeneralTest('hero')">Erou (40 întrebări / 15 min)</button>
+        <button class="btn diff-crazy" onclick="startGeneralTest('crazy')">Crazy (150 întrebări / 40 min)</button>
       </div>
     </div>
 

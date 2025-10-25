@@ -11,7 +11,47 @@ const adjectivesData = [
   {"adjektiv": "offen",       "comparativ": "offener",       "superlativ": "am offensten",      "traducere": "deschis",        "exemplu": "Er ist sehr offen gegenüber Ideen."},
   {"adjektiv": "verheiratet", "comparativ": "verheirateter", "superlativ": "am verheiratetsten", "traducere": "căsătorit",      "exemplu": "Sie ist seit 2010 verheiratet."},
   {"adjektiv": "verwitwet",   "comparativ": "verwitweter",   "superlativ": "am verwitwetsten",  "traducere": "văduv",          "exemplu": "Er ist seit kurzem verwitwet."},
-  {"adjektiv": "weiblich",    "comparativ": "weiblicher",    "superlativ": "am weiblichsten",   "traducere": "feminin",        "exemplu": "Die Figur wirkt weiblich."}
+  {"adjektiv": "weiblich",    "comparativ": "weiblicher",    "superlativ": "am weiblichsten",   "traducere": "feminin",        "exemplu": "Die Figur wirkt weiblich."},
+
+  // Adjective esențiale de culoare
+  {"adjektiv": "rot",         "comparativ": "röter",         "superlativ": "am rötesten",       "traducere": "roșu",           "exemplu": "Das Auto ist rot."},
+  {"adjektiv": "blau",        "comparativ": "blauer",        "superlativ": "am blauesten",      "traducere": "albastru",       "exemplu": "Der Himmel ist blau."},
+  {"adjektiv": "grün",        "comparativ": "grüner",        "superlativ": "am grünsten",       "traducere": "verde",          "exemplu": "Das Gras ist grün."},
+  {"adjektiv": "gelb",        "comparativ": "gelber",        "superlativ": "am gelbsten",       "traducere": "galben",         "exemplu": "Die Sonne ist gelb."},
+  {"adjektiv": "schwarz",     "comparativ": "schwärzer",     "superlativ": "am schwärzesten",   "traducere": "negru",          "exemplu": "Die Katze ist schwarz."},
+  {"adjektiv": "weiß",        "comparativ": "weißer",        "superlativ": "am weißesten",      "traducere": "alb",            "exemplu": "Der Schnee ist weiß."},
+
+  // Adjective de mărime și cantitate
+  {"adjektiv": "klein",       "comparativ": "kleiner",       "superlativ": "am kleinsten",      "traducere": "mic",            "exemplu": "Das Kind ist klein."},
+  {"adjektiv": "alt",         "comparativ": "älter",         "superlativ": "am ältesten",       "traducere": "bătrân/vechi",   "exemplu": "Der Mann ist alt."},
+  {"adjektiv": "jung",        "comparativ": "jünger",        "superlativ": "am jüngsten",       "traducere": "tânăr",          "exemplu": "Sie ist noch jung."},
+  {"adjektiv": "neu",         "comparativ": "neuer",         "superlativ": "am neuesten",       "traducere": "nou",            "exemplu": "Das Buch ist neu."},
+  {"adjektiv": "lang",        "comparativ": "länger",        "superlativ": "am längsten",       "traducere": "lung",           "exemplu": "Der Weg ist lang."},
+  {"adjektiv": "kurz",        "comparativ": "kürzer",        "superlativ": "am kürzesten",      "traducere": "scurt",          "exemplu": "Das Kleid ist kurz."},
+
+  // Adjective de caracter și stare emoțională
+  {"adjektiv": "schön",       "comparativ": "schöner",       "superlativ": "am schönsten",      "traducere": "frumos",         "exemplu": "Das Wetter ist schön."},
+  {"adjektiv": "hässlich",    "comparativ": "hässlicher",    "superlativ": "am hässlichsten",   "traducere": "urât",           "exemplu": "Das Gebäude ist hässlich."},
+  {"adjektiv": "gut",         "comparativ": "besser",        "superlativ": "am besten",         "traducere": "bun",            "exemplu": "Das Essen ist gut."},
+  {"adjektiv": "schlecht",    "comparativ": "schlechter",    "superlativ": "am schlechtesten",  "traducere": "rău",            "exemplu": "Das Wetter ist schlecht."},
+  {"adjektiv": "glücklich",   "comparativ": "glücklicher",   "superlativ": "am glücklichsten",  "traducere": "fericit",        "exemplu": "Er ist sehr glücklich."},
+  {"adjektiv": "traurig",     "comparativ": "trauriger",     "superlativ": "am traurigsten",    "traducere": "trist",          "exemplu": "Sie ist traurig."},
+  {"adjektiv": "müde",        "comparativ": "müder",         "superlativ": "am müdesten",       "traducere": "obosit",         "exemplu": "Ich bin müde."},
+
+  // Adjective de temperatură și timp
+  {"adjektiv": "warm",        "comparativ": "wärmer",        "superlativ": "am wärmsten",       "traducere": "cald",           "exemplu": "Es ist warm heute."},
+  {"adjektiv": "kalt",        "comparativ": "kälter",        "superlativ": "am kältesten",      "traducere": "rece",           "exemplu": "Der Winter ist kalt."},
+  {"adjektiv": "heiß",        "comparativ": "heißer",        "superlativ": "am heißesten",      "traducere": "fierbinte",      "exemplu": "Der Sommer ist heiß."},
+  {"adjektiv": "schnell",     "comparativ": "schneller",     "superlativ": "am schnellsten",    "traducere": "rapid",          "exemplu": "Das Auto ist schnell."},
+  {"adjektiv": "langsam",     "comparativ": "langsamer",     "superlativ": "am langsamsten",    "traducere": "încet",          "exemplu": "Der Zug ist langsam."},
+
+  // Adjective utile pentru descrieri
+  {"adjektiv": "stark",       "comparativ": "stärker",       "superlativ": "am stärksten",      "traducere": "puternic",       "exemplu": "Er ist sehr stark."},
+  {"adjektiv": "schwach",     "comparativ": "schwächer",     "superlativ": "am schwächsten",    "traducere": "slab",           "exemplu": "Sie fühlt sich schwach."},
+  {"adjektiv": "leicht",      "comparativ": "leichter",      "superlativ": "am leichtesten",    "traducere": "ușor",           "exemplu": "Die Tasche ist leicht."},
+  {"adjektiv": "schwer",      "comparativ": "schwerer",      "superlativ": "am schwersten",     "traducere": "greu",           "exemplu": "Der Koffer ist schwer."},
+  {"adjektiv": "teuer",       "comparativ": "teurer",        "superlativ": "am teuersten",      "traducere": "scump",          "exemplu": "Das Auto ist teuer."},
+  {"adjektiv": "billig",      "comparativ": "billiger",      "superlativ": "am billigsten",     "traducere": "ieftin",         "exemplu": "Das Brot ist billig."}
 ];
 
 // Load adjectives and populate table
@@ -140,3 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
       .replace(/ţ/g, 't');
   }
 });
+
+// Export data pentru vocabulary test
+window.adjectivesData = adjectivesData;

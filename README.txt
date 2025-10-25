@@ -56,3 +56,4 @@ background: #fdf900ff; -de stilizat lectia der die das, de adaugat cuvintele de 
 background: #fdf900ff; -adaugare pagini la lectia Das Nomen
 background: #9f45b1ff; - /// ⚠︎ De incercat optimizare style.css ⚠︎ ///
 =================================================================================================
+Problema cu intrebarea : Substantivele si Numele proprii se scriu cu: litera mare / majuscula
