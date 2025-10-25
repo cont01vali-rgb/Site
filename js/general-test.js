@@ -36,12 +36,12 @@
       'die-wochentage': {
         tf: [
           { q:'„Montag” este luni.', a:true },
-          { q:'„Sonntag” este sâmbătă.', a:false },
-          { q:'„Freitag” vine înainte de „Samstag”.', a:true }
+          { q:'„Sonntag” este sâmbătă.', a:false, ex:'Sonntag = duminică, Samstag = sâmbătă.' },
+          { q:'„Freitag” vine înainte de „Samstag”.', a:true, ex:'Ordinea: Donnerstag, Freitag, Samstag, Sonntag.' }
         ],
         mc: [
-          { q:'Ce urmează după Donnerstag?', opts:['Dienstag','Freitag','Sonntag'], a:1 },
-          { q:'„Wednesday” în germană:', opts:['Donnerstag','Dienstag','Mittwoch'], a:2 },
+          { q:'Ce urmează după Donnerstag?', opts:['Dienstag','Freitag','Sonntag'], a:1, ex:'După joi (Donnerstag) urmează vineri (Freitag).' },
+          { q:'„Wednesday” înseamnă în germană:', opts:['Donnerstag','Dienstag','Mittwoch'], a:2 },
           { q:'Ce zi este „Sonntag”?', opts:['duminică','sâmbătă','luni'], a:0 }
         ],
         fill: [
@@ -72,15 +72,15 @@
       // Die Uhrzeit
       'die-uhrzeit': {
         tf: [
-          { q:'„Es ist halb drei” = 3:30.', a:false },
-          { q:'„Es ist Viertel nach sieben” = 7:15.', a:true },
-          { q:'„Es ist fünf vor acht” = 7:55.', a:true }
+          { q:'„Es ist halb drei” = 3:30.', a:false, ex:'„halb drei” = 2:30 (jumătate până la 3, nu jumătate după).' },
+          { q:'„Es ist Viertel nach sieben” = 7:15.', a:true, ex:'„Viertel nach” = și un sfert.' },
+          { q:'„Es ist fünf vor acht” = 7:55.', a:true, ex:'„vor” = fără, deci 8 fără 5 minute.' }
         ],
         mc: [
-          { q:'„Es ist halb acht” înseamnă', opts:['7:30','8:30','8:00'], a:0 }
+          { q:'„Es ist halb acht” înseamnă', opts:['7:30','8:30','8:00'], a:0, ex:'„halb acht” = 7:30.' }
         ],
         fill: [
-          { q:'Wie ____ ist es? (spät/viel Uhr)', a:['wie spät','wie viel uhr','wieviel uhr'] },
+          { q:'Wie ____ ist es? (Cat este ceasul?)', a:['spät','viel uhr',] },
           { q:'Es ist ____ Uhr. (7:00)', a:['sieben'] }
         ]
       },
@@ -89,7 +89,7 @@
       'die-tageszeiten': {
         tf: [
           { q:'„der Morgen” = dimineața.', a:true },
-          { q:'„die Nacht” e masculină.', a:false }
+          { q:'„die Nacht” e masculină.', a:false, ex:'„die Nacht” este feminin (articol: die).' }
         ],
         mc: [
           { q:'Corect pentru noapte:', opts:['am Nacht','in der Nacht','im Nacht'], a:1 }
@@ -102,7 +102,7 @@
       // Der/Die/Das (cu imagini)
       'der-die-das': {
         mc: [
-          { q:'„das Mädchen” are articolul...', opts:['der','die','das'], a:2 },
+          { q:'„das Mädchen” are articolul...', opts:['der','die','das'], a:2, ex:'Sufixul -chen → genul neutru (das).' },
           { q:'„der Sommer” este...', opts:['masculin','feminin','neutru'], a:0 },
           { q:'Alege articolul corect:', img:'../assets/nouns/apfel.jpg', opts:['der','die','das'], a:0 },
           { q:'Alege articolul corect:', img:'../assets/nouns/rose.jpg', opts:['der','die','das'], a:1 },
@@ -110,14 +110,14 @@
           { q:'Alege articolul corect:', img:'../assets/nouns/uhr.jpg', opts:['der','die','das'], a:1 }
         ],
         tf: [
-          { q:'Sufixul -chen dă de obicei genul neutru.', a:true }
+          { q:'Sufixul -chen dă de obicei genul neutru.', a:true, ex:'Ex.: das Mädchen, das Häuschen.' }
         ]
       },
 
-      // Das Nomen (vocabular + imagini)
+      // Das Nomen
       'das-nomen': {
         tf: [
-          { q:'Toate substantivele se scriu cu literă mare.', a:true }
+          { q:'Toate substantivele se scriu cu literă mare.', a:true, ex:'În germană, toate substantivele sunt capitalizate (ex.: das Haus).' }
         ],
         mc: [
           { q:'Articol tipic pentru feminin:', opts:['der','die','das'], a:1 },
@@ -132,30 +132,15 @@
         ]
       },
 
-      // Das Adjektiv
-      'das-adjektiv': {
-        mc: [
-          { q:'Funcție „predicativ”:', opts:[
-            'înaintea substantivului cu terminație',
-            'după sein/werden/bleiben, fără acord',
-            'descrie verbul, ca adverb'
-          ], a:1 },
-          { q:'Alege forma corectă (atributiv): „ein ____ Haus” (mare)', opts:['großes','große','großer'], a:0 }
-        ],
-        tf: [
-          { q:'Adjectivul atributiv primește terminație.', a:true }
-        ]
-      },
-
       // Das Verb
       'das-verb': {
         tf: [
-          { q:'Infinitivul are pronume personal.', a:false },
-          { q:'Verbul e, de obicei, pe poziția 2 în propoziție.', a:true }
+          { q:'Infinitivul are pronume personal.', a:false, ex:'Infinitivul este forma de dicționar (ex.: kommen), fără pronume.' },
+          { q:'Verbul e, de obicei, pe poziția 2 în propoziție.', a:true, ex:'Declarațiile simple în germană au verbul pe poziția 2 (ex.: Ich gehe heute).' }
         ],
         mc: [
-          { q:'Terminație pentru „du” (Präsens):', opts:['-e','-st','-t'], a:1 },
-          { q:'Terminație pentru „ihr” (Präsens):', opts:['-en','-t','-st'], a:1 }
+          { q:'Terminație pentru „du” (Präsens):', opts:['-e','-st','-t'], a:1, ex:'du kommst, du machst (terminație -st).' },
+          { q:'Terminație pentru „ihr” (Präsens):', opts:['-en','-t','-st'], a:1, ex:'ihr kommt, ihr macht (terminație -t).' }
         ],
         fill: [
           { q:'ich komm__ (kommen, Präsens)', a:['e'] },
@@ -171,7 +156,7 @@
           { q:'„sie” (3 pl.) în Akkusativ:', opts:['ihnen','sie','ihr'], a:1 }
         ],
         tf: [
-          { q:'„ich” Dativ = mir.', a:true }
+          { q:'„ich” Dativ = mir.', a:true, ex:'ich → mir (Dativ), ich → mich (Akkusativ).' }
         ],
         fill: [
           { q:'„ihr” (2 pl.) Dativ = ____', a:['euch'] }
@@ -354,6 +339,22 @@
     state.answered = false; $('#check-question').disabled = false; $('#next-question').disabled = true;
   }
 
+  // Helper: textul răspunsului corect + (explicație opțional)
+  function getCorrectText(q) {
+    if (!q) return '';
+    if (q.type === 'tf') return q.a ? 'Adevărat' : 'Fals';
+    if (q.type === 'mc') return (q.opts?.[q.a] ?? '');
+    if (q.type === 'fill' || q.type === 'audio') {
+      const arr = Array.isArray(q.a) ? q.a : [q.a];
+      const uniq = Array.from(new Set(arr.filter(Boolean)));
+      if (!uniq.length) return '';
+      if (uniq.length === 1) return uniq[0];
+      return `${uniq[0]} (sau: ${uniq.slice(1).join(', ')})`;
+    }
+    return '';
+  }
+
+  // Modifică onCheck să trimită și întrebarea în feedback
   function onCheck() {
     if (state.answered) return;
     const q = state.questions[state.index]; let ok = false;
@@ -365,18 +366,38 @@
       const v = $('#fillInput')?.value || ''; const answers = Array.isArray(q.a) ? q.a : [q.a];
       ok = answers.some(ans => norm(v) === norm(ans));
     }
-    if (ok) state.score++; else state.wrongs.push(q.cat); // <-- log categorie greșită
-    showFeedback(ok);
-    state.answered = true;
-    $('#check-question').disabled = true;
-    $('#next-question').disabled = false;
+
+    if (ok) {
+      state.score++;
+    } else {
+      // LOG: categoria întrebării greșite (pentru progress.html)
+      state.wrongs.push(q.cat);
+    }
+
+    showFeedback(q, ok);
+    state.answered = true; $('#check-question').disabled = true; $('#next-question').disabled = false;
   }
 
   function onNext() { if (state.index < state.questions.length - 1) { state.index++; renderCurrent(); } else { finish(); } }
 
-  function showFeedback(ok) {
-    const area = $('#question-area'); const fb = document.createElement('div');
-    fb.className = 'important'; fb.style.marginTop = '10px'; fb.textContent = ok ? 'Corect!' : 'Răspuns greșit.'; area.appendChild(fb);
+  function showFeedback(q, ok) {
+    const area = $('#question-area'); 
+    const fb = document.createElement('div');
+    fb.className = 'important'; 
+    fb.style.marginTop = '10px';
+    if (ok) {
+      fb.textContent = 'Corect!';
+    } else {
+      const correct = getCorrectText(q);
+      const ex = q?.ex ? `<div class="muted" style="margin-top:4px;">Explicație: ${q.ex}</div>` : '';
+      fb.innerHTML = `Răspuns greșit. <br>Răspuns corect: <strong>${escapeHtml(correct)}</strong>${ex}`;
+    }
+    area.appendChild(fb);
+  }
+
+  // Mic utilitar pentru securitate HTML în feedback
+  function escapeHtml(s) {
+    return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
   function finish() {

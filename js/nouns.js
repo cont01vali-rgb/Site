@@ -146,130 +146,212 @@ const nounsData = [
 
 window.nounsData = nounsData;
 
-// Load nouns and populate table
+// Load nouns and populate table (cu paginare + TTS robust ca la Verbe)
 document.addEventListener('DOMContentLoaded', () => {
   const tableBody = document.querySelector('#nounsTable tbody');
   const searchInput = document.getElementById('searchInput');
-  let currentData = nounsData;
-  let selectedRowIndex = -1;
+  const paginationEl = document.getElementById('pagination');
+  const paginationInfo = document.getElementById('paginationInfo');
 
-  renderTable(nounsData);
+  if (!tableBody) return;
 
-  // Live search
-  searchInput.addEventListener('input', () => {
-    const term = normalize(searchInput.value.toLowerCase());
-    const filtered = nounsData.filter(item =>
-      normalize(item.nomen.toLowerCase()).includes(term) ||
-      normalize((item.traducere || "").toLowerCase()).includes(term) ||
-      normalize((item.plural || "").toLowerCase()).includes(term)
-    );
-    currentData = filtered;
+  // TTS DE – preferă voce feminină
+  function speak(text, lang='de-DE') {
+    const synth = window.speechSynthesis;
+    if (!synth) return;
+
+    function pickDeVoice() {
+      const voices = synth.getVoices() || [];
+      const de = voices.filter(v => v.lang && /^de(-|_)/i.test(v.lang));
+      const preferredNames = [
+        'Google Deutsch', 'Google Deutsch Female', 'Anna', 'Vicki', 'Petra', 'Marlene', 'Helena', 'Katja', 'Steffi'
+      ];
+      for (const name of preferredNames) {
+        const v = de.find(x => x.name && x.name.toLowerCase().includes(name.toLowerCase()));
+        if (v) return v;
+      }
+      const femaleGuess = de.find(v => /fem|frau|female/i.test(v.name || ''));
+      if (femaleGuess) return femaleGuess;
+      return de[0] || voices.find(v => /german/i.test(v.name || ''));
+    }
+
+    const run = () => {
+      synth.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = lang;
+      const v = pickDeVoice();
+      if (v) u.voice = v;
+      synth.speak(u);
+    };
+
+    if (!synth.getVoices().length) {
+      const once = () => { synth.onvoiceschanged = null; run(); };
+      synth.onvoiceschanged = once;
+      setTimeout(run, 200);
+    } else run();
+  }
+
+  // State paginare + filtre
+  let filtered = [...nounsData].sort((a,b)=>a.nomen.localeCompare(b.nomen,'de'));
+  let currentPage = 1;
+  const pageSize = 25;
+  let selectedRowIndex = -1; // index în pagina curentă
+
+  render();
+
+  // Căutare live
+  searchInput?.addEventListener('input', () => {
+    const term = normalize(searchInput.value || '');
+    filtered = nounsData
+      .filter(item =>
+        normalize(item.nomen).includes(term) ||
+        normalize(item.traducere || '').includes(term) ||
+        normalize(item.plural || '').includes(term)
+      )
+      .sort((a,b)=>a.nomen.localeCompare(b.nomen,'de'));
+    currentPage = 1;
     selectedRowIndex = -1;
-    renderTable(filtered);
+    render();
   });
 
-  // Keyboard navigation
+  // Paginare (identic cu Das Verb)
+  paginationEl?.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-page]');
+    if (!btn) return;
+    const p = Number(btn.getAttribute('data-page'));
+    if (!Number.isNaN(p)) {
+      currentPage = p;
+      selectedRowIndex = -1;
+      render();
+    }
+  });
+
+  // Navigare cu săgeți + Enter = TTS
   document.addEventListener('keydown', (e) => {
     const rows = tableBody.querySelectorAll('tr');
-    if (rows.length === 0) return;
+    if (!rows.length) return;
 
-    // Arrow Down
     if (e.key === 'ArrowDown') {
       e.preventDefault();
       if (selectedRowIndex < rows.length - 1) {
         selectedRowIndex++;
-        updateSelection(rows);
+      } else if (selectedRowIndex === -1) {
+        selectedRowIndex = 0;
       }
-    }
-    // Arrow Up
-    else if (e.key === 'ArrowUp') {
+      updateSelection(rows);
+    } else if (e.key === 'ArrowUp') {
       e.preventDefault();
       if (selectedRowIndex > 0) {
         selectedRowIndex--;
         updateSelection(rows);
-      } else if (selectedRowIndex === -1 && rows.length > 0) {
-        selectedRowIndex = 0;
-        updateSelection(rows);
       }
-    }
-    // Enter - play audio
-    else if (e.key === 'Enter' && selectedRowIndex >= 0 && selectedRowIndex < currentData.length) {
+    } else if (e.key === 'Enter' && selectedRowIndex >= 0) {
       e.preventDefault();
-      const item = currentData[selectedRowIndex];
-      playPronunciation(item.nomen);
+      const globalIndex = (currentPage - 1) * pageSize + selectedRowIndex;
+      const item = filtered[globalIndex];
+      if (item?.nomen) speak(item.nomen);
     }
   });
 
-  // Update visual selection
   function updateSelection(rows) {
-    rows.forEach((row, index) => {
-      if (index === selectedRowIndex) {
-        row.classList.add('selected-row');
-        row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      } else {
-        row.classList.remove('selected-row');
-      }
+    rows.forEach((row, i) => {
+      row.classList.toggle('selected-row', i === selectedRowIndex);
+      if (i === selectedRowIndex) row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
   }
 
-  // Function to render the table
-  function renderTable(items) {
-    tableBody.innerHTML = "";
-    const sorted = [...items].sort((a, b) => a.nomen.localeCompare(b.nomen, 'de'));
-    currentData = sorted;
-    sorted.forEach(item => {
+  function render() {
+    tableBody.innerHTML = '';
+    if (!filtered.length) {
+      tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:#666;padding:12px;">Niciun rezultat.</td></tr>`;
+      if (paginationEl) paginationEl.innerHTML = '';
+      if (paginationInfo) paginationInfo.textContent = '';
+      return;
+    }
+
+    const total = filtered.length;
+    const totalPages = Math.max(1, Math.ceil(total / pageSize));
+    if (currentPage > totalPages) currentPage = totalPages;
+
+    const start = (currentPage - 1) * pageSize;
+    const pageItems = filtered.slice(start, start + pageSize);
+
+    pageItems.forEach((item, i) => {
       const row = document.createElement('tr');
 
-      // AUDIO COLUMN
+      // AUDIO
       const audioCell = document.createElement('td');
       const audioBtn = document.createElement('button');
-      audioBtn.innerHTML = "🔊";
+      audioBtn.innerHTML = '🔊';
       audioBtn.classList.add('audio-btn');
-      audioBtn.addEventListener('click', () => playPronunciation(item.nomen));
+      audioBtn.addEventListener('click', () => speak(item.nomen));
       audioCell.appendChild(audioBtn);
       row.appendChild(audioCell);
 
-      // TEXT COLUMNS
-      const nomenCell = document.createElement('td');
-      nomenCell.textContent = item.nomen;
-      row.appendChild(nomenCell);
+      // TEXT
+      row.insertAdjacentHTML('beforeend', `
+        <td>${escapeHtml(item.nomen)}</td>
+        <td>${escapeHtml(item.gen || '')}</td>
+        <td>${escapeHtml(item.plural || '')}</td>
+        <td>${escapeHtml(item.traducere || '')}</td>
+        <td>${escapeHtml(item.exemplu || '')}</td>
+      `);
 
-      const genCell = document.createElement('td');
-      genCell.textContent = item.gen || "";
-      row.appendChild(genCell);
-
-      const pluralCell = document.createElement('td');
-      pluralCell.textContent = item.plural || "";
-      row.appendChild(pluralCell);
-
-      const traducereCell = document.createElement('td');
-      traducereCell.textContent = item.traducere;
-      row.appendChild(traducereCell);
-
-      const exempluCell = document.createElement('td');
-      exempluCell.textContent = item.exemplu;
-      row.appendChild(exempluCell);
+      row.addEventListener('click', () => {
+        selectedRowIndex = i;
+        updateSelection(tableBody.querySelectorAll('tr'));
+      });
 
       tableBody.appendChild(row);
     });
+
+    selectedRowIndex = -1; // reset la fiecare render
+    renderPagination(totalPages);
+
+    if (paginationInfo) {
+      paginationInfo.textContent = `Afișez ${start + 1}–${start + pageItems.length} din ${total}`;
+    }
   }
 
-  // Function for pronunciation
-  function playPronunciation(word) {
-    const utterance = new SpeechSynthesisUtterance(word);
-    utterance.lang = 'de-DE';
-    window.speechSynthesis.speak(utterance);
+  function renderPagination(totalPages) {
+    if (!paginationEl) return;
+    paginationEl.innerHTML = '';
+    if (totalPages <= 1) return;
+
+    const mk = (label, page, active=false) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'sub-btn';
+      b.setAttribute('data-page', page);
+      b.textContent = label;
+      if (active) {
+        b.style.background = '#2b78c8';
+        b.style.color = '#fff';
+      }
+      return b;
+    };
+
+    paginationEl.appendChild(mk('«', Math.max(1, currentPage - 1)));
+    const maxButtons = 7;
+    let s = Math.max(1, currentPage - Math.floor(maxButtons/2));
+    let e = Math.min(totalPages, s + maxButtons - 1);
+    if (e - s < maxButtons - 1) s = Math.max(1, e - maxButtons + 1);
+    for (let p = s; p <= e; p++) paginationEl.appendChild(mk(String(p), p, p === currentPage));
+    paginationEl.appendChild(mk('»', Math.min(totalPages, currentPage + 1)));
   }
 
-  // Normalize text (remove Romanian diacritics for search)
+  // Normalize text (RO diacritice)
   function normalize(str) {
-    return str
-      .replace(/ă/g, 'a')
-      .replace(/â/g, 'a')
-      .replace(/î/g, 'i')
-      .replace(/ș/g, 's')
-      .replace(/ş/g, 's')
-      .replace(/ț/g, 't')
-      .replace(/ţ/g, 't');
+    return String(str || '')
+      .toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/ă|â/g,'a').replace(/î/g,'i')
+      .replace(/ș|ş/g,'s').replace(/ț|ţ/g,'t');
+  }
+
+  function escapeHtml(s) {
+    return String(s ?? '').replace(/[&<>"']/g, c => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[c]));
   }
 });

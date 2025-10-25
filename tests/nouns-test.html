@@ -2,34 +2,27 @@
 <html lang="ro">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Test Substantive</title>
+  <title>Test: Substantive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/style.css">
-  <script defer src="../js/nouns.js"></script>                <!-- nounsData (must expune window.nounsData) -->
-  <script defer src="../data/nouns-exercises.js"></script>    <!-- offline exercises (fallback) -->
-  <script defer src="../js/nouns-test-runner.js"></script>    <!-- runner -->
+  <style>
+    .q-media { margin:6px 0 8px; display:flex; justify-content:center; }
+    .q-media img.q-img { max-width: 260px; max-height: 180px; object-fit: contain; border-radius: 8px; border: 1px solid #e6e6e6; }
+  </style>
+  <script defer src="../data/nouns-exercises.js"></script>
+  <script defer src="../js/nouns-test.js"></script>
 </head>
 <body>
 <header>
   <nav class="navbar">
     <a href="../index.html" class="nav-item">🏠 Acasă</a>
-    <a href="../lessons/das-nomen.html" class="nav-item">📚 Lecție substantiv</a>
-    <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
+    <a href="./general-test.html" class="nav-item">🧩 Test general</a>
   </nav>
 </header>
 
-<main class="container">
-  <h1>Test: Substantive</h1>
-  <p id="progress">Întrebare <span id="qIndex">0</span>/<span id="qTotal">0</span> — Scor: <span id="score">0</span></p>
-
-  <div id="questionArea"></div>
-
-  <div class="test-controls" style="margin-top:.8rem;">
-    <button id="verify-btn" class="btn">Verifică</button>
-    <button id="next-btn" class="btn" style="display:none;">Următoarea întrebare</button>
-  </div>
-
-  <p id="feedback" class="feedback" style="min-height:1.2rem;margin-top:.6rem;"></p>
+<main class="test-page">
+  <h2>Test: Substantive</h2>
+  <div id="nounsTestRoot" class="question-card"></div>
 </main>
 </body>
 </html>

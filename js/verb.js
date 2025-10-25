@@ -67,25 +67,49 @@ document.addEventListener('DOMContentLoaded', () => {
   const paginationInfo = document.getElementById('vPaginationInfo');
   if (!tableBody) return;
 
-  // TTS cu fallback la încărcarea vocilor, preferă germană
+  // TTS cu preferință voce feminină (DE)
   function speak(text, lang='de-DE') {
     const synth = window.speechSynthesis;
     if (!synth) return;
-    const go = () => {
+
+    function pickDeVoice() {
+      const voices = synth.getVoices() || [];
+      const de = voices.filter(v => v.lang && /^de(-|_)/i.test(v.lang));
+
+      // Heuristici pentru voce feminină
+      const preferredNames = [
+        'Google Deutsch', 'Google Deutsch Female', 'Anna', 'Vicki', 'Petra', 'Marlene', 'Helena', 'Katja', 'Steffi'
+      ];
+
+      // 1) Nume preferate
+      for (const name of preferredNames) {
+        const v = de.find(x => x.name && x.name.toLowerCase().includes(name.toLowerCase()));
+        if (v) return v;
+      }
+      // 2) Euristică „female” în nume
+      const femaleGuess = de.find(v => /fem|frau|female/i.test(v.name || ''));
+      if (femaleGuess) return femaleGuess;
+
+      // 3) Prima voce germană disponibilă
+      return de[0] || voices.find(v => /german/i.test(v.name || ''));
+    }
+
+    const speakNow = () => {
       synth.cancel();
       const u = new SpeechSynthesisUtterance(text);
       u.lang = lang;
-      const voices = synth.getVoices();
-      const de = voices.find(v => /de(-|_)?/i.test(v.lang) || /german/i.test(v.name));
-      if (de) u.voice = de;
+      const v = pickDeVoice();
+      if (v) u.voice = v;
+      // opțional: u.rate = 0.95; u.pitch = 1.05;
       synth.speak(u);
     };
+
     if (!synth.getVoices().length) {
-      const once = () => { synth.onvoiceschanged = null; go(); };
+      const once = () => { synth.onvoiceschanged = null; speakNow(); };
       synth.onvoiceschanged = once;
-      setTimeout(go, 250);
+      setTimeout(speakNow, 200);
     } else {
-      go();
+      speakNow();
     }
   }
 
