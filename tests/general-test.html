@@ -5,7 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Testare generală</title>
   <link rel="stylesheet" href="../css/style.css">
-  <script defer src="../js/main.js"></script>
+  <script defer src="../js/general-test.js"></script>
+  <style>
+    /* Media în întrebări (imagini) */
+    .q-media { margin:6px 0 8px; display:flex; justify-content:center; }
+    .q-media img.q-img {
+      max-width: 260px; max-height: 180px; object-fit: contain;
+      border-radius: 8px; background:#fff; border: 1px solid #e6e6e6;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -17,29 +25,34 @@
     </nav>
   </header>
 
-  <main class="general-test">
+  <main class="test-page">
     <h2>Testare generală</h2>
 
-    <div id="difficulty-selection">
+    <div id="difficulty-selection" class="question-card">
       <p>Alege nivelul de dificultate:</p>
-      <button onclick="startGeneralTest('easy')">Ușor (10 întrebări / 20 min)</button>
-      <button onclick="startGeneralTest('medium')">Mediu (15 întrebări / 20 min)</button>
-      <button onclick="startGeneralTest('hard')">Greu (25 întrebări / 25 min)</button>
-      <button onclick="startGeneralTest('hero')">Erou (40 întrebări / 35 min)</button>
-    </div>
-
-    <div id="test-container" style="display:none;">
-      <p id="timer">⏱️ Timp rămas: <span id="time-left"></span></p>
-      <div id="question-area"></div>
-      <div id="controls">
-        <button id="next-question">Următoarea întrebare</button>
+      <div class="answers" style="gap:8px;">
+        <button class="btn" onclick="startGeneralTest('easy')">Ușor (10 întrebări / 20 min)</button>
+        <button class="btn" onclick="startGeneralTest('medium')">Mediu (15 întrebări / 20 min)</button>
+        <button class="btn" onclick="startGeneralTest('hard')">Greu (25 întrebări / 25 min)</button>
+        <button class="btn" onclick="startGeneralTest('hero')">Erou (40 întrebări / 35 min)</button>
       </div>
     </div>
 
-    <div id="result-container" style="display:none;">
+    <div id="test-container" class="question-card" style="display:none;">
+      <p id="timer" style="margin:0 0 8px;">⏱️ Timp rămas: <span id="time-left"></span></p>
+      <div id="question-area"></div>
+      <div id="controls" style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px;">
+        <button id="check-question" class="btn">Verifică</button>
+        <button id="next-question" class="btn">Următoarea întrebare</button>
+      </div>
+    </div>
+
+    <div id="result-container" class="question-card" style="display:none;">
       <h3>Rezultat final</h3>
       <p id="score-percentage"></p>
-      <button onclick="saveAndGoProgress()">Vezi progresul</button>
+      <p id="score-breakdown" style="color:#555;"></p>
+      <button class="btn" onclick="saveAndGoProgress()">Vezi progresul</button>
+      <a class="btn" href="./general-test.html">Reia testul</a>
     </div>
   </main>
 </body>

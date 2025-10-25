@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   
   if (!Array.isArray(exercises) || exercises.length === 0) {
-    questionArea.textContent = 'Nu există exerciții disponibile. Pune data/nouns-exercises.json sau data/nouns-exercises.js.';
+    questionArea.textContent = 'Nu există exerciții disponibile. Pune data/grosse9-exercises.json sau data/verbs-exercises.js.';
     verifyBtn.style.display = 'none';
     return;
   }

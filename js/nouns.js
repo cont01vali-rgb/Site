@@ -68,6 +68,80 @@ const nounsData = [
   {"nomen": "Oberstufe", "gen": "die", "plural": "Oberstufen", "traducere": "ciclu superior", "exemplu": "Die Oberstufe dauert vier Jahre."},
   {"nomen": "Radiergummi", "gen": "der", "plural": "Radiergummis", "traducere": "gumă de șters", "exemplu": "Ich brauche einen neuen Radiergummi.", "image": "radiergummi.jpg"},
 
+  // A1 – Obiecte prin casă
+  {"nomen":"Tisch","gen":"der","plural":"Tische","traducere":"masă","exemplu":"Der Tisch ist groß.","image":"tisch.jpg"},
+  {"nomen":"Stuhl","gen":"der","plural":"Stühle","traducere":"scaun","exemplu":"Der Stuhl ist bequem.","image":"stuhl.jpg"},
+  {"nomen":"Bett","gen":"das","plural":"Betten","traducere":"pat","exemplu":"Das Bett ist neu.","image":"bett.jpg"},
+  {"nomen":"Schrank","gen":"der","plural":"Schränke","traducere":"dulap","exemplu":"Der Schrank ist im Schlafzimmer.","image":"schrank.jpg"},
+  {"nomen":"Kühlschrank","gen":"der","plural":"Kühlschränke","traducere":"frigider","exemplu":"Der Kühlschrank ist leer.","image":"kuhlschrank.jpg"},
+  {"nomen":"Herd","gen":"der","plural":"Herde","traducere":"aragaz","exemplu":"Der Herd funktioniert gut.","image":"herd.jpg"},
+  {"nomen":"Lampe","gen":"die","plural":"Lampen","traducere":"lampă","exemplu":"Die Lampe ist hell.","image":"lampe.jpg"},
+  {"nomen":"Fenster","gen":"das","plural":"Fenster","traducere":"fereastră","exemplu":"Das Fenster ist offen.","image":"fenster.jpg"},
+  {"nomen":"Tür","gen":"die","plural":"Türen","traducere":"ușă","exemplu":"Die Tür ist geschlossen.","image":"tuer.jpg"},
+  {"nomen":"Küche","gen":"die","plural":"Küchen","traducere":"bucătărie","exemplu":"Die Küche ist modern.","image":"kuche.jpg"},
+  {"nomen":"Bad","gen":"das","plural":"Bäder","traducere":"baie","exemplu":"Das Bad ist klein.","image":"bad.jpg"},
+  {"nomen":"Badezimmer","gen":"das","plural":"Badezimmer","traducere":"baie","exemplu":"Das Badezimmer ist sauber.","image":"badezimmer.jpg"},
+  {"nomen":"Wohnzimmer","gen":"das","plural":"Wohnzimmer","traducere":"sufragerie","exemplu":"Das Wohnzimmer ist gemütlich.","image":"wohnzimmer.jpg"},
+  {"nomen":"Schlafzimmer","gen":"das","plural":"Schlafzimmer","traducere":"dormitor","exemplu":"Das Schlafzimmer ist ruhig.","image":"schlafzimmer.jpg"},
+  {"nomen":"Sofa","gen":"das","plural":"Sofas","traducere":"canapea","exemplu":"Das Sofa ist weich.","image":"sofa.jpg"},
+  {"nomen":"Fernseher","gen":"der","plural":"Fernseher","traducere":"televizor","exemplu":"Der Fernseher ist neu.","image":"fernseher.jpg"},
+  {"nomen":"Computer","gen":"der","plural":"Computer","traducere":"computer","exemplu":"Der Computer ist langsam.","image":"computer.jpg"},
+
+  // A1 – Veselă/ustensile
+  {"nomen":"Teller","gen":"der","plural":"Teller","traducere":"farfurie","exemplu":"Ich brauche einen Teller.","image":"teller.jpg"},
+  {"nomen":"Tasse","gen":"die","plural":"Tassen","traducere":"cană","exemplu":"Die Tasse ist leer.","image":"tasse.jpg"},
+  {"nomen":"Glas","gen":"das","plural":"Gläser","traducere":"pahar","exemplu":"Das Glas ist voll.","image":"glas.jpg"},
+  {"nomen":"Löffel","gen":"der","plural":"Löffel","traducere":"lingură","exemplu":"Ich nehme einen Löffel.","image":"loffel.jpg"},
+  {"nomen":"Gabel","gen":"die","plural":"Gabeln","traducere":"furculiță","exemplu":"Die Gabel ist sauber.","image":"gabel.jpg"},
+  {"nomen":"Messer","gen":"das","plural":"Messer","traducere":"cuțit","exemplu":"Das Messer ist scharf.","image":"messer.jpg"},
+
+  // A1 – Alimente & băuturi
+  {"nomen":"Brot","gen":"das","plural":"Brote","traducere":"pâine","exemplu":"Das Brot ist frisch.","image":"brot.jpg"},
+  {"nomen":"Wasser","gen":"das","plural":"-","traducere":"apă","exemplu":"Ich trinke Wasser.","image":"wasser.png"},
+  {"nomen":"Milch","gen":"die","plural":"-","traducere":"lapte","exemplu":"Die Milch ist kalt.","image":"milch.jpg"},
+  {"nomen":"Kaffee","gen":"der","plural":"-","traducere":"cafea","exemplu":"Der Kaffee ist heiß."},
+  {"nomen":"Tee","gen":"der","plural":"-","traducere":"ceai","exemplu":"Der Tee ist grün.","image":"tee.jpg"},
+
+  // A1 – Fructe
+  {"nomen":"Banane","gen":"die","plural":"Bananen","traducere":"banană","exemplu":"Die Banane ist gelb.","image":"banane.jpg"},
+  {"nomen":"Orange","gen":"die","plural":"Orangen","traducere":"portocală","exemplu":"Die Orange ist süß.","image":"orange.jpg"},
+  {"nomen":"Erdbeere","gen":"die","plural":"Erdbeeren","traducere":"căpșună","exemplu":"Die Erdbeere ist frisch.","image":"erdbeere.jpg"},
+  {"nomen":"Traube","gen":"die","plural":"Trauben","traducere":"strugure","exemplu":"Die Trauben sind lila.","image":"traube.jpg"},
+  {"nomen":"Birne","gen":"die","plural":"Birnen","traducere":"pară","exemplu":"Die Birne ist saftig.","image":"birne.jpg"},
+  {"nomen":"Zitrone","gen":"die","plural":"Zitronen","traducere":"lămâie","exemplu":"Die Zitrone ist sauer.","image":"zitrone.jpg"},
+
+  // A1 – Legume
+  {"nomen":"Tomate","gen":"die","plural":"Tomaten","traducere":"roșie","exemplu":"Die Tomate ist rot.","image":"tomate.jpg"},
+  {"nomen":"Gurke","gen":"die","plural":"Gurken","traducere":"castravete","exemplu":"Die Gurke ist grün.","image":"gurke.jpg"},
+  {"nomen":"Kartoffel","gen":"die","plural":"Kartoffeln","traducere":"cartof","exemplu":"Die Kartoffeln sind billig.","image":"kartoffel.jpg"},
+  {"nomen":"Zwiebel","gen":"die","plural":"Zwiebeln","traducere":"ceapă","exemplu":"Die Zwiebel ist klein.","image":"zwiebel.jpg"},
+  {"nomen":"Karotte","gen":"die","plural":"Karotten","traducere":"morcov","exemplu":"Die Karotte ist orange.","image":"karotte.jpg"},
+  {"nomen":"Paprika","gen":"der","plural":"Paprikas","traducere":"ardei","exemplu":"Der Paprika ist rot.","image":"paprika.jpg"},
+  {"nomen":"Salat","gen":"der","plural":"Salate","traducere":"salată","exemplu":"Der Salat ist frisch.","image":"salat.jpg"},
+
+  // A1 – Școală / obiecte uzuale
+  {"nomen":"Buch","gen":"das","plural":"Bücher","traducere":"carte","exemplu":"Das Buch ist interessant.","image":"buch.jpg"},
+  {"nomen":"Heft","gen":"das","plural":"Hefte","traducere":"caiet","exemplu":"Das Heft ist neu.","image":"heft.jpg"},
+  {"nomen":"Rucksack","gen":"der","plural":"Rucksäcke","traducere":"rucsac","exemplu":"Der Rucksack ist schwer.","image":"rucksack.jpg"},
+  {"nomen":"Handy","gen":"das","plural":"Handys","traducere":"telefon mobil","exemplu":"Mein Handy ist alt.","image":"handy.jpg"},
+  {"nomen":"Geld","gen":"das","plural":"-","traducere":"bani","exemplu":"Ich habe kein Geld.","image":"geld.jpg"},
+
+  // A1 – Îmbrăcăminte
+  {"nomen":"T-Shirt","gen":"das","plural":"T-Shirts","traducere":"tricou","exemplu":"Das T-Shirt ist blau.","image":"tshirt.jpg"},
+  {"nomen":"Hose","gen":"die","plural":"Hosen","traducere":"pantaloni","exemplu":"Die Hose ist schwarz.","image":"hose.jpg"},
+  {"nomen":"Schuh","gen":"der","plural":"Schuhe","traducere":"pantof","exemplu":"Die Schuhe sind neu.","image":"schuh.jpg"},
+  {"nomen":"Jacke","gen":"die","plural":"Jacken","traducere":"geacă","exemplu":"Die Jacke ist warm.","image":"jacke.jpg"},
+
+  // A1 – Familie și locuri
+  {"nomen":"Mutter","gen":"die","plural":"Mütter","traducere":"mamă","exemplu":"Meine Mutter kocht.","image":"mutter.jpg"},
+  {"nomen":"Vater","gen":"der","plural":"Väter","traducere":"tată","exemplu":"Mein Vater arbeitet.","image":"vater.jpg"},
+  {"nomen":"Familie","gen":"die","plural":"Familien","traducere":"familie","exemplu":"Meine Familie ist groß.","image":"familie.jpg"},
+  {"nomen":"Supermarkt","gen":"der","plural":"Supermärkte","traducere":"supermarket","exemplu":"Der Supermarkt ist in der Nähe.","image":"supermarkt.jpg"},
+  {"nomen":"Bahnhof","gen":"der","plural":"Bahnhöfe","traducere":"gară","exemplu":"Der Bahnhof ist alt.","image":"bahnhof.jpg"},
+  {"nomen":"Schule","gen":"die","plural":"Schulen","traducere":"școală","exemplu":"Die Schule ist groß.","image":"schule.jpg"},
+  {"nomen":"Park","gen":"der","plural":"Parks","traducere":"parc","exemplu":"Der Park ist schön.","image":"park.jpg"},
+  {"nomen":"Zimmer","gen":"das","plural":"Zimmer","traducere":"cameră","exemplu":"Das Zimmer ist klein.","image":"zimmer.jpeg"}
+
 ];
 
 window.nounsData = nounsData;

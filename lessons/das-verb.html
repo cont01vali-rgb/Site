@@ -6,50 +6,117 @@
   <title>Das Verb – Lecția</title>
   <link rel="stylesheet" href="../css/style.css">
   <script defer src="../js/verb.js"></script>
+  <style>
+    /* ușor mai mare și lizibil */
+    #verbTable { font-size: 1.05rem; line-height: 1.6; }
+    #verbTable th, #verbTable td { padding: 10px 12px; }
+    /* dezactivează efectul de scale pe hover pentru secțiunea tabelului */
+    .no-scale { transform: none !important; }
+    .no-scale:hover { transform: none !important; }
+    /* fallback: highlight pentru rândul selectat (dacă nu există în style.css) */
+    table tr.selected-row { background:#eef6ff; outline:2px solid #2b78c8; }
+  </style>
 </head>
 <body>
 <header>
   <nav class="navbar">
     <a href="../index.html" class="nav-item">🏠 Acasă</a>
-        <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
-        <a href="../tests/general-test.html" class="nav-item">🧩 Test general</a>
-        <a href="../progress.html" class="nav-item">📊 Progres</a>
+    <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
   </nav>
 </header>
 
 <main class="lesson-page">
-  <h1>Das Adjektiv</h1>
+  <h1>Das Verb</h1>
 
-  <!-- Teorie pentru lecție -->
-  <p>Adjectivele sunt cuvinte care <strong>descriu un substantiv sau un pronume</strong>, indicând calitatea, starea sau caracteristica acestuia.</p>
+  <!-- Intro: definiție -->
+  <section class="card" style="border-left:4px solid #2b78c8;">
+    <p><strong><u>Das Verb</u></strong> ist die wichtigste Wortart im Deutschen. Es bezeichnet eine
+      Aktion/Tätigkeit, ein Geschehen oder einen Zustand. Beispiele: <em>kommen, wohnen, heißen, gehen, lieben</em>.</p>
+    <p style="color:#444;margin-top:6px;"><em>RO:</em> <strong><u>Verbul</u></strong> este cea mai importantă parte de vorbire.
+      Denumește o acțiune, un eveniment sau o stare. Ex.: <em>a veni, a locui, a se numi, a merge, a iubi</em>.</p>
+  </section>
 
-  <h2>Funcții ale adjectivelor</h2>
-    <ul>
-    <li><strong>Atributiv</strong> – se află înaintea substantivului și se acordă cu acesta. Ex: <em>die <span style="color:red;">rote</span> Blume</em></li>
-    <li><strong>Predicativ</strong> – se află după verbul de legătură (sein, werden, bleiben) și nu se acordă. Ex: <em>Die Blume ist <span style="color:red;">rot</span>.</em></li>
-    <li><strong>Adverbial</strong> – descrie un verb sau un alt adjectiv. Ex: <em>Er läuft <span style="color:red;">schnell</span>.</em></li>
-    </ul>
+  <!-- Forme de bază -->
+  <section class="card" style="display:grid;gap:10px;">
+    <h2 style="margin:0;">Formele de bază</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="card" style="background:#f7fbff;">
+        <h3 style="margin-top:0;"><strong><u>Infinitiv</u></strong></h3>
+        <ul>
+          <li>Ex.: <em>kommen, wohnen</em></li>
+          <li>Nu are pronume personal.</li>
+          <li>Este forma de bază a verbului.</li>
+          <li>În germană se termină de obicei în „-en” (ex.: <em>kommen, gehen</em>).</li>
+        </ul>
+        <p style="color:#444;margin-top:6px;"><em>RO:</em> Forma de dicționar, fără pronume, de regulă cu terminația „-en”.</p>
+      </div>
+      <div class="card" style="background:#fff8e6;">
+        <h3 style="margin-top:0;"><strong><u>Personalform</u></strong></h3>
+        <ul>
+          <li>Ex.: <em>ich komme, du kommst</em>…</li>
+          <li>Include un pronume personal.</li>
+          <li>Spune <strong><u>wer</u></strong> (cine) face acțiunea (ich, du, wir…).</li>
+          <li>Are terminații diferite pentru fiecare persoană.</li>
+        </ul>
+        <p style="color:#444;margin-top:6px;"><em>RO:</em> Forma personală indică persoana (cine) și are terminații proprii.</p>
+      </div>
+    </div>
+  </section>
 
-  <h2>Reguli de bază</h2>
-  <p>Adjectivele care stau înaintea substantivului primesc terminații diferite în funcție de gen, număr și caz. Ele pot exprima culoare, mărime, stare, emoție, caracter sau origine.</p>
+  <!-- Conjugare Präsens -->
+  <section class="card">
+    <h2 style="margin-top:0;">Konjugation Präsens – terminații</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div>
+        <table class="weekday-table" style="min-width:280px;">
+          <thead>
+            <tr><th>Singular</th><th>Plural</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>ich</strong> – <code>e</code></td><td><strong>wir</strong> – <code>en</code></td></tr>
+            <tr><td><strong>du</strong> – <code>st</code></td><td><strong>ihr</strong> – <code>t</code></td></tr>
+            <tr><td><strong>er/sie/es</strong> – <code>t</code></td><td><strong>sie/Sie</strong> – <code>en</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4 style="margin:6px 0 4px;">Exemplu cu „kommen”</h4>
+        <ul style="columns:2; column-gap:18px; margin:0;">
+          <li>ich <strong>komm<strong>e</strong></strong></li>
+          <li>du <strong>komm<strong>st</strong></strong></li>
+          <li>er/sie/es <strong>komm<strong>t</strong></strong></li>
+          <li>wir <strong>komm<strong>en</strong></strong></li>
+          <li>ihr <strong>komm<strong>t</strong></strong></li>
+          <li>sie/Sie <strong>komm<strong>en</strong></strong></li>
+        </ul>
+      </div>
+    </div>
+    <p class="important" style="margin-top:10px;"><strong>Regulă de poziție:</strong> Verbele sunt de obicei pe <strong>locul 2</strong> în propoziție.
+      <br>Ex.: <em>Heute</em> <strong>komme</strong> ich spät. / Ich <strong>komme</strong> <em>heute</em> spät.</p>
+  </section>
 
-  <input type="text" id="searchInput" placeholder="Caută un adjectiv (germană sau română)...">
+  <!-- Căutare + tabel verbe -->
+  <section class="card no-scale">
+    <h2 style="margin-top:0;">Tabel de verbe (cu exemple)</h2>
+    <input type="text" id="searchInput" placeholder="Caută un verb (infinitiv sau traducere)..." style="width:100%;max-width:480px;">
+    <table id="verbTable" style="margin-top:8px;width:100%;">
+      <thead>
+        <tr>
+          <th></th> <!-- audio -->
+          <th>Infinitiv (DE)</th>
+          <th>Traducere (RO)</th>
+          <th>Exemplu (DE)</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div id="vPaginationInfo" style="margin-top:8px;color:#444;"></div>
+    <div id="vPagination" style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:6px;"></div>
+  </section>
 
-  <table id="adjektivTable">
-    <thead>
-      <tr>
-        <th></th> <!-- pentru iconița audio -->
-        <th>Adjektiv</th>
-        <th>Comparativ</th>
-        <th>Superlativ</th>
-        <th>Traducere</th>
-        <th>Exemplu</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Adjectivele se încarcă automat din JSON -->
-    </tbody>
-  </table>
+  <div class="bottom-btn">
+    <a href="../tests/general-test.html" class="test-button">Începe un test general</a>
+  </div>
 </main>
 </body>
 </html>

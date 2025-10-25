@@ -495,3 +495,29 @@ body {
 .level-header { display:flex; align-items:center; gap:12px; }
 .age-badge { margin-left:8px; background:linear-gradient(180deg,#e8f6ff,#e2f0ff); color:#0b5fa3; font-weight:700; padding:6px 10px; border-radius:999px; font-size:0.95rem; }
 .lesson-image { max-width:100%; height:auto; border-radius:6px; }
+
+/* Fix vizibilitate pentru rândul selectat din tabelele cu navigare */
+#verbTable tr.selected-row,
+#verbTable tr.selected-row td,
+#verbTable tr.selected-row a,
+#verbTable tr.selected-row button {
+  color: #1d232a !important; /* text închis, lizibil */
+}
+
+#verbTable tr.selected-row {
+  background: #eef6ff !important;
+  outline: 2px solid #2b78c8;
+}
+
+/* Anulează stiluri globale care inversează culorile pe focus */
+#verbTable tr:focus,
+#verbTable tr:focus-within {
+  color: inherit !important;
+  background: inherit !important;
+}
+
+/* Butonul audio să nu inverseze culorile când primește focus */
+#verbTable .audio-btn:focus {
+  outline: 2px solid #2b78c8;
+  box-shadow: none;
+}

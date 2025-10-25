@@ -1,47 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
   <meta charset="UTF-8">
+  <title>Progres teste</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Progres</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script defer src="js/main.js"></script>
+  <link rel="stylesheet" href="./css/style.css">
+  <script defer src="./js/progress.js"></script>
+  <style>
+    .progress-page { padding: 16px; }
+    .history-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .progress-card {
+      position: relative; padding: 12px; border-radius: 10px;
+      background: #fff; border: 1px solid #e5e7eb;
+      box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .progress-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+    .card-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+    .pill { font-size:.8rem; padding:2px 8px; border-radius:999px; background:#f3f4f6; }
+    .score { font-weight:700; }
+    .bar {
+      position:absolute; left:0; top:0; bottom:0; width:6px; border-top-left-radius:10px; border-bottom-left-radius:10px;
+    }
+    .score-red   { background:#fee2e2; border-color:#fecaca; }
+    .score-yellow{ background:#fef9c3; border-color:#fde68a; }
+    .score-green { background:#dcfce7; border-color:#bbf7d0; }
+
+    .progress-card.red   .bar { background:#ef4444; }
+    .progress-card.yellow .bar { background:#f59e0b; }
+    .progress-card.green  .bar { background:#10b981; }
+
+    /* Hover panel */
+    .hover-panel {
+      position:absolute; inset:auto 8px 8px 8px;
+      background:#fff; border:1px solid #e5e7eb; border-radius:8px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.12);
+      padding:10px; opacity:0; pointer-events:none; transform: translateY(6px);
+      transition: opacity .15s ease, transform .15s ease;
+      z-index: 5;
+    }
+    .progress-card:hover .hover-panel { opacity:1; pointer-events:auto; transform: translateY(0); }
+    .hover-title { font-weight:600; margin-bottom:6px; }
+    .hover-list { margin:0; padding-left:18px; }
+    .muted { color:#6b7280; }
+    .toolbar { display:flex; gap:8px; margin:10px 0; }
+    .btn.small { font-size:.9rem; padding:6px 10px; }
+  </style>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <a href="index.html" class="nav-item">🏠 Acasă</a>
-      <a href="learn.html" class="nav-item">📚 Lecții</a>
-      <a href="tests/general-test.html" class="nav-item">🧩 Test general</a>
-    </nav>
-  </header>
+<header>
+  <nav class="navbar">
+    <a href="./index.html" class="nav-item">🏠 Acasă</a>
+    <a href="./learn.html" class="nav-item">📚 Lecții</a>
+    <a href="./tests/general-test.html" class="nav-item">🧩 Test general</a>
+    <a href="./progress.html" class="nav-item active">📊 Progres</a>
+  </nav>
+</header>
 
-  <main>
-    <h2>Rezultatele testelor</h2>
-    <div id="progress-list"></div>
-  </main>
+<main class="progress-page">
+  <h2>Progresul testelor</h2>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const list = document.getElementById('progress-list');
-      const data = JSON.parse(localStorage.getItem('testHistory') || '[]');
-      if (data.length === 0) {
-        list.innerHTML = "<p>Nu există teste salvate încă.</p>";
-        return;
-      }
+  <div class="toolbar">
+    <button id="refreshBtn" class="btn small">Reîncarcă</button>
+    <button id="clearBtn" class="btn small">Șterge istoricul</button>
+  </div>
 
-      list.innerHTML = data.map(entry => {
-        let color = 'red';
-        if (entry.score >= 80) color = 'green';
-        else if (entry.score >= 21) color = 'orange';
-        return `
-          <div class="progress-entry" style="border-left: 6px solid ${color}; padding:8px; margin:5px; background:#fff;">
-            <p><b>Data:</b> ${entry.date}</p>
-            <p><b>Scor:</b> ${entry.score}% din ${entry.total} întrebări</p>
-          </div>
-        `;
-      }).join('');
-    });
-  </script>
+  <div id="historyEmpty" class="question-card" style="display:none;">
+    Nu există rezultate salvate încă. Rulează un test general pentru a apărea aici.
+  </div>
+
+  <div id="historyList" class="history-grid"></div>
+</main>
 </body>
 </html>

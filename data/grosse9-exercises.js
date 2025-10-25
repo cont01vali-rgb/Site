@@ -1,5 +1,5 @@
 // Exerciții offline — varianta JS (folosește window.nounsExercises)
-window.nounsExercises = [
+window.verbsExercises = [
   {"type":"audio","question":"Completează propoziția audio: Das ist _______ Tasche.","word":"meine","options":["meine","deine","seine"],"correct":"meine"},
   {"type":"audio","question":"Completează propoziția audio: Wir besuchen _______ Freunde.","word":"unsere","options":["unsere","ihre","seine"],"correct":"unsere"},
   {"type":"audio","question":"Completează propoziția audio: Ist das _______ Haus, Frau Bauer?","word":"Ihr","options":["Ihr","ihr","sein"],"correct":"Ihr"},

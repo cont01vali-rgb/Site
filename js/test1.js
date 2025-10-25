@@ -21,13 +21,19 @@ const questions = [
   { type: "multiple", question: "În ce cuvânt se pronunță „st” ca „șt”?", options: ["Stein", "Mitte", "Haus"], correct: "Stein" },
   { type: "fill", question: "Completează: Cuvântul „die Lösung” conține Umlautul ____.", correct: "ö" },
   { type: "fill", question: "Completează: În germană, toate substantivele se scriu cu literă ____.", correct: "mare" },
-  { type: "fill", question: "Cum se pronunță combinația „sch” în cuvântul „Schule”?", correct: "ș" },
   { type: "multiple", question: "Ce înseamnă cuvântul „Großschreibung”?", options: ["Scriere cu majusculă", "Scriere cu litere mici", "Scriere fonetică"], correct: "Scriere cu majusculă" },
 
   // 3 întrebări audio
   { type: "audio", question: "Ascultă și alege cuvântul corect:", word: "Apfel", options: ["Apfel", "Apfeln", "Äpfel"], correct: "Apfel" },
   { type: "audio", question: "Ascultă și alege cuvântul corect:", word: "Straße", options: ["Straße", "Strase", "Strasse"], correct: "Straße" },
-  { type: "audio", question: "Ascultă și alege cuvântul corect:", word: "Bäume", options: ["Bäume", "Baume", "Bäumer"], correct: "Bäume" }
+  { type: "audio", question: "Ascultă și alege cuvântul corect:", word: "Bäume", options: ["Bäume", "Baume", "Bäumer"], correct: "Bäume" },
+  { type: "audio", question: "Ce litera auzi?", word: "a", options: ["c", "e", "a"], correct: "a" },
+  { type: "audio", question: "Ce litera auzi?", word: "ü", options: ["u", "ü", "i"], correct: "ü" },
+  { type: "audio", question: "Ce litera auzi?", word: "ö", options: ["o", "ö", "u"], correct: "ö" },
+  { type: "audio", question: "Ce litera auzi?", word: "ß", options: ["b", "ß", "s"], correct: "ß" },
+  { type: "audio", question: "Ascultă și alege cuvântul corect:", word: "Lösung", options: ["Losung", "Lösung", "Lösang"], correct: "Lösung" },
+  { type: "audio", question: "Ce litera auzi?", word: "ä", options: ["a", "ä", "e"], correct: "ä" },
+  { type: "audio", question: "Ce litera auzi?", word: "v", options: ["f", "w", "v"], correct: "v" }
 
 ];
 
