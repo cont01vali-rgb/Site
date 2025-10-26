@@ -25,66 +25,88 @@
   // ====== Propoziții prestabilite logice pentru completare ======
   const fixedSentences = {
     nouns: [
-      // 5 propoziții în germană
+      // 8 propoziții în germană (măresc numărul)
       { question: "Ich esse einen ___ (măr).", correct: "Apfel", lang: "de" },
       { question: "Das ___ (casă) ist groß.", correct: "Haus", lang: "de" },
       { question: "Die ___ (pisică) schläft.", correct: "Katze", lang: "de" },
       { question: "Der ___ (câine) bellt.", correct: "Hund", lang: "de" },
       { question: "Das ___ (copil) spielt.", correct: "Kind", lang: "de" },
+      { question: "Der ___ (tată) arbeitet.", correct: "Vater", lang: "de" },
+      { question: "Die ___ (mamă) kocht.", correct: "Mutter", lang: "de" },
+      { question: "Das ___ (telefon) klingelt.", correct: "Handy", lang: "de" },
       
-      // 5 propoziții în română
+      // 8 propoziții în română (măresc numărul)
       { question: "Ich trinke ___ (apă).", correct: "Wasser", lang: "ro" },
       { question: "Sie fährt das ___ (mașină).", correct: "Auto", lang: "ro" },
       { question: "Ich lese ein ___ (carte).", correct: "Buch", lang: "ro" },
       { question: "Die ___ (floare) ist schön.", correct: "Blume", lang: "ro" },
-      { question: "Er trägt einen ___ (pălărie).", correct: "Hut", lang: "ro" }
+      { question: "Er trägt einen ___ (pălărie).", correct: "Hut", lang: "ro" },
+      { question: "Ich brauche ___ (bani).", correct: "Geld", lang: "ro" },
+      { question: "Das ___ (pâine) ist frisch.", correct: "Brot", lang: "ro" },
+      { question: "Die ___ (școală) ist nah.", correct: "Schule", lang: "ro" }
     ],
     adjectives: [
-      // 5 propoziții în germană
+      // 8 propoziții în germană (măresc numărul)
       { question: "Das Wetter ist ___ (frumos).", correct: "schön", lang: "de" },
       { question: "Der Mann ist ___ (mare).", correct: "groß", lang: "de" },
       { question: "Das Auto ist ___ (rapid).", correct: "schnell", lang: "de" },
       { question: "Die Stadt ist ___ (mic).", correct: "klein", lang: "de" },
       { question: "Der Tag ist ___ (cald).", correct: "warm", lang: "de" },
+      { question: "Das Kind ist ___ (vesel).", correct: "fröhlich", lang: "de" },
+      { question: "Die Aufgabe ist ___ (ușor).", correct: "leicht", lang: "de" },
+      { question: "Der Film ist ___ (lung).", correct: "lang", lang: "de" },
       
-      // 5 propoziții în română
+      // 8 propoziții în română (măresc numărul)
       { question: "Das Haus ist ___ (nou).", correct: "neu", lang: "ro" },
       { question: "Ich bin ___ (obosit).", correct: "müde", lang: "ro" },
       { question: "Das Buch ist ___ (interesant).", correct: "interessant", lang: "ro" },
       { question: "Die Musik ist ___ (tare).", correct: "laut", lang: "ro" },
-      { question: "Das Essen ist ___ (bun).", correct: "gut", lang: "ro" }
+      { question: "Das Essen ist ___ (bun).", correct: "gut", lang: "ro" },
+      { question: "Der Test ist ___ (greu).", correct: "schwer", lang: "ro" },
+      { question: "Die Farbe ist ___ (albastru).", correct: "blau", lang: "ro" },
+      { question: "Das Zimmer ist ___ (curat).", correct: "sauber", lang: "ro" }
     ],
     verbs: [
-      // 5 propoziții în germană
+      // 8 propoziții în germană (măresc numărul)
       { question: "Ich ___ (merg) zur Schule.", correct: "gehe", lang: "de" },
       { question: "Wir ___ (învățăm) Deutsch.", correct: "lernen", lang: "de" },
       { question: "Er ___ (citește) ein Buch.", correct: "liest", lang: "de" },
       { question: "Sie ___ (cântă) schön.", correct: "singt", lang: "de" },
       { question: "Du ___ (vii) morgen.", correct: "kommst", lang: "de" },
+      { question: "Ich ___ (mănânc) einen Apfel.", correct: "esse", lang: "de" },
+      { question: "Sie ___ (vorbește) Englisch.", correct: "spricht", lang: "de" },
+      { question: "Wir ___ (călătorim) nach Wien.", correct: "fahren", lang: "de" },
       
-      // 5 propoziții în română
+      // 8 propoziții în română (măresc numărul)
       { question: "Ich ___ (beau) Kaffee.", correct: "trinke", lang: "ro" },
       { question: "Wir ___ (locuim) in Wien.", correct: "wohnen", lang: "ro" },
       { question: "Er ___ (lucrează) hier.", correct: "arbeitet", lang: "ro" },
       { question: "Sie ___ (doarme) gut.", correct: "schläft", lang: "ro" },
-      { question: "Ich ___ (aud) Musik.", correct: "höre", lang: "ro" }
+      { question: "Ich ___ (aud) Musik.", correct: "höre", lang: "ro" },
+      { question: "Du ___ (scrii) einen Brief.", correct: "schreibst", lang: "ro" },
+      { question: "Wir ___ (jucăm) Fußball.", correct: "spielen", lang: "ro" },
+      { question: "Sie ___ (cumpără) ein Auto.", correct: "kauft", lang: "ro" }
     ]
   };
 
   // ====== Funcții pentru generarea exercițiilor ======
   function getRecentlyUsed() {
     try {
-      return JSON.parse(localStorage.getItem('vocabularyRecentWords') || '[]');
+      const recentWords = JSON.parse(localStorage.getItem('vocabularyRecentWords') || '[]');
+      const recentSentences = JSON.parse(localStorage.getItem('vocabularyRecentSentences') || '[]');
+      return { words: recentWords, sentences: recentSentences };
     } catch {
-      return [];
+      return { words: [], sentences: [] };
     }
   }
 
-  function saveRecentlyUsed(words) {
+  function saveRecentlyUsed(words, sentences) {
     try {
-      // Păstrăm ultimele 50 de cuvinte folosite pentru a evita repetarea prea frecventă
-      const recent = words.slice(-50);
-      localStorage.setItem('vocabularyRecentWords', JSON.stringify(recent));
+      // Păstrăm ultimele 50 de cuvinte și 20 de propoziții pentru a evita repetarea
+      const recentWords = words.slice(-50);
+      const recentSentences = sentences.slice(-20);
+      localStorage.setItem('vocabularyRecentWords', JSON.stringify(recentWords));
+      localStorage.setItem('vocabularyRecentSentences', JSON.stringify(recentSentences));
     } catch (e) {
       console.error('Eroare la salvarea cuvintelor recente:', e);
     }
@@ -98,6 +120,16 @@
     }
     // Dacă nu sunt suficiente cuvinte noi, luăm aleatorii din toate
     return shuffle(allWords).slice(0, count);
+  }
+
+  function getAvoidRecentSentences(allSentences, avoidSentences, count) {
+    // Încercăm să luăm propoziții care nu sunt în lista "avoid"
+    const fresh = allSentences.filter(sentence => !avoidSentences.includes(sentence.question));
+    if (fresh.length >= count) {
+      return shuffle(fresh).slice(0, count);
+    }
+    // Dacă nu sunt suficiente propoziții noi, luăm aleatorii din toate
+    return shuffle(allSentences).slice(0, count);
   }
 
   function waitForData() {
@@ -122,12 +154,8 @@
 
   function generateNounExercises() {
     const exercises = [];
-    const recentWords = getRecentlyUsed();
-    const nouns = getAvoidRecentWords(window.nounsData, recentWords, 15);
-    
-    // Salvează cuvintele folosite
-    const usedWords = nouns.map(n => n.nomen);
-    saveRecentlyUsed([...recentWords, ...usedWords]);
+    const recent = getRecentlyUsed();
+    const nouns = getAvoidRecentWords(window.nounsData, recent.words, 15);
     
     // Exerciții simple RO→DE și DE→RO (10 exerciții)
     nouns.slice(0, 10).forEach((noun, i) => {
@@ -151,8 +179,8 @@
       }
     });
     
-    // Adaugă propoziții prestabilite (5 exerciții)
-    const sentenceTemplates = shuffle(fixedSentences.nouns).slice(0, 5);
+    // Adaugă propoziții prestabilite (5 exerciții) - evită repetarea
+    const sentenceTemplates = getAvoidRecentSentences(fixedSentences.nouns, recent.sentences, 5);
     sentenceTemplates.forEach((template, i) => {
       exercises.push({
         type: 'fill',
@@ -167,12 +195,8 @@
 
   function generateAdjectiveExercises() {
     const exercises = [];
-    const recentWords = getRecentlyUsed();
-    const adjectives = getAvoidRecentWords(window.adjectivesData, recentWords, 15);
-    
-    // Salvează cuvintele folosite
-    const usedWords = adjectives.map(a => a.adjektiv);
-    saveRecentlyUsed([...getRecentlyUsed(), ...usedWords]);
+    const recent = getRecentlyUsed();
+    const adjectives = getAvoidRecentWords(window.adjectivesData, recent.words, 15);
     
     // Exerciții simple RO→DE și DE→RO (10 exerciții)
     adjectives.slice(0, 10).forEach((adj, i) => {
@@ -195,8 +219,8 @@
       }
     });
     
-    // Adaugă propoziții prestabilite (5 exerciții)
-    const sentenceTemplates = shuffle(fixedSentences.adjectives).slice(0, 5);
+    // Adaugă propoziții prestabilite (5 exerciții) - evită repetarea
+    const sentenceTemplates = getAvoidRecentSentences(fixedSentences.adjectives, recent.sentences, 5);
     sentenceTemplates.forEach(template => {
       exercises.push({
         type: 'fill',
@@ -211,12 +235,8 @@
 
   function generateVerbExercises() {
     const exercises = [];
-    const recentWords = getRecentlyUsed();
-    const verbs = getAvoidRecentWords(window.verbsData, recentWords, 15);
-    
-    // Salvează cuvintele folosite
-    const usedWords = verbs.map(v => v.verb);
-    saveRecentlyUsed([...getRecentlyUsed(), ...usedWords]);
+    const recent = getRecentlyUsed();
+    const verbs = getAvoidRecentWords(window.verbsData, recent.words, 15);
     
     // Exerciții simple RO→DE și DE→RO (10 exerciții)
     verbs.slice(0, 10).forEach((verb, i) => {
@@ -239,8 +259,8 @@
       }
     });
     
-    // Adaugă propoziții prestabilite (5 exerciții)
-    const sentenceTemplates = shuffle(fixedSentences.verbs).slice(0, 5);
+    // Adaugă propoziții prestabilite (5 exerciții) - evită repetarea
+    const sentenceTemplates = getAvoidRecentSentences(fixedSentences.verbs, recent.sentences, 5);
     sentenceTemplates.forEach(template => {
       exercises.push({
         type: 'fill',
@@ -254,14 +274,18 @@
   }
 
   function generateSentenceExercises() {
-    // Combinăm toate propozițiile prestabilite și luăm 15 aleatorii
+    const recent = getRecentlyUsed();
+    
+    // Combinăm toate propozițiile prestabilite și evităm repetarea
     const allSentences = [
       ...fixedSentences.nouns,
       ...fixedSentences.adjectives, 
       ...fixedSentences.verbs
     ];
     
-    return shuffle(allSentences).slice(0, 15).map(sentence => ({
+    const selectedSentences = getAvoidRecentSentences(allSentences, recent.sentences, 15);
+    
+    return selectedSentences.map(sentence => ({
       type: 'fill',
       category: 'sentence-completion',
       question: sentence.question,
@@ -282,6 +306,23 @@
       ...generateVerbExercises(),
       ...generateSentenceExercises()
     ];
+    
+    // Salvează cuvintele și propozițiile folosite pentru evitarea repetării
+    const recent = getRecentlyUsed();
+    const usedWords = [];
+    const usedSentences = [];
+    
+    exercises.forEach(ex => {
+      if (ex.category === 'sentence-completion' || ex.category === 'das-nomen' && ex.question.includes('___')) {
+        usedSentences.push(ex.question);
+      }
+      // Pentru exercițiile simple, extragem cuvântul din răspuns
+      if (!ex.question.includes('___')) {
+        usedWords.push(ex.correct);
+      }
+    });
+    
+    saveRecentlyUsed([...recent.words, ...usedWords], [...recent.sentences, ...usedSentences]);
     
     // Acum avem exact 60 de exerciții: 15 substantive + 15 adjective + 15 verbe + 15 completări
     const finalExercises = shuffle(exercises);

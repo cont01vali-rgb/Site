@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Rapid General Test</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 20px; 
+      background: #f5f5f5; 
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    button {
+      background: #007acc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover {
+      background: #005999;
+    }
+    .log {
+      background: #f8f8f8;
+      padding: 15px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      max-height: 500px;
+      overflow-y: auto;
+      margin-top: 15px;
+      border: 1px solid #ddd;
+    }
+    .category-info {
+      margin: 10px 0;
+      padding: 10px;
+      background: #e3f2fd;
+      border-radius: 4px;
+    }
+    .success { color: #2e7d32; font-weight: bold; }
+    .error { color: #d32f2f; font-weight: bold; }
+    .warning { color: #f57c00; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 Test Rapid - Sistem General Test</h1>
+    <p>Această pagină testează dacă categoriile lipsă (<strong>die-zahlen</strong> și <strong>das-lernziel</strong>) sunt încărcate corect.</p>
+    
+    <div>
+      <button onclick="testLoadExternalExercises()">1. Testează Încărcarea Exercițiilor Externe</button>
+      <button onclick="testMergeProcess()">2. Testează Procesul de Merge</button>
+      <button onclick="forceManualMerge()">2b. Forțează Merge Manual</button>
+      <button onclick="testBuildPool()">3. Testează Construirea Pool-ului</button>
+      <button onclick="clearLog()">Șterge Log-ul</button>
+    </div>
+
+    <div id="log" class="log">Gata pentru testare...\n</div>
+  </div>
+
+  <script src="data/general-exercises.js"></script>
+  <script src="js/general-test.js"></script>
+  <script>
+    function log(message, type = 'info') {
+      const timestamp = new Date().toLocaleTimeString();
+      const logEl = document.getElementById('log');
+      
+      let className = '';
+      let prefix = '';
+      if (type === 'success') {
+        className = 'success';
+        prefix = '✅ ';
+      } else if (type === 'error') {
+        className = 'error';
+        prefix = '❌ ';
+      } else if (type === 'warning') {
+        className = 'warning';
+        prefix = '⚠️ ';
+      } else {
+        prefix = 'ℹ️ ';
+      }
+      
+      const line = `${timestamp}: ${prefix}${message}\n`;
+      if (className) {
+        logEl.innerHTML += `<span class="${className}">${line}</span>`;
+      } else {
+        logEl.textContent += line;
+      }
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+    
+    function clearLog() {
+      document.getElementById('log').textContent = 'Log șters...\n';
+    }
+    
+    function testLoadExternalExercises() {
+      log('=== TESTARE ÎNCĂRCARE EXERCIȚII EXTERNE ===');
+      
+      if (window.generalExercises) {
+        log('Exercițiile externe sunt încărcate!', 'success');
+        
+        const categories = Object.keys(window.generalExercises);
+        log(`Categorii disponibile: ${categories.join(', ')}`);
+        
+        // Testează categoriile specifice
+        if (window.generalExercises['die-zahlen']) {
+          const zahlenCount = window.generalExercises['die-zahlen'].length;
+          log(`✓ die-zahlen: ${zahlenCount} exerciții`, 'success');
+          
+          // Arată primul exercițiu ca exemplu
+          const firstEx = window.generalExercises['die-zahlen'][0];
+          log(`  Primul exercițiu: ${JSON.stringify(firstEx)}`);
+        } else {
+          log('✗ die-zahlen: NU GĂSIT!', 'error');
+        }
+        
+        if (window.generalExercises['das-lernziel']) {
+          const lernzielCount = window.generalExercises['das-lernziel'].length;
+          log(`✓ das-lernziel: ${lernzielCount} exerciții`, 'success');
+          
+          // Arată primul exercițiu ca exemplu
+          const firstEx = window.generalExercises['das-lernziel'][0];
+          log(`  Primul exercițiu: ${JSON.stringify(firstEx)}`);
+        } else {
+          log('✗ das-lernziel: NU GĂSIT!', 'error');
+        }
+        
+      } else {
+        log('Exercițiile externe NU sunt încărcate!', 'error');
+      }
+    }
+    
+    async function testMergeProcess() {
+      log('=== TESTARE PROCES MERGE ===');
+      
+      if (!window.generalExercises) {
+        log('Nu pot testa merge-ul - exercițiile externe nu sunt încărcate!', 'error');
+        return;
+      }
+      
+      // Testează funcția de merge manuală
+      if (typeof window.forceTestMerge === 'function') {
+        log('Execut merge-ul manual...');
+        const result = window.forceTestMerge();
+        
+        if (result) {
+          log('Merge-ul manual a fost executat cu succes!', 'success');
+          log('Verifică Console-ul pentru detalii despre BANK!', 'warning');
+        } else {
+          log('Merge-ul manual a eșuat!', 'error');
+        }
+      } else {
+        log('Funcția forceTestMerge nu este disponibilă!', 'error');
+      }
+      
+      // Încearcă și funcția originală
+      try {
+        if (typeof window.waitForExternalExercises === 'function') {
+          log('Testez și waitForExternalExercises...');
+          const result = await window.waitForExternalExercises(1000);
+          
+          if (result) {
+            log('waitForExternalExercises a reușit!', 'success');
+          } else {
+            log('waitForExternalExercises a expirat sau a eșuat!', 'warning');
+          }
+        }
+      } catch (error) {
+        log(`Eroare cu waitForExternalExercises: ${error.message}`, 'error');
+      }
+    }
+    
+    function testBuildPool() {
+      log('=== TESTARE CONSTRUIRE POOL ===');
+      
+      if (typeof window.buildPool === 'function') {
+        try {
+          log('Construiesc pool-ul...');
+          const result = window.buildPool?.();
+          
+          if (result && result.pool) {
+            log(`Pool construit cu succes! Total exerciții: ${result.pool.length}`, 'success');
+            
+            // Analizează categoriile din pool
+            const categoryCounts = {};
+            result.pool.forEach(q => {
+              categoryCounts[q.cat] = (categoryCounts[q.cat] || 0) + 1;
+            });
+            
+            log('Categorii în pool:');
+            Object.entries(categoryCounts).forEach(([cat, count]) => {
+              const isTargetCategory = cat === 'die-zahlen' || cat === 'das-lernziel';
+              const type = isTargetCategory ? 'success' : 'info';
+              log(`  ${cat}: ${count} exerciții`, type);
+            });
+            
+            // Verifică specific categoriile dorite
+            if (categoryCounts['die-zahlen']) {
+              log(`✓ die-zahlen găsit în pool: ${categoryCounts['die-zahlen']} exerciții`, 'success');
+            } else {
+              log('✗ die-zahlen NU este în pool!', 'error');
+            }
+            
+            if (categoryCounts['das-lernziel']) {
+              log(`✓ das-lernziel găsit în pool: ${categoryCounts['das-lernziel']} exerciții`, 'success');
+            } else {
+              log('✗ das-lernziel NU este în pool!', 'error');
+            }
+            
+          } else {
+            log('Pool-ul nu a putut fi construit!', 'error');
+          }
+          
+          log('Verifică Console-ul Browser-ului pentru log-uri detaliate!', 'warning');
+          
+        } catch (error) {
+          log(`Eroare la construirea pool-ului: ${error.message}`, 'error');
+        }
+      } else {
+        log('Funcția buildPool nu este disponibilă!', 'error');
+      }
+    }
+    
+    function forceManualMerge() {
+      log('=== MERGE MANUAL FORȚAT ===');
+      
+      if (typeof window.forceTestMerge === 'function') {
+        log('Execut merge-ul manual...');
+        const success = window.forceTestMerge();
+        
+        if (success) {
+          log('✅ Merge-ul manual a reușit!', 'success');
+          log('Acum testez din nou pool-ul...', 'warning');
+          
+          // Testează din nou pool-ul
+          setTimeout(() => {
+            testBuildPool();
+          }, 500);
+        } else {
+          log('❌ Merge-ul manual a eșuat!', 'error');
+        }
+      } else {
+        log('Funcția forceTestMerge nu este disponibilă!', 'error');
+      }
+    }
+    
+    // Auto-testare la încărcare
+    setTimeout(() => {
+      log('=== AUTO-TEST LA ÎNCĂRCARE ===');
+      testLoadExternalExercises();
+    }, 500);
+  </script>
+</body>
+</html>

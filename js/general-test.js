@@ -248,14 +248,25 @@
       const bucket = ensureCat(cat);
       items.forEach(it => {
         const t = String(it.type || '').toLowerCase();
-        const qText = it.question || '';
+        const qText = it.question || it.text || '';
         const ex = it.explanation ?? it.ex;
         const img = it.img || it.image; // opțional
-        if (t === 'truefalse') {
-          bucket.tf.push({ q: qText, a: !!it.correct, ...(ex?{ex}:{}), ...(img?{img}:{}) });
-        } else if (t === 'multiple') {
+        if (t === 'truefalse' || t === 'tf') {
+          // Verifică dacă folosește 'answer' în loc de 'correct'
+          const correctAnswer = it.correct !== undefined ? !!it.correct : !!it.answer;
+          bucket.tf.push({ q: qText, a: correctAnswer, ...(ex?{ex}:{}), ...(img?{img}:{}) });
+        } else if (t === 'multiple' || t === 'mc') {
           const opts = Array.isArray(it.options) ? it.options.slice() : [];
-          let idx = Math.max(0, opts.findIndex(o => String(o) === String(it.correct)));
+          let idx = 0;
+          
+          // Verifică dacă correct este o literă (a, b, c)
+          if (typeof it.correct === 'string' && it.correct.match(/^[abc]$/i)) {
+            idx = it.correct.toLowerCase().charCodeAt(0) - 97; // a=0, b=1, c=2
+          } else {
+            // Căutare normală după valoare
+            idx = Math.max(0, opts.findIndex(o => String(o) === String(it.correct)));
+          }
+          
           const out = { q: qText, opts, a: idx, ...(ex?{ex}:{}), ...(img?{img}:{}) };
           if (it.word) out.tts = it.word; // MC cu audio
           bucket.mc.push(out);
@@ -294,11 +305,43 @@
       const tick = () => {
         if (window.generalExercises) {
           try { 
+            console.log('=== MERGING EXTERNAL EXERCISES ===');
+            console.log('Available external categories:', Object.keys(window.generalExercises));
+            console.log('BANK before merge - categories:', Object.keys(BANK.categories));
+            console.log('BANK before merge - audio:', Object.keys(BANK.audio));
+            
             mergeExternalExercisesIntoBank(BANK, window.generalExercises); 
+            
+            console.log('BANK after merge - categories:', Object.keys(BANK.categories));
+            console.log('BANK after merge - audio:', Object.keys(BANK.audio));
+            
+            // Verifică categoriile specifice
+            if (BANK.categories['die-zahlen']) {
+              console.log('die-zahlen in BANK.categories:', {
+                tf: BANK.categories['die-zahlen'].tf?.length || 0,
+                mc: BANK.categories['die-zahlen'].mc?.length || 0,
+                fill: BANK.categories['die-zahlen'].fill?.length || 0
+              });
+            }
+            if (BANK.categories['das-lernziel']) {
+              console.log('das-lernziel in BANK.categories:', {
+                tf: BANK.categories['das-lernziel'].tf?.length || 0,
+                mc: BANK.categories['das-lernziel'].mc?.length || 0,
+                fill: BANK.categories['das-lernziel'].fill?.length || 0
+              });
+            }
+            
+            console.log('=== MERGE COMPLETE ===');
             return resolve(true);
-          } catch(e) { console.warn('Eroare încărcare exerciții externe:', e); }
+          } catch(e) { 
+            console.error('Eroare încărcare exerciții externe:', e); 
+            console.log('Stack trace:', e.stack);
+          }
         }
-        if (Date.now() - start > timeout) return resolve(false);
+        if (Date.now() - start > timeout) {
+          console.warn('Timeout waiting for external exercises');
+          return resolve(false);
+        }
         setTimeout(tick, 50);
       };
       tick();
@@ -316,49 +359,192 @@
 
   let state = { questions:[], index:0, score:0, answered:false, difficulty:'easy', timerId:null, deadline:0, usedCategories:[], wrongs: [] };
 
+  // ====== Sistem anti-repetare ======
+  function getRecentQuestions() {
+    try {
+      return JSON.parse(localStorage.getItem('generalRecentQuestions') || '[]');
+    } catch {
+      return [];
+    }
+  }
+
+  function saveRecentQuestions(questions) {
+    try {
+      // Păstrăm ultimele 100 de întrebări pentru a evita repetarea
+      const recent = questions.slice(-100);
+      localStorage.setItem('generalRecentQuestions', JSON.stringify(recent));
+    } catch (e) {
+      console.error('Eroare la salvarea întrebărilor recente:', e);
+    }
+  }
+
+  function getQuestionSignature(q) {
+    // Creează o semnătură unică pentru întrebare
+    return `${q.cat}-${q.type}-${(q.q || '').substring(0, 50)}`;
+  }
+
+  // Event handler global pentru Enter - doar pentru general test
+  function handleGlobalEnter(e) {
+    // Verifică că suntem într-un test activ
+    if (!state.questions || !state.questions.length) return;
+    
+    if (e.key === 'Enter') {
+      // Previne comportamentul default pentru a evita interferențele
+      e.preventDefault();
+      
+      if (!state.answered) {
+        // Dacă nu am verificat încă răspunsul, verifică-l
+        onCheck();
+      } else {
+        // Dacă am verificat deja, treci la următoarea întrebare
+        onNext();
+      }
+    }
+  }
+
   function buildPool() {
     const pool = []; const usedCats = new Set();
+    
+    // Verifică încărcarea exercițiilor externe
+    console.log('=== BUILD POOL START ===');
+    console.log('External exercises loaded:', !!window.generalExercises);
+    if (window.generalExercises) {
+      console.log('External categories:', Object.keys(window.generalExercises));
+      // Verifică categoriile specifice
+      if (window.generalExercises['die-zahlen']) {
+        console.log('die-zahlen exercises:', window.generalExercises['die-zahlen'].length);
+      }
+      if (window.generalExercises['das-lernziel']) {
+        console.log('das-lernziel exercises:', window.generalExercises['das-lernziel'].length);
+      }
+    }
+    
+    console.log('BANK categories:', Object.keys(BANK.categories));
+    console.log('BANK audio:', Object.keys(BANK.audio));
+    
     Object.entries(BANK.categories).forEach(([cat, sets])=>{
+      console.log(`Processing BANK category ${cat}:`, {
+        tf: sets.tf?.length || 0,
+        mc: sets.mc?.length || 0,
+        fill: sets.fill?.length || 0,
+        select: sets.select?.length || 0,
+        match: sets.match?.length || 0
+      });
+      
       ['tf','mc','fill','select','match'].forEach(type=>{
         (sets[type]||[]).forEach(item=>{ pool.push({ cat, type, ...item }); usedCats.add(cat); });
       });
     });
+    
     Object.entries(BANK.audio).forEach(([cat, arr])=>{
+      console.log(`Processing BANK audio category ${cat}: ${arr.length} exercises`);
       arr.forEach(item=>{ pool.push({ cat, type:'audio', ...item }); usedCats.add(cat); });
     });
+    
+    console.log('=== FINAL POOL ===');
+    console.log('Final pool size:', pool.length);
+    console.log('Categories found:', Array.from(usedCats));
+    
+    // Contează exercițiile pe categorie
+    const categoryCounts = pool.reduce((acc, q) => {
+      acc[q.cat] = (acc[q.cat] || 0) + 1;
+      return acc;
+    }, {});
+    console.log('Exercises by category:', categoryCounts);
+    console.log('=== BUILD POOL END ===');
+    
     return { pool: shuffle(pool), cats: Array.from(usedCats) };
   }
 
   function pickQuestions(pool, count) {
-    const byCat = pool.reduce((m,q)=> (m[q.cat]??=[]).push(q), {}), cats = Object.keys(byCat);
+    const recentQuestions = getRecentQuestions();
+    const recentSignatures = new Set(recentQuestions);
+    
+    // Filtrează pool-ul pentru a evita întrebările recente
+    const freshPool = pool.filter(q => {
+      const signature = getQuestionSignature(q);
+      return !recentSignatures.has(signature);
+    });
+    
+    console.log('Total pool:', pool.length, 'Fresh pool (excluding recent):', freshPool.length);
+    
+    // Folosește fresh pool-ul dacă e suficient de mare, altfel folosește pool-ul complet
+    const poolToUse = freshPool.length >= count ? freshPool : pool;
+    
+    const byCat = {}; 
+    poolToUse.forEach(q => {
+      if (!byCat[q.cat]) byCat[q.cat] = [];
+      byCat[q.cat].push(q);
+    });
+    
+    const cats = Object.keys(byCat);
+    console.log('Categories with questions:', cats);
+    cats.forEach(cat => {
+      console.log(`${cat}: ${byCat[cat].length} questions`);
+    });
+    
     const result = [];
     let ci = 0;
     
     // Prima fază: distribuie echilibrat pe categorii
-    while (result.length < Math.min(count, pool.length) && cats.length) {
-      const c = cats[ci % cats.length]; const arr = byCat[c];
-      if (arr && arr.length) result.push(arr.shift());
+    while (result.length < Math.min(count, poolToUse.length) && cats.length) {
+      const c = cats[ci % cats.length]; 
+      const arr = byCat[c];
+      if (arr && arr.length) {
+        result.push(arr.shift());
+      }
       ci++;
-      for (let i=cats.length-1;i>=0;i--) if (!byCat[cats[i]]?.length) cats.splice(i,1);
+      
+      // Elimină categoriile goale
+      for (let i = cats.length - 1; i >= 0; i--) {
+        if (!byCat[cats[i]]?.length) {
+          cats.splice(i, 1);
+        }
+      }
     }
     
     // A doua fază: dacă încă avem nevoie de întrebări și există în pool, le adăugăm
     if (result.length < count) {
-      const remaining = pool.filter(q => !result.some(r => r === q));
+      const remaining = poolToUse.filter(q => !result.some(r => r === q));
       const needed = count - result.length;
       result.push(...remaining.slice(0, needed));
     }
+    
+    console.log('Final questions selected:', result.length);
+    console.log('Questions by category:', result.reduce((acc, q) => {
+      acc[q.cat] = (acc[q.cat] || 0) + 1;
+      return acc;
+    }, {}));
     
     return result.slice(0, count);
   }
 
   async function startGeneralTest(levelKey='easy') {
-    // Așteptăm exercițiile externe
-    await waitForExternalExercises();
+    // Curăță event listener-ul global pentru Enter dacă există
+    document.removeEventListener('keypress', handleGlobalEnter);
+    
+    // Așteptăm exercițiile externe și forțăm merge-ul
+    console.log('🔄 Aștept exercițiile externe...');
+    const mergeSuccess = await waitForExternalExercises();
+    
+    if (!mergeSuccess && window.generalExercises) {
+      console.log('⚠️ waitForExternalExercises a eșuat, încerc merge manual...');
+      try {
+        mergeExternalExercisesIntoBank(BANK, window.generalExercises);
+        console.log('✅ Merge manual reușit!');
+      } catch (error) {
+        console.error('❌ Merge manual eșuat:', error);
+      }
+    }
     
     const level = LEVELS[levelKey] || LEVELS.easy;
     const { pool } = buildPool();
     const questions = pickQuestions(pool, level.count);
+    
+    // Salvează întrebările selectate în tracker-ul recent
+    const signatures = questions.map(q => getQuestionSignature(q));
+    saveRecentQuestions(signatures);
+    
     state = {
       questions, index:0, score:0, answered:false,
       difficulty: levelKey, timerId:null,
@@ -371,6 +557,10 @@
     $('#result-container').style.display = 'none';
     $('#check-question').onclick = onCheck;
     $('#next-question').onclick = onNext;
+    
+    // Adaugă event listener global pentru Enter
+    document.addEventListener('keypress', handleGlobalEnter);
+    
     renderCurrent(); startTimer();
   }
 
@@ -407,18 +597,29 @@
         ${q.opts.map((opt,i)=>`<label><input type="radio" name="ans" value="${i}"> ${opt}</label>`).join('')}
       </div>`;
     } else if (q.type === 'fill' || q.type === 'audio') {
-      body = `${media}<div class="question-card" style="margin-top:8px;">${q.q} <input id="fillInput" type="text" style="min-width:200px;"></div>`;
+      body = `${media}<div class="question-card" style="margin-top:8px;">${q.q} <input id="fillInput" type="text" style="min-width:200px;padding:8px;border:1px solid #ddd;border-radius:4px;"></div>`;
     } else {
       body = `<div class="question-card">Tip necunoscut.</div>`;
     }
 
     area.innerHTML = head + body;
+    
+    // Focus pe input dacă există
+    const fillInput = $('#fillInput');
+    if (fillInput) {
+      fillInput.focus();
+    }
+    
     if (canPlay) {
       const say = () => speak(q.tts || q.tts || q.tts || q.tts); // q.tts pentru audio/MC audio
       $('#playAudio')?.addEventListener('click', say);
       setTimeout(say, 200);
     }
-    state.answered = false; $('#check-question').disabled = false; $('#next-question').disabled = true;
+    state.answered = false; 
+    $('#check-question').disabled = false; 
+    $('#check-question').style.display = '';
+    $('#next-question').disabled = true;
+    $('#next-question').style.display = 'none';
   }
 
   // Helper: textul răspunsului corect + (explicație opțional)
@@ -447,6 +648,14 @@
     } else if (q.type === 'fill' || q.type === 'audio') {
       const v = $('#fillInput')?.value || ''; const answers = Array.isArray(q.a) ? q.a : [q.a];
       ok = answers.some(ans => norm(v) === norm(ans));
+      
+      // Stilizează input-ul ca la vocabulary test
+      const input = $('#fillInput');
+      if (input) {
+        input.style.backgroundColor = ok ? '#dcfce7' : '#fee2e2';
+        input.style.borderColor = ok ? '#22c55e' : '#ef4444';
+        input.disabled = true;
+      }
     }
 
     if (ok) {
@@ -457,24 +666,40 @@
     }
 
     showFeedback(q, ok);
-    state.answered = true; $('#check-question').disabled = true; $('#next-question').disabled = false;
+    state.answered = true; 
+    $('#check-question').disabled = true; 
+    $('#check-question').style.display = 'none';
+    $('#next-question').disabled = false;
+    $('#next-question').style.display = '';
   }
 
   function onNext() { if (state.index < state.questions.length - 1) { state.index++; renderCurrent(); } else { finish(); } }
 
   function showFeedback(q, ok) {
     const area = $('#question-area'); 
-    const fb = document.createElement('div');
-    fb.className = 'important'; 
-    fb.style.marginTop = '10px';
+    
     if (ok) {
-      fb.textContent = 'Corect!';
+      // Design verde frumos pentru răspuns corect
+      const feedbackDiv = document.createElement('div');
+      feedbackDiv.style.cssText = 'margin-top:8px;padding:8px;background:#dcfce7;border-radius:4px;color:#16a34a;';
+      feedbackDiv.innerHTML = '<strong>✓ Correct!</strong>';
+      area.appendChild(feedbackDiv);
     } else {
+      // Design roșu frumos pentru răspuns greșit cu răspunsul corect
       const correct = getCorrectText(q);
-      const ex = q?.ex ? `<div class="muted" style="margin-top:4px;">Explicație: ${q.ex}</div>` : '';
-      fb.innerHTML = `Răspuns greșit. <br>Răspuns corect: <strong>${escapeHtml(correct)}</strong>${ex}`;
+      const feedbackDiv = document.createElement('div');
+      feedbackDiv.style.cssText = 'margin-top:8px;padding:8px;background:#fee2e2;border-radius:4px;color:#dc2626;';
+      
+      let feedbackContent = `<strong>✗ Incorect!</strong> Răspunsul corect: <strong>${escapeHtml(correct)}</strong>`;
+      
+      // Adaugă explicația dacă există
+      if (q?.ex) {
+        feedbackContent += `<div style="margin-top:4px;opacity:0.9;font-size:0.9rem;"><em>Explicație: ${escapeHtml(q.ex)}</em></div>`;
+      }
+      
+      feedbackDiv.innerHTML = feedbackContent;
+      area.appendChild(feedbackDiv);
     }
-    area.appendChild(fb);
   }
 
   // Mic utilitar pentru securitate HTML în feedback
@@ -483,6 +708,9 @@
   }
 
   function finish() {
+    // Curăță event listener-ul global pentru Enter
+    document.removeEventListener('keypress', handleGlobalEnter);
+    
     clearInterval(state.timerId); state.timerId = null;
     $('#test-container').style.display = 'none'; $('#result-container').style.display = '';
     const percent = Math.round(state.score / state.questions.length * 100);
@@ -505,7 +733,11 @@
     } catch {}
   }
 
-  function saveAndGoProgress() { window.location.href = '../progress.html'; }
+  function saveAndGoProgress() { 
+    // Curăță event listener-ul înainte de a părăsi pagina
+    document.removeEventListener('keypress', handleGlobalEnter);
+    window.location.href = '../progress.html'; 
+  }
 
   function labelCat(key) {
     const map = {
@@ -518,4 +750,65 @@
 
   window.startGeneralTest = startGeneralTest;
   window.saveAndGoProgress = saveAndGoProgress;
+  
+  // Funcții de debugging pentru console
+  window.clearRecentQuestions = () => {
+    localStorage.removeItem('generalRecentQuestions');
+    console.log('Recent questions cleared!');
+  };
+  
+  window.showRecentQuestions = () => {
+    const recent = getRecentQuestions();
+    console.log('Recent questions:', recent);
+    return recent;
+  };
+  
+  // Funcție de testare manuală a merge-ului
+  window.forceTestMerge = () => {
+    console.log('=== TESTARE MANUALĂ MERGE ===');
+    console.log('BANK înainte de merge:', {
+      categories: Object.keys(BANK.categories),
+      audio: Object.keys(BANK.audio)
+    });
+    
+    if (window.generalExercises) {
+      console.log('Exerciții externe disponibile:', Object.keys(window.generalExercises));
+      
+      try {
+        mergeExternalExercisesIntoBank(BANK, window.generalExercises);
+        console.log('✅ Merge executat cu succes!');
+        console.log('BANK după merge:', {
+          categories: Object.keys(BANK.categories),
+          audio: Object.keys(BANK.audio)
+        });
+        
+        // Verifică categoriile specifice
+        if (BANK.categories['die-zahlen']) {
+          console.log('✅ die-zahlen găsit în BANK:', BANK.categories['die-zahlen']);
+        }
+        if (BANK.categories['das-lernziel']) {
+          console.log('✅ das-lernziel găsit în BANK:', BANK.categories['das-lernziel']);
+        }
+        
+        return true;
+      } catch (error) {
+        console.error('❌ Eroare la merge:', error);
+        return false;
+      }
+    } else {
+      console.error('❌ window.generalExercises nu este disponibil');
+      return false;
+    }
+  };
+  
+  // Expune funcții pentru testare
+  window.buildPool = buildPool;
+  window.waitForExternalExercises = waitForExternalExercises;
+  window.mergeExternalExercisesIntoBank = mergeExternalExercisesIntoBank;
+  window.BANK = BANK; // Expune BANK pentru debugging
+  
+  // Curăță event listener-ul când se părăsește pagina
+  window.addEventListener('beforeunload', () => {
+    document.removeEventListener('keypress', handleGlobalEnter);
+  });
 })();

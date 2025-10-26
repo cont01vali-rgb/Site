@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug General Test</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 20px; 
+      background: #f5f5f5; 
+    }
+    .debug-panel {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    button {
+      background: #007acc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover {
+      background: #005999;
+    }
+    .log {
+      background: #f8f8f8;
+      padding: 10px;
+      border-radius: 4px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      max-height: 400px;
+      overflow-y: auto;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Debug General Test System</h1>
+  
+  <div class="debug-panel">
+    <h2>External Exercises</h2>
+    <button onclick="checkExternalExercises()">Check External Exercises</button>
+    <button onclick="testMerge()">Test Merge Process</button>
+    <div id="external-log" class="log"></div>
+  </div>
+  
+  <div class="debug-panel">
+    <h2>Pool Building</h2>
+    <button onclick="testBuildPool()">Test Build Pool</button>
+    <div id="pool-log" class="log"></div>
+  </div>
+  
+  <div class="debug-panel">
+    <h2>Anti-Repetition System</h2>
+    <button onclick="clearRecentQuestions()">Clear Recent Questions</button>
+    <button onclick="showRecentQuestions()">Show Recent Questions</button>
+    <button onclick="testAntiRepetition()">Test Anti-Repetition</button>
+    <div id="antirepeat-log" class="log"></div>
+  </div>
+
+  <script src="data/general-exercises.js"></script>
+  <script>
+    // Load the general-test.js functions
+    const script = document.createElement('script');
+    script.src = 'js/general-test.js';
+    document.head.appendChild(script);
+    
+    function log(elementId, message) {
+      const element = document.getElementById(elementId);
+      element.textContent += new Date().toLocaleTimeString() + ': ' + message + '\n';
+      element.scrollTop = element.scrollHeight;
+    }
+    
+    function checkExternalExercises() {
+      const logEl = 'external-log';
+      log(logEl, 'Checking external exercises...');
+      
+      if (window.generalExercises) {
+        log(logEl, 'External exercises loaded: YES');
+        log(logEl, 'Available categories: ' + Object.keys(window.generalExercises).join(', '));
+        
+        if (window.generalExercises['die-zahlen']) {
+          log(logEl, 'die-zahlen exercises: ' + window.generalExercises['die-zahlen'].length);
+        } else {
+          log(logEl, 'die-zahlen: NOT FOUND');
+        }
+        
+        if (window.generalExercises['das-lernziel']) {
+          log(logEl, 'das-lernziel exercises: ' + window.generalExercises['das-lernziel'].length);
+        } else {
+          log(logEl, 'das-lernziel: NOT FOUND');
+        }
+      } else {
+        log(logEl, 'External exercises loaded: NO');
+      }
+    }
+    
+    function testMerge() {
+      const logEl = 'external-log';
+      log(logEl, 'Testing merge process...');
+      
+      // This will trigger the console logs in the merge function
+      if (window.startGeneralTest) {
+        log(logEl, 'Starting test to trigger merge...');
+        // Don't actually start, just trigger the merge
+        setTimeout(() => {
+          log(logEl, 'Check browser console for detailed merge logs');
+        }, 100);
+      } else {
+        log(logEl, 'General test functions not loaded yet');
+      }
+    }
+    
+    function testBuildPool() {
+      const logEl = 'pool-log';
+      log(logEl, 'Testing pool building...');
+      log(logEl, 'Check browser console for detailed pool logs');
+    }
+    
+    function clearRecentQuestions() {
+      const logEl = 'antirepeat-log';
+      if (window.clearRecentQuestions) {
+        window.clearRecentQuestions();
+        log(logEl, 'Recent questions cleared');
+      } else {
+        log(logEl, 'clearRecentQuestions function not available');
+      }
+    }
+    
+    function showRecentQuestions() {
+      const logEl = 'antirepeat-log';
+      if (window.showRecentQuestions) {
+        const recent = window.showRecentQuestions();
+        log(logEl, 'Recent questions count: ' + recent.length);
+        log(logEl, 'Recent questions: ' + JSON.stringify(recent, null, 2));
+      } else {
+        log(logEl, 'showRecentQuestions function not available');
+      }
+    }
+    
+    function testAntiRepetition() {
+      const logEl = 'antirepeat-log';
+      log(logEl, 'Testing anti-repetition system...');
+      log(logEl, 'This would require starting multiple tests to see if questions repeat');
+      log(logEl, 'Use the main test page to test this functionality');
+    }
+    
+    // Auto-check when page loads
+    setTimeout(checkExternalExercises, 500);
+  </script>
+</body>
+</html>
