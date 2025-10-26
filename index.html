@@ -26,53 +26,12 @@
 
     <main class="home-container">
         <h1>Bun venit la cursul tău de Germană! 🇩🇪</h1>
-        
-        <!-- Selector utilizator -->
-        <div class="user-selection">
-            <label for="userSelect">👤 Selectează utilizatorul:</label>
-            <select id="userSelect" class="user-select">
-                <option value="">-- Alege utilizatorul --</option>
-                <option value="Vali">Vali</option>
-                <option value="Gabi">Gabi</option>
-                <option value="Mihaela">Mihaela</option>
-                <option value="Alin">Alin</option>
-                <option value="Sebi">Sebi</option>
-            </select>
-            <span id="currentUser" class="current-user"></span>
-        </div>
-
         <p>Alege una dintre opțiunile de mai jos pentru a începe.</p>
         <div class="home-grid">
             <a href="learn.html" class="card">🧠 Învață lecțiile</a>
             <a href="tests/general-test.html" class="card">🧩 Testare generală</a>
             <a href="tests/vocabulary-test.html" class="card">🎯 Vokabeltest</a>
             <a href="progress.html" class="card">📊 Vezi progresul tău</a>
-        </div>
-
-        <!-- Sistem raportare bug-uri -->
-        <div class="bug-report-section">
-            <h3>🐛 Raportează o problemă</h3>
-            <div class="bug-form">
-                <textarea 
-                    id="bugDescription" 
-                    placeholder="Descrie problema pe care ai observat-o (ex: butonul nu funcționează, greșeală în exercițiu, etc.)"
-                    rows="3"
-                ></textarea>
-                <button id="submitBug" class="btn">Trimite raportul</button>
-            </div>
-            <div id="bugSuccess" class="success-message" style="display:none;">
-                ✅ Mulțumim! Raportul a fost trimis cu succes.
-            </div>
-        </div>
-
-        <!-- Panel pentru administratori -->
-        <div id="adminPanel" class="admin-panel" style="display:none;">
-            <h3>🔧 Panel Administrator</h3>
-            <div class="admin-actions">
-                <button id="viewBugs" class="btn admin-btn">Vezi rapoarte (local + GitHub)</button>
-                <button id="clearBugs" class="btn admin-btn danger">Șterge rapoartele locale</button>
-            </div>
-            <div id="bugsList" class="bugs-list" style="display:none;"></div>
         </div>
     </main>
 </body>

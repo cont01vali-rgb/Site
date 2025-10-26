@@ -723,8 +723,7 @@
       score: state.score,
       percent,
       categories: state.usedCategories,
-      wrongCategories: Array.from(new Set(state.wrongs)), // <-- doar titlurile lecțiilor cu greșeli
-      user: localStorage.getItem('currentUser') || 'Necunoscut' // Adaugă utilizatorul curent
+      wrongCategories: Array.from(new Set(state.wrongs)) // <-- doar titlurile lecțiilor cu greșeli
     };
     try {
       const all = JSON.parse(localStorage.getItem('generalTestHistory')||'[]');
