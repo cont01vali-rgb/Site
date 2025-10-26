@@ -494,7 +494,8 @@
       total: total,
       percent: percentage,
       categoryBreakdown: byCategory,
-      duration: Math.round((Date.now() - currentTest.startTime) / 1000)
+      duration: Math.round((Date.now() - currentTest.startTime) / 1000),
+      user: localStorage.getItem('currentUser') || 'Necunoscut' // Adaugă utilizatorul curent
     };
     
     saveVocabularyResult(result);

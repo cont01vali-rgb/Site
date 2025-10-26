@@ -177,3 +177,145 @@ function saveAndGoProgress() {
 function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
 }
+
+// ===== SISTEM UTILIZATORI ȘI BUG REPORTS =====
+
+(function() {
+  // Lista administratorilor
+  const ADMINS = ['Vali', 'Gabi'];
+  
+  // Gestionare utilizatori
+  function initUserSystem() {
+    const userSelect = document.getElementById('userSelect');
+    const currentUserSpan = document.getElementById('currentUser');
+    const adminPanel = document.getElementById('adminPanel');
+    
+    if (!userSelect) return;
+    
+    // Încarcă utilizatorul salvat
+    const savedUser = localStorage.getItem('currentUser');
+    if (savedUser) {
+      userSelect.value = savedUser;
+      updateCurrentUser(savedUser);
+    }
+    
+    // Event listener pentru schimbarea utilizatorului
+    userSelect.addEventListener('change', function() {
+      const selectedUser = this.value;
+      if (selectedUser) {
+        localStorage.setItem('currentUser', selectedUser);
+        updateCurrentUser(selectedUser);
+      } else {
+        localStorage.removeItem('currentUser');
+        currentUserSpan.textContent = '';
+        adminPanel.style.display = 'none';
+      }
+    });
+    
+    function updateCurrentUser(username) {
+      currentUserSpan.textContent = `✅ Conectat ca: ${username}`;
+      
+      // Afișează panelul admin dacă e administrator
+      if (ADMINS.includes(username)) {
+        adminPanel.style.display = 'block';
+      } else {
+        adminPanel.style.display = 'none';
+      }
+    }
+  }
+  
+  // Sistem raportare bug-uri
+  function initBugReporting() {
+    const submitBtn = document.getElementById('submitBug');
+    const bugDescription = document.getElementById('bugDescription');
+    const successMessage = document.getElementById('bugSuccess');
+    
+    if (!submitBtn) return;
+    
+    submitBtn.addEventListener('click', function() {
+      const description = bugDescription.value.trim();
+      const currentUser = localStorage.getItem('currentUser');
+      
+      if (!description) {
+        alert('Te rog să descrii problema.');
+        return;
+      }
+      
+      if (!currentUser) {
+        alert('Te rog să selectezi un utilizator mai întâi.');
+        return;
+      }
+      
+      // Salvează raportul
+      const bugReport = {
+        id: Date.now(),
+        user: currentUser,
+        description: description,
+        timestamp: new Date().toISOString(),
+        date: new Date().toLocaleString('ro-RO')
+      };
+      
+      const bugReports = JSON.parse(localStorage.getItem('bugReports') || '[]');
+      bugReports.push(bugReport);
+      localStorage.setItem('bugReports', JSON.stringify(bugReports));
+      
+      // Resetează formularul și afișează succes
+      bugDescription.value = '';
+      successMessage.style.display = 'block';
+      
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 3000);
+      
+      console.log('🐛 Bug raportat:', bugReport);
+    });
+  }
+  
+  // Panel administrator
+  function initAdminPanel() {
+    const viewBugsBtn = document.getElementById('viewBugs');
+    const clearBugsBtn = document.getElementById('clearBugs');
+    const bugsList = document.getElementById('bugsList');
+    
+    if (!viewBugsBtn) return;
+    
+    viewBugsBtn.addEventListener('click', function() {
+      const bugReports = JSON.parse(localStorage.getItem('bugReports') || '[]');
+      
+      if (bugReports.length === 0) {
+        bugsList.innerHTML = '<p style="padding:15px;text-align:center;color:#6b7280;">Nu există rapoarte de bug-uri.</p>';
+      } else {
+        bugsList.innerHTML = bugReports.map(bug => `
+          <div class="bug-item">
+            <div class="bug-header">
+              <span class="bug-user">👤 ${bug.user}</span>
+              <span class="bug-date">📅 ${bug.date}</span>
+            </div>
+            <div class="bug-description">
+              "${bug.description}"
+            </div>
+          </div>
+        `).join('');
+      }
+      
+      bugsList.style.display = bugsList.style.display === 'block' ? 'none' : 'block';
+    });
+    
+    clearBugsBtn.addEventListener('click', function() {
+      if (confirm('Ești sigur că vrei să ștergi toate rapoartele de bug-uri?')) {
+        localStorage.removeItem('bugReports');
+        bugsList.innerHTML = '<p style="padding:15px;text-align:center;color:#6b7280;">Toate rapoartele au fost șterse.</p>';
+        setTimeout(() => {
+          bugsList.style.display = 'none';
+        }, 2000);
+      }
+    });
+  }
+  
+  // Inițializează sistemele când DOM-ul este gata
+  document.addEventListener('DOMContentLoaded', function() {
+    initUserSystem();
+    initBugReporting();
+    initAdminPanel();
+  });
+})();

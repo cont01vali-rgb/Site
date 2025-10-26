@@ -521,3 +521,180 @@ body {
   outline: 2px solid #2b78c8;
   box-shadow: none;
 }
+
+/* ===== SISTEME NOI: UTILIZATORI ȘI BUG REPORTS ===== */
+
+/* Selector utilizator */
+.user-selection {
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 10px;
+    border: 2px solid #e2e8f0;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.user-selection label {
+    font-weight: 600;
+    margin-right: 10px;
+    color: #334155;
+}
+
+.user-select {
+    padding: 8px 12px;
+    border: 2px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: white;
+    margin-right: 10px;
+    min-width: 150px;
+}
+
+.user-select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.current-user {
+    font-weight: 700;
+    color: #059669;
+    font-size: 1.1rem;
+}
+
+/* Sistem raportare bug-uri */
+.bug-report-section {
+    background: #fef7ff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #e879f9;
+    margin: 30px 0;
+}
+
+.bug-report-section h3 {
+    margin: 0 0 15px 0;
+    color: #7c3aed;
+}
+
+.bug-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bug-form textarea {
+    padding: 12px;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    resize: vertical;
+    min-height: 80px;
+}
+
+.bug-form textarea:focus {
+    outline: none;
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.success-message {
+    background: #dcfce7;
+    color: #166534;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #22c55e;
+    margin-top: 10px;
+}
+
+/* Panel administrator */
+.admin-panel {
+    background: #fef2f2;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #fca5a5;
+    margin: 30px 0;
+}
+
+.admin-panel h3 {
+    margin: 0 0 15px 0;
+    color: #dc2626;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.admin-btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+}
+
+.admin-btn.danger {
+    background: #dc2626;
+    border-color: #dc2626;
+}
+
+.admin-btn.danger:hover {
+    background: #b91c1c;
+}
+
+.bugs-list {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.bug-item {
+    padding: 12px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.bug-item:last-child {
+    border-bottom: none;
+}
+
+.bug-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.bug-user {
+    font-weight: 600;
+    color: #7c3aed;
+}
+
+.bug-date {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.bug-description {
+    background: #f9fafb;
+    padding: 8px;
+    border-radius: 4px;
+    font-style: italic;
+    color: #374151;
+}
+
+/* Responsive pentru sisteme noi */
+@media (max-width: 768px) {
+    .user-selection {
+        padding: 12px;
+    }
+    
+    .user-select {
+        min-width: 120px;
+        margin: 5px 0;
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+    }
+}

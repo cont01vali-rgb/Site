@@ -63,12 +63,24 @@
     const showVocabulary = $('#vocabularyToggle')?.checked || false;
     list.innerHTML = '';
 
-    // Încarcă ambele tipuri de istorice
+    // Obține utilizatorul curent
+    const currentUser = localStorage.getItem('currentUser');
+    if (!currentUser) {
+      empty.style.display = '';
+      empty.textContent = 'Te rog să selectezi un utilizator de pe pagina principală pentru a vedea progresul.';
+      return;
+    }
+
+    // Încarcă istoricele pentru utilizatorul curent
     let generalItems = [];
     let vocabularyItems = [];
     try { 
-      generalItems = JSON.parse(localStorage.getItem('generalTestHistory')||'[]'); 
-      vocabularyItems = JSON.parse(localStorage.getItem('vocabularyTestHistory')||'[]');
+      const allGeneralHistory = JSON.parse(localStorage.getItem('generalTestHistory')||'[]');
+      const allVocabularyHistory = JSON.parse(localStorage.getItem('vocabularyTestHistory')||'[]');
+      
+      // Filtrează doar pentru utilizatorul curent
+      generalItems = allGeneralHistory.filter(item => item.user === currentUser);
+      vocabularyItems = allVocabularyHistory.filter(item => item.user === currentUser);
     }
     catch { generalItems = []; vocabularyItems = []; }
 
@@ -85,8 +97,8 @@
     if (!itemsToShow.length) {
       empty.style.display = '';
       empty.textContent = showVocabulary 
-        ? 'Nu există rezultate pentru testul de vocabular încă.' 
-        : 'Nu există rezultate pentru testele generale încă.';
+        ? `${currentUser} nu a făcut încă teste de vocabular.` 
+        : `${currentUser} nu a făcut încă teste generale.`;
       return;
     }
     empty.style.display = 'none';
@@ -161,6 +173,9 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    // Afișează utilizatorul curent
+    updateUserInfo();
+    
     $('#refreshBtn').addEventListener('click', renderWithAnimation);
     $('#vocabularyToggle')?.addEventListener('change', renderWithAnimation);
     $('#clearBtn').addEventListener('click', () => {
@@ -174,4 +189,23 @@
     });
     renderContent(); // Prima încărcare fără animație
   });
+
+  function updateUserInfo() {
+    const currentUser = localStorage.getItem('currentUser');
+    const userInfoText = $('#userInfoText');
+    
+    if (currentUser) {
+      userInfoText.textContent = `📊 Progresul utilizatorului: ${currentUser}`;
+      userInfoText.parentElement.style.background = '#dcfce7';
+      userInfoText.parentElement.style.borderColor = '#22c55e';
+      userInfoText.style.color = '#166534';
+      userInfoText.style.fontWeight = '600';
+    } else {
+      userInfoText.textContent = 'Te rog să selectezi un utilizator de pe pagina principală.';
+      userInfoText.parentElement.style.background = '#fef3c7';
+      userInfoText.parentElement.style.borderColor = '#f59e0b';
+      userInfoText.style.color = '#92400e';
+      userInfoText.style.fontWeight = 'normal';
+    }
+  }
 })();
