@@ -105,6 +105,16 @@
   </div>
 </main>
 
-<script src="../js/w-fragen-test.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const testBtn = document.getElementById('wfragenTestBtn');
+    
+    if (testBtn) {
+        testBtn.addEventListener('click', () => {
+            window.location.href = '../tests/w-fragen-test.html';
+        });
+    }
+});
+</script>
 </body>
 </html>

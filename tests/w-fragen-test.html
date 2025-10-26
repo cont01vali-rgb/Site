@@ -1,31 +1,62 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="utf-8">
-  <title>Test: W‑Fragen</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/style.css">
-  <script defer src="../data/w-fragen-exercises.js"></script>
-  <script defer src="../js/w-fragen-test.js"></script>
-  <style>
-    .q-media{margin:8px 0}
-    .q-img{max-width:260px;max-height:180px;object-fit:contain;border-radius:8px;border:1px solid #e6e6e6}
-    .test-page{padding:16px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test W-Fragen - Întrebările cu W</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script defer src="../js/w-fragen-test-runner.js"></script>
 </head>
 <body>
 <header>
-  <nav class="navbar">
-    <a href="../index.html" class="nav-item">🏠 Acasă</a>
-    <a href="../learn.html" class="nav-item">📚 Lecții</a>
-    <a href="./general-test.html" class="nav-item">🧩 Test general</a>
-    <a href="../progress.html" class="nav-item">📊 Progres</a>
-  </nav>
+    <nav class="navbar">
+        <a href="../index.html" class="nav-item">🏠 Acasă</a>
+        <a href="../learn.html" class="nav-item">📚 Lecții</a>
+        <a href="general-test.html" class="nav-item">🧩 Test general</a>
+        <a href="../progress.html" class="nav-item">📊 Progres</a>
+    </nav>
 </header>
 
 <main class="test-page">
-  <h2>Test: W‑Fragen</h2>
-  <div id="wfragenTestRoot" class="question-card"></div>
+    <h2>❓ Test W-Fragen</h2>
+
+    <div id="start-screen" class="question-card">
+        <p>Testează-ți cunoștințele despre <strong>întrebările cu W în germană</strong> cu 45 de exerciții:</p>
+        <ul style="text-align: left; margin: 16px 0;">
+            <li>Întrebări cu opțiuni multiple (alege răspunsul corect)</li>
+            <li>Completează cu W-Wort-ul potrivit</li>
+            <li>Explicații detaliate pentru fiecare greșeală</li>
+            <li>Ordine aleatoare pentru fiecare test</li>
+        </ul>
+        <p><em>Fără limită de timp - ia-ți timpul necesar să înveți!</em></p>
+        <div class="answers">
+            <button class="btn" onclick="startWFragenTest()" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; font-weight: 600;">
+                🚀 Începe testul
+            </button>
+        </div>
+    </div>
+
+    <div id="test-container" class="question-card" style="display:none;">
+        <div id="progress-info" style="margin-bottom: 12px; color: #666; font-size: 0.9rem;">
+            Întrebarea <span id="current-question">1</span> din <span id="total-questions">-</span>
+        </div>
+        <div id="question-area"></div>
+        <div id="controls" style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px;">
+            <button id="check-question" class="btn">Verifică (Enter)</button>
+            <button id="next-question" class="btn">Următoarea întrebare (Enter)</button>
+        </div>
+    </div>
+
+    <div id="result-container" class="question-card" style="display:none;">
+        <h3>🎉 Rezultat final</h3>
+        <p id="score-percentage"></p>
+        <p id="score-breakdown" style="color:#555;"></p>
+        <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;">
+            <button class="btn" onclick="saveAndGoProgress()">Vezi progresul</button>
+            <a class="btn" href="./w-fragen-test.html">Reia testul</a>
+            <a class="btn" href="../lessons/w-fragen.html">Înapoi la lecție</a>
+        </div>
+    </div>
 </main>
 </body>
 </html>
