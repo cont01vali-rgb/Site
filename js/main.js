@@ -232,7 +232,7 @@ function shuffleArray(array) {
     
     if (!submitBtn) return;
     
-    submitBtn.addEventListener('click', function() {
+    submitBtn.addEventListener('click', async function() {
       const description = bugDescription.value.trim();
       const currentUser = localStorage.getItem('currentUser');
       
@@ -246,29 +246,86 @@ function shuffleArray(array) {
         return;
       }
       
-      // Salvează raportul
-      const bugReport = {
-        id: Date.now(),
-        user: currentUser,
-        description: description,
-        timestamp: new Date().toISOString(),
-        date: new Date().toLocaleString('ro-RO')
-      };
+      // Dezactivează butonul în timpul trimiterii
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Se trimite...';
       
-      const bugReports = JSON.parse(localStorage.getItem('bugReports') || '[]');
-      bugReports.push(bugReport);
-      localStorage.setItem('bugReports', JSON.stringify(bugReports));
-      
-      // Resetează formularul și afișează succes
-      bugDescription.value = '';
-      successMessage.style.display = 'block';
-      
-      setTimeout(() => {
-        successMessage.style.display = 'none';
-      }, 3000);
-      
-      console.log('🐛 Bug raportat:', bugReport);
+      try {
+        // Încearcă să trimită direct pe GitHub Issues
+        const success = await submitToGitHubIssues(currentUser, description);
+        
+        if (success) {
+          // Succes - GitHub Issues
+          bugDescription.value = '';
+          successMessage.innerHTML = '✅ Mulțumim! Raportul a fost trimis și va fi vizibil pentru administratori pe GitHub.';
+          successMessage.style.display = 'block';
+        } else {
+          // Fallback - localStorage local
+          await submitToLocalStorage(currentUser, description);
+          bugDescription.value = '';
+          successMessage.innerHTML = '✅ Raportul a fost salvat local. Va fi vizibil pentru administratorii care folosesc acest calculator.';
+          successMessage.style.display = 'block';
+        }
+        
+        setTimeout(() => {
+          successMessage.style.display = 'none';
+        }, 5000);
+        
+      } catch (error) {
+        console.error('Eroare la trimiterea raportului:', error);
+        alert('A apărut o eroare la trimiterea raportului. Te rog să încerci din nou.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Trimite raportul';
+      }
     });
+  }
+  
+  // Trimite pe GitHub Issues (funcție nouă)
+  async function submitToGitHubIssues(user, description) {
+    try {
+      const issueTitle = `🐛 Bug raportat de ${user}`;
+      const issueBody = `**Utilizator:** ${user}
+**Data:** ${new Date().toLocaleString('ro-RO')}
+**Browser:** ${navigator.userAgent}
+
+**Descrierea problemei:**
+${description}
+
+---
+*Acest raport a fost generat automat de sistemul de bug reports.*`;
+
+      // Creează URL pentru GitHub Issues
+      const repoOwner = 'cont01vali-rgb';
+      const repoName = 'Site';
+      const githubUrl = `https://github.com/${repoOwner}/${repoName}/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}&labels=bug,user-report`;
+      
+      // Deschide GitHub Issues într-o fereastră nouă
+      window.open(githubUrl, '_blank');
+      
+      return true; // Considerăm că a avut succes
+    } catch (error) {
+      console.error('Eroare GitHub Issues:', error);
+      return false;
+    }
+  }
+  
+  // Fallback - salvare în localStorage
+  async function submitToLocalStorage(user, description) {
+    const bugReport = {
+      id: Date.now(),
+      user: user,
+      description: description,
+      timestamp: new Date().toISOString(),
+      date: new Date().toLocaleString('ro-RO'),
+      browser: navigator.userAgent.substring(0, 100)
+    };
+    
+    const bugReports = JSON.parse(localStorage.getItem('bugReports') || '[]');
+    bugReports.push(bugReport);
+    localStorage.setItem('bugReports', JSON.stringify(bugReports));
+    
+    console.log('🐛 Bug raportat local:', bugReport);
   }
   
   // Panel administrator
@@ -282,10 +339,24 @@ function shuffleArray(array) {
     viewBugsBtn.addEventListener('click', function() {
       const bugReports = JSON.parse(localStorage.getItem('bugReports') || '[]');
       
+      let content = `
+        <div style="margin-bottom: 15px; padding: 10px; background: #e0f2fe; border-radius: 6px;">
+          <strong>📋 Vezi toate rapoartele:</strong>
+          <br>
+          <a href="https://github.com/cont01vali-rgb/Site/issues?q=is%3Aissue+label%3Abug+label%3Auser-report" 
+             target="_blank" 
+             style="color: #0066cc; text-decoration: underline;">
+            🔗 Deschide GitHub Issues (rapoarte de pe toate calculatoarele)
+          </a>
+          <br><br>
+          <strong>💻 Rapoarte locale (doar de pe acest calculator):</strong>
+        </div>
+      `;
+      
       if (bugReports.length === 0) {
-        bugsList.innerHTML = '<p style="padding:15px;text-align:center;color:#6b7280;">Nu există rapoarte de bug-uri.</p>';
+        content += '<p style="padding:15px;text-align:center;color:#6b7280;">Nu există rapoarte locale de bug-uri.</p>';
       } else {
-        bugsList.innerHTML = bugReports.map(bug => `
+        content += bugReports.map(bug => `
           <div class="bug-item">
             <div class="bug-header">
               <span class="bug-user">👤 ${bug.user}</span>
@@ -294,20 +365,33 @@ function shuffleArray(array) {
             <div class="bug-description">
               "${bug.description}"
             </div>
+            ${bug.browser ? `<div style="font-size: 0.8rem; color: #6b7280; margin-top: 4px;">🌐 ${bug.browser}</div>` : ''}
           </div>
         `).join('');
       }
       
+      bugsList.innerHTML = content;
       bugsList.style.display = bugsList.style.display === 'block' ? 'none' : 'block';
     });
     
     clearBugsBtn.addEventListener('click', function() {
-      if (confirm('Ești sigur că vrei să ștergi toate rapoartele de bug-uri?')) {
+      if (confirm('Ești sigur că vrei să ștergi toate rapoartele locale de bug-uri?\n\nAcesta va șterge doar rapoartele de pe acest calculator, nu și cele de pe GitHub Issues.')) {
         localStorage.removeItem('bugReports');
-        bugsList.innerHTML = '<p style="padding:15px;text-align:center;color:#6b7280;">Toate rapoartele au fost șterse.</p>';
+        bugsList.innerHTML = `
+          <div style="margin-bottom: 15px; padding: 10px; background: #e0f2fe; border-radius: 6px;">
+            <strong>📋 Vezi toate rapoartele:</strong>
+            <br>
+            <a href="https://github.com/cont01vali-rgb/Site/issues?q=is%3Aissue+label%3Abug+label%3Auser-report" 
+               target="_blank" 
+               style="color: #0066cc; text-decoration: underline;">
+              🔗 Deschide GitHub Issues (rapoarte de pe toate calculatoarele)
+            </a>
+          </div>
+          <p style="padding:15px;text-align:center;color:#6b7280;">Toate rapoartele locale au fost șterse.</p>
+        `;
         setTimeout(() => {
           bugsList.style.display = 'none';
-        }, 2000);
+        }, 3000);
       }
     });
   }
