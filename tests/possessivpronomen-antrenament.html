@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antrenament Possessivpronomen</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="nav-item">🏠 Acasă</a>
+            <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
+            <a href="../lessons/12-1-possessivpronomen.html" class="nav-item">← Înapoi la lecție</a>
+            <a href="../progress.html" class="nav-item">📊 Progres</a>
+        </nav>
+    </header>
+
+    <main class="test-page">
+        <div class="test-start">
+            <h1>🏋️ Antrenament Possessivpronomen</h1>
+            <p>Exersează pronumele posesive cu diferite nivele de dificultate!</p>
+            
+            <!-- Selector dificultate -->
+            <div style="margin: 20px 0; text-align: center;">
+                <h3>Alege dificultatea:</h3>
+                <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                    <button id="easy-btn" class="btn btn-success difficulty-btn active" data-level="easy">
+                        🟢 Ușor<br><small>Opțiuni multiple</small>
+                    </button>
+                    <button id="normal-btn" class="btn btn-warning difficulty-btn" data-level="normal">
+                        🟡 Normal<br><small>Completare manuală</small>
+                    </button>
+                    <button id="hard-btn" class="btn btn-danger difficulty-btn" data-level="hard">
+                        🔴 Greu<br><small>Ordine amestecată</small>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tabelul de antrenament -->
+            <div id="training-table-container">
+                <table class="weekday-table" style="max-width:800px; margin: 20px auto;">
+                    <thead>
+                        <tr>
+                            <th>Persoană</th>
+                            <th>Masculin</th>
+                            <th>Neutru</th>
+                            <th>Feminin</th>
+                            <th>Plural</th>
+                        </tr>
+                    </thead>
+                    <tbody id="training-table-body">
+                        <!-- Conținutul se va genera dinamic -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Controale -->
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="check-btn" class="btn btn-primary" style="margin-right: 10px;">✅ Verifică</button>
+                <button id="reset-btn" class="btn btn-secondary" style="display: none;">🔄 Resetează</button>
+            </div>
+
+            <!-- Rezultat -->
+            <div id="result-display" style="margin-top: 20px; text-align: center; display: none;">
+                <h3 id="result-title"></h3>
+                <p id="result-details"></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/possessivpronomen-antrenament.js"></script>
+</body>
+</html>

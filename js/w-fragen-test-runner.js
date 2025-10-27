@@ -1,5 +1,5 @@
 /* W-Fragen Test Engine
-   - 35 exerciții: întrebări cu opțiuni multiple și completare
+   - 60 exerciții: întrebări cu opțiuni multiple și completare
    - Tipuri: multiple choice, fill-in
    - Fără limită de timp
    - Progres separat cu explicații detaliate
@@ -33,7 +33,6 @@
 
   // ====== Exerciții W-Fragen ======
   const wFragenExercises = [
-    // Multiple choice exercises - poziții diversificate pentru răspunsul corect
     {
       type: "multiple-choice",
       question: "… wohnst du?",
@@ -47,7 +46,7 @@
     {
       type: "multiple-choice",
       question: "… kommst du?",
-      options: ["Wo", "Woher", "Wohin"], // răspuns pe poziția 2
+      options: ["Wo", "Woher", "Wohin"],
       correct: "Woher",
       explanation: {
         correct: "De ce corect: \"De unde vii/ești?\" (origine).",
@@ -57,7 +56,7 @@
     {
       type: "multiple-choice",
       question: "… gehst du am Sonntag?",
-      options: ["Wo", "Was", "Wohin"], // răspuns pe poziția 3
+      options: ["Wo", "Was", "Wohin"],
       correct: "Wohin",
       explanation: {
         correct: "De ce corect: \"Încotro mergi duminică?\" (direcție).",
@@ -67,7 +66,7 @@
     {
       type: "multiple-choice",
       question: "… heißt du?",
-      options: ["Wie", "Was", "Wer"], // răspuns pe poziția 1
+      options: ["Wie", "Was", "Wer"],
       correct: "Wie",
       explanation: {
         correct: "De ce corect: formula fixă \"Wie heißt du?\" = \"Cum te numești?\"",
@@ -77,7 +76,7 @@
     {
       type: "multiple-choice",
       question: "… ist das?",
-      options: ["Wer", "Was", "Welche"], // răspuns pe poziția 2
+      options: ["Wer", "Was", "Welche"],
       correct: "Was",
       explanation: {
         correct: "De ce corect: \"Ce este asta?\" (lucru).",
@@ -87,7 +86,7 @@
     {
       type: "multiple-choice",
       question: "… ist dein Lehrer?",
-      options: ["Wer", "Wo", "Was"], // răspuns pe poziția 1
+      options: ["Wer", "Wo", "Was"],
       correct: "Wer",
       explanation: {
         correct: "De ce corect: întrebăm despre o persoană (\"Cine este profesorul tău?\").",
@@ -96,48 +95,48 @@
     },
     {
       type: "multiple-choice",
-      question: "… alt bist du?",
-      options: ["Was", "Wie alt", "Wie"], // răspuns pe poziția 2
-      correct: "Wie alt",
+      question: "Wie … bist du?",
+      options: ["alt", "viel", "spät"],
+      correct: "alt",
       explanation: {
-        correct: "De ce corect: \"Wie alt…?\" = \"Câți ani…?\"",
-        wrong: "Greșite: Wie singur = \"cum\"; Was = \"ce\"."
+        correct: "De ce corect: \"Wie alt bist du?\" = \"Câți ani ai?\"",
+        wrong: "Greșite: Wie viel = pentru cantități; Wie spät = pentru oră."
       }
     },
     {
       type: "multiple-choice",
-      question: "… … ist es?",
-      options: ["Wann", "Wie viel", "Wie spät"], // răspuns pe poziția 3
-      correct: "Wie spät",
+      question: "Wie … ist es?",
+      options: ["alt", "viel", "spät"],
+      correct: "spät",
       explanation: {
         correct: "De ce corect: \"Wie spät ist es?\" = \"Cât e ceasul?\"",
-        wrong: "Greșite: Wann = \"când\" (pentru moment de timp, nu pentru oră exactă în această structură); Wie viel singur = \"cât\" (nu e formula standard pentru oră)."
+        wrong: "Greșite: Wie alt = pentru vârstă; Wie viel = pentru cantitate/preț."
       }
     },
     {
       type: "multiple-choice",
-      question: "… kostet das Brot?",
-      options: ["Wie viel", "Wie viele", "Was"], // răspuns pe poziția 1
-      correct: "Wie viel",
+      question: "Wie … kostet das Brot?",
+      options: ["viel", "viele", "spät"],
+      correct: "viel",
       explanation: {
         correct: "De ce corect: pentru preț întrebăm \"Wie viel …?\"",
-        wrong: "Greșite: Wie viele = \"câți/câte\" (plural, numărabile); Was = \"ce\"."
+        wrong: "Greșite: Wie viele = \"câți/câte\" (plural, numărabile); Wie spät = pentru oră."
       }
     },
     {
       type: "multiple-choice",
-      question: "… Geschwister hast du?",
-      options: ["Wie viel", "Wie viele", "Wer"], // răspuns pe poziția 2
-      correct: "Wie viele",
+      question: "Wie … Geschwister hast du?",
+      options: ["viel", "viele", "alt"],
+      correct: "viele",
       explanation: {
         correct: "De ce corect: frații/surorile sunt numărabili → \"Wie viele…?\"",
-        wrong: "Greșite: Wie viel = ne-numărabile; Wer = \"cine\"."
+        wrong: "Greșite: Wie viel = ne-numărabile; Wie alt = pentru vârstă."
       }
     },
     {
       type: "multiple-choice",
       question: "… beginnt der Kurs?",
-      options: ["Wo", "Wie", "Wann"], // răspuns pe poziția 3
+      options: ["Wo", "Wie", "Wann"],
       correct: "Wann",
       explanation: {
         correct: "De ce corect: întrebăm \"Când începe cursul?\"",
@@ -147,7 +146,7 @@
     {
       type: "multiple-choice",
       question: "… wohnst du, in Berlin oder in Hamburg?",
-      options: ["Wo", "Welche", "Wohin"], // răspuns pe poziția 1
+      options: ["Wo", "Welche", "Wohin"],
       correct: "Wo",
       explanation: {
         correct: "De ce corect: \"Unde locuiești?\" între două orașe.",
@@ -157,7 +156,7 @@
     {
       type: "multiple-choice",
       question: "… ist die Toilette?",
-      options: ["Wohin", "Wo", "Woher"], // răspuns pe poziția 2
+      options: ["Wohin", "Wo", "Woher"],
       correct: "Wo",
       explanation: {
         correct: "De ce corect: \"Unde este toaleta?\" (loc fix).",
@@ -166,59 +165,58 @@
     },
     {
       type: "multiple-choice",
-      question: "… lernst du Deutsch? – Weil ich in Deutschland arbeite.",
-      options: ["Wo", "Wann", "Warum"], // răspuns pe poziția 3
+      question: "… lernst du Deutsch?",
+      options: ["Wo", "Wann", "Warum"],
       correct: "Warum",
       explanation: {
-        correct: "De ce corect: răspunsul dă un motiv (\"pentru că…\"), deci întrebăm \"De ce…?\"",
+        correct: "De ce corect: întrebăm motivul \"De ce înveți germană?\"",
         wrong: "Greșite: Wo = loc; Wann = timp."
       }
     },
     {
       type: "multiple-choice",
       question: "… Farbe hat dein Auto?",
-      options: ["Was", "Welche", "Wie"], // răspuns pe poziția 2
+      options: ["Was", "Welche", "Wie"],
       correct: "Welche",
       explanation: {
-        correct: "De ce corect: \"Welche Farbe…?\" = \"Ce culoare (din opțiuni) are mașina ta?\"",
-        wrong: "Greșite: Was = \"ce\" generic (gramatical posibil în unele contexte, dar cu \"Farbe\" la A1 se preferă \"Welche Farbe\"); Wie = \"cum\"."
+        correct: "De ce corect: \"Welche Farbe…?\" = \"Ce culoare are mașina ta?\"",
+        wrong: "Greșite: Was = \"ce\" generic; Wie = \"cum\"."
       }
     },
-    // Exercițiile noi cu opțiuni multiple - poziții diversificate
     {
       type: "multiple-choice",
-      question: "… alt ist dein Bruder? – Er ist neun.",
-      options: ["Wie", "Was", "Wer"], // răspuns pe poziția 1
-      correct: "Wie",
+      question: "Wie … ist dein Bruder?",
+      options: ["alt", "viel", "spät"],
+      correct: "alt",
       explanation: {
-        correct: "De ce corect: model fix \"Wie alt…?\"; \"alt\" e în propoziție.",
-        wrong: "Greșite: Was = \"ce\"; Wer = \"cine\"."
+        correct: "De ce corect: pentru vârstă → \"Wie alt…?\"",
+        wrong: "Greșite: Wie viel = cantitate; Wie spät = oră."
       }
     },
     {
       type: "multiple-choice",
-      question: "… viele Äpfel brauchst du? – Vier.",
-      options: ["Was", "Wie", "Welche"], // răspuns pe poziția 2
-      correct: "Wie",
+      question: "Wie … Äpfel brauchst du?",
+      options: ["viel", "viele", "alt"],
+      correct: "viele",
       explanation: {
-        correct: "De ce corect: cantitate numărabilă → \"Wie viele…?\" (\"viele\" e dat).",
-        wrong: "Greșite: Was = \"ce\"; Welche = \"care\" (selecție), nu cantitate."
+        correct: "De ce corect: cantitate numărabilă → \"Wie viele…?\"",
+        wrong: "Greșite: Wie viel = ne-numărabile; Wie alt = vârstă."
       }
     },
     {
       type: "multiple-choice",
-      question: "… spät ist es jetzt? – Es ist halb neun.",
-      options: ["Wann", "Woher", "Wie"], // răspuns pe poziția 3
-      correct: "Wie",
+      question: "Wie … ist es jetzt?",
+      options: ["alt", "viel", "spät"],
+      correct: "spät",
       explanation: {
-        correct: "De ce corect: pentru oră → \"Wie spät…?\" (\"spät\" e dat).",
-        wrong: "Greșite: Wann = \"când\" (moment), dar aici e formulă fixă; Woher = origine."
+        correct: "De ce corect: pentru oră → \"Wie spät…?\"",
+        wrong: "Greșite: Wie alt = vârstă; Wie viel = cantitate."
       }
     },
     {
       type: "multiple-choice",
-      question: "… ist die Toilette? – Im ersten Stock.",
-      options: ["Wo", "Wohin", "Wann"], // răspuns pe poziția 1
+      question: "… ist die Toilette?",
+      options: ["Wo", "Wohin", "Wann"],
       correct: "Wo",
       explanation: {
         correct: "De ce corect: loc fix → \"Wo…?\"",
@@ -227,18 +225,18 @@
     },
     {
       type: "multiple-choice",
-      question: "… viel kostet der Kaffee? – 1,50 €.",
-      options: ["Was", "Wie", "Wann"], // răspuns pe poziția 2
-      correct: "Wie",
+      question: "Wie … kostet der Kaffee?",
+      options: ["viel", "viele", "spät"],
+      correct: "viel",
       explanation: {
-        correct: "De ce corect: preț → \"Wie viel…?\" (\"viel\" e dat).",
-        wrong: "Greșite: Was = \"ce\"; Wann = \"când\"."
+        correct: "De ce corect: preț → \"Wie viel…?\"",
+        wrong: "Greșite: Wie viele = numărabil; Wie spät = oră."
       }
     },
     {
       type: "multiple-choice",
-      question: "… kommst du so spät? – Weil der Bus kaputt war.",
-      options: ["Woher", "Wann", "Warum"], // răspuns pe poziția 3
+      question: "… kommst du so spät?",
+      options: ["Woher", "Wann", "Warum"],
       correct: "Warum",
       explanation: {
         correct: "De ce corect: cerem motivul → \"Warum…?\"",
@@ -247,8 +245,8 @@
     },
     {
       type: "multiple-choice",
-      question: "… gehst du am Freitag? – Zum Arzt.",
-      options: ["Wohin", "Wo", "Wer"], // răspuns pe poziția 1
+      question: "… gehst du am Freitag?",
+      options: ["Wohin", "Wo", "Wer"],
       correct: "Wohin",
       explanation: {
         correct: "De ce corect: direcție/destinație → \"Wohin…?\"",
@@ -257,147 +255,259 @@
     },
     {
       type: "multiple-choice",
-      question: "… Sprache sprichst du zu Hause? – Rumänisch.",
-      options: ["Was", "Welche", "Wie"], // răspuns pe poziția 2
+      question: "… Sprache sprichst du zu Hause?",
+      options: ["Was", "Welche", "Wie"],
       correct: "Welche",
       explanation: {
         correct: "De ce corect: \"Welche + substantiv\" (selecție dintr-un set de limbi).",
         wrong: "Greșite: Was = \"ce\" generic; Wie = \"cum\"."
       }
     },
-    // Fill-in exercises - inclusiv exercițiile noi
     {
       type: "fill",
-      question: "… wohnst du genau? – In der Hauptstraße 12.",
+      question: "… wohnst du genau?",
       correct: "Wo",
       explanation: "Explicație: întrebăm despre un loc fix (adresă) → \"Wo?\""
     },
     {
       type: "fill",
-      question: "… kommt der Zug? – In zehn Minuten.",
+      question: "… kommt der Zug?",
       correct: "Wann",
       explanation: "Explicație: întrebăm despre timp/moment → \"Wann?\""
     },
     {
       type: "fill",
-      question: "… fährst du heute? – Nach München.",
+      question: "… fährst du heute?",
       correct: "Wohin",
       explanation: "Explicație: direcție/destinație → \"Wohin?\""
     },
     {
       type: "fill",
-      question: "… kommt ihr? – Aus Cluj.",
+      question: "… kommt ihr?",
       correct: "Woher",
       explanation: "Explicație: origine/proveniență → \"Woher?\""
     },
     {
       type: "fill",
-      question: "… ist Annas Lieblingsessen? – Pizza.",
+      question: "… ist Annas Lieblingsessen?",
       correct: "Was",
       explanation: "Explicație: \"ce?\" pentru lucruri/preferințe → \"Was?\""
     },
     {
       type: "fill",
-      question: "… heißt euer Lehrer? – Herr Weber.",
+      question: "… heißt euer Lehrer?",
       correct: "Wie",
       explanation: "Explicație: formulă fixă pentru nume → \"Wie heißt…?\""
     },
     {
       type: "fill",
-      question: "… ist der Supermarkt? – Neben der Apotheke.",
+      question: "… ist der Supermarkt?",
       correct: "Wo",
       explanation: "Explicație: loc pozițional (unde?) → \"Wo?\""
     },
     {
       type: "fill",
-      question: "… Sprache sprichst du zu Hause? – Rumänisch.",
+      question: "… Sprache sprichst du zu Hause?",
       correct: "Welche",
       explanation: "Explicație: \"Welche + substantiv\" când alegem/identificăm dintr-un set (limbi)."
     },
     {
       type: "fill",
-      question: "… spät ist es jetzt? – Es ist halb zehn.",
-      correct: "Wie spät",
+      question: "Wie … ist es jetzt?",
+      correct: "spät",
       explanation: "Explicație: pentru oră/ceas se folosește \"Wie spät…?\""
     },
     {
       type: "fill",
-      question: "… machst du am Wochenende? – Ich gehe schwimmen.",
+      question: "… machst du am Wochenende?",
       correct: "Was",
       explanation: "Explicație: întrebăm \"ce faci?\" → \"Was?\""
     },
     {
       type: "fill",
-      question: "… viel Uhr ist es? – Es ist trei Uhr.",
-      correct: "Wie",
+      question: "Wie … Uhr ist es?",
+      correct: "viel",
       explanation: "Explicație: pentru oră exactă se poate folosi și \"Wie viel Uhr…?\""
     },
     {
       type: "fill",
-      question: "… gehst du nach der Schule? – Nach Hause.",
+      question: "… gehst du nach der Schule?",
       correct: "Wohin",
       explanation: "Explicație: direcție (încotro?) → \"Wohin?\""
     },
     {
       type: "fill",
-      question: "… ist deine Schwester? – Sie ist Ärztin.",
+      question: "… ist deine Schwester?",
       correct: "Was",
       explanation: "Explicație: întrebăm despre profesie → \"Was ist sie (von Beruf)?\""
     },
     {
       type: "fill",
-      question: "… lange dauert der Film? – Zwei Stunden.",
-      correct: "Wie lange",
+      question: "Wie … dauert der Film?",
+      correct: "lange",
       explanation: "Explicație: durată de timp → \"Wie lange…?\""
     },
-    // Exercițiile noi cu completare
     {
       type: "fill",
-      question: "… alt ist dein Hund? – Fünf Jahre.",
-      correct: "Wie",
-      explanation: "Explicație: Pentru vârstă folosim modelul \"Wie alt…?\", iar \"alt\" este deja în propoziție."
+      question: "Wie … ist dein Hund?",
+      correct: "alt",
+      explanation: "Explicație: Pentru vârstă folosim modelul \"Wie alt…?\""
     },
     {
       type: "fill",
-      question: "… viele Geschwister hast du? – Trei.",
-      correct: "Wie",
-      explanation: "Explicație: Pentru număr de lucruri/persoane (numărabile) folosim \"Wie viele…?\", \"viele\" este deja dat."
+      question: "Wie … Geschwister hast du?",
+      correct: "viele",
+      explanation: "Explicație: Pentru număr de lucruri/persoane (numărabile) folosim \"Wie viele…?\""
     },
     {
       type: "fill",
-      question: "… spät ist es? – Es ist Viertel nach acht.",
-      correct: "Wie",
-      explanation: "Explicație: Pentru ora exactă folosim \"Wie spät…?\", \"spät\" este deja dat."
+      question: "Wie … ist es?",
+      correct: "spät",
+      explanation: "Explicație: Pentru ora exactă folosim \"Wie spät…?\""
     },
     {
       type: "fill",
-      question: "… viel kostet das Ticket? – 2 Euro.",
-      correct: "Wie",
-      explanation: "Explicație: Pentru preț folosim \"Wie viel…?\", \"viel\" este deja dat."
+      question: "Wie … kostet das Ticket?",
+      correct: "viel",
+      explanation: "Explicație: Pentru preț folosim \"Wie viel…?\""
     },
     {
       type: "fill",
-      question: "… kommst du? – Aus Spanien.",
+      question: "… kommst du?",
       correct: "Woher",
       explanation: "Explicație: Origine/proveniență → \"Woher…?\""
     },
     {
       type: "fill",
-      question: "… gehst du heute Abend? – Ins Kino.",
+      question: "… gehst du heute Abend?",
       correct: "Wohin",
       explanation: "Explicație: Direcție/destinație → \"Wohin…?\""
     },
     {
       type: "fill",
-      question: "… ist der Supermarkt? – Neben der Apotheke.",
+      question: "… ist der Bahnhof?",
       correct: "Wo",
       explanation: "Explicație: Loc pozițional (unde?) → \"Wo…?\""
     },
     {
       type: "fill",
-      question: "… Farbe hat dein Auto? – Blau.",
+      question: "… Farbe hat dein Auto?",
       correct: "Welche",
       explanation: "Explicație: \"Welche + substantiv\" când selectăm/identificăm dintr-un set (culori)."
+    },
+    {
+      type: "multiple-choice",
+      question: "… wohnst du? – In Berlin.",
+      options: ["Wo", "Wohin", "Woher"],
+      correct: "Wo",
+      explanation: {
+        correct: "De ce corect: răspunsul \"In Berlin\" indică un loc fix → \"Wo?\"",
+        wrong: "Greșite: Wohin = direcție; Woher = origine."
+      }
+    },
+    {
+      type: "multiple-choice", 
+      question: "… gehst du? – Zum Supermarkt.",
+      options: ["Wo", "Wohin", "Woher"],
+      correct: "Wohin",
+      explanation: {
+        correct: "De ce corect: răspunsul \"Zum Supermarkt\" indică o direcție → \"Wohin?\"",
+        wrong: "Greșite: Wo = loc fix; Woher = origine."
+      }
+    },
+    {
+      type: "multiple-choice",
+      question: "… kommst du? – Aus Rumänien.",
+      options: ["Wo", "Wohin", "Woher"],
+      correct: "Woher",
+      explanation: {
+        correct: "De ce corect: răspunsul \"Aus Rumänien\" indică origine → \"Woher?\"",
+        wrong: "Greșite: Wo = loc fix; Wohin = direcție."
+      }
+    },
+    {
+      type: "multiple-choice",
+      question: "… ist das? – Das ist ein Buch.",
+      options: ["Wer", "Was", "Wo"],
+      correct: "Was",
+      explanation: {
+        correct: "De ce corect: răspunsul \"Das ist ein Buch\" identifică un obiect → \"Was?\"",
+        wrong: "Greșite: Wer = persoană; Wo = loc."
+      }
+    },
+    {
+      type: "multiple-choice",
+      question: "… ist dein Vater? – Er ist Arzt.",
+      options: ["Wer", "Was", "Wo"],
+      correct: "Was",
+      explanation: {
+        correct: "De ce corect: răspunsul \"Er ist Arzt\" indică profesia → \"Was ist er (von Beruf)?\"",
+        wrong: "Greșite: Wer = \"cine\" (identitate); Wo = loc."
+      }
+    },
+    {
+      type: "multiple-choice",
+      question: "… heißt deine Mutter? – Sie heißt Maria.",
+      options: ["Wie", "Wer", "Was"],
+      correct: "Wie",
+      explanation: {
+        correct: "De ce corect: răspunsul \"Sie heißt Maria\" dă numele → \"Wie heißt...?\"",
+        wrong: "Greșite: Wer = \"cine\"; Was = \"ce\"."
+      }
+    },
+    {
+      type: "fill",
+      question: "… alt bist du? – Ich bin 25 Jahre alt.",
+      correct: "Wie",
+      explanation: "Explicație: răspunsul \"25 Jahre alt\" indică vârsta → \"Wie alt?\""
+    },
+    {
+      type: "fill",
+      question: "… spät ist es? – Es ist 3 Uhr.",
+      correct: "Wie",
+      explanation: "Explicație: răspunsul \"Es ist 3 Uhr\" indică ora → \"Wie spät?\""
+    },
+    {
+      type: "fill",
+      question: "… viel kostet das? – 5 Euro.",
+      correct: "Wie",
+      explanation: "Explicație: răspunsul \"5 Euro\" indică prețul → \"Wie viel?\""
+    },
+    {
+      type: "fill",
+      question: "… viele Kinder hast du? – Ich habe zwei Kinder.",
+      correct: "Wie",
+      explanation: "Explicație: răspunsul \"zwei Kinder\" indică numărul → \"Wie viele?\""
+    },
+    {
+      type: "fill",
+      question: "… lange dauert der Film? – Zwei Stunden.",
+      correct: "Wie",
+      explanation: "Explicație: răspunsul \"Zwei Stunden\" indică durata → \"Wie lange?\""
+    },
+    {
+      type: "fill",
+      question: "… kommst du zur Arbeit? – Mit dem Bus.",
+      correct: "Wie",
+      explanation: "Explicație: răspunsul \"Mit dem Bus\" indică mijlocul de transport → \"Wie?\""
+    },
+    {
+      type: "fill",
+      question: "… beginnt das Konzert? – Um 20 Uhr.",
+      correct: "Wann",
+      explanation: "Explicație: răspunsul \"Um 20 Uhr\" indică timpul → \"Wann?\""
+    },
+    {
+      type: "fill",
+      question: "… machst du das? – Weil ich Geld brauche.",
+      correct: "Warum",
+      explanation: "Explicație: răspunsul \"Weil...\" indică motivul → \"Warum?\""
+    },
+    {
+      type: "fill",
+      question: "… Auto fährst du? – Einen BMW.",
+      correct: "Welches",
+      explanation: "Explicație: răspunsul \"Einen BMW\" selectează dintr-un tip → \"Welches Auto?\""
     }
   ];
 

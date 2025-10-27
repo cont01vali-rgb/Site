@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Possessivpronomen</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="nav-item">🏠 Acasă</a>
+            <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
+            <a href="../tests/general-test.html" class="nav-item">🧩 Test general</a>
+            <a href="../progress.html" class="nav-item">📊 Progres</a>
+        </nav>
+    </header>
+
+    <main class="test-page">
+        <div id="start-screen" class="test-start">
+            <h1>Test Possessivpronomen</h1>
+            <p>Testează-ți cunoștințele despre pronumele posesive în germană!</p>
+            <p><strong>Tipuri de exerciții:</strong></p>
+            <ul>
+                <li>🔤 Completare tabel Possessivpronomen</li>
+                <li>✏️ Exerciții punctuale cu pronume posesive</li>
+                <li>📝 Identificare forme corecte</li>
+            </ul>
+            <button class="btn btn-primary" onclick="startPossessivpronomenTest()">Începe testul</button>
+        </div>
+
+        <div id="test-container" class="test-container" style="display:none;">
+            <div class="test-header">
+                <h2>Test Possessivpronomen</h2>
+                <div class="progress">
+                    Întrebarea <span id="current-question">1</span> din <span id="total-questions">25</span>
+                </div>
+            </div>
+
+            <div id="question-area" class="question-area">
+                <!-- Questions will be populated here -->
+            </div>
+
+            <div class="test-controls">
+                <button id="check-question" class="btn btn-primary">Verifică răspunsul</button>
+                <button id="next-question" class="btn btn-secondary" style="display:none;">Următoarea întrebare</button>
+            </div>
+        </div>
+
+        <div id="result-container" class="result-container" style="display:none;">
+            <h2>Rezultate Test</h2>
+            <div class="score-display">
+                <div class="score-circle">
+                    <span id="score-percentage">0%</span>
+                </div>
+                <p id="score-breakdown">Ai răspuns corect la 0 din 0 întrebări.</p>
+            </div>
+            <div class="result-actions">
+                <button class="btn btn-primary" onclick="startPossessivpronomenTest()">Reîncepe testul</button>
+                <button class="btn btn-secondary" onclick="saveAndGoProgress()">Salvează și vezi progresul</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/possessivpronomen-test-runner.js"></script>
+</body>
+</html>
