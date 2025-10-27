@@ -11,7 +11,7 @@ window.generalExercises = {
     { "type": "multiple", "question": "Cuvântul „das Öl” conține:", "options": ["ä", "ö", "ü"], "correct": "ö" },
     { "type": "multiple", "question": "Care cuvânt conține „ß”?", "options": ["Straße", "Käse", "Suppe"], "correct": "Straße" },
     { "type": "multiple", "question": "În cuvântul „bitten”, consoana dublă „tt” se pronunță:", "options": ["prelungit", "scurt, rapid", "moale"], "correct": "scurt, rapid" },
-    { "type": "multiple", "question": "„Der Staat” se pronunță cu „st” ca:", "options": ["st", "șt", "s + t"], "correct": "șt" },
+    { "type": "multiple", "question": "„Der Staat” se pronunță cu „st” ca:", "options": ["st", "scht", "sp + t"], "correct": "scht" },
     { "type": "multiple", "question": "Care cuvânt conține Umlautul „ä”?", "options": ["der Käse", "das Haus", "die Sonne"], "correct": "der Käse" },
     { "type": "multiple", "question": "Care dintre următoarele cuvinte are diftongul „eu”?", "options": ["Leute", "Bäume", "Mai"], "correct": "Leute" },
     { "type": "multiple", "question": "În ce cuvânt se pronunță „st” ca „șt”?", "options": ["Stein", "Mitte", "Haus"], "correct": "Stein" },

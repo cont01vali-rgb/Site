@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "Home",
+    "learn": "Learning Environment", 
+    "test": "General Test",
+    "progress": "Progress"
+  },
+  "home": {
+    "title": "GERMAN LEARNING SITE! 🇩🇪",
+    "subtitle": "Choose one of the options below to start.",
+    "learn_lessons": "Learn lessons",
+    "general_test": "General testing", 
+    "vocabulary_test": "Vokabeltest",
+    "view_progress": "View your progress"
+  },
+  "lessons": {
+    "available": "Available Lessons"
+  },
+  "lesson1": {
+    "intro": "In this lesson you will learn the German alphabet and the pronunciation of special sounds: <strong>Umlaute</strong> and <strong>Doppellaute</strong>.",
+    "listen_alphabet": "🔊 Listen to the alphabet",
+    "umlaute_title": "Umlaute",
+    "umlaute_desc": "These are the letters ä, ö, ü that modify the pronunciation of basic vowels.",
+    "doppellaute_title": "Doppellaute (diphthongs)",
+    "doppellaute_desc": "These are combinations of vowels that form a new sound.",
+    "pronunciation_rules": "Pronunciation rules",
+    "consonants": "Consonants",
+    "examples": "Examples",
+    "practice": "Practice pronunciation"
+  }
+}

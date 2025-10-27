@@ -133,11 +133,24 @@
 </head>
 <body>
   <header>
-    <nav class="navbar">
-      <a href="../index.html" class="nav-item">🏠 Acasă</a>
-      <a href="../learn.html" class="nav-item">📚 Lecții</a>
-      <a href="general-test.html" class="nav-item active">🧩 Test general</a>
-      <a href="../progress.html" class="nav-item">📊 Progres</a>
+    <nav class="navbar-modern">
+        <div class="nav-section">
+            <a href="../index.html" class="nav-item-modern" data-i18n="nav.home">
+                🏠 Acasă
+            </a>
+            <a href="../learn.html" class="nav-item-modern" data-i18n="nav.learn">
+                📚 Mediu de învățare
+            </a>
+        </div>
+        
+        <div class="nav-section">
+            <div class="language-selector-nav">
+                <select id="languageSelector">
+                    <option value="en">🇺🇸 English</option>
+                    <option value="ro">🇷🇴 Română</option>
+                </select>
+            </div>
+        </div>
     </nav>
   </header>
 
@@ -173,4 +186,5 @@
     </div>
   </main>
 </body>
+<script src="../translate/translate.js"></script>
 </html>

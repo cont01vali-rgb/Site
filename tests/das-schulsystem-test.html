@@ -2,40 +2,83 @@
 <html lang="ro">
 <head>
   <meta charset="utf-8">
-  <title>Test: Das Schulsystem</title>
+  <title data-i18n="schulsystem_test.title">Test: Das Schulsystem</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/style.css">
   <script defer src="../data/das-schulsystem-exercises.js"></script>
   <script defer src="../js/das-schulsystem-test.js"></script>
-  <style>
-    .q-media{margin:8px 0}
-    .q-img{max-width:260px;max-height:180px;object-fit:contain;border-radius:8px;border:1px solid #e6e6e6}
-    .test-page{padding:16px}
-    .school-badge {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 6px;
-      background: #e8f6ff;
-      color: #0b5fa3;
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin-left: 8px;
-    }
-  </style>
 </head>
 <body>
 <header>
-  <nav class="navbar">
-    <a href="../index.html" class="nav-item">🏠 Acasă</a>
-    <a href="../learn.html" class="nav-item">📚 Lecții</a>
-    <a href="./general-test.html" class="nav-item">🧩 Test general</a>
-    <a href="../progress.html" class="nav-item">📊 Progres</a>
+  <nav class="navbar-modern">
+    <div class="navbar-content">
+      <div class="nav-section">
+        <a href="../index.html" class="nav-item-modern" data-i18n="nav.home">
+          🏠 Acasă
+        </a>
+        <a href="../learn.html" class="nav-item-modern" data-i18n="nav.learn">
+          📚 Mediu de învățare
+        </a>
+      </div>
+      
+      <div class="nav-section">
+        <div class="language-selector-nav">
+          <select id="languageSelector">
+            <option value="ro">🇷🇴 Română</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="ua">🇺🇦 Українська</option>
+          </select>
+        </div>
+      </div>
+    </div>
   </nav>
 </header>
 
-<main class="test-page">
-  <h2>Test: Das Schulsystem</h2>
-  <div id="schulsystemTestRoot" class="question-card"></div>
+<main class="page-container">
+  <div class="container">
+    <!-- Header modern cu design îmbunătățit -->
+    <div class="test-header">
+      <div class="test-header-content">
+        <h1 class="test-title" data-i18n="schulsystem_test.title">Test: Das Schulsystem</h1>
+        <div class="test-progress-bar">
+          <div class="progress-info">
+            <span data-i18n="test.progress">Întrebare</span> 
+            <span class="progress-numbers">
+              <span id="qIndex">0</span>/<span id="qTotal">0</span>
+            </span>
+            <span class="progress-separator">•</span>
+            <span data-i18n="test.score">Scor</span>: 
+            <span id="score" class="score-display">0</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Container întrebări cu design modern -->
+    <div class="test-question-container">
+      <div id="schulsystemTestRoot" class="question-area"></div>
+    </div>
+
+    <!-- Controale test cu design îmbunătățit -->
+    <div class="test-controls-modern">
+      <button id="verify-btn" class="btn btn-primary" data-i18n="test.verify">Verifică</button>
+      <button id="next-btn" class="btn btn-success" style="display:none;" data-i18n="test.next_question">Următoarea întrebare</button>
+    </div>
+
+    <!-- Feedback cu design modern -->
+    <div id="feedback" class="test-feedback"></div>
+
+    <!-- Navigare cu design îmbunătățit -->
+    <div class="test-navigation">
+      <a id="back-to-lesson" class="btn btn-outline" href="../lessons/das-schulsystem.html" data-i18n="schulsystem_test.back_to_lesson">
+        ← Înapoi la lecție
+      </a>
+    </div>
+  </div>
 </main>
+<script src="../translate/translate.js"></script>
 </body>
 </html>

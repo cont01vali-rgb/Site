@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "Acasă",
+    "learn": "Mediu de învățare", 
+    "test": "Test general",
+    "progress": "Progres"
+  },
+  "home": {
+    "title": "SITE TEST! 🇩🇪",
+    "subtitle": "Alege una dintre opțiunile de mai jos pentru a începe.",
+    "learn_lessons": "Învață lecțiile",
+    "general_test": "Testare generală", 
+    "vocabulary_test": "Vokabeltest",
+    "view_progress": "Vezi progresul tău"
+  },
+  "lessons": {
+    "available": "Lecții disponibile"
+  },
+  "lesson1": {
+    "intro": "În această lecție vei învăța alfabetul limbii germane și pronunția sunetelor speciale: <strong>Umlaute</strong> și <strong>Doppellaute</strong>.",
+    "listen_alphabet": "🔊 Ascultă alfabetul",
+    "umlaute_title": "Umlaute",
+    "umlaute_desc": "Sunt literele ä, ö, ü care modifică pronunția vocalelor de bază.",
+    "doppellaute_title": "Doppellaute (diftongi)",
+    "doppellaute_desc": "Sunt combinații de vocale care formează un sunet nou.",
+    "pronunciation_rules": "Reguli de pronunție",
+    "consonants": "Consoane",
+    "examples": "Exemple",
+    "practice": "Practică pronunția"
+  }
+}

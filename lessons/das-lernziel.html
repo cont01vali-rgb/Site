@@ -10,18 +10,35 @@
 </head>
 <body>
 <header>
-  <nav class="navbar">
-    <a href="../index.html" class="nav-item">🏠 Acasă</a>
-    <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
-    <a href="../lessons/das-nomen.html" class="nav-item">3. Das Nomen</a>
-    <a href="../lessons/das-lernziel.html" class="nav-item active">6. Das Lernziel</a>
+  <nav class="navbar-modern">
+    <div class="navbar-content">
+      <div class="nav-section">
+        <a href="../index.html" class="nav-item-modern" data-i18n="nav.home">
+          🏠 Acasă
+        </a>
+        <a href="../learn.html" class="nav-item-modern active" data-i18n="nav.learn">
+          📚 Mediu de învățare
+        </a>
+      </div>
+      
+      <div class="nav-section">
+        <div class="language-selector-nav">
+          <select id="languageSelector">
+            <option value="ro">🇷🇴 Română</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="ua">🇺🇦 Українська</option>
+          </select>
+        </div>
+      </div>
+    </div>
   </nav>
 </header>
 
-<main class="lesson-page">
-  <h1>Fragenkatalog A1 — Das Lernziel</h1>
+<main class="page-container">
+  <div class="lesson-page">
+    <h1 data-i18n="lernziel.title">Fragenkatalog A1 — Das Lernziel</h1>
 
-  <div id="fragen-wrapper" class="fragen-wrapper">
+    <div id="fragen-wrapper" class="fragen-wrapper">
     <div id="fragen-list"></div>
 
     <div class="pagination" style="margin-top:1rem;">
@@ -29,7 +46,9 @@
       <span id="pageInfo" style="margin:0 .8rem;"></span>
       <button id="nextPage" class="btn">Next →</button>
     </div>
+    </div>
   </div>
 </main>
 </body>
+<script src="../translate/translate.js"></script>
 </html>

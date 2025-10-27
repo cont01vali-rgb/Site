@@ -8,84 +8,165 @@
 </head>
 <body>
 <header>
-  <nav class="navbar">
-    <a href="../index.html" class="nav-item">🏠 Acasă</a>
-    <a href="../learn.html" class="nav-item active">📚 Mediu de învățare</a>
+  <nav class="navbar-modern">
+    <div class="navbar-content">
+      <div class="nav-section">
+        <a href="../index.html" class="nav-item-modern" data-i18n="nav.home">
+          🏠 Acasă
+        </a>
+        <a href="../learn.html" class="nav-item-modern active" data-i18n="nav.learn">
+          📚 Mediu de învățare
+        </a>
+      </div>
+      
+      <div class="nav-section">
+        <div class="language-selector-nav">
+          <select id="languageSelector">
+            <option value="ro">🇷🇴 Română</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="ua">🇺🇦 Українська</option>
+          </select>
+        </div>
+      </div>
+    </div>
   </nav>
 </header>
 
-<main class="lesson-page">
-  <h1>Das Schulsystem <small style="font-weight:400;color:#666">— Infoblatt</small></h1>
+<main class="page-container">
+  <div class="lesson-page">
+    <h1>Das Schulsystem <small style="font-weight:400;color:#666">— Infoblatt</small></h1>
 
-  <div class="intro-card" style="background:#fff8e6;border-color:#f0df9a;">
-    <p>Prezentare succintă a sistemului școlar din Austria. Evidențiată vârsta tipică a copiilor/pupilor pentru fiecare nivel.</p>
-  </div>
-
-  <div class="table-card" style="text-align:center;margin-bottom:12px;">
-    <img src="../assets/SistemScolarAustria.png" alt="Sistem școlar Austria" class="lesson-image" style="max-width:780px;border-radius:6px;" />
-  </div>
-
-  <section class="school-levels" style="max-width:880px;margin:0 auto;">
-    <div class="school-level">
-      <div class="level-header">
-        <h3>die Volksschule <span class="age-badge">6–10 ani</span></h3>
-      </div>
-      <p><strong>Germană:</strong> Die Schüler/innen lernen Grundlagen, z.B. lesen, schreiben, rechnen.</p>
-      <p><strong>Română:</strong> Școala primară: elevii învață bazele — citit, scris, socotit.</p>
+    <!-- Introducere cu traducere -->
+    <div class="intro-card" style="background:#fff8e6;border-color:#f0df9a;">
+      <p class="school-intro-text" data-key="intro">
+        Prezentare succintă a sistemului școlar din Austria. Evidențiată vârsta tipică a copiilor/pupilor pentru fiecare nivel.
+      </p>
     </div>
 
-    <div class="school-level">
-      <div class="level-header">
-        <h3>die Hauptschule <span class="age-badge">10–14 ani</span></h3>
-      </div>
-      <p><strong>Germană:</strong> Die Schüler/innen erweitern die Allgemeinbildung.</p>
-      <p><strong>Română:</strong> Școala generală: elevii își extind cunoștințele generale.</p>
+    <!-- Imaginea diagramei -->
+    <div class="table-card" style="text-align:center;margin-bottom:12px;">
+      <img src="../assets/SistemScolarAustria.png" alt="Sistem școlar Austria" class="lesson-image" style="max-width:780px;border-radius:6px;" />
     </div>
 
-    <div class="school-level">
-      <div class="level-header">
-        <h3>die Polytechnische Schule <span class="age-badge">14–15 ani</span></h3>
-      </div>
-      <p><strong>Germană:</strong> Dieses Schuljahr (9.) gibt den Schüler/innen eine Berufsorientierung.</p>
-      <p><strong>Română:</strong> Școala politehnică: clasa a 9-a oferă orientare profesională elevilor.</p>
+    <!-- Explicații pentru prescurtări -->
+    <div class="intro-card" style="background:#f0f8ff;border-color:#b3d9ff;margin-bottom:20px;">
+      <h3 style="margin-top:0;color:#1565c0;" class="abbreviations-title" data-key="abbreviations_title">
+        Explicarea prescurtărilor:
+      </h3>
+      <ul style="text-align:left;margin:0;padding-left:20px;">
+        <li>
+          <strong>AHS</strong> = <em>Allgemeinbildende Höhere Schule</em>
+          <span class="school-type-ahs" data-key="ahs_description">
+            (Școală superioară de cultură generală / Liceu teoretic)
+          </span>
+        </li>
+        <li>
+          <strong>BHS</strong> = <em>Berufsbildende Höhere Schule</em>
+          <span class="school-type-bhs" data-key="bhs_description">
+            (Școală superioară profesională / Liceu profesional superior)
+          </span>
+        </li>
+        <li>
+          <strong>BMS</strong> = <em>Berufsbildende Mittlere Schule</em>
+          <span class="school-type-bms" data-key="bms_description">
+            (Școală medie profesională)
+          </span>
+        </li>
+      </ul>
     </div>
 
-    <div class="school-level">
-      <div class="level-header">
-        <h3>die Lehre <span class="age-badge">de la 15 ani</span></h3>
+    <!-- Nivelurile de școlarizare -->
+    <section class="school-levels" style="max-width:880px;margin:0 auto;">
+      
+      <!-- Volksschule -->
+      <div class="school-level">
+        <div class="level-header">
+          <h3>die Volksschule <span class="age-badge">6–10 Jahren</span></h3>
+        </div>
+        <p>Die Schüler/innen lernen Grundlagen, z.B. lesen, schreiben, rechnen.</p>
+        <p class="school-description-volksschule" data-key="volksschule_description">
+          Școala primară: elevii învață bazele — citit, scris, socotit.
+        </p>
       </div>
-      <p><strong>Germană:</strong> Nach der Schulpflicht kann man einen Beruf erlernen. Der Lehrling bekommt eine Ausbildung und geht in die Berufsschule.</p>
-      <p><strong>Română:</strong> Ucenicia: după învățământul obligatoriu, elevul poate învăța o meserie; ucenicul primește instruire și merge la școala profesională.</p>
-    </div>
 
-    <div class="school-level">
-      <div class="level-header">
-        <h3>die BMS <span class="age-badge">după 9 ani școală</span></h3>
+      <!-- Hauptschule -->
+      <div class="school-level">
+        <div class="level-header">
+          <h3>die Hauptschule <span class="age-badge">10–14 Jahren</span></h3>
+        </div>
+        <p>Die Schüler/innen erweitern die Allgemeinbildung.</p>
+        <p class="school-description-hauptschule" data-key="hauptschule_description">
+          Școala generală: elevii își extind cunoștințele generale.
+        </p>
       </div>
-      <p><strong>Germană:</strong> Ist eine berufsbildende mittlere Schule ohne Matura.</p>
-      <p><strong>Română:</strong> Școală medie profesională: oferă formare profesională fără diplomă de Matură.</p>
-    </div>
 
-    <div class="school-level">
-      <div class="level-header">
-        <h3>die AHS <span class="age-badge">10–18 ani</span></h3>
+      <!-- Polytechnische Schule -->
+      <div class="school-level">
+        <div class="level-header">
+          <h3>die Polytechnische Schule <span class="age-badge">14–15 Jahren</span></h3>
+        </div>
+        <p>Dieses Schuljahr (9.) gibt den Schüler/innen eine Berufsorientierung.</p>
+        <p class="school-description-polytechnische" data-key="polytechnische_description">
+          Școala politehnică: clasa a 9-a oferă orientare profesională elevilor.
+        </p>
       </div>
-      <p><strong>Germană:</strong> Ist eine allgemeinbildende höhere Schule (Gymnasium). Sie besteht aus Unterstufe und Oberstufe und endet mit der Matura.</p>
-      <p><strong>Română:</strong> Liceu teoretic: are două cicluri (inferior și superior) și se încheie cu examenul de Matură.</p>
-    </div>
 
-    <div class="school-level">
-      <div class="level-header">
-        <h3>die BHS <span class="age-badge">10–19 ani</span></h3>
+      <!-- die Lehre -->
+      <div class="school-level">
+        <div class="level-header">
+          <h3>die Lehre <span class="age-badge">ab 15 Jahren</span></h3>
+        </div>
+        <p>Nach der Schulpflicht kann man einen Beruf erlernen. Der Lehrling bekommt eine Ausbildung und geht in die Berufsschule.</p>
+        <p class="school-description-lehre" data-key="lehre_description">
+          Ucenicia: după învățământul obligatoriu, elevul poate învăța o meserie; ucenicul primește instruire și merge la școala profesională.
+        </p>
       </div>
-      <p><strong>Germană:</strong> Ist eine berufsbildende höhere Schule mit Matura.</p>
-      <p><strong>Română:</strong> Liceu profesional superior: oferă formare profesională și se finalizează cu Matura.</p>
-    </div>
-  </section>
 
-  <div style="text-align:center;margin-top:18px;">
-    <a class="test-button" href="../tests/das-schulsystem-test.html">Testează-te (Das Schulsystem) →</a>
+      <!-- BMS -->
+      <div class="school-level">
+        <div class="level-header">
+          <h3>die BMS <span class="age-badge">nach 9 Schuljahren</span></h3>
+        </div>
+        <p>Ist eine berufsbildende mittlere Schule ohne Matura.</p>
+        <p class="school-description-bms" data-key="bms_full_description">
+          Școală medie profesională: oferă formare profesională fără diplomă de Matură.
+        </p>
+      </div>
+
+      <!-- AHS -->
+      <div class="school-level">
+        <div class="level-header">
+          <h3>die AHS <span class="age-badge">10–18 Jahren</span></h3>
+        </div>
+        <p>Ist eine allgemeinbildende höhere Schule (Gymnasium). Sie besteht aus Unterstufe und Oberstufe und endet mit der Matura.</p>
+        <p class="school-description-ahs" data-key="ahs_full_description">
+          Liceu teoretic: are două cicluri (inferior și superior) și se încheie cu examenul de Matură.
+        </p>
+      </div>
+
+      <!-- BHS -->
+      <div class="school-level">
+        <div class="level-header">
+          <h3>die BHS <span class="age-badge">10–19 Jahren</span></h3>
+        </div>
+        <p>Ist eine berufsbildende höhere Schule mit Matura.</p>
+        <p class="school-description-bhs" data-key="bhs_full_description">
+          Liceu profesional superior: oferă formare profesională și se finalizează cu Matura.
+        </p>
+      </div>
+      
+    </section>
+
+    <!-- Buton către test -->
+    <div style="text-align:center;margin-top:18px;">
+      <a class="test-button" href="../tests/das-schulsystem-test.html" data-i18n="schulsystem.test_button">
+        📝 Testează-te →
+      </a>
+    </div>
   </div>
 </main>
+
+<script src="../translate/translate.js"></script>
+<script src="../js/schulsystem.js"></script>
 </body>
 </html>
