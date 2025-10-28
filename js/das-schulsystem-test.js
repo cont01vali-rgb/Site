@@ -5,6 +5,21 @@
     .replace(/ă|â/g,'a').replace(/î/g,'i').replace(/ș|ş/g,'s').replace(/ț|ţ/g,'t')
     .trim();
 
+  // Funcție pentru obținerea limbii actuale
+  function getCurrentLanguage() {
+    return localStorage.getItem('selectedLanguage') || 'en';
+  }
+
+  // Funcție pentru obținerea textului în limba corectă
+  function getLocalizedText(textObj, fallbackText = '') {
+    const lang = getCurrentLanguage();
+    if (typeof textObj === 'string') return textObj;
+    if (typeof textObj === 'object' && textObj) {
+      return textObj[lang] || textObj['ro'] || fallbackText;
+    }
+    return fallbackText;
+  }
+
   // TTS
   function speak(text, lang='de-DE') {
     const synth = window.speechSynthesis;
@@ -45,70 +60,136 @@
 
   function render() {
     const root = $('#schulsystemTestRoot');
+    const qIndexEl = $('#qIndex');
+    const qTotalEl = $('#qTotal');
+    const scoreEl = $('#score');
+    const progressFill = $('#progressFill');
+    
     const it = state.items[state.idx];
     if (!it) return finish();
+
+    // Actualizează elementele de progres din header
+    if (qIndexEl) qIndexEl.textContent = state.idx + 1;
+    if (qTotalEl) qTotalEl.textContent = state.items.length;
+    if (scoreEl) scoreEl.textContent = state.score;
+    if (progressFill) {
+      const percentage = ((state.idx + 1) / state.items.length) * 100;
+      progressFill.style.width = `${percentage}%`;
+    }
 
     const type = (it.type === 'truefalse') ? 'tf' : it.type;
     let body = '';
 
     if (type === 'fill') {
+      const questionText = getLocalizedText(it.question, it.question);
+      const placeholderText = getCurrentLanguage() === 'en' ? 'Enter your answer here...' : 
+                             getCurrentLanguage() === 'ua' ? 'Введіть вашу відповідь тут...' : 
+                             'Introdu răspunsul aici...';
       body = `
-        <div class="question-card">${it.question}</div>
-        <div style="margin-top:8px;"><input id="fillInput" type="text" class="text-input" placeholder="Răspuns"></div>
+        <div class="question-text">${questionText}</div>
+        <div class="fill-input-container" style="margin-top:16px;">
+          <input id="fillInput" type="text" class="modern-text-input" placeholder="${placeholderText}">
+        </div>
       `;
     } else if (type === 'multiple') {
+      const questionText = getLocalizedText(it.question, it.question);
+      const options = getLocalizedText(it.options, it.options);
+      const optionsArray = Array.isArray(options) ? options : it.options;
+      
       body = `
-        <div class="question-card">${it.question}</div>
-        <div class="answers" style="display:grid;gap:8px;margin-top:6px;">
-          ${it.options.map(o=>`<label><input type="radio" name="ans" value="${o}"> ${o}</label>`).join('')}
+        <div class="question-text">${questionText}</div>
+        <div class="question-options">
+          ${optionsArray.map((o, idx) => `
+            <button class="ans-btn" data-value="${o}" data-original-value="${Array.isArray(it.options) ? it.options[idx] : o}">
+              ${String.fromCharCode(97 + idx)}. ${o}
+            </button>
+          `).join('')}
         </div>
       `;
     } else if (type === 'audio') {
+      const questionText = getLocalizedText(it.question, it.question);
+      const audioButtonText = getCurrentLanguage() === 'en' ? '🔊 Listen' : 
+                             getCurrentLanguage() === 'ua' ? '🔊 Слухати' : 
+                             '🔊 Ascultă';
+      const audioPlaceholder = getCurrentLanguage() === 'en' ? 'Write what you heard...' : 
+                              getCurrentLanguage() === 'ua' ? 'Напишіть те, що ви чули...' : 
+                              'Scrie ce ai auzit...';
+      
       body = `
-        <div class="question-card">${it.question} <button id="playAudio" class="btn">🔊 Ascultă</button></div>
-        <div style="margin-top:8px;">
+        <div class="question-text">
+          ${questionText} 
+          <button id="playAudio" class="btn btn-audio">${audioButtonText}</button>
+        </div>
+        <div style="margin-top:16px;">
           ${it.options?.length
-            ? `<div class="answers" style="display:grid;gap:8px;margin-top:6px;">
-                 ${it.options.map(o=>`<label><input type="radio" name="ans" value="${o}"> ${o}</label>`).join('')}
+            ? `<div class="question-options">
+                 ${it.options.map((o, idx) => `
+                   <button class="ans-btn" data-value="${o}">
+                     ${String.fromCharCode(97 + idx)}. ${o}
+                   </button>
+                 `).join('')}
                </div>`
-            : `<input id="fillInput" type="text" class="text-input" placeholder="Ce ai auzit?">`
+            : `<div class="fill-input-container">
+                 <input id="fillInput" type="text" class="modern-text-input" placeholder="${audioPlaceholder}">
+               </div>`
           }
         </div>
       `;
     } else if (type === 'tf') {
+      const questionText = getLocalizedText(it.question, it.question);
+      const trueText = getCurrentLanguage() === 'en' ? 'True' : 
+                      getCurrentLanguage() === 'ua' ? 'Правда' : 
+                      'Adevărat';
+      const falseText = getCurrentLanguage() === 'en' ? 'False' : 
+                       getCurrentLanguage() === 'ua' ? 'Неправда' : 
+                       'Fals';
+      
       body = `
-        <div class="question-card">${it.question}</div>
-        <div class="answers" style="display:flex;gap:12px;margin-top:6px;">
-          <label><input type="radio" name="ans" value="true"> Adevărat</label>
-          <label><input type="radio" name="ans" value="false"> Fals</label>
+        <div class="question-text">${questionText}</div>
+        <div class="question-options">
+          <button class="ans-btn" data-value="true">a. ${trueText}</button>
+          <button class="ans-btn" data-value="false">b. ${falseText}</button>
         </div>
       `;
     } else {
-      body = `<div class="question-card">Tip necunoscut.</div>`;
+      body = `<div class="question-text">Tip necunoscut.</div>`;
     }
 
-    root.innerHTML = `
-      <div class="q-head" style="display:flex;justify-content:space-between;align-items:center;">
-        <div><strong>${state.idx+1}</strong> / ${state.items.length}</div>
-        <div>Scor: ${state.score}</div>
-      </div>
-      ${body}
-      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px;">
-        <button id="checkBtn" class="btn">Verifică</button>
-        <button id="nextBtn" class="btn" disabled>Următoarea</button>
-      </div>
-    `;
+    root.innerHTML = body;
+
+    // Adaugă event listeners pentru noile butoane moderne
+    document.querySelectorAll('.ans-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Resetează toate butoanele
+        document.querySelectorAll('.ans-btn').forEach(b => b.classList.remove('selected'));
+        // Marchează butonul selectat
+        btn.classList.add('selected');
+        btn.dataset.selected = btn.dataset.value;
+      });
+    });
 
     if (type === 'audio') {
       const say = () => speak(it.word);
       $('#playAudio')?.addEventListener('click', say);
       setTimeout(say, 250);
     }
-    $('#checkBtn').onclick = onCheck;
-    $('#nextBtn').onclick = onNext;
+    
+    // Conectează butoanele moderne din header
+    const verifyBtn = $('#verify-btn');
+    const nextBtn = $('#next-btn');
+    const feedback = $('#feedback');
+    
+    if (verifyBtn) {
+      verifyBtn.onclick = () => onCheck(feedback);
+      verifyBtn.style.display = 'inline-flex';
+    }
+    if (nextBtn) {
+      nextBtn.onclick = onNext;
+      nextBtn.style.display = 'none';
+    }
   }
 
-  function onCheck() {
+  function onCheck(feedback) {
     const it = state.items[state.idx];
     const type = (it.type === 'truefalse') ? 'tf' : it.type;
     let ok = false;
@@ -117,36 +198,65 @@
       const v = $('#fillInput')?.value || '';
       const answers = it.answer ? [it.answer] : (Array.isArray(it.answers) ? it.answers : []);
       ok = answers.some(a => norm(v) === norm(a));
-    } else if (type === 'multiple') {
-      const v = (document.querySelector('input[name="ans"]:checked')?.value) || '';
-      ok = v === it.correct;
-    } else if (type === 'audio') {
-      if (it.options?.length) {
-        const v = (document.querySelector('input[name="ans"]:checked')?.value) || '';
-        ok = v === it.correct;
-      } else {
-        const v = $('#fillInput')?.value || '';
-        ok = norm(v) === norm(it.word);
-      }
+    } else if (type === 'multiple' || type === 'audio' && it.options?.length) {
+      const selectedBtn = document.querySelector('.ans-btn.selected');
+      const v = selectedBtn?.dataset.value || '';
+      const originalV = selectedBtn?.dataset.originalValue || v;
+      
+      // Pentru opțiunile cu traduceri, verifică atât răspunsul tradus cât și cel original
+      const correctAnswer = getLocalizedText(it.correct, it.correct);
+      ok = v === correctAnswer || originalV === it.correct || v === it.correct;
+    } else if (type === 'audio' && !it.options?.length) {
+      const v = $('#fillInput')?.value || '';
+      ok = norm(v) === norm(it.word);
     } else if (type === 'tf') {
-      const v = (document.querySelector('input[name="ans"]:checked')?.value) || '';
+      const selectedBtn = document.querySelector('.ans-btn.selected');
+      const v = selectedBtn?.dataset.value || '';
       ok = String(it.correct) === v;
     }
 
-    const fb = document.createElement('div');
-    fb.className = 'important'; fb.style.marginTop = '8px';
-    fb.textContent = ok ? 'Corect!' : `Greșit. Răspuns corect: ${it.correct || it.answer || it.word}`;
-    $('#schulsystemTestRoot').appendChild(fb);
+    // Feedback cu design modern
+    if (feedback) {
+      const correctText = getCurrentLanguage() === 'en' ? '✅ Correct!' : 
+                         getCurrentLanguage() === 'ua' ? '✅ Правильно!' : 
+                         '✅ Corect!';
+      const wrongPrefix = getCurrentLanguage() === 'en' ? '❌ Wrong. Correct answer:' : 
+                         getCurrentLanguage() === 'ua' ? '❌ Неправильно. Правильна відповідь:' : 
+                         '❌ Greșit. Răspuns corect:';
+      
+      feedback.className = ok ? 'test-feedback success' : 'test-feedback error';
+      
+      if (ok) {
+        feedback.textContent = correctText;
+      } else {
+        const correctAnswer = getLocalizedText(it.correct, it.correct || it.answer || it.word);
+        feedback.textContent = `${wrongPrefix} ${correctAnswer}`;
+      }
+    }
 
     if (ok) state.score++; else state.wrongs.push(it.question);
 
-    $('#checkBtn').disabled = true;
-    $('#nextBtn').disabled = false;
+    // Actualizează butoanele
+    const verifyBtn = $('#verify-btn');
+    const nextBtn = $('#next-btn');
+    if (verifyBtn) verifyBtn.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'inline-flex';
   }
 
   function onNext() {
-    if (state.idx < state.items.length - 1) { state.idx++; render(); }
-    else finish();
+    // Resetează feedback-ul
+    const feedback = $('#feedback');
+    if (feedback) {
+      feedback.textContent = '';
+      feedback.className = 'test-feedback';
+    }
+    
+    if (state.idx < state.items.length - 1) { 
+      state.idx++; 
+      render(); 
+    } else {
+      finish();
+    }
   }
 
   function finish() {
@@ -191,5 +301,18 @@
     ALL = await waitForExercises();
     ALL = Array.isArray(ALL) ? ALL : [];
     if (document.getElementById('schulsystemTestRoot')) start();
+    
+    // Listener pentru schimbarea limbii
+    document.addEventListener('languageChanged', () => {
+      render();
+    });
+    
+    // Listener pentru selectorul de limbă din navbar
+    const languageSelector = document.getElementById('languageSelector');
+    if (languageSelector) {
+      languageSelector.addEventListener('change', () => {
+        setTimeout(() => render(), 100); // Mic delay pentru a se salva în localStorage
+      });
+    }
   });
 })();

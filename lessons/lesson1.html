@@ -4,31 +4,48 @@
     <meta charset="UTF-8">
     <title>Das deutsche Alphabet</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script defer src="../translate/translate.js"></script>
     <script defer src="../js/lesson1-tts.js"></script>
 </head>
 <body>
 <header>
-    <nav class="navbar">
-        <a href="../index.html" class="nav-item">🏠 Acasă</a>
-        <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
-        <a href="../tests/general-test.html" class="nav-item">🧩 Test general</a>
-        <a href="../progress.html" class="nav-item">📊 Progres</a>
-    </nav>
+  <nav class="navbar-modern">
+    <div class="navbar-content">
+      <div class="nav-section">
+        <a href="../index.html" class="nav-item-modern" data-i18n="nav.home">
+          🏠 Acasă
+        </a>
+        <a href="../learn.html" class="nav-item-modern active" data-i18n="nav.learn">
+          📚 Mediu de învățare
+        </a>
+      </div>
+      
+      <div class="nav-section">
+        <div class="language-selector-nav">
+          <select id="languageSelector">
+            <option value="ro">🇷🇴 Română</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="ua">�� Українська</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </nav>
 </header>
 
 <main class="lesson-page">
     <h1>Das deutsche Alphabet</h1>
 
-    <p>În această lecție vei învăța alfabetul limbii germane și pronunția sunetelor speciale: <strong>Umlaute</strong> și <strong>Doppellaute</strong>.</p>
+    <p data-i18n="lesson1.intro">În această lecție vei învăța alfabetul limbii germane și pronunția sunetelor speciale: <strong>Umlaute</strong> și <strong>Doppellaute</strong>.</p>
 
     <div class="alphabet-row" style="margin:0.6rem 0;">
-      <button class="tts-btn" data-text="Das Alphabet: A,, B,, C,, D,, E,, F,, G,, H,, I,, J,, K,, L,, M,, N,, O,, P,, Q,, R,, S,, T,, U,, V,, W,, X,, Y,, Z,, Ä,, Ö,, Ü und ß" aria-label="Ascultă alfabetul">🔊 Ascultă alfabetul</button>
+      <button class="tts-btn" data-text="Das Alphabet: A,, B,, C,, D,, E,, F,, G,, H,, I,, J,, K,, L,, M,, N,, O,, P,, Q,, R,, S,, T,, U,, V,, W,, X,, Y,, Z,, Ä,, Ö,, Ü und ß" aria-label="Ascultă alfabetul"><span data-i18n="lesson1.listen_alphabet">🔊 Ascultă alfabetul</span></button>
     </div>
 
     <img src="../assets/alfabetul.png" alt="Alfabetul german" class="lesson-image">
 
     <section>
-        <h2>Umlaute</h2>
+        <h2 data-i18n="lesson1.umlaute_title">Umlaute</h2>
         <ul>
             <li>
               <button class="tts-btn" data-phoneme="ä" aria-label="Pronunță ä">🔊</button>
@@ -45,13 +62,13 @@
             <li>
               <button class="tts-btn" data-text="Scharfes s, ß wie in Straße">🔊</button>
               <strong>ß</strong> — die Straße  
-              <br><em>Se citește ca „s”. În germană se numește <strong>„scharfes s”</strong> și există doar ca literă mică.</em>
+              <br><em data-i18n="lesson1.scharfes_desc">Se citește ca „s". În germană se numește <strong>„scharfes s"</strong> și există doar ca literă mică.</em>
             </li>
         </ul>
     </section>
 
     <section>
-        <h2>Doppellaute (Diftongi)</h2>
+        <h2 data-i18n="lesson1.doppellaute_title">Doppellaute (Diftongi)</h2>
         <ul>
             <li>
               <button class="tts-btn" data-phoneme="au" aria-label="Pronunță au">🔊</button>
@@ -81,7 +98,7 @@
     </section>
 
     <section>
-        <h2>Alte combinații importante</h2>
+        <h2 data-i18n="lesson1.other_combinations">Alte combinații importante</h2>
         <ul>
             <li>
               <button class="tts-btn" data-phoneme="ch" aria-label="Pronunță ch">🔊</button>
@@ -101,32 +118,33 @@
             </li>
             <li>
               <button class="tts-btn" data-text="tt wie în Mitte, Beispiel: Mitte, Bitte, Bett">🔊</button>
-              <strong>tt</strong> — pronunțat rapid: die Mitte, die Bitte, das Bett, die Butter
+              <strong>tt</strong> — <span data-i18n="lesson1.pronounced_quickly">pronunțat rapid:</span> die Mitte, die Bitte, das Bett, die Butter
             </li>
             <li>
               <button class="tts-btn" data-text="pp wie în Gruppe, Beispiel: Gruppe, Puppe, Lippe">🔊</button>
-              <strong>pp</strong> — pronunțat rapid: die Gruppe, die Puppe, die Lippe, die Suppe, die Kappe
+              <strong>pp</strong> — <span data-i18n="lesson1.pronounced_quickly">pronunțat rapid:</span> die Gruppe, die Puppe, die Lippe, die Suppe, die Kappe
             </li>
         </ul>
     </section>
 
     <section class="important">
-        <h2>⚠️ Foarte important!</h2>
-        <p><strong>Groß- und Kleinschreibung</strong> — Scrierea cu majusculă:</p>
+        <h2 data-i18n="lesson1.very_important_title">⚠️ Foarte important!</h2>
+        <p data-i18n="lesson1.capitalization_rule"><strong>Groß- und Kleinschreibung</strong> — Scrierea cu majusculă:</p>
         <ul>
-            <li><strong>Nomen/Substantive</strong> (substantive)</li>
-            <li><strong>Namen/Eigennamen</strong> (nume proprii)</li>
-            <li><strong>Satzbeginn</strong> (începuturile de propoziții)</li>
-            <li><strong>Länder, Städte, Kontinente, Dörfer</strong> (țări, orașe, continente, sate)</li>
-            <li><strong>Höflichkeitsformen</strong> (forme de politețe)</li>
+            <li><strong>Nomen/Substantive</strong> <span data-i18n="lesson1.nouns_example">(substantive)</span></li>
+            <li><strong>Namen/Eigennamen</strong> <span data-i18n="lesson1.proper_names_example">(nume proprii)</span></li>
+            <li><strong>Satzbeginn</strong> <span data-i18n="lesson1.sentence_beginnings_example">(începuturile de propoziții)</span></li>
+            <li><strong>Länder, Städte, Kontinente, Dörfer</strong> <span data-i18n="lesson1.places_example">(țări, orașe, continente, sate)</span></li>
+            <li><strong>Höflichkeitsformen</strong> <span data-i18n="lesson1.politeness_forms_example">(forme de politețe)</span></li>
         </ul>
-        <p><em>Toate acestea se scriu cu majusculă în limba germană!</em></p>
+        <p data-i18n="lesson1.capitalization_desc"><em>Toate acestea se scriu cu majusculă în limba germană!</em></p>
     </section>
 
     <div class="bottom-btn">
-        <a href="../tests/test1.html" class="test-button">Începe testul 📖</a>
+        <a href="../tests/test1.html" class="test-button" data-i18n="lesson1.test_button">Începe testul 📖</a>
     </div>
 </main>
 
 </body>
+<script src="../translate/translate.js"></script>
 </html>

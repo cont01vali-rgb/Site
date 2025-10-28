@@ -2,243 +2,500 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Der Akkusativ - Acuzativul în germană</title>
+    <title data-i18n="akkusativ.page_title">Der Akkusativ - Acuzativul în germană</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script defer src="../translate/translate.js"></script>
+    <script defer src="../js/main.js"></script>
 </head>
 <body>
 <header>
-    <nav class="navbar">
-        <a href="../index.html" class="nav-item">🏠 Acasă</a>
-        <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
-        <a href="../tests/general-test.html" class="nav-item">🧩 Test general</a>
-        <a href="../progress.html" class="nav-item">📊 Progres</a>
+    <nav class="navbar-modern">
+        <div class="navbar-content">
+            <div class="nav-section">
+                <a href="../index.html" class="nav-item-modern" data-i18n="nav.home">🏠 Acasă</a>
+                <a href="../learn.html" class="nav-item-modern" data-i18n="nav.learn">📚 Mediu de învățare</a>
+            </div>
+            
+            <div class="nav-section">
+                <div class="language-selector-nav">
+                    <select id="languageSelector">
+                        <!-- Opțiunile vor fi populate dinamic de JavaScript -->
+                    </select>
+                </div>
+            </div>
+        </div>
     </nav>
 </header>
 
 <main class="lesson-page">
-    <h1>Der Akkusativ - Acuzativul</h1>
-    <p><strong>Acuzativul</strong> este unul dintre cele mai importante cazuri în limba germană - complementul direct!</p>
+    <div class="lesson-header">
+        <h1 data-i18n="akkusativ.title">Der Akkusativ (Cazul Acuzativ)</h1>
+        <p class="lesson-subtitle" data-i18n="akkusativ.subtitle">Învață complementul direct în limba germană</p>
+    </div>
 
-    <!-- Card intro pentru contextul lecției -->
+    <!-- Introducere: Cele 4 cazuri -->
     <div class="intro-card">
-        <p>🎯 Acuzativul răspunde la întrebarea <strong>"cine? ce?"</strong> și este cazul complementului direct. E crucial să înveți când și cum se folosește, pentru că apare foarte des în vorbirea de zi cu zi!</p>
-    </div>
-
-    <!-- Secțiunea 1: Ce exprimă acuzativul -->
-    <div class="rule-card">
-        <h2>🔍 Ce exprimă acuzativul</h2>
-        
-        <div style="margin: 12px 0;">
-            <div style="margin: 8px 0; padding: 8px; background: #f8f9fa; border-left: 4px solid #1d7a1d; border-radius: 4px;">
-                <strong>1. Complementul direct</strong> (cine? ce?)
-                <div style="margin: 4px 0; font-style: italic;">Ich habe einen Hund. <em>(Am un câine.)</em></div>
-                <div style="margin: 4px 0; font-style: italic;">Sie liest das Buch. <em>(Ea citește cartea.)</em></div>
+        <h2 data-i18n="akkusativ.intro_title">🎯 Germana are 4 cazuri:</h2>
+        <div class="cases-grid">
+            <div class="case-item">
+                <strong data-i18n="akkusativ.nominativ">Nominativ:</strong> <span data-i18n="akkusativ.nominativ_desc">Cazul subiectului. Răspunde la întrebarea Cine? Ce?</span> <em>(Wer? Was?)</em>
             </div>
-            
-            <div style="margin: 8px 0; padding: 8px; background: #f8f9fa; border-left: 4px solid #4073e0; border-radius: 4px;">
-                <strong>2. După anumite prepoziții fixe</strong>
-                <div style="margin: 4px 0; font-style: italic;">durch, für, gegen, ohne, um, bis, entlang</div>
+            <div class="case-item accent-green">
+                <strong data-i18n="akkusativ.akkusativ">Acuzativ:</strong> <span data-i18n="akkusativ.akkusativ_desc">Cazul complementului direct. Răspunde la întrebarea Pe cine? Ce?</span> <em>(Wen? Was?)</em>
             </div>
-            
-            <div style="margin: 8px 0; padding: 8px; background: #f8f9fa; border-left: 4px solid #d6336c; border-radius: 4px;">
-                <strong>3. După expresia "es gibt"</strong> (există/se găsește)
-                <div style="margin: 4px 0; font-style: italic;">Es gibt einen Park. <em>(Există un parc.)</em></div>
+            <div class="case-item">
+                <strong data-i18n="akkusativ.dativ">Dativ:</strong> <span data-i18n="akkusativ.dativ_desc">Cazul complementului indirect. Răspunde la întrebarea Cui?</span> <em>(Wem?)</em>
+            </div>
+            <div class="case-item">
+                <strong data-i18n="akkusativ.genitiv">Genitiv:</strong> <span data-i18n="akkusativ.genitiv_desc">Cazul posesiei. Răspunde la întrebarea Al/a/ai/ale cui?</span> <em>(Wessen?)</em>
             </div>
         </div>
     </div>
 
-    <!-- Secțiunea 2: Articolele și determinanții -->
+    <!-- Secțiunea 1: Ideea principală -->
     <div class="rule-card">
-        <h2>📋 Articolele și determinanții în acuzativ</h2>
+        <h2 data-i18n="akkusativ.main_idea_title">💡 1. Ideea principală: Complementul Direct</h2>
         
-        <div class="important">
-            <strong>⚠️ REGULA DE AUR:</strong> Doar genul masculin se modifică clar față de nominativ; celelalte rămân la fel!
-        </div>
-
-        <h3 style="color: #1877f2; margin: 16px 0 8px 0;">Articole hotărâte</h3>
-        <div style="margin: 12px 0; line-height: 1.6;">
-            <div style="margin: 4px 0;"><strong>masculin:</strong> der → <span style="color: #d6336c; font-weight: bold;">den</span> <em>(SCHIMBĂ!)</em></div>
-            <div style="margin: 4px 0;"><strong>feminin:</strong> die → die <em>(rămâne la fel)</em></div>
-            <div style="margin: 4px 0;"><strong>neutru:</strong> das → das <em>(rămâne la fel)</em></div>
-            <div style="margin: 4px 0;"><strong>plural:</strong> die → die <em>(rămâne la fel)</em></div>
-        </div>
-
-        <h3 style="color: #1877f2; margin: 16px 0 8px 0;">Articole nehotărâte și determinanți posesivi</h3>
-        <div style="margin: 12px 0;">
-            <div style="margin: 8px 0; padding: 8px; background: #fff3cd; border-radius: 4px;">
-                <strong>Masculin (SE SCHIMBĂ!):</strong>
-                <div style="margin: 4px 0;">ein → <span style="color: #d6336c; font-weight: bold;">einen</span></div>
-                <div style="margin: 4px 0;">kein → <span style="color: #d6336c; font-weight: bold;">keinen</span></div>
-                <div style="margin: 4px 0;">mein → <span style="color: #d6336c; font-weight: bold;">meinen</span></div>
-                <div style="margin: 4px 0;">dein → <span style="color: #d6336c; font-weight: bold;">deinen</span></div>
-                <div style="margin: 4px 0;">sein → <span style="color: #d6336c; font-weight: bold;">seinen</span></div>
-                <div style="margin: 4px 0;">ihr → <span style="color: #d6336c; font-weight: bold;">ihren</span></div>
-                <div style="margin: 4px 0;">unser → <span style="color: #d6336c; font-weight: bold;">unseren</span></div>
-                <div style="margin: 4px 0;">euer → <span style="color: #d6336c; font-weight: bold;">euren</span></div>
-                <div style="margin: 4px 0;">Ihr → <span style="color: #d6336c; font-weight: bold;">Ihren</span></div>
-            </div>
+        <div class="highlight-box green-pale">
+            <p data-i18n="akkusativ.main_concept"><strong>Cazul Acuzativ</strong> este folosit cel mai adesea pentru a marca <strong>complementul direct</strong> al unei propoziții.</p>
             
-            <div style="margin: 8px 0; padding: 8px; background: #e3f3ff; border-radius: 4px;">
-                <strong>Feminin, neutru și plural (NICIO SCHIMBARE!):</strong>
-                <div style="margin: 4px 0;">eine → eine; keine → keine; meine → meine, etc.</div>
-                <div style="margin: 4px 0;">ein → ein; kein → kein; mein → mein, etc.</div>
-                <div style="margin: 4px 0;">keine → keine; meine → meine, etc.</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Secțiunea 3: Pronume personale -->
-    <div class="rule-card">
-        <h2>👤 Pronume personale în acuzativ</h2>
-        
-        <div style="margin: 12px 0; line-height: 1.8;">
-            <div style="margin: 4px 0;"><strong>ich</strong> → <span style="color: #d6336c; font-weight: bold;">mich</span> <em>(pe mine)</em></div>
-            <div style="margin: 4px 0;"><strong>du</strong> → <span style="color: #d6336c; font-weight: bold;">dich</span> <em>(pe tine)</em></div>
-            <div style="margin: 4px 0;"><strong>er</strong> → <span style="color: #d6336c; font-weight: bold;">ihn</span> <em>(pe el)</em></div>
-            <div style="margin: 4px 0;"><strong>sie (ea)</strong> → <span style="color: #1d7a1d; font-weight: bold;">sie</span> <em>(pe ea - nu se schimbă)</em></div>
-            <div style="margin: 4px 0;"><strong>es</strong> → <span style="color: #1d7a1d; font-weight: bold;">es</span> <em>(pe el/ea - neutru, nu se schimbă)</em></div>
-            <div style="margin: 4px 0;"><strong>wir</strong> → <span style="color: #d6336c; font-weight: bold;">uns</span> <em>(pe noi)</em></div>
-            <div style="margin: 4px 0;"><strong>ihr</strong> → <span style="color: #d6336c; font-weight: bold;">euch</span> <em>(pe voi)</em></div>
-            <div style="margin: 4px 0;"><strong>sie (ei)</strong> → <span style="color: #1d7a1d; font-weight: bold;">sie</span> <em>(pe ei/ele - nu se schimbă)</em></div>
-            <div style="margin: 4px 0;"><strong>Sie (Dvs.)</strong> → <span style="color: #1d7a1d; font-weight: bold;">Sie</span> <em>(pe Dvs. - nu se schimbă)</em></div>
-        </div>
-
-        <div style="margin: 12px 0; padding: 10px; background: #e6f9e6; border-radius: 6px;">
-            <strong>💡 Exemple cu pronume:</strong>
-            <div style="margin: 4px 0; font-style: italic;">Ich sehe dich. <em>(Te văd.)</em></div>
-            <div style="margin: 4px 0; font-style: italic;">Er kennt mich nicht. <em>(El nu mă cunoaște.)</em></div>
-            <div style="margin: 4px 0; font-style: italic;">Wir besuchen euch. <em>(Vă vizităm.)</em></div>
-        </div>
-    </div>
-
-    <!-- Secțiunea 4: Prepoziții cu acuzativ -->
-    <div class="rule-card">
-        <h2>🔗 Prepoziții cu acuzativ (FIXE!)</h2>
-        <p>Aceste prepoziții <strong>întotdeauna</strong> cer acuzativ:</p>
-        
-        <div style="margin: 12px 0; line-height: 1.7;">
-            <div style="margin: 6px 0; padding: 6px; background: #fff0f6; border-radius: 4px;">
-                <strong>durch</strong> (prin): <em>durch den Park</em> (prin parc)
-            </div>
-            <div style="margin: 6px 0; padding: 6px; background: #f4f9ff; border-radius: 4px;">
-                <strong>für</strong> (pentru): <em>für meinen Bruder</em> (pentru fratele meu)
-            </div>
-            <div style="margin: 6px 0; padding: 6px; background: #e6f9e6; border-radius: 4px;">
-                <strong>gegen</strong> (împotriva/spre): <em>gegen den Wind</em> (împotriva vântului)
-            </div>
-            <div style="margin: 6px 0; padding: 6px; background: #fff3cd; border-radius: 4px;">
-                <strong>ohne</strong> (fără): <em>ohne dich</em> (fără tine)
-            </div>
-            <div style="margin: 6px 0; padding: 6px; background: #e3f3ff; border-radius: 4px;">
-                <strong>um</strong> (în jurul/la ora): <em>um den See</em> (în jurul lacului); <em>um 8 Uhr</em> (la ora 8)
-            </div>
-            <div style="margin: 6px 0; padding: 6px; background: #f0f2f5; border-radius: 4px;">
-                <strong>bis</strong> (până la): <em>bis nächsten Montag</em> (până luni viitoare)
-            </div>
-            <div style="margin: 6px 0; padding: 6px; background: #fff0f6; border-radius: 4px;">
-                <strong>entlang</strong> (de-a lungul; adesea postpusă): <em>den Fluss entlang</em> (de-a lungul râului)
+            <div class="definition-box">
+                <strong data-i18n="akkusativ.definition_label">Definiție simplă:</strong> 
+                <span data-i18n="akkusativ.definition_text">Complementul direct este persoana sau lucrul care "suferă" direct acțiunea verbului. Este cel care primește acțiunea.</span>
             </div>
         </div>
 
-        <div class="important">
-            <strong>🎯 Trucul pentru memorare:</strong> "Durch Für Gegen Ohne Um Bis Entlang" - toate cer acuzativ!
+        <div class="magic-question">
+            <h3 data-i18n="akkusativ.magic_question_title">🔍 Întrebarea magică pentru a găsi Acuzativul este:</h3>
+            <div class="question-highlight">
+                <strong>Wen oder Was?</strong> <span data-i18n="akkusativ.magic_question">(Pe cine sau ce?)</span>
+            </div>
+            <p data-i18n="akkusativ.magic_rule">Dacă un substantiv răspunde la această întrebare pusă după verb, atunci el este în Acuzativ.</p>
         </div>
-    </div>
 
-    <!-- Secțiunea 5: Negarea -->
-    <div class="rule-card">
-        <h2>❌ Negarea în acuzativ</h2>
-        
-        <div style="margin: 12px 0;">
-            <div style="margin: 8px 0; padding: 8px; background: #fff3cd; border-left: 4px solid #d6336c; border-radius: 4px;">
-                <strong>keinen</strong> pentru masculin în acuzativ:
-                <div style="margin: 4px 0; font-style: italic;">Ich habe keinen Bruder. <em>(Nu am frate.)</em></div>
-                <div style="margin: 4px 0; font-style: italic;">Er kauft keinen Apfel. <em>(El nu cumpără măr.)</em></div>
-            </div>
-            
-            <div style="margin: 8px 0; padding: 8px; background: #e3f3ff; border-left: 4px solid #4073e0; border-radius: 4px;">
-                <strong>nicht</strong> pentru propoziții/alte părți de vorbire:
-                <div style="margin: 4px 0; font-style: italic;">Ich kaufe das Brot nicht. <em>(Nu cumpăr pâinea.)</em></div>
-                <div style="margin: 4px 0; font-style: italic;">Sie kennt mich nicht. <em>(Nu mă cunoaște.)</em></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Secțiunea 6: Exemple practice -->
-    <div class="rule-card">
-        <h2>💬 Exemple practice</h2>
-        
-        <div style="margin: 12px 0; line-height: 1.7;">
-            <div style="margin: 6px 0; padding: 8px; background: #f8f9fa; border-left: 3px solid #1d7a1d;">
-                <strong>Ich sehe den Film.</strong> <em>(Văd filmul.)</em>
-                <div style="font-size: 0.9em; color: #666;">→ masculin: der Film → den Film</div>
-            </div>
-            
-            <div style="margin: 6px 0; padding: 8px; background: #f8f9fa; border-left: 3px solid #4073e0;">
-                <strong>Sie kauft einen Apfel.</strong> <em>(Ea cumpără un măr.)</em>
-                <div style="font-size: 0.9em; color: #666;">→ masculin: ein Apfel → einen Apfel</div>
-            </div>
-            
-            <div style="margin: 6px 0; padding: 8px; background: #f8f9fa; border-left: 3px solid #d6336c;">
-                <strong>Wir brauchen keinen Zucker.</strong> <em>(Nu avem nevoie de zahăr.)</em>
-                <div style="font-size: 0.9em; color: #666;">→ masculin negat: kein Zucker → keinen Zucker</div>
-            </div>
-            
-            <div style="margin: 6px 0; padding: 8px; background: #f8f9fa; border-left: 3px solid #ffc107;">
-                <strong>Es gibt einen Supermarkt in der Nähe.</strong> <em>(Există un supermarket în apropiere.)</em>
-                <div style="font-size: 0.9em; color: #666;">→ es gibt + acuzativ</div>
-            </div>
-            
-            <div style="margin: 6px 0; padding: 8px; background: #f8f9fa; border-left: 3px solid #6f42c1;">
-                <strong>Ohne dich gehe ich nicht.</strong> <em>(Fără tine nu plec.)</em>
-                <div style="font-size: 0.9em; color: #666;">→ prepoziția "ohne" + acuzativ</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Secțiunea 7: Note de ordonare -->
-    <div class="rule-card">
-        <h2>📐 Note de ordonare în propoziție</h2>
-        
-        <div style="margin: 12px 0;">
-            <div style="margin: 8px 0; padding: 8px; background: #e6f9e6; border-radius: 4px;">
-                <strong>Cu un singur complement direct:</strong>
-                <div style="margin: 4px 0; font-style: italic;">Ich lese das Buch. <em>(Citesc cartea.)</em></div>
-                <div style="font-size: 0.9em; color: #666;">→ acuzativul stă imediat după verb</div>
-            </div>
-            
-            <div style="margin: 8px 0; padding: 8px; background: #fff3cd; border-radius: 4px;">
-                <strong>Când vei învăța și dativul:</strong>
-                <div style="margin: 4px 0; font-style: italic;">Ich gebe dem Mann das Buch. <em>(Îi dau bărbatului cartea.)</em></div>
-                <div style="font-size: 0.9em; color: #666;">→ de regulă: Dativ (indirect) + Acuzativ (direct)</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Secțiunea 8: Teste rapide de verificare -->
-    <div class="rule-card">
-        <h2>✅ Teste rapide de verificare</h2>
-        
-        <div style="margin: 12px 0;">
-            <div style="margin: 8px 0; padding: 10px; background: #f4f9ff; border-radius: 6px;">
-                <strong>🎯 Întrebarea cheie:</strong> "Cine? Ce?" după verb → acuzativ
-                <div style="margin: 6px 0;">
-                    <div style="font-style: italic;">Ich kaufe _______ Brot. (das)</div>
-                    <div style="color: #1d7a1d; font-weight: bold;">→ das Brot (neutru nu se schimbă)</div>
+        <!-- Exemplu detaliat -->
+        <div class="example-box">
+            <h4 data-i18n="akkusativ.example_title">📝 Exemplu:</h4>
+            <div class="analysis-steps">
+                <p class="sentence-example" data-i18n="akkusativ.example_sentence">Eu cumpăr o mașină.</p>
+                <ul class="analysis-list">
+                    <li><strong data-i18n="akkusativ.subject_analysis">Subiect (Cine cumpără?):</strong> <span data-i18n="akkusativ.subject_answer">Eu (Nominativ)</span></li>
+                    <li><strong data-i18n="akkusativ.verb_analysis">Verb:</strong> <span data-i18n="akkusativ.verb_answer">cumpăr</span></li>
+                    <li><strong data-i18n="akkusativ.object_analysis">Întrebare: Ce cumpăr eu?</strong> <span data-i18n="akkusativ.object_answer">-> o mașină.</span></li>
+                </ul>
+                <div class="conclusion-box green-pale">
+                    <span data-i18n="akkusativ.conclusion">Deci, "o mașină" este complementul direct și în germană va fi în Acuzativ.</span>
                 </div>
-                <div style="margin: 6px 0;">
-                    <div style="font-style: italic;">Er sieht _______ Hund. (der)</div>
-                    <div style="color: #d6336c; font-weight: bold;">→ den Hund (masculin se schimbă!)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secțiunea 2: Marea schimbare -->
+    <div class="rule-card">
+        <h2 data-i18n="akkusativ.declension_title">⚡ 2. Marea Schimbare: Declinarea Articolelor în Acuzativ</h2>
+        
+        <div class="golden-tip">
+            <h3 data-i18n="akkusativ.golden_tip_title">🏆 SFATUL DE AUR:</h3>
+            <p data-i18n="akkusativ.golden_tip_text">Singurul gen care își schimbă vizibil forma în Acuzativ este <strong>MASCULINUL</strong>. Femininul, neutrul și pluralul arată la fel ca în Nominativ. Asta face totul mult mai simplu!</p>
+        </div>
+
+        <!-- Tabelul principal -->
+        <div class="table-container">
+            <h4 data-i18n="akkusativ.table_title">📊 Tabelul pe care trebuie să-l memorezi:</h4>
+            <table class="declension-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="akkusativ.table_gen">Gen</th>
+                        <th data-i18n="akkusativ.table_nominativ">Nominativ (Cine? Ce?)</th>
+                        <th data-i18n="akkusativ.table_akkusativ">Acuzativ (Pe cine? Ce?)</th>
+                        <th data-i18n="akkusativ.table_change">Schimbare?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Masculin -->
+                    <tr class="masculine-row">
+                        <td rowspan="3"><strong>Masculin (der)</strong></td>
+                        <td><strong>der</strong> Mann <em data-i18n="akkusativ.table_man">(bărbatul)</em></td>
+                        <td class="accent-change"><strong>den</strong> Mann <em data-i18n="akkusativ.table_man_acc">(pe bărbat)</em></td>
+                        <td class="change-yes" data-i18n="akkusativ.table_yes">DA!</td>
+                    </tr>
+                    <tr class="masculine-row">
+                        <td><strong>ein</strong> Mann <em data-i18n="akkusativ.table_man_indef">(un bărbat)</em></td>
+                        <td class="accent-change"><strong>einen</strong> Mann <em data-i18n="akkusativ.table_man_indef_acc">(pe un bărbat)</em></td>
+                        <td class="change-yes" data-i18n="akkusativ.table_yes">DA!</td>
+                    </tr>
+                    <tr class="masculine-row">
+                        <td><strong>kein</strong> Mann <em data-i18n="akkusativ.table_man_neg">(niciun bărbat)</em></td>
+                        <td class="accent-change"><strong>keinen</strong> Mann <em data-i18n="akkusativ.table_man_neg_acc">(pe niciun bărbat)</em></td>
+                        <td class="change-yes" data-i18n="akkusativ.table_yes">DA!</td>
+                    </tr>
+                    
+                    <!-- Feminin -->
+                    <tr class="feminine-row">
+                        <td rowspan="3"><strong>Feminin (die)</strong></td>
+                        <td><strong>die</strong> Frau <em data-i18n="akkusativ.table_woman">(femeia)</em></td>
+                        <td><strong>die</strong> Frau <em data-i18n="akkusativ.table_woman_acc">(pe femeie)</em></td>
+                        <td class="change-no" data-i18n="akkusativ.table_no">NU</td>
+                    </tr>
+                    <tr class="feminine-row">
+                        <td><strong>eine</strong> Frau <em data-i18n="akkusativ.table_woman_indef">(o femeie)</em></td>
+                        <td><strong>eine</strong> Frau <em data-i18n="akkusativ.table_woman_indef_acc">(pe o femeie)</em></td>
+                        <td class="change-no" data-i18n="akkusativ.table_no">NU</td>
+                    </tr>
+                    <tr class="feminine-row">
+                        <td><strong>keine</strong> Frau <em data-i18n="akkusativ.table_woman_neg">(nicio femeie)</em></td>
+                        <td><strong>keine</strong> Frau <em data-i18n="akkusativ.table_woman_neg_acc">(pe nicio femeie)</em></td>
+                        <td class="change-no" data-i18n="akkusativ.table_no">NU</td>
+                    </tr>
+                    
+                    <!-- Neutru -->
+                    <tr class="neuter-row">
+                        <td rowspan="3"><strong>Neutru (das)</strong></td>
+                        <td><strong>das</strong> Kind <em data-i18n="akkusativ.table_child">(copilul)</em></td>
+                        <td><strong>das</strong> Kind <em data-i18n="akkusativ.table_child_acc">(pe copil)</em></td>
+                        <td class="change-no" data-i18n="akkusativ.table_no">NU</td>
+                    </tr>
+                    <tr class="neuter-row">
+                        <td><strong>ein</strong> Kind <em data-i18n="akkusativ.table_child_indef">(un copil)</em></td>
+                        <td><strong>ein</strong> Kind <em data-i18n="akkusativ.table_child_indef_acc">(pe un copil)</em></td>
+                        <td class="change-no" data-i18n="akkusativ.table_no">NU</td>
+                    </tr>
+                    <tr class="neuter-row">
+                        <td><strong>kein</strong> Kind <em data-i18n="akkusativ.table_child_neg">(niciun copil)</em></td>
+                        <td><strong>kein</strong> Kind <em data-i18n="akkusativ.table_child_neg_acc">(pe niciun copil)</em></td>
+                        <td class="change-no" data-i18n="akkusativ.table_no">NU</td>
+                    </tr>
+                    
+                    <!-- Plural -->
+                    <tr class="plural-row">
+                        <td rowspan="3"><strong>Plural (die)</strong></td>
+                        <td><strong>die</strong> Leute <em data-i18n="akkusativ.table_people">(oamenii)</em></td>
+                        <td><strong>die</strong> Leute <em data-i18n="akkusativ.table_people_acc">(pe oameni)</em></td>
+                        <td class="change-no" data-i18n="akkusativ.table_no">NU</td>
+                    </tr>
+                    <tr class="plural-row">
+                        <td>- Leute <em data-i18n="akkusativ.table_people_indef">(oameni)</em></td>
+                        <td>- Leute <em data-i18n="akkusativ.table_people_indef_acc">(pe oameni)</em></td>
+                        <td class="change-no" data-i18n="akkusativ.table_no">NU</td>
+                    </tr>
+                    <tr class="plural-row">
+                        <td><strong>keine</strong> Leute <em data-i18n="akkusativ.table_people_neg">(niciun om)</em></td>
+                        <td><strong>keine</strong> Leute <em data-i18n="akkusativ.table_people_neg_acc">(pe niciun om)</em></td>
+                        <td class="change-no" data-i18n="akkusativ.table_no">NU</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="key-insight green-pale">
+            <strong data-i18n="akkusativ.key_insight_title">💡 Idee evidențiată:</strong> 
+            <span data-i18n="akkusativ.key_insight_text">Focusează-te 100% pe schimbarea <strong>der → den</strong> și <strong>ein → einen</strong>. Dacă stăpânești asta, ai înțeles 80% din Acuzativ.</span>
+        </div>
+    </div>
+
+    <!-- Secțiunea 3: Exemple detaliate -->
+    <div class="rule-card">
+        <h2 data-i18n="akkusativ.examples_title">📚 3. Exemple detaliate: Identificarea Acuzativului în propoziții</h2>
+        <p data-i18n="akkusativ.examples_intro">Hai să analizăm câteva propoziții pentru a vedea cum funcționează totul.</p>
+
+        <!-- Exemplul 1 -->
+        <div class="example-detailed">
+            <h4 data-i18n="akkusativ.example1_title">🔵 Exemplul 1 (Masculin - aici se vede schimbarea!)</h4>
+            
+            <div class="sentence-highlight">
+                <strong>Ich sehe den Hund.</strong> <em data-i18n="akkusativ.example1_translation">(Eu văd câinele.)</em>
+            </div>
+            
+            <div class="analysis-steps">
+                <div class="step">
+                    <strong data-i18n="akkusativ.example1_subject">Subiectul (Nominativ):</strong> 
+                    <span data-i18n="akkusativ.example1_subject_q">Cine vede?</span> → <span class="answer">Ich</span> <em data-i18n="akkusativ.example1_subject_a">(Eu).</em>
                 </div>
+                <div class="step">
+                    <strong data-i18n="akkusativ.example1_verb">Verbul:</strong> 
+                    <span class="answer">sehe</span> <em data-i18n="akkusativ.example1_verb_a">(văd).</em>
+                </div>
+                <div class="step">
+                    <strong data-i18n="akkusativ.example1_object">Întrebarea pentru Acuzativ:</strong> 
+                    <span data-i18n="akkusativ.example1_object_q">Pe cine/ce văd eu?</span> → <span class="answer green-pale">den Hund</span> <em data-i18n="akkusativ.example1_object_a">(câinele).</em>
+                </div>
+                <div class="analysis-conclusion">
+                    <strong data-i18n="akkusativ.example1_analysis">Analiză:</strong> 
+                    <span data-i18n="akkusativ.example1_analysis_text">Substantivul "Hund" este masculin (der Hund). Deoarece este complement direct (în Acuzativ), articolul <strong>der</strong> se transformă în <strong class="accent-change">den</strong>.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exemplul 2 -->
+        <div class="example-detailed">
+            <h4 data-i18n="akkusativ.example2_title">🟣 Exemplul 2 (Feminin - fără schimbare)</h4>
+            
+            <div class="sentence-highlight">
+                <strong>Er liest eine Zeitung.</strong> <em data-i18n="akkusativ.example2_translation">(El citește un ziar.)</em>
+            </div>
+            
+            <div class="analysis-steps">
+                <div class="step">
+                    <strong data-i18n="akkusativ.example2_subject">Subiectul (Nominativ):</strong> 
+                    <span data-i18n="akkusativ.example2_subject_q">Cine citește?</span> → <span class="answer">Er</span> <em data-i18n="akkusativ.example2_subject_a">(El).</em>
+                </div>
+                <div class="step">
+                    <strong data-i18n="akkusativ.example2_verb">Verbul:</strong> 
+                    <span class="answer">liest</span> <em data-i18n="akkusativ.example2_verb_a">(citește).</em>
+                </div>
+                <div class="step">
+                    <strong data-i18n="akkusativ.example2_object">Întrebarea pentru Acuzativ:</strong> 
+                    <span data-i18n="akkusativ.example2_object_q">Ce citește el?</span> → <span class="answer green-pale">eine Zeitung</span> <em data-i18n="akkusativ.example2_object_a">(un ziar).</em>
+                </div>
+                <div class="analysis-conclusion">
+                    <strong data-i18n="akkusativ.example2_analysis">Analiză:</strong> 
+                    <span data-i18n="akkusativ.example2_analysis_text">Substantivul "Zeitung" este feminin (die Zeitung). Chiar dacă este în Acuzativ, articolul nehotărât <strong>eine</strong> rămâne neschimbat. Arată la fel ca în Nominativ.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exemplul 3 -->
+        <div class="example-detailed">
+            <h4 data-i18n="akkusativ.example3_title">🟡 Exemplul 3 (Neutru - fără schimbare)</h4>
+            
+            <div class="sentence-highlight">
+                <strong>Das Kind hat ein Fahrrad.</strong> <em data-i18n="akkusativ.example3_translation">(Copilul are o bicicletă.)</em>
+            </div>
+            
+            <div class="analysis-steps">
+                <div class="step">
+                    <strong data-i18n="akkusativ.example3_subject">Subiectul (Nominativ):</strong> 
+                    <span data-i18n="akkusativ.example3_subject_q">Cine are?</span> → <span class="answer">Das Kind</span> <em data-i18n="akkusativ.example3_subject_a">(Copilul).</em>
+                </div>
+                <div class="step">
+                    <strong data-i18n="akkusativ.example3_verb">Verbul:</strong> 
+                    <span class="answer">hat</span> <em data-i18n="akkusativ.example3_verb_a">(are).</em>
+                </div>
+                <div class="step">
+                    <strong data-i18n="akkusativ.example3_object">Întrebarea pentru Acuzativ:</strong> 
+                    <span data-i18n="akkusativ.example3_object_q">Ce are copilul?</span> → <span class="answer green-pale">ein Fahrrad</span> <em data-i18n="akkusativ.example3_object_a">(o bicicletă).</em>
+                </div>
+                <div class="analysis-conclusion">
+                    <strong data-i18n="akkusativ.example3_analysis">Analiză:</strong> 
+                    <span data-i18n="akkusativ.example3_analysis_text">Substantivul "Fahrrad" este neutru (das Fahrrad). Articolul <strong>ein</strong> rămâne neschimbat în Acuzativ.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Continuarea urmează... -->
+    
+    <!-- Secțiunea 4: Exemplu complex -->
+    <div class="rule-card">
+        <h2 data-i18n="akkusativ.complex_example_title">🧩 4. Exemplu lung: De ce o parte este în Acuzativ și alta nu?</h2>
+        <p data-i18n="akkusativ.complex_intro">Aceasta este o întrebare excelentă, care te va ajuta să înțelegi diferența dintre cazuri.</p>
+
+        <div class="complex-example">
+            <h4 data-i18n="akkusativ.complex_sentence_title">📝 Propoziție complexă:</h4>
+            
+            <div class="sentence-highlight">
+                <strong>Der Lehrer gibt dem Schüler einen Stift.</strong> 
+                <em data-i18n="akkusativ.complex_translation">(Profesorul îi dă elevului un pix.)</em>
+            </div>
+
+            <div class="complex-analysis">
+                <h4 data-i18n="akkusativ.complex_analysis_title">🔍 Hai să "disecăm" propoziția folosind întrebările pentru fiecare caz:</h4>
+
+                <div class="case-analysis">
+                    <div class="case-step nominativ-case">
+                        <h5 data-i18n="akkusativ.nominativ_search">🟦 Căutăm Subiectul (Nominativ):</h5>
+                        <div class="step">
+                            <strong data-i18n="akkusativ.nominativ_question">Întrebare:</strong> 
+                            <span data-i18n="akkusativ.nominativ_question_text">Cine îi dă un pix elevului?</span> <em>(Wer gibt...?)</em>
+                        </div>
+                        <div class="step">
+                            <strong data-i18n="akkusativ.nominativ_answer_label">Răspuns:</strong> 
+                            <span class="answer">Der Lehrer</span> <em data-i18n="akkusativ.nominativ_answer">(Profesorul).</em>
+                        </div>
+                        <div class="conclusion-box">
+                            <strong data-i18n="akkusativ.nominativ_conclusion">Concluzie:</strong> 
+                            <span data-i18n="akkusativ.nominativ_conclusion_text">Der Lehrer este subiectul și stă în cazul Nominativ. Articolul este <strong>der</strong>, forma de bază.</span>
+                        </div>
+                    </div>
+
+                    <div class="case-step akkusativ-case">
+                        <h5 data-i18n="akkusativ.akkusativ_search">🟩 Căutăm Complementul Direct (Acuzativ):</h5>
+                        <div class="step">
+                            <strong data-i18n="akkusativ.akkusativ_question">Întrebare:</strong> 
+                            <span data-i18n="akkusativ.akkusativ_question_text">Ce dă profesorul?</span> <em>(Was gibt der Lehrer?)</em>
+                        </div>
+                        <div class="step">
+                            <strong data-i18n="akkusativ.akkusativ_answer_label">Răspuns:</strong> 
+                            <span class="answer green-pale">einen Stift</span> <em data-i18n="akkusativ.akkusativ_answer">(un pix).</em>
+                        </div>
+                        <div class="conclusion-box green-pale">
+                            <strong data-i18n="akkusativ.akkusativ_conclusion">Concluzie:</strong> 
+                            <span data-i18n="akkusativ.akkusativ_conclusion_text"><strong>einen Stift</strong> este complementul direct și stă în cazul Acuzativ.</span>
+                        </div>
+                        <div class="analysis-detail">
+                            <strong data-i18n="akkusativ.akkusativ_analysis">Analiză:</strong> 
+                            <span data-i18n="akkusativ.akkusativ_analysis_text">"Stift" (pix) este un substantiv masculin (der Stift). Deoarece aici este în Acuzativ, articolul nehotărât <strong>ein</strong> devine <strong class="accent-change">einen</strong>. Aici vedem schimbarea!</span>
+                        </div>
+                    </div>
+
+                    <div class="case-step dativ-case">
+                        <h5 data-i18n="akkusativ.dativ_search">🟪 Căutăm Complementul Indirect (Dativ):</h5>
+                        <div class="step">
+                            <strong data-i18n="akkusativ.dativ_question">Întrebare:</strong> 
+                            <span data-i18n="akkusativ.dativ_question_text">Cui îi dă profesorul pixul?</span> <em>(Wem gibt der Lehrer...?)</em>
+                        </div>
+                        <div class="step">
+                            <strong data-i18n="akkusativ.dativ_answer_label">Răspuns:</strong> 
+                            <span class="answer">dem Schüler</span> <em data-i18n="akkusativ.dativ_answer">(elevului).</em>
+                        </div>
+                        <div class="conclusion-box">
+                            <strong data-i18n="akkusativ.dativ_conclusion">Concluzie:</strong> 
+                            <span data-i18n="akkusativ.dativ_conclusion_text"><strong>dem Schüler</strong> este complementul indirect și stă în cazul Dativ (pe care îl vei învăța mai târziu). De aceea articolul <strong>der</strong> (de la der Schüler) se transformă în <strong>dem</strong>.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-recap">
+                    <h4 data-i18n="akkusativ.recap_title">📋 Recapitulare analiză:</h4>
+                    <ul class="recap-list">
+                        <li><strong>Der Lehrer</strong> (Nominativ) → <span data-i18n="akkusativ.recap_nominativ">pentru că el face acțiunea.</span></li>
+                        <br>
+                        <li><strong class="green-pale">einen Stift</strong> (Acuzativ) → <span data-i18n="akkusativ.recap_akkusativ">pentru că el primește direct acțiunea (este lucrul "dat").</span></li>
+                        <br>
+                        <li><strong>dem Schüler</strong> (Dativ) → <span data-i18n="akkusativ.recap_dativ">pentru că el este "destinatarul" indirect al acțiunii.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secțiunea 5: Prepoziții cu Acuzativ -->
+    <div class="rule-card">
+        <h2 data-i18n="akkusativ.prepositions_title">🔗 5. Alte situații când folosim Acuzativul</h2>
+        <p data-i18n="akkusativ.prepositions_intro">Pe lângă verbele care cer complement direct, Acuzativul mai este cerut și de anumite prepoziții. La nivelul A1, cele mai importante sunt:</p>
+
+        <div class="fudge-method">
+            <h4 data-i18n="akkusativ.fudge_title">🎯 FUDGE-O (o metodă de a le memora):</h4>
+            
+            <div class="prepositions-grid">
+                <div class="prep-item">
+                    <strong>Für</strong> <em data-i18n="akkusativ.prep_fur">(pentru)</em>
+                </div>
+                <div class="prep-item">
+                    <strong>Um</strong> <em data-i18n="akkusativ.prep_um">(în jurul, la - pentru ore)</em>
+                </div>
+                <div class="prep-item">
+                    <strong>Durch</strong> <em data-i18n="akkusativ.prep_durch">(prin, de-a lungul)</em>
+                </div>
+                <div class="prep-item">
+                    <strong>Gegen</strong> <em data-i18n="akkusativ.prep_gegen">(împotriva, în)</em>
+                </div>
+                <div class="prep-item">
+                    <strong>Entlang</strong> <em data-i18n="akkusativ.prep_entlang">(de-a lungul) - stă de obicei după substantiv</em>
+                </div>
+                <div class="prep-item">
+                    <strong>Ohne</strong> <em data-i18n="akkusativ.prep_ohne">(fără)</em>
+                </div>
+            </div>
+
+            <div class="important-rule">
+                <strong data-i18n="akkusativ.prep_rule_title">⚠️ Regulă:</strong> 
+                <span data-i18n="akkusativ.prep_rule_text">Substantivul care vine după aceste prepoziții va sta întotdeauna în Acuzativ, indiferent de rolul său în propoziție!</span>
+            </div>
+        </div>
+
+        <div class="prep-examples">
+            <h4 data-i18n="akkusativ.prep_examples_title">💫 Exemple:</h4>
+            <div class="example-grid">
+                <div class="prep-example">
+                    <div class="sentence">
+                        <strong>Ich kaufe Blumen für meine Mutter.</strong> 
+                        <em data-i18n="akkusativ.prep_ex1">(Cumpăr flori pentru mama mea.)</em>
+                    </div>
+                    <div class="explanation">
+                        → <span data-i18n="akkusativ.prep_ex1_exp"><strong>für</strong> cere Acuzativ, die Mutter rămâne neschimbat.</span>
+                    </div>
+                </div>
+                
+                <div class="prep-example">
+                    <div class="sentence">
+                        <strong>Er geht durch den Park.</strong> 
+                        <em data-i18n="akkusativ.prep_ex2">(El merge prin parc.)</em>
+                    </div>
+                    <div class="explanation">
+                        → <span data-i18n="akkusativ.prep_ex2_exp"><strong>durch</strong> cere Acuzativ, der Park devine <strong class="accent-change">den Park</strong>.</span>
+                    </div>
+                </div>
+                
+                <div class="prep-example">
+                    <div class="sentence">
+                        <strong>Wir können ohne dich nicht anfangen.</strong> 
+                        <em data-i18n="akkusativ.prep_ex3">(Nu putem începe fără tine.)</em>
+                    </div>
+                    <div class="explanation">
+                        → <span data-i18n="akkusativ.prep_ex3_exp"><strong>ohne</strong> cere Acuzativ.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secțiunea 6: Sfaturi de reținere -->
+    <div class="rule-card">
+        <h2 data-i18n="akkusativ.tips_title">💡 6. Mici sfaturi de reținere și înțelegere</h2>
+        
+        <div class="tips-grid">
+            <div class="tip-card">
+                <h4 data-i18n="akkusativ.tip1_title">🎯 Concentrează-te pe masculin:</h4>
+                <p data-i18n="akkusativ.tip1_text">Repetă obsesiv: <strong>der → den</strong>, <strong>ein → einen</strong>, <strong>mein → meinen</strong>, <strong>kein → keinen</strong>. Când vezi un <strong>...en</strong> la finalul unui articol sau posesiv în fața unui substantiv, sunt șanse mari să fie Acuzativ masculin.</p>
+            </div>
+            
+            <div class="tip-card">
+                <h4 data-i18n="akkusativ.tip2_title">📚 Asociază verbe cu Acuzativul:</h4>
+                <p data-i18n="akkusativ.tip2_intro">Creează-ți o listă mentală de verbe comune care aproape mereu iau un complement direct:</p>
+                <div class="verb-list">
+                    <div class="verb-example">
+                        <strong>haben</strong> <em data-i18n="akkusativ.verb_haben">(a avea):</em> <span>Ich habe einen Hund.</span>
+                    </div>
+                    <div class="verb-example">
+                        <strong>sehen</strong> <em data-i18n="akkusativ.verb_sehen">(a vedea):</em> <span>Ich sehe den Film.</span>
+                    </div>
+                    <div class="verb-example">
+                        <strong>lesen</strong> <em data-i18n="akkusativ.verb_lesen">(a citi):</em> <span>Ich lese ein Buch.</span>
+                    </div>
+                    <div class="verb-example">
+                        <strong>kaufen</strong> <em data-i18n="akkusativ.verb_kaufen">(a cumpăra):</em> <span>Ich kaufe einen Apfel.</span>
+                    </div>
+                    <div class="verb-example">
+                        <strong>brauchen</strong> <em data-i18n="akkusativ.verb_brauchen">(a avea nevoie):</em> <span>Ich brauche einen Stift.</span>
+                    </div>
+                    <div class="verb-example">
+                        <strong>essen</strong> <em data-i18n="akkusativ.verb_essen">(a mânca):</em> <span>Ich esse den Kuchen.</span>
+                    </div>
+                    <div class="verb-example">
+                        <strong>trinken</strong> <em data-i18n="akkusativ.verb_trinken">(a bea):</em> <span>Ich trinke den Saft.</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tip-card">
+                <h4 data-i18n="akkusativ.tip3_title">❓ Pune mereu întrebarea:</h4>
+                <p data-i18n="akkusativ.tip3_text">Când citești o propoziție în germană, oprește-te după verb și întreabă-te: <strong>"Wen oder was?"</strong> (Pe cine sau ce?). Dacă găsești un răspuns în propoziție, ai găsit Acuzativul.</p>
+            </div>
+            
+            <div class="tip-card">
+                <h4 data-i18n="akkusativ.tip4_title">😌 Nu te stresa cu restul:</h4>
+                <p data-i18n="akkusativ.tip4_text">La început, e normal să nu știi dacă un substantiv e der, die sau das. Important este să înțelegi mecanismul. Când înveți un substantiv nou, învață-l mereu cu articolul lui (der Hund, die Katze, das Buch).</p>
             </div>
         </div>
     </div>
 
     <!-- Butoanele de navigare -->
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding: 20px 0;">
-        <a href="#" class="test-button" style="background: #28a745; text-decoration: none;">📝 Test Akkusativ</a>
-        <a href="dativ.html" class="test-button" style="background: #6f42c1; text-decoration: none;">➡️ Următoarea lecție: Dativ</a>
+    <div class="lesson-navigation">
+        <a href="#" class="btn btn-success" data-i18n="akkusativ.test_button">📝 Test Akkusativ</a>
+        <a href="dativ.html" class="btn btn-primary" data-i18n="akkusativ.next_lesson">➡️ Următoarea lecție: Dativ</a>
     </div>
+    
 </main>
 
 </body>

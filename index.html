@@ -2,36 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Învățare Germană - Acasă</title>
+    <title data-i18n="home.page_title">Hai să învățăm germana! 🇩🇪</title>
     <link rel="stylesheet" href="css/style.css">
+    <script defer src="translate/translate.js"></script>
+    <script defer src="data/home.js"></script>
     <script defer src="js/main.js"></script>
 </head>
 <body>
     <header>
-        <nav class="navbar">
-            <a href="index.html" class="nav-item active">
-                🏠 Acasă
-            </a>
-            <a href="learn.html" class="nav-item">
-                📚 Mediu de învățare
-            </a>
-            <a href="tests/general-test.html" class="nav-item">
-                🧩 Test general
-            </a>
-            <a href="progress.html" class="nav-item">
-                📊 Progres
-            </a>
+        <nav class="navbar-modern">
+            <div class="navbar-content">
+                <div class="nav-section">
+                    <a href="index.html" class="nav-item-modern active" data-i18n="nav.home">
+                        🏠 Acasă
+                    </a>
+                    <a href="learn.html" class="nav-item-modern" data-i18n="nav.learn">
+                        📚 Mediu de învățare
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="language-selector-nav">
+                        <select id="languageSelector">
+                            <!-- Opțiunile vor fi populate dinamic de JavaScript -->
+                        </select>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <main class="home-container">
-        <h1>Bun venit la cursul tău de Germană! 🇩🇪</h1>
-        <p>Alege una dintre opțiunile de mai jos pentru a începe.</p>
-        <div class="home-grid">
-            <a href="learn.html" class="card">🧠 Învață lecțiile</a>
-            <a href="tests/general-test.html" class="card">🧩 Testare generală</a>
-            <a href="tests/vocabulary-test.html" class="card">🎯 Vokabeltest</a>
-            <a href="progress.html" class="card">📊 Vezi progresul tău</a>
+    <main class="page-container">
+        <div class="home-container modern-home">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <h1 data-i18n="home.title" class="hero-title">Hai să învățăm germana! 🇩🇪</h1>
+                <p id="welcome-message" class="welcome-message">Bună ziua! Gata să învățăm germana? 🇩🇪</p>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-section">
+                <h2 class="section-title" data-i18n="home.quick_actions">⚡ Acțiuni rapide</h2>
+                <div id="quick-actions" class="quick-actions-grid">
+                    <!-- Quick actions vor fi generate dinamic -->
+                </div>
+            </div>
+
+            <!-- Main Navigation -->
+            <div class="main-navigation">
+                <h2 class="section-title" data-i18n="home.choose_option">🎯 Alege o opțiune</h2>
+                <div class="home-grid">
+                    <a href="learn.html" class="card modern-card learn-card" data-i18n="home.learn_lessons">
+                        <div class="card-icon">🧠</div>
+                        <div class="card-content">
+                            <h3 data-i18n="home.learn_title">Învață lecțiile</h3>
+                            <p data-i18n="home.learn_desc">Explorează lecțiile interactive</p>
+                        </div>
+                        <div class="card-arrow">→</div>
+                    </a>
+                    
+                    <a href="tests/general-test.html" class="card modern-card test-card" data-i18n="home.general_test">
+                        <div class="card-icon">🧩</div>
+                        <div class="card-content">
+                            <h3 data-i18n="home.test_title">Testare generală</h3>
+                            <p data-i18n="home.test_desc">Verifică-ți cunoștințele</p>
+                        </div>
+                        <div class="card-arrow">→</div>
+                    </a>
+                    
+                    <a href="tests/vocabulary-test.html" class="card modern-card vocab-card" data-i18n="home.vocabulary_test">
+                        <div class="card-icon">🎯</div>
+                        <div class="card-content">
+                            <h3 data-i18n="home.vocab_title">Vokabeltest</h3>
+                            <p data-i18n="home.vocab_desc">Testează vocabularul</p>
+                        </div>
+                        <div class="card-arrow">→</div>
+                    </a>
+                    
+                    <a href="progress.html" class="card modern-card progress-card" data-i18n="home.view_progress">
+                        <div class="card-icon">📊</div>
+                        <div class="card-content">
+                            <h3 data-i18n="home.progress_title">Vezi progresul</h3>
+                            <p data-i18n="home.progress_desc">Analizează performanța</p>
+                        </div>
+                        <div class="card-arrow">→</div>
+                    </a>
+                </div>
+            </div>
         </div>
     </main>
 </body>

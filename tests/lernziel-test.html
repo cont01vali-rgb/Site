@@ -3,37 +3,82 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Test: Das Lernziel (Fragenkatalog A1)</title>
+  <title data-i18n="test.title">Test: Fragenkatalog A1 — Das Lernziel</title>
   <link rel="stylesheet" href="../css/style.css">
   <script defer src="../data/fragenkatalog-a1.js"></script>
   <script defer src="../js/lernziel-test-runner.js"></script>
 </head>
 <body>
 <header>
-  <nav class="navbar">
-    <a href="../index.html" class="nav-item">🏠 Acasă</a>
-    <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
-    <a href="../lessons/das-lernziel.html" class="nav-item">6. Das Lernziel</a>
+  <nav class="navbar-modern">
+    <div class="navbar-content">
+      <div class="nav-section">
+        <a href="../index.html" class="nav-item-modern" data-i18n="nav.home">
+          🏠 Acasă
+        </a>
+        <a href="../learn.html" class="nav-item-modern" data-i18n="nav.learn">
+          📚 Mediu de învățare
+        </a>
+      </div>
+      
+      <div class="nav-section">
+        <div class="language-selector-nav">
+          <select id="languageSelector">
+            <option value="ro">🇷🇴 Română</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="ua">🇺🇦 Українська</option>
+          </select>
+        </div>
+      </div>
+    </div>
   </nav>
 </header>
 
-<main class="container test-page" style="max-width:820px;margin:1.2rem auto;padding:1rem;">
-  <h1>Test: Fragenkatalog A1 — Das Lernziel</h1>
+<main class="page-container">
+  <div class="container">
+    <!-- Header modern cu design îmbunătățit -->
+    <div class="test-header">
+      <div class="test-header-content">
+        <h1 class="test-title" data-i18n="test.title">Test: Fragenkatalog A1 — Das Lernziel</h1>
+        <div class="test-progress-bar">
+          <div class="progress-info">
+            <span data-i18n="test.progress">Întrebare</span> 
+            <span class="progress-numbers">
+              <span id="qIndex">0</span>/<span id="qTotal">0</span>
+            </span>
+            <span class="progress-separator">•</span>
+            <span data-i18n="test.score">Scor</span>: 
+            <span id="score" class="score-display">0</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <p id="progress">Întrebare <span id="qIndex">0</span>/<span id="qTotal">0</span> — Scor: <span id="score">0</span></p>
+    <!-- Container întrebări cu design modern -->
+    <div class="test-question-container">
+      <div id="questionArea" class="question-area"></div>
+    </div>
 
-  <div id="questionArea" style="min-height:180px;"></div>
+    <!-- Controale test cu design îmbunătățit -->
+    <div class="test-controls-modern">
+      <button id="verify-btn" class="btn btn-primary" data-i18n="test.verify">Verifică</button>
+      <button id="next-btn" class="btn btn-success" style="display:none;" data-i18n="test.next_question">Următoarea întrebare</button>
+    </div>
 
-  <div class="test-controls" style="margin-top:.8rem;">
-    <button id="verify-btn" class="btn">Verifică</button>
-    <button id="next-btn" class="btn" style="display:none;">Următoarea întrebare</button>
-  </div>
+    <!-- Feedback cu design modern -->
+    <div id="feedback" class="test-feedback"></div>
 
-  <p id="feedback" class="feedback" style="min-height:1.2rem;margin-top:.6rem;"></p>
-
-  <div style="text-align:center;margin-top:1rem;">
-    <a id="back-to-lesson" class="test-button" href="../lessons/das-lernziel.html">Înapoi la lecție</a>
+    <!-- Navigare cu design îmbunătățit -->
+    <div class="test-navigation">
+      <a id="back-to-lesson" class="btn btn-outline" href="../lessons/das-lernziel.html" data-i18n="test.back_to_lesson">
+        ← Înapoi la lecție
+      </a>
+    </div>
   </div>
 </main>
 </body>
+<script src="../translate/translate.js"></script>
 </html>

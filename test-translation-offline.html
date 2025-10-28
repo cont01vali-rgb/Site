@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Translation System - Offline</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-card {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .selector {
+            text-align: center;
+            margin: 20px 0;
+        }
+        select {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 2px solid #1877f2;
+            border-radius: 8px;
+            background: white;
+        }
+        .status { 
+            padding: 10px; 
+            border-radius: 5px; 
+            margin: 10px 0;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+    </style>
+    <script>
+        console.log('=== TRANSLATION TEST PAGE ===');
+        
+        // Simulez sistemul de traducere inline pentru test
+        const testTranslations = {
+            'ro': {
+                nav: { home: "Acasă", learn: "Mediu de învățare", test: "Test general", progress: "Progres" },
+                home: { title: "SITE TEST! 🇩🇪", subtitle: "Alege una dintre opțiunile de mai jos pentru a începe." }
+            },
+            'en': {
+                nav: { home: "Home", learn: "Learning Environment", test: "General Test", progress: "Progress" },
+                home: { title: "GERMAN LEARNING SITE! 🇩🇪", subtitle: "Choose one of the options below to start." }
+            }
+        };
+        
+        let currentLang = localStorage.getItem('selectedLanguage') || 'en';
+        
+        function updateTranslations() {
+            const lang = currentLang;
+            const translations = testTranslations[lang];
+            
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const keys = key.split('.');
+                let result = translations;
+                
+                for (const k of keys) {
+                    if (result && typeof result === 'object' && k in result) {
+                        result = result[k];
+                    } else {
+                        result = null;
+                        break;
+                    }
+                }
+                
+                if (result) {
+                    element.innerHTML = result;
+                    console.log(`✅ Tradus "${key}": "${result}"`);
+                } else {
+                    console.warn(`❌ Nu s-a găsit "${key}"`);
+                }
+            });
+            
+            // Actualizează selectorul
+            const selector = document.getElementById('langSelect');
+            if (selector) {
+                selector.value = currentLang;
+            }
+            
+            // Actualizează status
+            const status = document.getElementById('status');
+            if (status) {
+                status.innerHTML = `✅ Traduceri aplicate pentru: <strong>${lang === 'en' ? 'English' : 'Română'}</strong>`;
+                status.className = 'status success';
+            }
+        }
+        
+        function switchLanguage(newLang) {
+            if (newLang === currentLang) return;
+            
+            console.log(`Schimb din ${currentLang} în ${newLang}`);
+            localStorage.setItem('selectedLanguage', newLang);
+            currentLang = newLang;
+            updateTranslations();
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded, aplicam traduceri...');
+            updateTranslations();
+            
+            const selector = document.getElementById('langSelect');
+            if (selector) {
+                selector.addEventListener('change', (e) => {
+                    switchLanguage(e.target.value);
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="test-card">
+        <h1>🧪 Test Translation System (Offline)</h1>
+        <div id="status" class="status warning">Se încarcă...</div>
+        
+        <div class="selector">
+            <label for="langSelect">Selectează limba:</label><br><br>
+            <select id="langSelect">
+                <option value="en">🇺🇸 English</option>
+                <option value="ro">🇷🇴 Română</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="test-card">
+        <h2>Test Navigation</h2>
+        <p>Aceste texte ar trebui să se schimbe:</p>
+        <ul>
+            <li><strong>Home:</strong> <span data-i18n="nav.home">Se încarcă...</span></li>
+            <li><strong>Learn:</strong> <span data-i18n="nav.learn">Se încarcă...</span></li>
+            <li><strong>Test:</strong> <span data-i18n="nav.test">Se încarcă...</span></li>
+            <li><strong>Progress:</strong> <span data-i18n="nav.progress">Se încarcă...</span></li>
+        </ul>
+    </div>
+
+    <div class="test-card">
+        <h2>Test Home Content</h2>
+        <h3 data-i18n="home.title">Se încarcă...</h3>
+        <p data-i18n="home.subtitle">Se încarcă...</p>
+    </div>
+
+    <div class="test-card">
+        <h2>Instrucțiuni de testare</h2>
+        <ol>
+            <li>Deschide această pagină în browser (funcționează cu <code>file://</code>)</li>
+            <li>Schimbă limba din dropdown</li>
+            <li>Verifică că textele se traduc instant</li>
+            <li>Reîncarcă pagina - limba ar trebui să rămână salvată</li>
+            <li>Deschide Console (F12) pentru detalii tehnice</li>
+        </ol>
+        
+        <p><strong>Dacă funcționează aici, va funcționa și pe site-ul principal!</strong></p>
+    </div>
+</body>
+</html>

@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
   verifyBtn.addEventListener('click', () => {
     if (!canVerify()) return;
     const correct = checkAnswer();
-    // Feedback but do NOT reveal correct option text
-    feedback.style.color = correct ? 'green' : 'red';
+    // Feedback cu noul design modern
+    feedback.className = correct ? 'test-feedback success' : 'test-feedback error';
     feedback.textContent = correct ? '✅ Corect!' : '❌ Greșit!';
     if (correct) score++;
     scoreEl.textContent = score;
@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     selected = null;
     feedback.textContent = '';
+    feedback.className = 'test-feedback'; // resetează clasa
     verifyBtn.style.display = 'inline-block';
     nextBtn.style.display = 'none';
     renderCurrent();
@@ -54,37 +55,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const q = data[idx];
     qIndexEl.textContent = idx + 1;
     scoreEl.textContent = score;
+    
+    // Actualizează bara de progres
+    const progressFill = document.getElementById('progressFill');
+    if (progressFill) {
+      const progressPercent = ((idx + 1) / data.length) * 100;
+      progressFill.style.width = `${progressPercent}%`;
+    }
+    
     questionArea.innerHTML = '';
 
-    const qTitle = document.createElement('h3');
-    qTitle.style.margin = '.2rem 0 .6rem 0';
+    // Container pentru textul întrebării
+    const qTitle = document.createElement('div');
+    qTitle.className = 'question-text';
     qTitle.textContent = `${idx + 1}. ${q.text}`;
     questionArea.appendChild(qTitle);
 
-    // no translation shown in test environment to increase difficulty
+    // Container pentru opțiunile de răspuns
+    const optionsContainer = document.createElement('div');
+    optionsContainer.className = 'question-options';
 
     if (q.type === 'tf') {
-      const row = document.createElement('div');
-      row.className = 'answers';
       const aBtn = makeOptionBtn('a', 'richtig');
       const bBtn = makeOptionBtn('b', 'falsch');
-      row.appendChild(aBtn);
-      row.appendChild(bBtn);
-      questionArea.appendChild(row);
+      optionsContainer.appendChild(aBtn);
+      optionsContainer.appendChild(bBtn);
     } else if (q.type === 'mc') {
-      const row = document.createElement('div');
-      row.className = 'answers';
       (q.options || []).forEach((opt, i) => {
         // normalize options like "a. text" -> keep text after letter
         const content = (opt || '').toString().replace(/^[a-z]\.\s*/i, '');
         const letter = ['a','b','c'][i] || String.fromCharCode(97 + i);
         const btn = makeOptionBtn(letter, content);
-        row.appendChild(btn);
+        optionsContainer.appendChild(btn);
       });
-      questionArea.appendChild(row);
     } else {
-      questionArea.textContent = 'Tip întrebare necunoscut';
+      const errorMsg = document.createElement('p');
+      errorMsg.textContent = 'Tip întrebare necunoscut';
+      optionsContainer.appendChild(errorMsg);
     }
+    
+    questionArea.appendChild(optionsContainer);
 
     // bind option selection
     questionArea.querySelectorAll('.ans-btn').forEach(b => {
@@ -100,8 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'ans-btn';
-    btn.style.minWidth = '140px';
-    btn.style.margin = '6px';
     btn.dataset.val = letterOrId;
     btn.textContent = `${letterOrId}. ${label}`;
     return btn;
