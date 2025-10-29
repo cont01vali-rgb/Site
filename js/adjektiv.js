@@ -48,20 +48,92 @@ const adjectivesData = [
   // Adjective utile pentru descrieri
   {"adjektiv": "stark",       "comparativ": "stärker",       "superlativ": "am stärksten",      "traducere": "puternic",       "exemplu": "Er ist sehr stark."},
   {"adjektiv": "schwach",     "comparativ": "schwächer",     "superlativ": "am schwächsten",    "traducere": "slab",           "exemplu": "Sie fühlt sich schwach."},
+  
+  // Adjective noi adăugate - Luminozitate și putere
+  {"adjektiv": "dunkel",      "comparativ": "dunkler",       "superlativ": "am dunkelsten",     "traducere": "întunecat",      "exemplu": "Das Zimmer ist dunkel."},
+  {"adjektiv": "hell",        "comparativ": "heller",        "superlativ": "am hellsten",       "traducere": "luminos",        "exemplu": "Die Sonne ist hell."},
+  {"adjektiv": "kräftig",     "comparativ": "kräftiger",     "superlativ": "am kräftigsten",    "traducere": "puternic/tare",  "exemplu": "Er hat kräftige Arme."},
+  
+  // Viteză și caracter  
+  {"adjektiv": "mutig",       "comparativ": "mutiger",       "superlativ": "am mutigsten",      "traducere": "curajos",        "exemplu": "Der Soldat ist mutig."},
+  {"adjektiv": "feig",        "comparativ": "feiger",        "superlativ": "am feigsten",       "traducere": "laș",            "exemplu": "Er ist feig vor Spinnen."},
+  {"adjektiv": "ängstlich",   "comparativ": "ängstlicher",   "superlativ": "am ängstlichsten",  "traducere": "fricos",         "exemplu": "Das Kind ist ängstlich."},
+  {"adjektiv": "lustig",      "comparativ": "lustiger",      "superlativ": "am lustigsten",     "traducere": "amuzant",        "exemplu": "Der Clown ist lustig."},
+  {"adjektiv": "wolkig",      "comparativ": "wolkiger",      "superlativ": "am wolkigsten",     "traducere": "înnorat",        "exemplu": "Der Himmel ist wolkig."},
+  
+  // Natural și artificial
+  {"adjektiv": "natürlich",   "comparativ": "natürlicher",   "superlativ": "am natürlichsten",  "traducere": "natural",        "exemplu": "Das ist natürliches Licht."},
+  {"adjektiv": "künstlich",   "comparativ": "künstlicher",   "superlativ": "am künstlichsten",  "traducere": "artificial",     "exemplu": "Das Licht ist künstlich."},
+  
+  // Sănătate și stare
+  {"adjektiv": "gesund",      "comparativ": "gesünder",      "superlativ": "am gesündesten",    "traducere": "sănătos",        "exemplu": "Sport ist gesund."},
+  {"adjektiv": "ungesund",    "comparativ": "ungesünder",    "superlativ": "am ungesündesten",  "traducere": "nesănătos",      "exemplu": "Rauchen ist ungesund."},
+  {"adjektiv": "krank",       "comparativ": "kränker",       "superlativ": "am kränksten",      "traducere": "bolnav",         "exemplu": "Er ist heute krank."},
+  {"adjektiv": "hungrig",     "comparativ": "hungriger",     "superlativ": "am hungrigsten",    "traducere": "flămând",        "exemplu": "Ich bin sehr hungrig."},
+  {"adjektiv": "satt",        "comparativ": "satter",        "superlativ": "am sattesten",      "traducere": "sătul",          "exemplu": "Nach dem Essen bin ich satt."},
+  
+  // Înălțime și distanță
+  {"adjektiv": "hoch",        "comparativ": "höher",         "superlativ": "am höchsten",       "traducere": "înalt",          "exemplu": "Der Berg ist hoch."},
+  {"adjektiv": "niedrig",     "comparativ": "niedriger",     "superlativ": "am niedrigsten",    "traducere": "jos",            "exemplu": "Der Tisch ist niedrig."},
+  {"adjektiv": "nah",         "comparativ": "näher",         "superlativ": "am nächsten",       "traducere": "aproape",        "exemplu": "Die Schule ist nah."},
+  {"adjektiv": "weit",        "comparativ": "weiter",        "superlativ": "am weitesten",      "traducere": "departe",        "exemplu": "Die Stadt ist weit."},
+  {"adjektiv": "fern",        "comparativ": "ferner",        "superlativ": "am fernsten",       "traducere": "îndepărtat",     "exemplu": "Das Land ist fern."},
+  
+  // Gust și textură
+  {"adjektiv": "süß",         "comparativ": "süßer",         "superlativ": "am süßesten",       "traducere": "dulce",          "exemplu": "Der Kuchen ist süß."},
+  {"adjektiv": "sauer",       "comparativ": "saurer",        "superlativ": "am sauersten",      "traducere": "acru",           "exemplu": "Die Zitrone ist sauer."},
+  {"adjektiv": "dick",        "comparativ": "dicker",        "superlativ": "am dicksten",       "traducere": "gras",           "exemplu": "Das Buch ist dick."},
+  {"adjektiv": "dünn",        "comparativ": "dünner",        "superlativ": "am dünnsten",       "traducere": "subțire",        "exemplu": "Das Papier ist dünn."},
+  
+  // Inteligență și caracter
+  {"adjektiv": "dumm",        "comparativ": "dümmer",        "superlativ": "am dümmsten",       "traducere": "prost",          "exemplu": "Das war dumm von mir."},
+  {"adjektiv": "klug",        "comparativ": "klüger",        "superlativ": "am klügsten",       "traducere": "deștept",        "exemplu": "Sie ist sehr klug."},
+  {"adjektiv": "schlau",      "comparativ": "schlauer",      "superlativ": "am schlauesten",    "traducere": "isteț",          "exemplu": "Der Fuchs ist schlau."},
+  {"adjektiv": "clever",      "comparativ": "cleverer",      "superlativ": "am cleversten",     "traducere": "inteligent",     "exemplu": "Das war eine clevere Idee."},
+  {"adjektiv": "intelligent", "comparativ": "intelligenter", "superlativ": "am intelligentesten", "traducere": "inteligent",   "exemplu": "Er ist sehr intelligent."},
+  
+  // Bogăție și corectitudine
+  {"adjektiv": "arm",         "comparativ": "ärmer",         "superlativ": "am ärmsten",        "traducere": "sărac",          "exemplu": "Die Familie ist arm."},
+  {"adjektiv": "reich",       "comparativ": "reicher",       "superlativ": "am reichsten",      "traducere": "bogat",          "exemplu": "Er ist sehr reich."},
+  {"adjektiv": "falsch",      "comparativ": "falscher",      "superlativ": "am falschesten",    "traducere": "greșit",         "exemplu": "Die Antwort ist falsch."},
+  {"adjektiv": "schlimm",     "comparativ": "schlimmer",     "superlativ": "am schlimmsten",    "traducere": "rău/grav",       "exemplu": "Das ist sehr schlimm."},
+  
+  // Comportament și aspect
+  {"adjektiv": "faul",        "comparativ": "fauler",        "superlativ": "am faulsten",       "traducere": "leneș",          "exemplu": "Er ist heute faul."},
+  {"adjektiv": "fleißig",     "comparativ": "fleißiger",     "superlativ": "am fleißigsten",    "traducere": "harnic",         "exemplu": "Sie ist sehr fleißig."},
+  {"adjektiv": "brav",        "comparativ": "braver",        "superlativ": "am bravsten",       "traducere": "cuminte",        "exemplu": "Das Kind ist brav."},
+  {"adjektiv": "geschlossen", "comparativ": "geschlossener", "superlativ": "am geschlossensten", "traducere": "închis",        "exemplu": "Die Tür ist geschlossen."},
+  {"adjektiv": "glatt",       "comparativ": "glatter",       "superlativ": "am glättesten",     "traducere": "neted",          "exemplu": "Das Eis ist glatt."},
+  {"adjektiv": "lockig",      "comparativ": "lockiger",      "superlativ": "am lockigsten",     "traducere": "creț",           "exemplu": "Sie hat lockige Haare."},
   {"adjektiv": "leicht",      "comparativ": "leichter",      "superlativ": "am leichtesten",    "traducere": "ușor",           "exemplu": "Die Tasche ist leicht."},
   {"adjektiv": "schwer",      "comparativ": "schwerer",      "superlativ": "am schwersten",     "traducere": "greu",           "exemplu": "Der Koffer ist schwer."},
   {"adjektiv": "teuer",       "comparativ": "teurer",        "superlativ": "am teuersten",      "traducere": "scump",          "exemplu": "Das Auto ist teuer."},
   {"adjektiv": "billig",      "comparativ": "billiger",      "superlativ": "am billigsten",     "traducere": "ieftin",         "exemplu": "Das Brot ist billig."}
 ];
 
-// Load adjectives and populate table
+// Load adjectives and populate table with pagination
 document.addEventListener('DOMContentLoaded', () => {
   const tableBody = document.querySelector('#adjektivTable tbody');
   const searchInput = document.getElementById('searchInput');
   let currentData = adjectivesData;
   let selectedRowIndex = -1;
+  let currentPage = 1;
+  const pageSize = 25;
 
-  renderTable(adjectivesData);
+  // Create pagination elements
+  const tableContainer = document.getElementById('adjektivTable').parentElement;
+  const paginationInfo = document.createElement('div');
+  paginationInfo.id = 'aPaginationInfo';
+  paginationInfo.style.cssText = 'margin-top:8px;color:#444;';
+  
+  const paginationEl = document.createElement('div');
+  paginationEl.id = 'aPagination';
+  paginationEl.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:6px;';
+  
+  tableContainer.appendChild(paginationInfo);
+  tableContainer.appendChild(paginationEl);
+
+  render();
 
   // Live search
   searchInput.addEventListener('input', () => {
@@ -73,8 +145,21 @@ document.addEventListener('DOMContentLoaded', () => {
       normalize((item.superlativ || "").toLowerCase()).includes(term)
     );
     currentData = filtered;
+    currentPage = 1;
     selectedRowIndex = -1;
-    renderTable(filtered);
+    render();
+  });
+
+  // Pagination handler
+  paginationEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-page]');
+    if (!btn) return;
+    const p = Number(btn.getAttribute('data-page'));
+    if (!Number.isNaN(p)) {
+      currentPage = p;
+      selectedRowIndex = -1;
+      render();
+    }
   });
 
   // Keyboard navigation (ArrowUp/Down + Enter to play)
@@ -97,10 +182,11 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedRowIndex = 0;
         updateSelection(rows);
       }
-    } else if (e.key === 'Enter' && selectedRowIndex >= 0 && selectedRowIndex < currentData.length) {
+    } else if (e.key === 'Enter' && selectedRowIndex >= 0) {
       e.preventDefault();
-      const item = currentData[selectedRowIndex];
-      playPronunciation(item.adjektiv);
+      const globalIndex = (currentPage - 1) * pageSize + selectedRowIndex;
+      const item = currentData[globalIndex];
+      if (item) playPronunciation(item.adjektiv);
     }
   });
 
@@ -115,12 +201,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Render table
-  function renderTable(items) {
+  // Render table with pagination
+  function render() {
     tableBody.innerHTML = "";
-    const sorted = [...items].sort((a, b) => a.adjektiv.localeCompare(b.adjektiv, 'de'));
+    
+    if (!currentData.length) {
+      tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:#666;padding:12px;">Niciun rezultat.</td></tr>`;
+      paginationEl.innerHTML = '';
+      paginationInfo.textContent = '';
+      return;
+    }
+
+    const sorted = [...currentData].sort((a, b) => a.adjektiv.localeCompare(b.adjektiv, 'de'));
     currentData = sorted;
-    sorted.forEach(item => {
+    
+    const total = sorted.length;
+    const totalPages = Math.max(1, Math.ceil(total / pageSize));
+    if (currentPage > totalPages) currentPage = totalPages;
+
+    const start = (currentPage - 1) * pageSize;
+    const pageItems = sorted.slice(start, start + pageSize);
+
+    pageItems.forEach(item => {
       const row = document.createElement('tr');
 
       // audio column
@@ -159,6 +261,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
       tableBody.appendChild(row);
     });
+
+    // Reset selection
+    selectedRowIndex = -1;
+    
+    renderPagination(totalPages);
+    paginationInfo.textContent = `Afișez ${start + 1}–${start + pageItems.length} din ${total}`;
+  }
+
+  function renderPagination(totalPages) {
+    paginationEl.innerHTML = '';
+    if (totalPages <= 1) return;
+
+    const mk = (label, page, active = false) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'sub-btn';
+      b.setAttribute('data-page', page);
+      b.textContent = label;
+      if (active) {
+        b.style.background = '#2b78c8';
+        b.style.color = 'white';
+      }
+      return b;
+    };
+
+    paginationEl.appendChild(mk('«', Math.max(1, currentPage - 1)));
+    const maxButtons = 7;
+    let s = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+    let e = Math.min(totalPages, s + maxButtons - 1);
+    if (e - s < maxButtons - 1) s = Math.max(1, e - maxButtons + 1);
+    for (let p = s; p <= e; p++) paginationEl.appendChild(mk(String(p), p, p === currentPage));
+    paginationEl.appendChild(mk('»', Math.min(totalPages, currentPage + 1)));
   }
 
   // TTS

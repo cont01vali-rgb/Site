@@ -9,11 +9,26 @@
 </head>
 <body>
 <header>
-  <nav class="navbar">
-    <a href="../index.html" class="nav-item">🏠 Acasă</a>
-        <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
-        <a href="../tests/general-test.html" class="nav-item">🧩 Test general</a>
-        <a href="../progress.html" class="nav-item">📊 Progres</a>
+  <nav class="navbar-modern">
+    <div class="navbar-content">
+      <div class="nav-section">
+        <a href="../index.html" class="nav-item-modern" data-i18n="nav.home">
+          🏠 Acasă
+        </a>
+        <a href="../learn.html" class="nav-item-modern active" data-i18n="nav.learn">
+          📚 Mediu de învățare
+        </a>
+      </div>
+      
+      <div class="nav-section">
+        <div class="language-selector-nav">
+          <select id="languageSelector">
+            <option value="en">🇺🇸 English</option>
+            <option value="ro">🇷🇴 Română</option>
+          </select>
+        </div>
+      </div>
+    </div>
   </nav>
 </header>
 
@@ -33,7 +48,121 @@
   <h2>Reguli de bază</h2>
   <p>Adjectivele care stau înaintea substantivului primesc terminații diferite în funcție de gen, număr și caz. Ele pot exprima culoare, mărime, stare, emoție, caracter sau origine.</p>
 
+  <h2>Formarea Comparativului și Superlativului</h2>
+  
+  <h3>📈 Comparativul (Komparativ)</h3>
+  <div class="grammar-box">
+    <p><strong>Regula generală:</strong> adjektiv + <span style="color: red; font-weight: bold; font-size: 18px;">-er</span></p>
+    <ul>
+      <li><strong>Exemple obișnuite:</strong> klein → klein<span style="color: red; font-weight: bold;">er</span>, groß → größ<span style="color: red; font-weight: bold;">er</span></li>
+      <li><strong>Adjective terminate în "e":</strong> se adaugă doar <span style="color: red; font-weight: bold;">-r</span> (neue → neuer)</li>
+      <li><strong>Adjective scurte (o silabă):</strong> multe primesc Umlaut (alt → älter, jung → jünger)</li>
+      <li><strong>Adjective terminate în -el, -er:</strong> pierd "e" din mijloc (dunkel → dunkler)</li>
+    </ul>
+    <p><strong>💡 Utilizare:</strong> <em>Mein Auto ist schnell<span style="color: red; font-weight: bold;">er</span> als deins.</em></p>
+  </div>
+
+  <h3>🏆 Superlativul (Superlativ)</h3>
+  <div class="grammar-box">
+    <p><strong>Regula generală:</strong> <span style="color: red; font-weight: bold; font-size: 18px;">am</span> + adjektiv + <span style="color: red; font-weight: bold; font-size: 18px;">-sten</span></p>
+    <ul>
+      <li><strong>Majoritatea adjectivelor:</strong> klein → <span style="color: red; font-weight: bold;">am</span> klein<span style="color: red; font-weight: bold;">sten</span></li>
+      <li><strong>Adjective terminate în -d, -t, -s, -ß, -x, -z:</strong> se adaugă <span style="color: red; font-weight: bold;">-esten</span></li>
+      <li><strong>Exemple cu -esten:</strong> alt → am äl<span style="color: red; font-weight: bold;">testen</span>, heiß → am heiß<span style="color: red; font-weight: bold;">esten</span></li>
+      <li><strong>Adjective cu Umlaut:</strong> aceleași ca la comparativ (groß → am größten)</li>
+    </ul>
+    <p><strong>💡 Utilizare:</strong> <em>Das ist <span style="color: red; font-weight: bold;">am</span> schön<span style="color: red; font-weight: bold;">sten</span>.</em></p>
+  </div>
+
+  <h3>⚠️ Forme Neregulate Importante</h3>
+  <div class="irregular-box">
+    <table class="irregular-table">
+      <tr>
+        <th>Adjektiv</th>
+        <th>Comparativ</th>
+        <th>Superlativ</th>
+      </tr>
+      <tr>
+        <td>gut</td>
+        <td>besser</td>
+        <td>am besten</td>
+      </tr>
+      <tr>
+        <td>viel</td>
+        <td>mehr</td>
+        <td>am meisten</td>
+      </tr>
+      <tr>
+        <td>gern</td>
+        <td>lieber</td>
+        <td>am liebsten</td>
+      </tr>
+      <tr>
+        <td>hoch</td>
+        <td>höher</td>
+        <td>am höchsten</td>
+      </tr>
+      <tr>
+        <td>nah</td>
+        <td>näher</td>
+        <td>am nächsten</td>
+      </tr>
+    </table>
+  </div>
+
   <input type="text" id="searchInput" placeholder="Caută un adjectiv (germană sau română)...">
+
+  <style>
+    .grammar-box {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      border: 1px solid #2196f3;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .grammar-box ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    
+    .grammar-box li {
+      margin: 8px 0;
+      line-height: 1.5;
+    }
+    
+    .irregular-box {
+      background: linear-gradient(135deg, #fff3e0 0%, #ffcc80 100%);
+      border: 1px solid #ff9800;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .irregular-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    
+    .irregular-table th,
+    .irregular-table td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .irregular-table th {
+      background-color: rgba(255, 152, 0, 0.2);
+      font-weight: bold;
+    }
+    
+    .irregular-table tr:nth-child(even) {
+      background-color: rgba(255, 152, 0, 0.1);
+    }
+  </style>
 
   <table id="adjektivTable">
     <thead>
@@ -50,6 +179,11 @@
       <!-- Adjectivele se încarcă automat din JSON -->
     </tbody>
   </table>
+
+  <!-- Test Button -->
+  <div class="bottom-btn">
+    <a href="../tests/adjektiv-test.html" class="test-button">🎯 Test Adjective</a>
+  </div>
 </main>
 </body>
 </html>

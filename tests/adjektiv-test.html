@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Test: Das Adjektiv — Adjective în germană</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script defer src="../js/adjektiv.js"></script>
+  <script defer src="../js/adjektiv-test-runner.js"></script>
+</head>
+<body>
+<header>
+  <nav class="navbar-modern">
+    <div class="navbar-content">
+      <div class="nav-section">
+        <a href="../index.html" class="nav-item-modern">
+          🏠 Acasă
+        </a>
+        <a href="../learn.html" class="nav-item-modern">
+          📚 Mediu de învățare
+        </a>
+      </div>
+      
+      <div class="nav-section">
+        <div class="language-selector-nav">
+          <select id="languageSelector">
+            <option value="ro">🇷🇴 Română</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="ua">🇺🇦 Українська</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="page-container">
+  <div class="container">
+    <!-- Header modern cu design îmbunătățit -->
+    <div class="test-header">
+      <div class="test-header-content">
+        <h1 class="test-title">Test: Das Adjektiv — Adjective în germană</h1>
+        <div class="test-progress-bar">
+          <div class="progress-info">
+            <span>Întrebare</span> 
+            <span class="progress-numbers">
+              <span id="qIndex">0</span>/<span id="qTotal">0</span>
+            </span>
+            <span class="progress-separator">•</span>
+            <span>Scor</span>: 
+            <span id="score" class="score-display">0</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Container întrebări cu design modern -->
+    <div class="test-question-container">
+      <div id="questionArea" class="question-area"></div>
+    </div>
+
+    <!-- Controale test cu design îmbunătățit -->
+    <div class="test-controls-modern">
+      <button id="verify-btn" class="btn btn-primary">Verifică</button>
+      <button id="next-btn" class="btn btn-success" style="display:none;">Următoarea întrebare</button>
+    </div>
+
+    <!-- Feedback cu design modern -->
+    <div id="feedback" class="test-feedback"></div>
+
+    <!-- Navigare cu design îmbunătățit -->
+    <div class="test-navigation">
+      <a id="back-to-lesson" class="btn btn-outline" href="../lessons/das-adjektiv.html">
+        ← Înapoi la lecție
+      </a>
+    </div>
+  </div>
+</main>
+</body>
+<script src="../translate/translate.js"></script>
+
+<style>
+/* Enhanced styles for detailed explanations */
+.explanation-box {
+  margin-top: 15px;
+  padding: 15px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.comparative-explanation {
+  border-left-color: #17a2b8;
+  background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+}
+
+.superlative-explanation {
+  border-left-color: #ffc107;
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+}
+
+.rule-title {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+
+.rule-text {
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.example-formation {
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  font-family: 'Courier New', monospace;
+  font-weight: 500;
+}
+
+.general-rule {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: rgba(0, 123, 255, 0.1);
+  border-radius: 5px;
+  border: 1px solid rgba(0, 123, 255, 0.2);
+}
+
+.special-cases {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: rgba(255, 193, 7, 0.1);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.test-feedback.success .explanation-box {
+  border-left-color: #28a745;
+}
+
+.test-feedback.error .explanation-box {
+  border-left-color: #dc3545;
+}
+
+/* Enhanced feedback styling */
+.test-feedback {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+
+.test-feedback.success {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.test-feedback.error {
+  background: linear-gradient(135deg, #f8d7da 0%, #f1b0b7 100%);
+  color: #721c24;
+  border: 1px solid #f1b0b7;
+}
+</style>
+
+</html>
+
+</body>
+</html>
