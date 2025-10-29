@@ -24,13 +24,18 @@
     } else run();
   }
 
-  // Categorii de substantive (mapate la structura reală din nouns.js)
+  // Categorii de substantive (mapate la noua structură din nouns.js)
   const CATEGORIES = {
-    familie: ['Familie & identitate'],
-    imbracaminte: ['Îmbrăcăminte'],
-    alimente: ['Alimente'],
-    casa: ['Obiecte casă'],
-    scoala: ['Școală']
+    family: { name: 'Familie', description: 'Familie și persoane' },
+    haus: { name: 'Casa', description: 'Mobilier și camere' },
+    kuche: { name: 'Bucătăria', description: 'Veselă și ustensile' },
+    essen: { name: 'Alimente', description: 'Mâncare și băuturi' },
+    kleidung: { name: 'Îmbrăcăminte', description: 'Haine și accesorii' },
+    schule: { name: 'Școala', description: 'Educație și birou' },
+    arbeit: { name: 'Munca', description: 'Profesii și documente' },
+    objekte: { name: 'Obiecte', description: 'Tehnologie și obiecte' },
+    natur: { name: 'Natura', description: 'Plante și natură' },
+    orte: { name: 'Locuri', description: 'Locații și spații' }
   };
 
   // State global
@@ -59,7 +64,40 @@
     
     setupCategorySelection();
     updateCategoryCounts();
+    setupGlobalKeyboardHandlers();
   });
+
+  // Setup global keyboard handlers
+  function setupGlobalKeyboardHandlers() {
+    document.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        // Pentru input text
+        if (e.target.id === 'userAnswer') {
+          e.preventDefault();
+          const verifyBtn = $('#verify-btn');
+          const nextBtn = $('#next-btn');
+          
+          // Verifică care buton este vizibil
+          const verifyVisible = verifyBtn && getComputedStyle(verifyBtn).display !== 'none';
+          const nextVisible = nextBtn && getComputedStyle(nextBtn).display !== 'none';
+          
+          if (verifyVisible) {
+            verifyAnswer();
+          } else if (nextVisible) {
+            nextQuestion();
+          }
+        }
+        // Pentru feedback (next question)
+        else if ($('#feedback').style.display === 'block') {
+          e.preventDefault();
+          const nextBtn = $('#next-btn');
+          if (nextBtn && getComputedStyle(nextBtn).display !== 'none') {
+            nextQuestion();
+          }
+        }
+      }
+    });
+  }
 
   // Încarcă datele substantivelor
   async function loadNounsData() {
@@ -100,14 +138,28 @@
 
   // Actualizează contoarele pentru categorii
   function updateCategoryCounts() {
-    Object.keys(CATEGORIES).forEach(category => {
-      const nouns = getNounsByCategory(category);
-      const card = $(`.category-card[data-category="${category}"]`);
+    // Mapare pentru categoriile din HTML către cele din JS
+    const categoryMapping = {
+      'familie': 'family',
+      'kleidung': 'kleidung', 
+      'essen': 'essen',
+      'haus': 'haus',
+      'kuche': 'kuche',
+      'schule': 'schule',
+      'arbeit': 'arbeit',
+      'objekte': 'objekte',
+      'orte': 'orte'
+    };
+    
+    Object.keys(categoryMapping).forEach(htmlCategory => {
+      const jsCategory = categoryMapping[htmlCategory];
+      const nouns = getNounsByCategory(jsCategory);
+      const card = $(`.category-card[data-category="${htmlCategory}"]`);
       if (card) {
         const countElement = card.querySelector('.category-count');
-        if (countElement) {
-          const limit = Math.min(nouns.length, 45);
-          countElement.textContent = `${limit} întrebări disponibile`;
+        if (countElement && nouns.length > 0) {
+          const limit = Math.min(nouns.length * 4, 30); // ~4 exerciții per substantiv
+          countElement.textContent = `${nouns.length} substantive, ${limit} întrebări`;
         }
       }
     });
@@ -117,7 +169,7 @@
     if (allCard) {
       const countElement = allCard.querySelector('.category-count');
       if (countElement) {
-        countElement.textContent = `60 întrebări aleatorii din ${nounsData.length}`;
+        countElement.textContent = `60 întrebări aleatorii din ${nounsData.length} substantive`;
       }
     }
   }
@@ -126,48 +178,64 @@
   function getNounsByCategory(category) {
     if (category === 'all') return nounsData;
     
-    const categoryNames = CATEGORIES[category] || [];
-    return nounsData.filter(noun => {
-      // Verifică comentariile din nouns.js pentru categorii
-      const prevComment = getPreviousComment(noun);
-      return categoryNames.some(catName => 
-        prevComment && prevComment.includes(catName)
-      );
-    });
+    return nounsData.filter(noun => noun.categorie === category);
   }
 
-  // Obține comentariul anterior pentru un substantiv (pe baza structurii reale din nouns.js)
-  function getPreviousComment(noun) {
-    const index = nounsData.indexOf(noun);
-    if (index === -1) return null;
+  // Generează exerciții pe baza substantivelor dintr-o categorie
+  function generateExercisesForCategory(category, maxQuestions = 30) {
+    const categoryNouns = getNounsByCategory(category);
+    const exercises = [];
     
-    // Mapează indexurile la categoriile reale din nouns.js cu corectări
-    // Familie & identitate (0-69 + 163+)
-    if ((index >= 0 && index < 70) || index >= 163) {
-      return 'Familie & identitate';
-    } 
-    // Obiecte casă (70-89)
-    else if (index >= 70 && index < 90) {
-      return 'Obiecte casă';
-    }
-    // Veselă/ustensile (90-97) - parte din Obiecte casă
-    else if (index >= 90 && index < 98) {
-      return 'Obiecte casă';
-    }
-    // Alimente & băuturi + Fructe + Legume (98-121)
-    else if (index >= 98 && index < 122) {
-      return 'Alimente';
-    }
-    // Școală / obiecte uzuale (122-128)
-    else if (index >= 122 && index < 129) {
-      return 'Școală';
-    }
-    // Îmbrăcăminte (129-162)
-    else if (index >= 129 && index < 163) {
-      return 'Îmbrăcăminte';
-    }
+    categoryNouns.forEach(noun => {
+      // Exercițiu cu imagine (dacă există)
+      if (noun.image) {
+        exercises.push({
+          type: 'img',
+          question: 'Ce vezi în imagine?',
+          image: noun.image,
+          answer: noun.nomen,
+          word: noun.nomen,
+          category: noun.categorie,
+          nounData: noun // Adaugă referință completă la substantiv
+        });
+      }
+      
+      // Exercițiu articol
+      exercises.push({
+        type: 'multiple',
+        question: `Alege articolul corect pentru "${noun.nomen}".`,
+        options: ['der', 'die', 'das'],
+        correct: noun.gen,
+        word: noun.nomen,
+        category: noun.categorie,
+        nounData: noun // Adaugă referință completă la substantiv
+      });
+      
+      // Exercițiu plural (dacă nu e "-")
+      if (noun.plural && noun.plural !== '-') {
+        exercises.push({
+          type: 'fill',
+          question: `Plural: ${noun.gen} ${noun.nomen} → die ______`,
+          answer: noun.plural,
+          word: noun.nomen,
+          category: noun.categorie,
+          nounData: noun // Adaugă referință completă la substantiv
+        });
+      }
+      
+      // Exercițiu traducere
+      exercises.push({
+        type: 'fill',
+        question: `Traducere în română: ${noun.nomen} = ______`,
+        answer: noun.traducere,
+        word: noun.nomen,
+        category: noun.categorie,
+        nounData: noun // Adaugă referință completă la substantiv
+      });
+    });
     
-    return null;
+    // Amestecă și limitează
+    return shuffleArray(exercises).slice(0, maxQuestions);
   }
 
   // Afișează selecția personalizată
@@ -235,24 +303,43 @@
 
   // Începe testul pentru o categorie
   function startCategoryTest(category) {
-    const nouns = getNounsByCategory(category);
+    // Mapare pentru categoriile vechi către cele noi
+    const categoryMapping = {
+      'familie': 'family',
+      'imbracaminte': 'kleidung', 
+      'alimente': 'essen',
+      'casa': 'haus',
+      'scoala': 'schule'
+    };
+    
+    // Folosește maparea sau categoria originală
+    const actualCategory = categoryMapping[category] || category;
+    const nouns = getNounsByCategory(actualCategory);
+    
     let testNouns;
     
     if (category === 'all') {
       // Pentru "Toate substantivele" - 60 aleatorii
       testNouns = shuffleArray([...nouns]).slice(0, 60);
     } else {
-      // Pentru categorii specifice - până la 45
-      testNouns = shuffleArray([...nouns]).slice(0, 45);
+      // Pentru categorii specifice - până la 30
+      testNouns = shuffleArray([...nouns]).slice(0, 30);
     }
     
-    startTest(category, testNouns);
+    startTest(actualCategory, testNouns);
   }
 
   // Începe testul
   function startTest(category, nouns) {
     currentTest = { category, nouns };
-    testQuestions = generateQuestions(nouns);
+    
+    // Folosește noua funcție de generare exerciții
+    if (category === 'custom') {
+      testQuestions = generateQuestions(nouns); // Păstrează logica veche pentru custom
+    } else {
+      testQuestions = generateExercisesForCategory(category, 30); // Folosește noua structură
+    }
+    
     currentQuestion = 0;
     score = 0;
     
@@ -343,55 +430,83 @@
     let html = `<div class="question-content">`;
     
     // Adaugă imaginea dacă este necesară
-    if (question.type === 'image_recognition' && question.noun.image) {
+    if ((question.type === 'image_recognition' && question.noun?.image) || 
+        (question.type === 'img' && question.image)) {
+      const imageSrc = question.noun?.image || question.image;
       html += `
         <div class="q-media">
-          <img src="../assets/nouns/${question.noun.image}" alt="${question.noun.nomen}" class="q-img">
+          <img src="../assets/nouns/${imageSrc}" alt="${question.answer || question.noun?.nomen}" class="q-img">
         </div>
       `;
     }
     
-    html += `
-      <p class="question-text">${question.question}</p>
-      <div class="answer-input">
-        <input type="text" id="userAnswer" placeholder="Răspunsul tău..." autocomplete="off">
-        <button type="button" id="speakBtn" class="speak-btn" title="Ascultă pronunția">🔊</button>
-      </div>
-    </div>`;
+    html += `<p class="question-text">${question.question}</p>`;
+    
+    // Adaugă interfața de răspuns în funcție de tipul întrebării
+    if (question.type === 'multiple') {
+      // Pentru exercițiile de tip multiple choice (articol)
+      html += `
+        <div class="answer-options">
+          ${question.options.map(option => `
+            <button type="button" class="option-btn" data-option="${option}">${option}</button>
+          `).join('')}
+        </div>
+      `;
+    } else {
+      // Pentru exercițiile cu input text
+      html += `
+        <div class="answer-input">
+          <input type="text" id="userAnswer" placeholder="Răspunsul tău..." autocomplete="off">
+          <button type="button" id="speakBtn" class="speak-btn" title="Ascultă pronunția">🔊</button>
+        </div>
+      `;
+    }
+    
+    html += `</div>`;
     
     questionArea.innerHTML = html;
     
-    // Focus pe input și setup Enter key
-    const input = $('#userAnswer');
-    input.disabled = false; // Re-enable input pentru noua întrebare
-    input.value = ''; // Clear previous answer
-    input.focus();
-    
-    // Add Enter key support pentru noul input
-    input.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        const verifyBtn = $('#verify-btn');
-        const nextBtn = $('#next-btn');
-        
-        // Use offsetParent pentru a verifica dacă butoanele sunt vizibile
-        const verifyVisible = verifyBtn && verifyBtn.offsetParent !== null;
-        const nextVisible = nextBtn && nextBtn.offsetParent !== null;
-        
-        if (verifyVisible) {
-          verifyAnswer();
-        } else if (nextVisible) {
-          nextQuestion();
+    // Setup în funcție de tipul întrebării
+    if (question.type === 'multiple') {
+      // Pentru multiple choice, setup event listeners pe butoane
+      const optionBtns = $$('.option-btn');
+      optionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Marchează opțiunea selectată
+          optionBtns.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          
+          // Simulează input pentru verificare
+          const hiddenInput = document.createElement('input');
+          hiddenInput.type = 'hidden';
+          hiddenInput.id = 'userAnswer';
+          hiddenInput.value = btn.getAttribute('data-option');
+          
+          // Înlătură input-ul vechi dacă există
+          const oldInput = $('#userAnswer');
+          if (oldInput) oldInput.remove();
+          
+          questionArea.appendChild(hiddenInput);
+          
+          // Auto-verifică după selecție
+          setTimeout(() => verifyAnswer(), 300);
+        });
+      });
+    } else {
+      // Pentru input text
+      const input = $('#userAnswer');
+      input.disabled = false;
+      input.value = '';
+      input.focus();
+      
+      // Pronunție
+      $('#speakBtn')?.addEventListener('click', () => {
+        const nounWord = question.word || question.noun?.nomen || question.answer;
+        if (nounWord) {
+          speak(nounWord);
         }
-      }
-    });
-    
-    // Pronunție
-    $('#speakBtn')?.addEventListener('click', () => {
-      if (question.noun.nomen) {
-        speak(question.noun.nomen);
-      }
-    });
+      });
+    }
     
     // Setup butoane
     setupTestButtons();
@@ -413,15 +528,22 @@
   function verifyAnswer() {
     const userAnswer = $('#userAnswer').value.trim();
     const question = testQuestions[currentQuestion];
-    const correctAnswer = question.answer;
+    let correctAnswer;
+    
+    // Determină răspunsul corect în funcție de tipul exercițiului
+    if (question.type === 'multiple') {
+      correctAnswer = question.correct;
+    } else {
+      correctAnswer = question.answer;
+    }
     
     const isCorrect = norm(userAnswer) === norm(correctAnswer);
     
     if (isCorrect) {
       score++;
-      showFeedback(true, correctAnswer, question.noun);
+      showFeedback(true, correctAnswer, question, userAnswer);
     } else {
-      showFeedback(false, correctAnswer, question.noun, userAnswer);
+      showFeedback(false, correctAnswer, question, userAnswer);
     }
     
     // Actualizează scorul
@@ -434,8 +556,53 @@
   }
 
   // Afișează feedback
-  function showFeedback(isCorrect, correctAnswer, noun, userAnswer = '') {
+  function showFeedback(isCorrect, correctAnswer, question, userAnswer = '') {
     const feedback = $('#feedback');
+    
+    // Găsește substantivul - prioritate pentru nounData din question
+    let noun = null;
+    
+    if (question.nounData) {
+      // Pentru exercițiile noi cu referință completă
+      noun = question.nounData;
+    } else if (question.noun) {
+      // Pentru exercițiile vechi (custom)
+      noun = question.noun;
+    } else {
+      // Fallback - găsește substantivul pe baza categoriei și răspunsului
+      const category = question.category;
+      const categoryNouns = getNounsByCategory(category);
+      
+      // Încearcă să găsească substantivul pe baza word, answer sau question
+      const searchTerm = question.word || question.answer || correctAnswer;
+      noun = categoryNouns.find(n => 
+        n.nomen === searchTerm || 
+        n.traducere === searchTerm ||
+        n.gen === searchTerm ||
+        n.plural === searchTerm
+      );
+      
+      // Dacă nu găsește, încearcă în toate substantivele
+      if (!noun) {
+        noun = nounsData.find(n => 
+          n.nomen === searchTerm || 
+          n.traducere === searchTerm ||
+          n.gen === searchTerm ||
+          n.plural === searchTerm
+        );
+      }
+    }
+    
+    // Fallback dacă nu găsește substantivul
+    if (!noun) {
+      noun = {
+        nomen: question.word || correctAnswer || 'N/A',
+        gen: question.correct || 'N/A',
+        traducere: correctAnswer || 'N/A',
+        plural: 'N/A',
+        exemplu: 'N/A'
+      };
+    }
     
     if (isCorrect) {
       feedback.innerHTML = `
@@ -443,8 +610,8 @@
           <p><strong>✅ Corect!</strong></p>
           <div class="noun-details">
             <p><strong>${noun.nomen}</strong> (${noun.gen}) → <strong>${noun.traducere}</strong></p>
-            <p><em>Plural:</em> ${noun.plural}</p>
-            <p><em>Exemplu:</em> ${noun.exemplu}</p>
+            <p><em>Plural:</em> ${noun.plural || 'N/A'}</p>
+            <p><em>Exemplu:</em> ${noun.exemplu || 'N/A'}</p>
           </div>
         </div>
       `;
@@ -456,8 +623,8 @@
           <p>Răspunsul corect: <strong>${correctAnswer}</strong></p>
           <div class="noun-details">
             <p><strong>${noun.nomen}</strong> (${noun.gen}) → <strong>${noun.traducere}</strong></p>
-            <p><em>Plural:</em> ${noun.plural}</p>
-            <p><em>Exemplu:</em> ${noun.exemplu}</p>
+            <p><em>Plural:</em> ${noun.plural || 'N/A'}</p>
+            <p><em>Exemplu:</em> ${noun.exemplu || 'N/A'}</p>
           </div>
         </div>
       `;

@@ -124,6 +124,42 @@
     .custom-controls button:hover {
       background: rgba(255, 255, 255, 0.3);
     }
+    
+    /* Styles for multiple choice questions */
+    .answer-options {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+    
+    .option-btn {
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      color: #495057;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      min-width: 80px;
+    }
+    
+    .option-btn:hover {
+      background: #e9ecef;
+      border-color: #ced4da;
+      transform: translateY(-1px);
+    }
+    
+    .option-btn.selected {
+      background: #007bff;
+      border-color: #007bff;
+      color: white;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+    }
   </style>
   <script defer src="../js/nouns.js"></script>
   <script defer src="../data/nouns-exercises.js"></script>
@@ -177,32 +213,56 @@
         
         <div class="category-card" data-category="familie">
           <span class="category-icon">👨‍👩‍👧‍👦</span>
-          <div class="category-title" data-i18n="category.family">Familie & identitate</div>
-          <div class="category-count" data-i18n="category.family_desc">Până la 45 întrebări</div>
+          <div class="category-title">Familie</div>
+          <div class="category-count">Familie și persoane</div>
         </div>
         
-        <div class="category-card" data-category="imbracaminte">
+        <div class="category-card" data-category="kleidung">
           <span class="category-icon">👕</span>
-          <div class="category-title" data-i18n="category.clothes">Îmbrăcăminte</div>
-          <div class="category-count" data-i18n="category.clothes_desc">Până la 45 întrebări</div>
+          <div class="category-title">Îmbrăcăminte</div>
+          <div class="category-count">Haine și accesorii</div>
         </div>
         
-        <div class="category-card" data-category="alimente">
+        <div class="category-card" data-category="essen">
           <span class="category-icon">🍎</span>
-          <div class="category-title" data-i18n="category.food">Alimente</div>
-          <div class="category-count" data-i18n="category.food_desc">Până la 45 întrebări</div>
+          <div class="category-title">Alimente</div>
+          <div class="category-count">Mâncare și băuturi</div>
         </div>
         
-        <div class="category-card" data-category="casa">
-          <span class="category-icon">🏠</span>
-          <div class="category-title" data-i18n="category.house">Obiecte casă</div>
-          <div class="category-count" data-i18n="category.house_desc">Până la 45 întrebări</div>
+        <div class="category-card" data-category="haus">
+          <span class="category-icon">�</span>
+          <div class="category-title">Casa</div>
+          <div class="category-count">Mobilier și camere</div>
         </div>
         
-        <div class="category-card" data-category="scoala">
+        <div class="category-card" data-category="kuche">
+          <span class="category-icon">🍽️</span>
+          <div class="category-title">Bucătăria</div>
+          <div class="category-count">Veselă și ustensile</div>
+        </div>
+        
+        <div class="category-card" data-category="schule">
           <span class="category-icon">📝</span>
-          <div class="category-title" data-i18n="category.school">Școală</div>
-          <div class="category-count" data-i18n="category.school_desc">Până la 45 întrebări</div>
+          <div class="category-title">Școala</div>
+          <div class="category-count">Educație și birou</div>
+        </div>
+        
+        <div class="category-card" data-category="arbeit">
+          <span class="category-icon">💼</span>
+          <div class="category-title">Munca</div>
+          <div class="category-count">Profesii și documente</div>
+        </div>
+        
+        <div class="category-card" data-category="objekte">
+          <span class="category-icon">�</span>
+          <div class="category-title">Obiecte</div>
+          <div class="category-count">Tehnologie și obiecte</div>
+        </div>
+        
+        <div class="category-card" data-category="orte">
+          <span class="category-icon">🏢</span>
+          <div class="category-title">Locuri</div>
+          <div class="category-count">Locații și spații</div>
         </div>
       </div>
       
