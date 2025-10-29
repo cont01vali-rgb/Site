@@ -1,0 +1,437 @@
+/*************************************************
+ * FORMULA LEARNING - F1 RACING STYLES
+ * Independent CSS for the F1 racing experience
+ *************************************************/
+
+/* F1 Color Palette */
+:root {
+    --f1-red: #e10600;
+    --f1-black: #15151e;
+    --f1-white: #ffffff;
+    --f1-silver: #c9c9c9;
+    --f1-gold: #ffd700;
+    --monaco-blue: #0066cc;
+    --silverstone-green: #006600;
+    --spa-orange: #ff6600;
+    --beginner-green: #22c55e;
+    --intermediate-yellow: #f59e0b;
+    --expert-red: #ef4444;
+}
+
+/* Base F1 Container */
+.f1-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--f1-black) 0%, #2a2a3a 100%);
+    color: var(--f1-white);
+    font-family: 'Arial', 'Segoe UI', sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* F1 Header */
+.f1-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 3px solid var(--f1-red);
+}
+
+.f1-logo h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: linear-gradient(45deg, var(--f1-red), var(--f1-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px rgba(225, 6, 0, 0.5);
+}
+
+.tagline {
+    margin: 5px 0 0 0;
+    color: var(--f1-silver);
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.back-home {
+    color: var(--f1-white);
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 2px solid var(--f1-silver);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.back-home:hover {
+    background: var(--f1-red);
+    border-color: var(--f1-red);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(225, 6, 0, 0.4);
+}
+
+/* Track Selection Area */
+.track-selection {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.selection-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.selection-header h2 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, var(--f1-white), var(--f1-silver));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.selection-header p {
+    font-size: 1.3rem;
+    color: var(--f1-silver);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Tracks Grid */
+.tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+/* Track Cards */
+.track-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 30px;
+    border: 2px solid transparent;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.track-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.track-card:hover::before {
+    transform: translateX(100%);
+}
+
+.track-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.track-card.monaco {
+    border-color: var(--monaco-blue);
+}
+
+.track-card.monaco:hover {
+    box-shadow: 0 20px 40px rgba(0, 102, 204, 0.3);
+}
+
+.track-card.silverstone {
+    border-color: var(--silverstone-green);
+}
+
+.track-card.silverstone:hover {
+    box-shadow: 0 20px 40px rgba(0, 102, 0, 0.3);
+}
+
+.track-card.spa {
+    border-color: var(--spa-orange);
+}
+
+.track-card.spa:hover {
+    box-shadow: 0 20px 40px rgba(255, 102, 0, 0.3);
+}
+
+/* Track Preview (Mini track visualization) */
+.track-preview {
+    height: 120px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    position: relative;
+}
+
+.track-mini {
+    width: 80px;
+    height: 80px;
+    border: 3px solid var(--f1-white);
+    position: relative;
+}
+
+.monaco-track {
+    border-radius: 15px;
+    background: linear-gradient(45deg, var(--monaco-blue), rgba(0, 102, 204, 0.3));
+}
+
+.silverstone-track {
+    border-radius: 50% 20px 50% 20px;
+    background: linear-gradient(45deg, var(--silverstone-green), rgba(0, 102, 0, 0.3));
+}
+
+.spa-track {
+    border-radius: 20px 50px 20px 10px;
+    background: linear-gradient(45deg, var(--spa-orange), rgba(255, 102, 0, 0.3));
+}
+
+/* Track Info */
+.track-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.difficulty {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.difficulty.beginner {
+    background: var(--beginner-green);
+    color: white;
+}
+
+.difficulty.intermediate {
+    background: var(--intermediate-yellow);
+    color: black;
+}
+
+.difficulty.expert {
+    background: var(--expert-red);
+    color: white;
+}
+
+.track-stats {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.track-stats span {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+.track-info p {
+    color: var(--f1-silver);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Start Race Button */
+.start-race-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, var(--f1-red), #ff3333);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.start-race-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(225, 6, 0, 0.4);
+}
+
+.start-race-btn:active {
+    transform: translateY(0);
+}
+
+/* AI Drivers Preview */
+.ai-drivers-preview {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ai-drivers-preview h3 {
+    margin-bottom: 20px;
+    color: var(--f1-gold);
+}
+
+.drivers-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.driver-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.driver-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.driver-card.legendary {
+    border-color: var(--f1-gold);
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.3), rgba(127, 29, 29, 0.3));
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+.driver-card.elite {
+    border-color: var(--f1-silver);
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.3), rgba(55, 48, 163, 0.3));
+}
+
+.driver-card.pro {
+    border-color: #cd7c5c;
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.3), rgba(4, 120, 87, 0.3));
+}
+
+.driver-card.competitive {
+    border-color: #6b7280;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.driver-flag {
+    font-size: 1.2rem;
+}
+
+.driver-name {
+    font-weight: 600;
+    color: var(--f1-white);
+    flex: 1;
+}
+
+.driver-speed {
+    font-size: 0.8rem;
+    color: var(--f1-gold);
+    font-style: italic;
+}
+
+.driver-difficulty {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--f1-white);
+}
+
+.drivers-note {
+    color: var(--f1-silver);
+    font-style: italic;
+    margin: 0;
+}
+
+/* F1 Footer */
+.f1-footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-top: 2px solid var(--f1-red);
+    margin-top: 40px;
+}
+
+.f1-footer p {
+    margin: 0;
+    color: var(--f1-silver);
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .f1-header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .f1-logo h1 {
+        font-size: 2rem;
+    }
+
+    .selection-header h2 {
+        font-size: 2.2rem;
+    }
+
+    .tracks-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .track-card {
+        padding: 20px;
+    }
+
+    .drivers-list {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Special F1 Animations */
+@keyframes racingPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.track-mini:hover {
+    animation: racingPulse 1s infinite;
+}
+
+/* Track-specific hover effects */
+.monaco:hover .monaco-track {
+    box-shadow: 0 0 20px var(--monaco-blue);
+}
+
+.silverstone:hover .silverstone-track {
+    box-shadow: 0 0 20px var(--silverstone-green);
+}
+
+.spa:hover .spa-track {
+    box-shadow: 0 0 20px var(--spa-orange);
+}

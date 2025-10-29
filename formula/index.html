@@ -18,96 +18,97 @@
             <a href="../index.html" class="back-home">← Back to Main Site</a>
         </header>
 
-        <!-- Track Selection Area -->
-        <main class="track-selection">
-            <div class="selection-header">
-                <h2>🏁 Choose Your Racing Track</h2>
-                <p>Each track represents a different difficulty level. Are you ready to race?</p>
-            </div>
-
-            <div class="tracks-grid">
-                <!-- Monaco GP - Beginner -->
-                <div class="track-card monaco" data-track="monaco">
-                    <div class="track-preview">
-                        <div class="track-mini monaco-track"></div>
-                    </div>
-                    <div class="track-info">
-                        <h3>🏰 Monaco GP</h3>
-                        <div class="difficulty beginner">Beginner</div>
-                        <div class="track-stats">
-                            <span>📍 5 Questions</span>
-                            <span>⏱️ ~3 minutes</span>
-                            <span>🎯 Basic German</span>
-                        </div>
-                        <p>The prestigious streets of Monaco await. Perfect for your first race!</p>
-                        <button class="start-race-btn" data-track="monaco">
-                            Start Monaco Race 🏁
-                        </button>
-                    </div>
+        <!-- New Layout: Map + Track List -->
+        <main class="racing-dashboard">
+            <!-- Europe Map Section (70%) -->
+            <div class="map-container">
+                <div class="map-header">
+                    <h2>🏁 Select Your Track</h2>
+                </div>
+                
+                <!-- SVG Map will be here -->
+                <div class="europe-map">
+                    <div id="mapLoader">Loading map...</div>
+                    <!-- SVG content will be loaded dynamically from svg/europe-map.html -->
                 </div>
 
-                <!-- Silverstone - Intermediate -->
-                <div class="track-card silverstone" data-track="silverstone">
-                    <div class="track-preview">
-                        <div class="track-mini silverstone-track"></div>
-                    </div>
-                    <div class="track-info">
-                        <h3>🇬🇧 Silverstone</h3>
-                        <div class="difficulty intermediate">Intermediate</div>
-                        <div class="track-stats">
-                            <span>📍 8 Questions</span>
-                            <span>⏱️ ~5 minutes</span>
-                            <span>🎯 Mixed Difficulty</span>
-                        </div>
-                        <p>The home of British racing. Fast corners and challenging German!</p>
-                        <button class="start-race-btn" data-track="silverstone">
-                            Start Silverstone Race 🏁
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Spa-Francorchamps - Expert -->
-                <div class="track-card spa" data-track="spa">
-                    <div class="track-preview">
-                        <div class="track-mini spa-track"></div>
-                    </div>
-                    <div class="track-info">
-                        <h3>🇧🇪 Spa-Francorchamps</h3>
-                        <div class="difficulty expert">Expert</div>
-                        <div class="track-stats">
-                            <span>📍 12 Questions</span>
-                            <span>⏱️ ~8 minutes</span>
-                            <span>🎯 Advanced German</span>
-                        </div>
-                        <p>The legendary Eau Rouge awaits. Only for the bravest drivers!</p>
-                        <button class="start-race-btn" data-track="spa">
-                            Start Spa Race 🏁
-                        </button>
-                    </div>
+                <!-- Dynamic Start Button (appears when track selected) -->
+                <div class="start-button-container" id="startButtonContainer">
+                    <button class="dynamic-start-btn" id="dynamicStartBtn">
+                        <span class="btn-icon">🏁</span>
+                        <span class="btn-text">Start Race</span>
+                    </button>
                 </div>
             </div>
 
-            <!-- AI Drivers Preview -->
-            <div class="ai-drivers-preview">
-                <h3>🤖 Your AI Opponents Today</h3>
-                <div class="drivers-list">
-                    <div class="driver-card">
-                        <span class="driver-flag">🇬🇧</span>
-                        <span class="driver-name">L. Hamilton</span>
-                        <span class="driver-speed">Fast</span>
+            <!-- Track List Section (30%) -->
+            <div class="tracks-sidebar">
+                <div class="sidebar-header">
+                    <h3>🏎️ Race Tracks</h3>
+                    <p>Choose your challenge</p>
+                </div>
+
+                <div class="tracks-list">
+                    <!-- Monaco - Easy -->
+                    <div class="track-item easy" data-track="monaco" data-country="monaco">
+                        <div class="track-pin easy"></div>
+                        <div class="track-details">
+                            <h4>🇲🇨 Monaco</h4>
+                            <span class="difficulty-label easy">Easy</span>
+                        </div>
+                        <div class="shine-effect"></div>
                     </div>
-                    <div class="driver-card">
-                        <span class="driver-flag">🇳🇱</span>
-                        <span class="driver-name">M. Verstappen</span>
-                        <span class="driver-speed">Very Fast</span>
+
+                    <!-- Monza - Easy -->
+                    <div class="track-item easy" data-track="monza" data-country="italy">
+                        <div class="track-pin easy"></div>
+                        <div class="track-details">
+                            <h4>🇮🇹 Monza</h4>
+                            <span class="difficulty-label easy">Easy</span>
+                        </div>
+                        <div class="shine-effect"></div>
                     </div>
-                    <div class="driver-card">
-                        <span class="driver-flag">🇲🇨</span>
-                        <span class="driver-name">C. Leclerc</span>
-                        <span class="driver-speed">Fast</span>
+
+                    <!-- Silverstone - Medium -->
+                    <div class="track-item medium" data-track="silverstone" data-country="uk">
+                        <div class="track-pin medium"></div>
+                        <div class="track-details">
+                            <h4>🇬🇧 Silverstone</h4>
+                            <span class="difficulty-label medium">Medium</span>
+                        </div>
+                        <div class="shine-effect"></div>
+                    </div>
+
+                    <!-- Nürburgring - Medium -->
+                    <div class="track-item medium" data-track="nurburgring" data-country="germany">
+                        <div class="track-pin medium"></div>
+                        <div class="track-details">
+                            <h4>🇩🇪 Nürburgring</h4>
+                            <span class="difficulty-label medium">Medium</span>
+                        </div>
+                        <div class="shine-effect"></div>
+                    </div>
+
+                    <!-- Spa-Francorchamps - Hard -->
+                    <div class="track-item hard" data-track="spa" data-country="belgium">
+                        <div class="track-pin hard"></div>
+                        <div class="track-details">
+                            <h4>🇧🇪 Spa-Francorchamps</h4>
+                            <span class="difficulty-label hard">Hard</span>
+                        </div>
+                        <div class="shine-effect"></div>
+                    </div>
+
+                    <!-- Imola - Hard -->
+                    <div class="track-item hard" data-track="imola" data-country="italy">
+                        <div class="track-pin hard"></div>
+                        <div class="track-details">
+                            <h4>🇮🇹 Imola</h4>
+                            <span class="difficulty-label hard">Hard</span>
+                        </div>
+                        <div class="shine-effect"></div>
                     </div>
                 </div>
-                <p class="drivers-note">💡 Random opponents will join your race to keep you on your toes!</p>
             </div>
         </main>
 
@@ -117,6 +118,9 @@
         </footer>
     </div>
 
+    <script src="js/svg-loader.js"></script>
+    <script src="js/map-controls.js"></script>
     <script src="js/track-selection.js"></script>
+    <script src="js/europe-map.js"></script>
 </body>
 </html>
