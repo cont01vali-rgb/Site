@@ -1306,6 +1306,7 @@ body {
 }
 
 /*************************************************
+<<<<<<< HEAD
  * STILURI PENTRU LECȚIA AKKUSATIV 
  *************************************************/
 
@@ -1609,6 +1610,8 @@ body {
 }
 
 /*************************************************
+=======
+>>>>>>> 176ee3543511cc962970af38f5c4b6bc9f56557c
  * MODERN HOME PAGE DESIGN 
  *************************************************/
 
@@ -1770,6 +1773,80 @@ body {
 .action-subtitle {
     font-size: 0.9rem;
     opacity: 0.7;
+}
+
+/* F1 Racing Action Button */
+.f1-racing-action {
+    background: linear-gradient(135deg, #dc2626 0%, #7f1d1d 50%, #1f2937 100%);
+    border: 2px solid #ffd700;
+    position: relative;
+    overflow: hidden;
+}
+
+.f1-racing-action::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.f1-racing-action:hover::before {
+    left: 100%;
+}
+
+.f1-racing-action:hover {
+    background: linear-gradient(135deg, #b91c1c 0%, #991b1b 50%, #374151 100%);
+    transform: translateX(10px) scale(1.02);
+    border-color: #ffd700;
+    box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+}
+
+.f1-flag {
+    animation: flagWave 2s infinite ease-in-out;
+}
+
+@keyframes flagWave {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-5deg) scale(1.1); }
+    75% { transform: rotate(5deg) scale(1.1); }
+}
+
+.action-extra {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.romania-flag {
+    font-size: 1.5rem;
+    animation: romaniaFlag 3s infinite ease-in-out;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+}
+
+@keyframes romaniaFlag {
+    0%, 100% { 
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+    }
+    50% { 
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+    }
+}
+
+.f1-racing-action .action-title {
+    color: #ffd700;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.f1-racing-action .action-subtitle {
+    color: #e5e7eb;
+    font-weight: 500;
 }
 
 /* Main Navigation */

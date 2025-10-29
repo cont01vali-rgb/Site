@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formula Learning - Race in Progress</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/formula.css">
+    <link rel="stylesheet" href="css/race.css">
+</head>
+<body class="race-body">
+    <div class="race-container">
+        <!-- Race Header with Info -->
+        <header class="race-header">
+            <div class="race-info">
+                <h1 class="track-name">🏁 Loading Track...</h1>
+                <div class="race-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Progress</span>
+                        <span class="stat-value" id="progress">0/5</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Lives</span>
+                        <span class="stat-value" id="lives">❤️❤️❤️</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Position</span>
+                        <span class="stat-value" id="position">1st</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Exit Race Button -->
+            <button class="exit-race-btn" onclick="exitRace()">
+                🏁 Exit Race
+            </button>
+        </header>
+
+        <!-- Main Race Track Area -->
+        <div class="race-track-container">
+            <!-- SVG Track Visualization -->
+            <div class="track-visualization">
+                <svg id="track-svg" viewBox="0 0 800 400">
+                    <!-- Track will be drawn here by JavaScript -->
+                </svg>
+                
+                <!-- Race Cars on Track -->
+                <div class="race-cars">
+                    <div class="race-car player-car" id="player-car">
+                        🏎️
+                    </div>
+                    <div class="race-car ai-car" id="ai-car-1">
+                        🚗
+                    </div>
+                    <div class="race-car ai-car" id="ai-car-2">
+                        🚙
+                    </div>
+                    <div class="race-car ai-car" id="ai-car-3">
+                        🚕
+                    </div>
+                    <div class="race-car ai-car" id="ai-car-4">
+                        🏁
+                    </div>
+                    <div class="race-car ai-car" id="ai-car-5">
+                        🚐
+                    </div>
+                </div>
+                
+                <!-- Track Checkpoints -->
+                <div class="checkpoints" id="checkpoints">
+                    <!-- Checkpoints will be added by JavaScript -->
+                </div>
+                
+                <!-- Problems on Track (Bonus Questions) -->
+                <div class="track-problems" id="track-problems">
+                    <!-- Problems will be added randomly -->
+                </div>
+            </div>
+            
+            <!-- AI Drivers Sidebar -->
+            <div class="ai-drivers-sidebar">
+                <h3>🏁 Current Standings</h3>
+                <div class="standings-list" id="standings">
+                    <!-- Live standings will be updated here -->
+                </div>
+                
+                <!-- Race Progress Bar -->
+                <div class="race-progress-section">
+                    <h4>🎯 Race Progress</h4>
+                    <div class="progress-track">
+                        <div class="progress-bar" id="progress-bar"></div>
+                        <div class="progress-checkpoints" id="progress-checkpoints">
+                            <!-- Progress checkpoints will be added here -->
+                        </div>
+                        <div class="progress-player" id="progress-player">�️</div>
+                    </div>
+                    <div class="progress-info">
+                        <span id="current-question-info">Question 1 of 5</span>
+                        <span id="next-checkpoint-distance">Next: 20%</span>
+                    </div>
+                </div>
+                
+                <div class="next-checkpoint">
+                    <h4>🎯 Next Challenge</h4>
+                    <p id="checkpoint-info">Get ready for your first question...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question Modal -->
+        <div class="question-modal" id="question-modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="question-title">🎯 Checkpoint Question</h3>
+                    <div class="question-progress">
+                        <span id="question-number">1</span> / <span id="total-questions">5</span>
+                    </div>
+                </div>
+                
+                <div class="question-content">
+                    <p id="question-text">Loading question...</p>
+                    
+                    <div class="answer-options" id="answer-options">
+                        <!-- Answer options will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="question-actions">
+                        <button class="answer-btn" id="submit-answer" disabled>
+                            🏁 Submit Answer
+                        </button>
+                        <div class="time-bonus">
+                            ⏱️ Speed bonus: <span id="time-bonus">+10</span> points
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Answer Feedback -->
+                <div class="answer-feedback" id="answer-feedback" style="display: none;">
+                    <div class="feedback-content">
+                        <div class="feedback-icon" id="feedback-icon">✅</div>
+                        <h4 id="feedback-title">Correct!</h4>
+                        <p id="feedback-explanation">Great job! You're maintaining your lead.</p>
+                        <button class="continue-btn" onclick="continueRace()">
+                            🚀 Continue Race
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Race Completion Modal -->
+        <div class="race-complete-modal" id="race-complete-modal" style="display: none;">
+            <div class="modal-content">
+                <div class="completion-header">
+                    <h2 id="completion-title">🏆 Race Complete!</h2>
+                    <div class="final-position" id="final-position">1st Place</div>
+                </div>
+                
+                <div class="race-summary">
+                    <div class="summary-stats">
+                        <div class="summary-stat">
+                            <span class="stat-icon">✅</span>
+                            <span class="stat-text">Correct Answers: <strong id="correct-count">5/5</strong></span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="stat-icon">⏱️</span>
+                            <span class="stat-text">Race Time: <strong id="race-time">2:45</strong></span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="stat-icon">🏁</span>
+                            <span class="stat-text">Final Position: <strong id="final-pos-text">1st</strong></span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="stat-icon">⭐</span>
+                            <span class="stat-text">Points Earned: <strong id="points-earned">150</strong></span>
+                        </div>
+                    </div>
+                    
+                    <div class="podium" id="podium">
+                        <!-- Podium will be generated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="completion-actions">
+                    <button class="race-again-btn" onclick="raceAgain()">
+                        🔄 Race Again
+                    </button>
+                    <button class="select-track-btn" onclick="selectNewTrack()">
+                        🏁 Select New Track
+                    </button>
+                    <button class="return-home-btn" onclick="returnHome()">
+                        🏠 Return Home
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Modal (when lives run out) -->
+        <div class="game-over-modal" id="game-over-modal" style="display: none;">
+            <div class="modal-content">
+                <div class="game-over-header">
+                    <h2>💥 Race Over!</h2>
+                    <p>You've run out of lives, but don't give up!</p>
+                </div>
+                
+                <div class="restart-options">
+                    <button class="restart-checkpoint-btn" onclick="restartFromCheckpoint()">
+                        🔄 Restart from Last Checkpoint
+                    </button>
+                    <button class="restart-race-btn" onclick="restartRace()">
+                        🏁 Restart Race
+                    </button>
+                    <button class="select-easier-btn" onclick="selectEasierTrack()">
+                        📉 Select Easier Track
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Race JavaScript -->
+    <script src="js/track-selection.js"></script>
+    <script src="js/question-bank.js"></script>
+    <script src="js/race-engine.js"></script>
+    <script src="js/track-renderer.js"></script>
+    <script src="js/question-handler.js"></script>
+</body>
+</html>

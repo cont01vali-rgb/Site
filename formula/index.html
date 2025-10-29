@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏁 Formula Learning - Choose Your Track</title>
+    <link rel="stylesheet" href="css/formula.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="f1-container">
+        <!-- Header with F1 branding -->
+        <header class="f1-header">
+            <div class="f1-logo">
+                <h1>🏎️ FORMULA LEARNING</h1>
+                <p class="tagline">Master German at Racing Speed!</p>
+            </div>
+            <a href="../index.html" class="back-home">← Back to Main Site</a>
+        </header>
+
+        <!-- Track Selection Area -->
+        <main class="track-selection">
+            <div class="selection-header">
+                <h2>🏁 Choose Your Racing Track</h2>
+                <p>Each track represents a different difficulty level. Are you ready to race?</p>
+            </div>
+
+            <div class="tracks-grid">
+                <!-- Monaco GP - Beginner -->
+                <div class="track-card monaco" data-track="monaco">
+                    <div class="track-preview">
+                        <div class="track-mini monaco-track"></div>
+                    </div>
+                    <div class="track-info">
+                        <h3>🏰 Monaco GP</h3>
+                        <div class="difficulty beginner">Beginner</div>
+                        <div class="track-stats">
+                            <span>📍 5 Questions</span>
+                            <span>⏱️ ~3 minutes</span>
+                            <span>🎯 Basic German</span>
+                        </div>
+                        <p>The prestigious streets of Monaco await. Perfect for your first race!</p>
+                        <button class="start-race-btn" data-track="monaco">
+                            Start Monaco Race 🏁
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Silverstone - Intermediate -->
+                <div class="track-card silverstone" data-track="silverstone">
+                    <div class="track-preview">
+                        <div class="track-mini silverstone-track"></div>
+                    </div>
+                    <div class="track-info">
+                        <h3>🇬🇧 Silverstone</h3>
+                        <div class="difficulty intermediate">Intermediate</div>
+                        <div class="track-stats">
+                            <span>📍 8 Questions</span>
+                            <span>⏱️ ~5 minutes</span>
+                            <span>🎯 Mixed Difficulty</span>
+                        </div>
+                        <p>The home of British racing. Fast corners and challenging German!</p>
+                        <button class="start-race-btn" data-track="silverstone">
+                            Start Silverstone Race 🏁
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Spa-Francorchamps - Expert -->
+                <div class="track-card spa" data-track="spa">
+                    <div class="track-preview">
+                        <div class="track-mini spa-track"></div>
+                    </div>
+                    <div class="track-info">
+                        <h3>🇧🇪 Spa-Francorchamps</h3>
+                        <div class="difficulty expert">Expert</div>
+                        <div class="track-stats">
+                            <span>📍 12 Questions</span>
+                            <span>⏱️ ~8 minutes</span>
+                            <span>🎯 Advanced German</span>
+                        </div>
+                        <p>The legendary Eau Rouge awaits. Only for the bravest drivers!</p>
+                        <button class="start-race-btn" data-track="spa">
+                            Start Spa Race 🏁
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Drivers Preview -->
+            <div class="ai-drivers-preview">
+                <h3>🤖 Your AI Opponents Today</h3>
+                <div class="drivers-list">
+                    <div class="driver-card">
+                        <span class="driver-flag">🇬🇧</span>
+                        <span class="driver-name">L. Hamilton</span>
+                        <span class="driver-speed">Fast</span>
+                    </div>
+                    <div class="driver-card">
+                        <span class="driver-flag">🇳🇱</span>
+                        <span class="driver-name">M. Verstappen</span>
+                        <span class="driver-speed">Very Fast</span>
+                    </div>
+                    <div class="driver-card">
+                        <span class="driver-flag">🇲🇨</span>
+                        <span class="driver-name">C. Leclerc</span>
+                        <span class="driver-speed">Fast</span>
+                    </div>
+                </div>
+                <p class="drivers-note">💡 Random opponents will join your race to keep you on your toes!</p>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="f1-footer">
+            <p>🏎️ Formula Learning - Where Speed Meets Knowledge</p>
+        </footer>
+    </div>
+
+    <script src="js/track-selection.js"></script>
+</body>
+</html>

@@ -93,8 +93,8 @@ class HomePage {
 
         const continueTitle = getTranslation('home.continue_lesson', 'Continuă Lecția');
         const continueSubtitle = getTranslation('home.continue_subtitle', 'Das deutsche Alphabet');
-        const dailyTitle = getTranslation('home.daily_challenge', 'Provocarea Zilei');
-        const dailySubtitle = getTranslation('home.daily_subtitle', '5 întrebări rapide');
+        const raceTitle = getTranslation('home.start_race', 'Începe Cursa');
+        const raceSubtitle = getTranslation('home.race_subtitle', 'F1 Racing cu Germana');
 
         const actionsHTML = `
             <div class="quick-action" onclick="location.href='lessons/lesson1.html'">
@@ -104,11 +104,14 @@ class HomePage {
                     <div class="action-subtitle">${continueSubtitle}</div>
                 </div>
             </div>
-            <div class="quick-action" onclick="location.href='tests/vocabulary-test.html'">
-                <div class="action-icon">⚡</div>
+            <div class="quick-action f1-racing-action" onclick="location.href='formula/index.html'">
+                <div class="action-icon f1-flag">🏁</div>
                 <div class="action-content">
-                    <div class="action-title">${dailyTitle}</div>
-                    <div class="action-subtitle">${dailySubtitle}</div>
+                    <div class="action-title">${raceTitle}</div>
+                    <div class="action-subtitle">${raceSubtitle}</div>
+                </div>
+                <div class="action-extra">
+                    <span class="romania-flag">🇷🇴</span>
                 </div>
             </div>
         `;
