@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <title>Debug Enter Test</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .container { max-width: 500px; margin: 0 auto; }
+    input { padding: 10px; width: 100%; margin: 10px 0; }
+    button { padding: 10px 20px; margin: 5px; }
+    .debug { background: #f0f0f0; padding: 10px; margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Test Enter Functionality</h1>
+    
+    <div id="questionArea">
+      <p>Cum se spune în germană la "tricou"?</p>
+      <input type="text" id="userAnswer" placeholder="Răspunsul tău...">
+    </div>
+    
+    <div>
+      <button id="verify-btn">Verifică</button>
+      <button id="next-btn" style="display: none;">Următoarea</button>
+    </div>
+    
+    <div id="feedback" class="debug"></div>
+    
+    <div class="debug">
+      <h3>Debug Log:</h3>
+      <div id="debugLog"></div>
+    </div>
+  </div>
+
+  <script>
+    let step = 1;
+    const debugLog = document.getElementById('debugLog');
+    
+    function log(message) {
+      debugLog.innerHTML += new Date().toLocaleTimeString() + ': ' + message + '<br>';
+    }
+    
+    function setupInput() {
+      const input = document.getElementById('userAnswer');
+      input.disabled = false;
+      input.value = '';
+      input.focus();
+      
+      // Remove old listeners
+      const newInput = input.cloneNode(true);
+      input.parentNode.replaceChild(newInput, input);
+      
+      log('Input setup for step ' + step);
+      
+      newInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          log('Enter pressed!');
+          
+          const verifyBtn = document.getElementById('verify-btn');
+          const nextBtn = document.getElementById('next-btn');
+          
+          const verifyVisible = verifyBtn.offsetParent !== null;
+          const nextVisible = nextBtn.offsetParent !== null;
+          
+          log('Verify visible: ' + verifyVisible);
+          log('Next visible: ' + nextVisible);
+          
+          if (verifyVisible) {
+            log('Calling verify');
+            verify();
+          } else if (nextVisible) {
+            log('Calling next');
+            next();
+          } else {
+            log('No button visible!');
+          }
+        }
+      });
+      
+      newInput.focus();
+    }
+    
+    function verify() {
+      log('Verify function called');
+      const answer = document.getElementById('userAnswer').value;
+      
+      document.getElementById('feedback').innerHTML = 
+        answer.toLowerCase() === 't-shirt' ? 
+        '✅ Corect!' : 
+        '❌ Greșit! Răspunsul corect: T-Shirt';
+      
+      document.getElementById('verify-btn').style.display = 'none';
+      document.getElementById('next-btn').style.display = 'inline-block';
+      document.getElementById('userAnswer').disabled = true;
+      
+      log('UI updated after verify');
+    }
+    
+    function next() {
+      log('Next function called');
+      step++;
+      
+      document.getElementById('feedback').innerHTML = '';
+      document.getElementById('verify-btn').style.display = 'inline-block';
+      document.getElementById('next-btn').style.display = 'none';
+      
+      // New question
+      document.querySelector('#questionArea p').textContent = 
+        'Cum se spune în română la "Haus"?';
+      
+      setupInput();
+      log('New question setup complete');
+    }
+    
+    // Initial setup
+    document.addEventListener('DOMContentLoaded', () => {
+      setupInput();
+      
+      document.getElementById('verify-btn').onclick = verify;
+      document.getElementById('next-btn').onclick = next;
+      
+      log('Initial setup complete');
+    });
+  </script>
+</body>
+</html>

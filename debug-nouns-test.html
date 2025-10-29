@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Debug Test: Substantive</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .debug { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
+    button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Debug Test: Substantive</h1>
+  
+  <div class="debug">
+    <h3>Debug Info:</h3>
+    <div id="debugInfo">Loading...</div>
+  </div>
+  
+  <div id="categorySelection">
+    <h2>Categorii Test:</h2>
+    <button class="category-card" data-category="all">Toate Substantivele</button>
+    <button class="category-card" data-category="familie">Familie & identitate</button>
+    <button class="category-card" data-category="imbracaminte">Îmbrăcăminte</button>
+    <button class="category-card" data-category="alimente">Alimente</button>
+    <button class="category-card" data-category="casa">Obiecte casă</button>
+    <button class="category-card" data-category="scoala">Școală</button>
+    <button class="category-card" data-category="custom">Alege Substantive</button>
+  </div>
+  
+  <div id="testArea" style="display: none;">
+    <h2>Test Area</h2>
+    <div id="questionArea"></div>
+    <button id="verify-btn">Verifică</button>
+    <button id="next-btn" style="display: none;">Următoarea</button>
+  </div>
+
+  <script src="js/nouns.js"></script>
+  <script>
+    console.log('Starting debug...');
+    
+    setTimeout(() => {
+      const debugInfo = document.getElementById('debugInfo');
+      let info = '';
+      
+      info += `window.nounsData exists: ${!!window.nounsData}<br>`;
+      info += `nounsData length: ${window.nounsData ? window.nounsData.length : 'N/A'}<br>`;
+      info += `First noun: ${window.nounsData ? JSON.stringify(window.nounsData[0]) : 'N/A'}<br>`;
+      
+      debugInfo.innerHTML = info;
+      
+      // Test category selection
+      const categoryCards = document.querySelectorAll('.category-card');
+      console.log('Found category cards:', categoryCards.length);
+      
+      categoryCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const category = card.getAttribute('data-category');
+          console.log('Clicked category:', category);
+          
+          // Simple test logic
+          document.getElementById('categorySelection').style.display = 'none';
+          document.getElementById('testArea').style.display = 'block';
+          document.getElementById('questionArea').innerHTML = `<p>Testing category: ${category}</p>`;
+        });
+      });
+      
+    }, 500);
+  </script>
+</body>
+</html>

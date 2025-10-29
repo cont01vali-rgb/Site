@@ -9,11 +9,27 @@
 </head>
 <body>
 <header>
-  <nav class="navbar">
-    <a href="../index.html" class="nav-item">🏠 Acasă</a>
-    <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
-    <a href="../tests/nouns-test.html" class="nav-item">🧩 Test Nomen</a>
-    <a href="../progress.html" class="nav-item">📊 Progres</a>
+  <nav class="navbar-modern">
+    <div class="navbar-content">
+      <div class="nav-section">
+        <a href="../index.html" class="nav-item-modern">
+          🏠 Acasă
+        </a>
+        <a href="../learn.html" class="nav-item-modern">
+          📚 Mediu de învățare
+        </a>
+      </div>
+      
+      <div class="nav-section">
+        <div class="language-selector-nav">
+          <select id="languageSelector">
+            <option value="ro">🇷🇴 Română</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="ua">🇺🇦 Українська</option>
+          </select>
+        </div>
+      </div>
+    </div>
   </nav>
 </header>
 
@@ -48,8 +64,9 @@
     <div id="pagination" class="center-row" style="margin-top:8px;gap:8px;display:flex;flex-wrap:wrap;justify-content:center;"></div>
 
     <div class="bottom-btn" id="testAnchor">
-      <a href="../tests/nouns-test.html" class="test-button">Începe testul 📖</a>
+      <a href="../tests/nouns-test.html" class="test-button">🎯 Test Substantive</a>
     </div>
   </main>
 </body>
+<script src="../translate/translate.js"></script>
 </html>

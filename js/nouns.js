@@ -128,9 +128,37 @@ const nounsData = [
 
   // A1 – Îmbrăcăminte
   {"nomen":"T-Shirt","gen":"das","plural":"T-Shirts","traducere":"tricou","exemplu":"Das T-Shirt ist blau.","image":"tshirt.jpg"},
-  {"nomen":"Hose","gen":"die","plural":"Hosen","traducere":"pantaloni","exemplu":"Die Hose ist schwarz.","image":"hose.jpg"},
-  {"nomen":"Schuh","gen":"der","plural":"Schuhe","traducere":"pantof","exemplu":"Die Schuhe sind neu.","image":"schuh.jpg"},
-  {"nomen":"Jacke","gen":"die","plural":"Jacken","traducere":"geacă","exemplu":"Die Jacke ist warm.","image":"jacke.jpg"},
+  {"nomen":"Hose","gen":"die","plural":"Hosen","traducere":"pantaloni","exemplu":"Die Hose ist schwarz.","image":"hose.png"},
+  {"nomen":"Schuh","gen":"der","plural":"Schuhe","traducere":"pantof","exemplu":"Der Schuh ist neu.","image":"schuh.jpg"},
+  {"nomen":"Schuhe","gen":"die","plural":"Schuhe","traducere":"pantofi","exemplu":"Die Schuhe sind neu.","image":"schuhe.png"},
+  {"nomen":"Jacke","gen":"die","plural":"Jacken","traducere":"geacă","exemplu":"Die Jacke ist warm.","image":"jacke.png"},
+  {"nomen":"Jeans","gen":"die","plural":"Jeans","traducere":"blugi","exemplu":"Die Jeans sind blau.","image":"jeans.png"},
+  {"nomen":"Rock","gen":"der","plural":"Röcke","traducere":"fustă","exemplu":"Der Rock ist kurz.","image":"rock.png"},
+  {"nomen":"Hemd","gen":"das","plural":"Hemden","traducere":"cămașă","exemplu":"Das Hemd ist weiß.","image":"hemd.png"},
+  {"nomen":"Mantel","gen":"der","plural":"Mäntel","traducere":"palton","exemplu":"Der Mantel ist lang.","image":"mantel.png"},
+  {"nomen":"Sportanzug","gen":"der","plural":"Sportanzüge","traducere":"trening","exemplu":"Der Sportanzug ist bequem.","image":"sportanzug.png"},
+  {"nomen":"Mütze","gen":"die","plural":"Mützen","traducere":"căciulă","exemplu":"Die Mütze ist warm.","image":"mutze.png"},
+  {"nomen":"Turnschuhe","gen":"die","plural":"Turnschuhe","traducere":"adidași","exemplu":"Die Turnschuhe sind bequem.","image":"turnschuhe.png"},
+  {"nomen":"Gürtel","gen":"der","plural":"Gürtel","traducere":"curea","exemplu":"Der Gürtel ist schwarz.","image":"gurtel.png"},
+  {"nomen":"Krawatte","gen":"die","plural":"Krawatten","traducere":"cravată","exemplu":"Die Krawatte ist elegant.","image":"krawatte.png"},
+  {"nomen":"Sandalen","gen":"die","plural":"Sandalen","traducere":"sandale","exemplu":"Die Sandalen sind leicht.","image":"sandalen.png"},
+  {"nomen":"Anzug","gen":"der","plural":"Anzüge","traducere":"costum","exemplu":"Der Anzug ist elegant.","image":"anzug.png"},
+  {"nomen":"Kleid","gen":"das","plural":"Kleider","traducere":"rochie","exemplu":"Das Kleid ist schön.","image":"kleid.png"},
+  {"nomen":"Pyjama","gen":"der","plural":"Pyjamas","traducere":"pijama","exemplu":"Der Pyjama ist weich.","image":"pyjama.png"},
+  {"nomen":"Regenjacke","gen":"die","plural":"Regenjacken","traducere":"jachetă de ploaie","exemplu":"Die Regenjacke ist wasserdicht.","image":"regenjacke.png"},
+  {"nomen":"Hausschuhe","gen":"die","plural":"Hausschuhe","traducere":"papuci de casă","exemplu":"Die Hausschuhe sind warm.","image":"hausschuhe.png"},
+  {"nomen":"Bluse","gen":"die","plural":"Blusen","traducere":"bluză","exemplu":"Die Bluse ist elegant.","image":"bluse.png"},
+  {"nomen":"kurze Hose","gen":"die","plural":"kurze Hosen","traducere":"pantaloni scurți","exemplu":"Die kurze Hose ist cool.","image":"khose.png"},
+  {"nomen":"Schal","gen":"der","plural":"Schals","traducere":"fular","exemplu":"Der Schal ist lang.","image":"schal.png"},
+  {"nomen":"Hut","gen":"der","plural":"Hüte","traducere":"pălărie","exemplu":"Der Hut ist elegant.","image":"hut.png"},
+  {"nomen":"Unterhose","gen":"die","plural":"Unterhosen","traducere":"chiloți","exemplu":"Die Unterhose ist weiß.","image":"unterhose.png"},
+  {"nomen":"Unterhemd","gen":"das","plural":"Unterhemden","traducere":"maiou","exemplu":"Das Unterhemd ist dünn.","image":"unterhemd.png"},
+  {"nomen":"Socken","gen":"die","plural":"Socken","traducere":"șosete","exemplu":"Die Socken sind bunt.","image":"socken.png"},
+  {"nomen":"Weste","gen":"die","plural":"Westen","traducere":"vestă","exemplu":"Die Weste ist elegant.","image":"weste.png"},
+  {"nomen":"Pullover","gen":"der","plural":"Pullover","traducere":"pulover","exemplu":"Der Pullover ist warm.","image":"pullover.png"},
+  {"nomen":"Badeanzug","gen":"der","plural":"Badeanzüge","traducere":"costum de baie","exemplu":"Der Badeanzug ist schön.","image":"badeanzug.png"},
+  {"nomen":"Badeschuhe","gen":"die","plural":"Badeschuhe","traducere":"papuci de plajă","exemplu":"Die Badeschuhe sind wasserdicht.","image":"badeschuhe.png"},
+  {"nomen":"Handschuhe","gen":"die","plural":"Handschuhe","traducere":"mănuși","exemplu":"Die Handschuhe sind warm.","image":"handschuhe.png"},
 
   // A1 – Familie și locuri
   {"nomen":"Mutter","gen":"die","plural":"Mütter","traducere":"mamă","exemplu":"Meine Mutter kocht.","image":"mutter.jpg"},
@@ -145,6 +173,7 @@ const nounsData = [
 ];
 
 window.nounsData = nounsData;
+window.nouns = nounsData; // Alternative export name for compatibility
 
 // Load nouns and populate table (cu paginare + TTS robust ca la Verbe)
 document.addEventListener('DOMContentLoaded', () => {

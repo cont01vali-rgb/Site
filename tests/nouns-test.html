@@ -2,27 +2,271 @@
 <html lang="ro">
 <head>
   <meta charset="utf-8">
-  <title>Test: Substantive</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-i18n="test.nouns_title">Test: Substantive</title>
   <link rel="stylesheet" href="../css/style.css">
   <style>
     .q-media { margin:6px 0 8px; display:flex; justify-content:center; }
     .q-media img.q-img { max-width: 260px; max-height: 180px; object-fit: contain; border-radius: 8px; border: 1px solid #e6e6e6; }
+    
+    /* Category Selection Interface */
+    .category-selection {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      color: white;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+    
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .category-card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    
+    .category-card:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    .category-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    
+    .category-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .category-count {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    
+    .custom-selection {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      display: none;
+    }
+    
+    .noun-checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.5rem;
+      margin-top: 1rem;
+      max-height: 300px;
+      overflow-y: auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    
+    .noun-checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+    }
+    
+    .noun-checkbox-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .noun-checkbox-item input[type="checkbox"] {
+      margin: 0;
+    }
+    
+    .noun-checkbox-item label {
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin: 0;
+    }
+    
+    .custom-controls {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .custom-controls button {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .custom-controls button:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
   </style>
+  <script defer src="../js/nouns.js"></script>
   <script defer src="../data/nouns-exercises.js"></script>
   <script defer src="../js/nouns-test.js"></script>
 </head>
 <body>
 <header>
-  <nav class="navbar">
-    <a href="../index.html" class="nav-item">🏠 Acasă</a>
-    <a href="./general-test.html" class="nav-item">🧩 Test general</a>
+  <nav class="navbar-modern">
+    <div class="navbar-content">
+      <div class="nav-section">
+        <a href="../index.html" class="nav-item-modern" data-i18n="nav.home">
+          🏠 Acasă
+        </a>
+        <a href="../learn.html" class="nav-item-modern" data-i18n="nav.learn">
+          📚 Mediu de învățare
+        </a>
+      </div>
+      
+      <div class="nav-section">
+        <div class="language-selector-nav">
+          <select id="languageSelector">
+            <option value="ro">🇷🇴 Română</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="ua">🇺🇦 Українська</option>
+          </select>
+        </div>
+      </div>
+    </div>
   </nav>
 </header>
 
-<main class="test-page">
-  <h2>Test: Substantive</h2>
-  <div id="nounsTestRoot" class="question-card"></div>
+<main class="page-container">
+  <div class="container">
+    <!-- Category Selection Screen -->
+    <div id="categorySelection" class="category-selection">
+      <h1 class="test-title" data-i18n="test.nouns_title">Test: Substantive</h1>
+      <p data-i18n="test.choose_category">Alege categoria pentru test:</p>
+      
+      <div class="category-grid">
+        <div class="category-card" data-category="all">
+          <span class="category-icon">📚</span>
+          <div class="category-title" data-i18n="category.all">Toate Substantivele</div>
+          <div class="category-count" data-i18n="category.all_desc">60 întrebări aleatorii</div>
+        </div>
+        
+        <div class="category-card" data-category="custom">
+          <span class="category-icon">🎯</span>
+          <div class="category-title" data-i18n="category.custom">Alege Substantive</div>
+          <div class="category-count" data-i18n="category.custom_desc">Personalizează testul</div>
+        </div>
+        
+        <div class="category-card" data-category="familie">
+          <span class="category-icon">👨‍👩‍👧‍👦</span>
+          <div class="category-title" data-i18n="category.family">Familie & identitate</div>
+          <div class="category-count" data-i18n="category.family_desc">Până la 45 întrebări</div>
+        </div>
+        
+        <div class="category-card" data-category="imbracaminte">
+          <span class="category-icon">👕</span>
+          <div class="category-title" data-i18n="category.clothes">Îmbrăcăminte</div>
+          <div class="category-count" data-i18n="category.clothes_desc">Până la 45 întrebări</div>
+        </div>
+        
+        <div class="category-card" data-category="alimente">
+          <span class="category-icon">🍎</span>
+          <div class="category-title" data-i18n="category.food">Alimente</div>
+          <div class="category-count" data-i18n="category.food_desc">Până la 45 întrebări</div>
+        </div>
+        
+        <div class="category-card" data-category="casa">
+          <span class="category-icon">🏠</span>
+          <div class="category-title" data-i18n="category.house">Obiecte casă</div>
+          <div class="category-count" data-i18n="category.house_desc">Până la 45 întrebări</div>
+        </div>
+        
+        <div class="category-card" data-category="scoala">
+          <span class="category-icon">📝</span>
+          <div class="category-title" data-i18n="category.school">Școală</div>
+          <div class="category-count" data-i18n="category.school_desc">Până la 45 întrebări</div>
+        </div>
+      </div>
+      
+      <!-- Custom Selection Panel -->
+      <div id="customSelection" class="custom-selection">
+        <h3 data-i18n="custom.select_nouns">Selectează substantivele pentru test:</h3>
+        <div class="custom-controls">
+          <button id="selectAllBtn" data-i18n="custom.select_all">Selectează toate</button>
+          <button id="deselectAllBtn" data-i18n="custom.deselect_all">Deselectează toate</button>
+          <button id="startCustomTestBtn" data-i18n="custom.start_test" disabled>Începe testul (<span id="selectedCount">0</span>)</button>
+        </div>
+        <div id="nounCheckboxGrid" class="noun-checkbox-grid"></div>
+      </div>
+    </div>
+    
+    <!-- Test Screen (hidden initially) -->
+    <div id="testScreen" style="display: none;">
+      <!-- Header modern cu design îmbunătățit -->
+      <div class="test-header">
+        <div class="test-header-content">
+          <h1 class="test-title" data-i18n="test.nouns_title">Test: Substantive</h1>
+          <div class="test-progress-bar">
+            <div class="progress-info">
+              <span data-i18n="test.progress">Întrebare</span> 
+              <span class="progress-numbers">
+                <span id="qIndex">0</span>/<span id="qTotal">0</span>
+              </span>
+              <span class="progress-separator">•</span>
+              <span data-i18n="test.score">Scor</span>: 
+              <span id="score" class="score-display">0</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Container întrebări cu design modern -->
+      <div class="test-question-container">
+        <div id="questionArea" class="question-area"></div>
+      </div>
+
+      <!-- Controale test cu design îmbunătățit -->
+      <div class="test-controls-modern">
+        <button id="verify-btn" class="btn btn-primary" data-i18n="test.verify">Verifică</button>
+        <button id="next-btn" class="btn btn-success" style="display:none;" data-i18n="test.next_question">Următoarea întrebare</button>
+      </div>
+
+      <!-- Feedback cu design modern -->
+      <div id="feedback" class="test-feedback"></div>
+
+      <!-- Navigare cu design îmbunătățit -->
+      <div class="test-navigation">
+        <a id="back-to-lesson" class="btn btn-outline" href="../lessons/das-nomen.html" data-i18n="test.back_to_lesson">
+          ← Înapoi la lecție
+        </a>
+        <button id="back-to-categories" class="btn btn-outline" data-i18n="test.back_to_categories">
+          ← Alege altă categorie
+        </button>
+      </div>
+    </div>
+  </div>
 </main>
 </body>
+<script src="../translate/translate.js"></script>
 </html>

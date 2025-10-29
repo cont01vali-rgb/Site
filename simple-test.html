@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Test</title>
+  <style>
+    .card { padding: 20px; margin: 10px; border: 1px solid #ccc; cursor: pointer; }
+    .card:hover { background: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <h1>Simple Category Test</h1>
+  
+  <div class="card" onclick="testCategory('all')">Toate Substantivele</div>
+  <div class="card" onclick="testCategory('familie')">Familie & identitate</div>
+  <div class="card" onclick="testCategory('imbracaminte')">Îmbrăcăminte</div>
+  
+  <div id="result"></div>
+  
+  <script src="js/nouns.js"></script>
+  <script>
+    function testCategory(category) {
+      console.log('Testing category:', category);
+      
+      if (!window.nounsData) {
+        document.getElementById('result').innerHTML = 'ERROR: nounsData not found!';
+        return;
+      }
+      
+      document.getElementById('result').innerHTML = `
+        <h2>Category: ${category}</h2>
+        <p>Total nouns available: ${window.nounsData.length}</p>
+        <p>First noun: ${JSON.stringify(window.nounsData[0])}</p>
+      `;
+    }
+    
+    setTimeout(() => {
+      if (window.nounsData) {
+        console.log('nounsData loaded successfully:', window.nounsData.length);
+      } else {
+        console.log('nounsData NOT loaded');
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
