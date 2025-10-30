@@ -11,61 +11,91 @@
     
     /* Category Selection Interface */
     .category-selection {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 16px;
-      padding: 2rem;
-      margin: 2rem 0;
-      color: white;
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .category-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .category-header h1 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+    
+    .category-header p {
+      color: #7f8c8d;
+      font-size: 16px;
+      margin: 0;
     }
     
     .category-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-      margin-top: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
     }
     
     .category-card {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: white;
       border-radius: 12px;
-      padding: 1.5rem;
-      cursor: pointer;
+      padding: 24px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-left: 4px solid #3498db;
       transition: all 0.3s ease;
-      text-align: center;
-      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
     }
     
     .category-card:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.4);
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
     
-    .category-icon {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-    
-    .category-title {
-      font-size: 1.1rem;
+    .category-info h3 {
+      margin: 0 0 8px 0;
+      color: #2c3e50;
+      font-size: 18px;
       font-weight: 600;
-      margin-bottom: 0.5rem;
     }
     
-    .category-count {
-      font-size: 0.9rem;
-      opacity: 0.8;
+    .category-info p {
+      margin: 0;
+      color: #7f8c8d;
+      font-size: 14px;
+    }
+    
+    .category-action {
+      flex-shrink: 0;
+    }
+    
+    .start-category-btn {
+      padding: 10px 20px;
+      font-size: 14px;
+      white-space: nowrap;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .start-category-btn:hover {
+      background: #2980b9;
     }
     
     .custom-selection {
-      background: rgba(255, 255, 255, 0.1);
+      background: #f8f9fa;
       border-radius: 12px;
-      padding: 1.5rem;
-      margin-top: 1rem;
+      padding: 24px;
+      margin-top: 20px;
       display: none;
     }
     
@@ -76,9 +106,10 @@
       margin-top: 1rem;
       max-height: 300px;
       overflow-y: auto;
-      background: rgba(255, 255, 255, 0.05);
+      background: white;
       padding: 1rem;
       border-radius: 8px;
+      border: 1px solid #e9ecef;
     }
     
     .noun-checkbox-item {
@@ -91,7 +122,7 @@
     }
     
     .noun-checkbox-item:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: #f8f9fa;
     }
     
     .noun-checkbox-item input[type="checkbox"] {
@@ -102,6 +133,7 @@
       font-size: 0.9rem;
       cursor: pointer;
       margin: 0;
+      color: #2c3e50;
     }
     
     .custom-controls {
@@ -112,8 +144,8 @@
     }
     
     .custom-controls button {
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: #3498db;
+      border: 1px solid #2980b9;
       color: white;
       padding: 0.5rem 1rem;
       border-radius: 6px;
@@ -122,7 +154,42 @@
     }
     
     .custom-controls button:hover {
-      background: rgba(255, 255, 255, 0.3);
+      background: #2980b9;
+    }
+    
+    .custom-controls button:disabled {
+      background: #bdc3c7;
+      border-color: #95a5a6;
+      cursor: not-allowed;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .category-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+      
+      .category-action {
+        width: 100%;
+      }
+      
+      .start-category-btn {
+        width: 100%;
+      }
+      
+      .custom-controls {
+        flex-direction: column;
+      }
+      
+      .custom-controls button {
+        width: 100%;
+      }
     }
     
     /* Styles for multiple choice questions */
@@ -171,19 +238,19 @@
     <div class="navbar-content">
       <div class="nav-section">
         <a href="../index.html" class="nav-item-modern" data-i18n="nav.home">
-          🏠 Acasă
+          Acasă
         </a>
         <a href="../learn.html" class="nav-item-modern" data-i18n="nav.learn">
-          📚 Mediu de învățare
+          Mediu de învățare
         </a>
       </div>
       
       <div class="nav-section">
         <div class="language-selector-nav">
           <select id="languageSelector">
-            <option value="ro">🇷🇴 Română</option>
-            <option value="en">🇺🇸 English</option>
-            <option value="ua">🇺🇦 Українська</option>
+            <option value="ro">Română</option>
+            <option value="en">English</option>
+            <option value="ua">Українська</option>
           </select>
         </div>
       </div>
@@ -195,74 +262,120 @@
   <div class="container">
     <!-- Category Selection Screen -->
     <div id="categorySelection" class="category-selection">
-      <h1 class="test-title" data-i18n="test.nouns_title">Test: Substantive</h1>
-      <p data-i18n="test.choose_category">Alege categoria pentru test:</p>
+      <div class="category-header">
+        <h1 data-i18n="test.nouns_title">Test: Substantive</h1>
+        <p data-i18n="test.choose_category">Alegeți categoria pentru testul de substantive:</p>
+      </div>
       
       <div class="category-grid">
-        <div class="category-card" data-category="all">
-          <span class="category-icon">📚</span>
-          <div class="category-title" data-i18n="category.all">Toate Substantivele</div>
-          <div class="category-count" data-i18n="category.all_desc">60 întrebări aleatorii</div>
+        <div class="category-card" data-category="all" style="border-left-color: #e74c3c;">
+          <div class="category-info">
+            <h3 data-i18n="category.all">Toate Substantivele</h3>
+            <p data-i18n="category.all_desc">60 întrebări aleatorii</p>
+          </div>
+          <div class="category-action">
+            <button class="start-category-btn">Începe testul</button>
+          </div>
         </div>
         
-        <div class="category-card" data-category="custom">
-          <span class="category-icon">🎯</span>
-          <div class="category-title" data-i18n="category.custom">Alege Substantive</div>
-          <div class="category-count" data-i18n="category.custom_desc">Personalizează testul</div>
+        <div class="category-card" data-category="custom" style="border-left-color: #9b59b6;">
+          <div class="category-info">
+            <h3 data-i18n="category.custom">Alege Substantive</h3>
+            <p data-i18n="category.custom_desc">Personalizează testul</p>
+          </div>
+          <div class="category-action">
+            <button class="start-category-btn">Selectează</button>
+          </div>
         </div>
         
-        <div class="category-card" data-category="familie">
-          <span class="category-icon">👨‍👩‍👧‍👦</span>
-          <div class="category-title">Familie</div>
-          <div class="category-count">Familie și persoane</div>
+        <div class="category-card" data-category="familie" style="border-left-color: #e67e22;">
+          <div class="category-info">
+            <h3>Familie</h3>
+            <p>Familie și persoane</p>
+          </div>
+          <div class="category-action">
+            <button class="start-category-btn">Începe testul</button>
+          </div>
         </div>
         
-        <div class="category-card" data-category="kleidung">
-          <span class="category-icon">👕</span>
-          <div class="category-title">Îmbrăcăminte</div>
-          <div class="category-count">Haine și accesorii</div>
+        <div class="category-card" data-category="kleidung" style="border-left-color: #f39c12;">
+          <div class="category-info">
+            <h3>Îmbrăcăminte</h3>
+            <p>Haine și accesorii</p>
+          </div>
+          <div class="category-action">
+            <button class="start-category-btn">Începe testul</button>
+          </div>
         </div>
         
-        <div class="category-card" data-category="essen">
-          <span class="category-icon">🍎</span>
-          <div class="category-title">Alimente</div>
-          <div class="category-count">Mâncare și băuturi</div>
+        <div class="category-card" data-category="essen" style="border-left-color: #27ae60;">
+          <div class="category-info">
+            <h3>Alimente</h3>
+            <p>Mâncare și băuturi</p>
+          </div>
+          <div class="category-action">
+            <button class="start-category-btn">Începe testul</button>
+          </div>
         </div>
         
-        <div class="category-card" data-category="haus">
-          <span class="category-icon">�</span>
-          <div class="category-title">Casa</div>
-          <div class="category-count">Mobilier și camere</div>
+        <div class="category-card" data-category="haus" style="border-left-color: #3498db;">
+          <div class="category-info">
+            <h3>Casa</h3>
+            <p>Mobilier și camere</p>
+          </div>
+          <div class="category-action">
+            <button class="start-category-btn">Începe testul</button>
+          </div>
         </div>
         
-        <div class="category-card" data-category="kuche">
-          <span class="category-icon">🍽️</span>
-          <div class="category-title">Bucătăria</div>
-          <div class="category-count">Veselă și ustensile</div>
+        <div class="category-card" data-category="kuche" style="border-left-color: #e74c3c;">
+          <div class="category-info">
+            <h3>Bucătăria</h3>
+            <p>Veselă și ustensile</p>
+          </div>
+          <div class="category-action">
+            <button class="start-category-btn">Începe testul</button>
+          </div>
         </div>
         
-        <div class="category-card" data-category="schule">
-          <span class="category-icon">📝</span>
-          <div class="category-title">Școala</div>
-          <div class="category-count">Educație și birou</div>
+        <div class="category-card" data-category="schule" style="border-left-color: #f1c40f;">
+          <div class="category-info">
+            <h3>Școala</h3>
+            <p>Educație și birou</p>
+          </div>
+          <div class="category-action">
+            <button class="start-category-btn">Începe testul</button>
+          </div>
         </div>
         
-        <div class="category-card" data-category="arbeit">
-          <span class="category-icon">💼</span>
-          <div class="category-title">Munca</div>
-          <div class="category-count">Profesii și documente</div>
+        <div class="category-card" data-category="arbeit" style="border-left-color: #34495e;">
+          <div class="category-info">
+            <h3>Munca</h3>
+            <p>Profesii și documente</p>
+          </div>
+          <div class="category-action">
+            <button class="start-category-btn">Începe testul</button>
+          </div>
         </div>
         
-        <div class="category-card" data-category="objekte">
-          <span class="category-icon">�</span>
-          <div class="category-title">Obiecte</div>
-          <div class="category-count">Tehnologie și obiecte</div>
+        <div class="category-card" data-category="objekte" style="border-left-color: #95a5a6;">
+          <div class="category-info">
+            <h3>Obiecte</h3>
+            <p>Tehnologie și obiecte</p>
+          </div>
+          <div class="category-action">
+            <button class="start-category-btn">Începe testul</button>
+          </div>
         </div>
         
-        <div class="category-card" data-category="orte">
-          <span class="category-icon">🏢</span>
-          <div class="category-title">Locuri</div>
-          <div class="category-count">Locații și spații</div>
+        <div class="category-card" data-category="orte" style="border-left-color: #1abc9c;">
+          <div class="category-info">
+            <h3>Locuri</h3>
+            <p>Locații și spații</p>
+          </div>
+          <div class="category-action">
+            <button class="start-category-btn">Începe testul</button>
+          </div>
         </div>
       </div>
       

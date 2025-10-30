@@ -1,114 +1,103 @@
 // Adjectives data
 const adjectivesData = [
-  {"adjektiv": "allein",      "comparativ": "alleiner",      "superlativ": "am alleinsten",      "traducere": "singur",         "exemplu": "Er ist allein zu Hause."},
-  {"adjektiv": "froh",        "comparativ": "froher",        "superlativ": "am frohsten",       "traducere": "fericit",        "exemplu": "Ich bin froh über die Nachricht."},
-  {"adjektiv": "nervös",      "comparativ": "nervöser",      "superlativ": "am nervösesten",    "traducere": "nervos",         "exemplu": "Sie ist vor dem Test nervös."},
-  {"adjektiv": "richtig",     "comparativ": "richtiger",     "superlativ": "am richtigsten",    "traducere": "corect",         "exemplu": "Das ist die richtige Antwort."},
-  {"adjektiv": "geschieden",  "comparativ": "geschiedener",  "superlativ": "am geschiedensten", "traducere": "divorțat",       "exemplu": "Er ist seit zwei Jahren geschieden."},
-  {"adjektiv": "groß",        "comparativ": "größer",        "superlativ": "am größten",        "traducere": "mare",           "exemplu": "Das Haus ist sehr groß."},
-  {"adjektiv": "ledig",       "comparativ": "lediger",       "superlativ": "am ledigsten",      "traducere": "necăsătorit",    "exemplu": "Sie ist noch ledig."},
-  {"adjektiv": "männlich",    "comparativ": "männlicher",    "superlativ": "am männlichsten",   "traducere": "masculin",       "exemplu": "Die Merkmale sind männlich."},
-  {"adjektiv": "offen",       "comparativ": "offener",       "superlativ": "am offensten",      "traducere": "deschis",        "exemplu": "Er ist sehr offen gegenüber Ideen."},
-  {"adjektiv": "verheiratet", "comparativ": "verheirateter", "superlativ": "am verheiratetsten", "traducere": "căsătorit",      "exemplu": "Sie ist seit 2010 verheiratet."},
-  {"adjektiv": "verwitwet",   "comparativ": "verwitweter",   "superlativ": "am verwitwetsten",  "traducere": "văduv",          "exemplu": "Er ist seit kurzem verwitwet."},
-  {"adjektiv": "weiblich",    "comparativ": "weiblicher",    "superlativ": "am weiblichsten",   "traducere": "feminin",        "exemplu": "Die Figur wirkt weiblich."},
+  // -- personenstand
+  {"adjektiv": "geschieden",  "comparativ": "geschiedener",  "superlativ": "am geschiedensten", "traducere": "divorțat",       "exemplu": "Er ist seit zwei Jahren geschieden.", "category": "personenstand"},
+  {"adjektiv": "ledig",       "comparativ": "lediger",       "superlativ": "am ledigsten",      "traducere": "necăsătorit",    "exemplu": "Sie ist noch ledig.", "category": "personenstand"},
+  {"adjektiv": "verheiratet", "comparativ": "verheirateter", "superlativ": "am verheiratetsten", "traducere": "căsătorit",      "exemplu": "Sie ist seit 2010 verheiratet.", "category": "personenstand"},
+  {"adjektiv": "verwitwet",   "comparativ": "verwitweter",   "superlativ": "am verwitwetsten",  "traducere": "văduv",          "exemplu": "Er ist seit kurzem verwitwet.", "category": "personenstand"},
 
-  // Adjective esențiale de culoare
-  {"adjektiv": "rot",         "comparativ": "röter",         "superlativ": "am rötesten",       "traducere": "roșu",           "exemplu": "Das Auto ist rot."},
-  {"adjektiv": "blau",        "comparativ": "blauer",        "superlativ": "am blauesten",      "traducere": "albastru",       "exemplu": "Der Himmel ist blau."},
-  {"adjektiv": "grün",        "comparativ": "grüner",        "superlativ": "am grünsten",       "traducere": "verde",          "exemplu": "Das Gras ist grün."},
-  {"adjektiv": "gelb",        "comparativ": "gelber",        "superlativ": "am gelbsten",       "traducere": "galben",         "exemplu": "Die Sonne ist gelb."},
-  {"adjektiv": "schwarz",     "comparativ": "schwärzer",     "superlativ": "am schwärzesten",   "traducere": "negru",          "exemplu": "Die Katze ist schwarz."},
-  {"adjektiv": "weiß",        "comparativ": "weißer",        "superlativ": "am weißesten",      "traducere": "alb",            "exemplu": "Der Schnee ist weiß."},
+  // -- zustand
+  {"adjektiv": "allein",      "comparativ": "alleiner",      "superlativ": "am alleinsten",      "traducere": "singur",         "exemplu": "Er ist allein zu Hause.", "category": "zustand"},
+  {"adjektiv": "richtig",     "comparativ": "richtiger",     "superlativ": "am richtigsten",    "traducere": "corect",         "exemplu": "Das ist die richtige Antwort.", "category": "zustand"},
+  {"adjektiv": "offen",       "comparativ": "offener",       "superlativ": "am offensten",      "traducere": "deschis",        "exemplu": "Er ist sehr offen gegenüber Ideen.", "category": "zustand"},
+  {"adjektiv": "müde",        "comparativ": "müder",         "superlativ": "am müdesten",       "traducere": "obosit",         "exemplu": "Ich bin müde.", "category": "zustand"},
+  {"adjektiv": "gesund",      "comparativ": "gesünder",      "superlativ": "am gesündesten",    "traducere": "sănătos",        "exemplu": "Sport ist gesund.", "category": "zustand"},
+  {"adjektiv": "ungesund",    "comparativ": "ungesünder",    "superlativ": "am ungesündesten",  "traducere": "nesănătos",      "exemplu": "Rauchen ist ungesund.", "category": "zustand"},
+  {"adjektiv": "krank",       "comparativ": "kränker",       "superlativ": "am kränksten",      "traducere": "bolnav",         "exemplu": "Er ist heute krank.", "category": "zustand"},
+  {"adjektiv": "hungrig",     "comparativ": "hungriger",     "superlativ": "am hungrigsten",    "traducere": "flămând",        "exemplu": "Ich bin sehr hungrig.", "category": "zustand"},
+  {"adjektiv": "satt",        "comparativ": "satter",        "superlativ": "am sattesten",      "traducere": "sătul",          "exemplu": "Nach dem Essen bin ich satt.", "category": "zustand"},
+  {"adjektiv": "falsch",      "comparativ": "falscher",      "superlativ": "am falschesten",    "traducere": "greșit",         "exemplu": "Die Antwort ist falsch.", "category": "zustand"},
+  {"adjektiv": "geschlossen", "comparativ": "geschlossener", "superlativ": "am geschlossensten", "traducere": "închis",        "exemplu": "Die Tür ist geschlossen.", "category": "zustand"},
 
-  // Adjective de mărime și cantitate
-  {"adjektiv": "klein",       "comparativ": "kleiner",       "superlativ": "am kleinsten",      "traducere": "mic",            "exemplu": "Das Kind ist klein."},
-  {"adjektiv": "alt",         "comparativ": "älter",         "superlativ": "am ältesten",       "traducere": "bătrân/vechi",   "exemplu": "Der Mann ist alt."},
-  {"adjektiv": "jung",        "comparativ": "jünger",        "superlativ": "am jüngsten",       "traducere": "tânăr",          "exemplu": "Sie ist noch jung."},
-  {"adjektiv": "neu",         "comparativ": "neuer",         "superlativ": "am neuesten",       "traducere": "nou",            "exemplu": "Das Buch ist neu."},
-  {"adjektiv": "lang",        "comparativ": "länger",        "superlativ": "am längsten",       "traducere": "lung",           "exemplu": "Der Weg ist lang."},
-  {"adjektiv": "kurz",        "comparativ": "kürzer",        "superlativ": "am kürzesten",      "traducere": "scurt",          "exemplu": "Das Kleid ist kurz."},
+  // -- gefuehle_charakter
+  {"adjektiv": "froh",        "comparativ": "froher",        "superlativ": "am frohsten",       "traducere": "fericit",        "exemplu": "Ich bin froh über die Nachricht.", "category": "gefuehle_charakter"},
+  {"adjektiv": "nervös",      "comparativ": "nervöser",      "superlativ": "am nervösesten",    "traducere": "nervos",         "exemplu": "Sie ist vor dem Test nervös.", "category": "gefuehle_charakter"},
+  {"adjektiv": "glücklich",   "comparativ": "glücklicher",   "superlativ": "am glücklichsten",  "traducere": "fericit",        "exemplu": "Er ist sehr glücklich.", "category": "gefuehle_charakter"},
+  {"adjektiv": "traurig",     "comparativ": "trauriger",     "superlativ": "am traurigsten",    "traducere": "trist",          "exemplu": "Sie ist traurig.", "category": "gefuehle_charakter"},
+  {"adjektiv": "mutig",       "comparativ": "mutiger",       "superlativ": "am mutigsten",      "traducere": "curajos",        "exemplu": "Der Soldat ist mutig.", "category": "gefuehle_charakter"},
+  {"adjektiv": "feig",        "comparativ": "feiger",        "superlativ": "am feigsten",       "traducere": "laș",            "exemplu": "Er ist feig vor Spinnen.", "category": "gefuehle_charakter"},
+  {"adjektiv": "ängstlich",   "comparativ": "ängstlicher",   "superlativ": "am ängstlichsten",  "traducere": "fricos",         "exemplu": "Das Kind ist ängstlich.", "category": "gefuehle_charakter"},
+  {"adjektiv": "lustig",      "comparativ": "lustiger",      "superlativ": "am lustigsten",     "traducere": "amuzant",        "exemplu": "Der Clown ist lustig.", "category": "gefuehle_charakter"},
+  {"adjektiv": "faul",        "comparativ": "fauler",        "superlativ": "am faulsten",       "traducere": "leneș",          "exemplu": "Er ist heute faul.", "category": "gefuehle_charakter"},
+  {"adjektiv": "fleißig",     "comparativ": "fleißiger",     "superlativ": "am fleißigsten",    "traducere": "harnic",         "exemplu": "Sie ist sehr fleißig.", "category": "gefuehle_charakter"},
+  {"adjektiv": "brav",        "comparativ": "braver",        "superlativ": "am bravsten",       "traducere": "cuminte",        "exemplu": "Das Kind ist brav.", "category": "gefuehle_charakter"},
 
-  // Adjective de caracter și stare emoțională
-  {"adjektiv": "schön",       "comparativ": "schöner",       "superlativ": "am schönsten",      "traducere": "frumos",         "exemplu": "Das Wetter ist schön."},
-  {"adjektiv": "hässlich",    "comparativ": "hässlicher",    "superlativ": "am hässlichsten",   "traducere": "urât",           "exemplu": "Das Gebäude ist hässlich."},
-  {"adjektiv": "gut",         "comparativ": "besser",        "superlativ": "am besten",         "traducere": "bun",            "exemplu": "Das Essen ist gut."},
-  {"adjektiv": "schlecht",    "comparativ": "schlechter",    "superlativ": "am schlechtesten",  "traducere": "rău",            "exemplu": "Das Wetter ist schlecht."},
-  {"adjektiv": "glücklich",   "comparativ": "glücklicher",   "superlativ": "am glücklichsten",  "traducere": "fericit",        "exemplu": "Er ist sehr glücklich."},
-  {"adjektiv": "traurig",     "comparativ": "trauriger",     "superlativ": "am traurigsten",    "traducere": "trist",          "exemplu": "Sie ist traurig."},
-  {"adjektiv": "müde",        "comparativ": "müder",         "superlativ": "am müdesten",       "traducere": "obosit",         "exemplu": "Ich bin müde."},
+  // -- farben
+  {"adjektiv": "rot",         "comparativ": "röter",         "superlativ": "am rötesten",       "traducere": "roșu",           "exemplu": "Das Auto ist rot.", "category": "farben"},
+  {"adjektiv": "blau",        "comparativ": "blauer",        "superlativ": "am blauesten",      "traducere": "albastru",       "exemplu": "Der Himmel ist blau.", "category": "farben"},
+  {"adjektiv": "grün",        "comparativ": "grüner",        "superlativ": "am grünsten",       "traducere": "verde",          "exemplu": "Das Gras ist grün.", "category": "farben"},
+  {"adjektiv": "gelb",        "comparativ": "gelber",        "superlativ": "am gelbsten",       "traducere": "galben",         "exemplu": "Die Sonne ist gelb.", "category": "farben"},
+  {"adjektiv": "schwarz",     "comparativ": "schwärzer",     "superlativ": "am schwärzesten",   "traducere": "negru",          "exemplu": "Die Katze ist schwarz.", "category": "farben"},
+  {"adjektiv": "weiß",        "comparativ": "weißer",        "superlativ": "am weißesten",      "traducere": "alb",            "exemplu": "Der Schnee ist weiß.", "category": "farben"},
 
-  // Adjective de temperatură și timp
-  {"adjektiv": "warm",        "comparativ": "wärmer",        "superlativ": "am wärmsten",       "traducere": "cald",           "exemplu": "Es ist warm heute."},
-  {"adjektiv": "kalt",        "comparativ": "kälter",        "superlativ": "am kältesten",      "traducere": "rece",           "exemplu": "Der Winter ist kalt."},
-  {"adjektiv": "heiß",        "comparativ": "heißer",        "superlativ": "am heißesten",      "traducere": "fierbinte",      "exemplu": "Der Sommer ist heiß."},
-  {"adjektiv": "schnell",     "comparativ": "schneller",     "superlativ": "am schnellsten",    "traducere": "rapid",          "exemplu": "Das Auto ist schnell."},
-  {"adjektiv": "langsam",     "comparativ": "langsamer",     "superlativ": "am langsamsten",    "traducere": "încet",          "exemplu": "Der Zug ist langsam."},
+  // -- eigenschaften
+  {"adjektiv": "groß",        "comparativ": "größer",        "superlativ": "am größten",        "traducere": "mare",           "exemplu": "Das Haus ist sehr groß.", "category": "eigenschaften"},
+  {"adjektiv": "männlich",    "comparativ": "männlicher",    "superlativ": "am männlichsten",   "traducere": "masculin",       "exemplu": "Die Merkmale sind männlich.", "category": "eigenschaften"},
+  {"adjektiv": "weiblich",    "comparativ": "weiblicher",    "superlativ": "am weiblichsten",   "traducere": "feminin",        "exemplu": "Die Figur wirkt weiblich.", "category": "eigenschaften"},
+  {"adjektiv": "klein",       "comparativ": "kleiner",       "superlativ": "am kleinsten",      "traducere": "mic",            "exemplu": "Das Kind ist klein.", "category": "eigenschaften"},
+  {"adjektiv": "alt",         "comparativ": "älter",         "superlativ": "am ältesten",       "traducere": "bătrân/vechi",   "exemplu": "Der Mann ist alt.", "category": "eigenschaften"},
+  {"adjektiv": "jung",        "comparativ": "jünger",        "superlativ": "am jüngsten",       "traducere": "tânăr",          "exemplu": "Sie ist noch jung.", "category": "eigenschaften"},
+  {"adjektiv": "neu",         "comparativ": "neuer",         "superlativ": "am neuesten",       "traducere": "nou",            "exemplu": "Das Buch ist neu.", "category": "eigenschaften"},
+  {"adjektiv": "lang",        "comparativ": "länger",        "superlativ": "am längsten",       "traducere": "lung",           "exemplu": "Der Weg ist lang.", "category": "eigenschaften"},
+  {"adjektiv": "kurz",        "comparativ": "kürzer",        "superlativ": "am kürzesten",      "traducere": "scurt",          "exemplu": "Das Kleid ist kurz.", "category": "eigenschaften"},
+  {"adjektiv": "schön",       "comparativ": "schöner",       "superlativ": "am schönsten",      "traducere": "frumos",         "exemplu": "Das Wetter ist schön.", "category": "eigenschaften"},
+  {"adjektiv": "hässlich",    "comparativ": "hässlicher",    "superlativ": "am hässlichsten",   "traducere": "urât",           "exemplu": "Das Gebäude ist hässlich.", "category": "eigenschaften"},
+  {"adjektiv": "schnell",     "comparativ": "schneller",     "superlativ": "am schnellsten",    "traducere": "rapid",          "exemplu": "Das Auto ist schnell.", "category": "eigenschaften"},
+  {"adjektiv": "langsam",     "comparativ": "langsamer",     "superlativ": "am langsamsten",    "traducere": "încet",          "exemplu": "Der Zug ist langsam.", "category": "eigenschaften"},
+  {"adjektiv": "stark",       "comparativ": "stärker",       "superlativ": "am stärksten",      "traducere": "puternic",       "exemplu": "Er ist sehr stark.", "category": "eigenschaften"},
+  {"adjektiv": "schwach",     "comparativ": "schwächer",     "superlativ": "am schwächsten",    "traducere": "slab",           "exemplu": "Sie fühlt sich schwach.", "category": "eigenschaften"},
+  {"adjektiv": "dunkel",      "comparativ": "dunkler",       "superlativ": "am dunkelsten",     "traducere": "întunecat",      "exemplu": "Das Zimmer ist dunkel.", "category": "eigenschaften"},
+  {"adjektiv": "hell",        "comparativ": "heller",        "superlativ": "am hellsten",       "traducere": "luminos",        "exemplu": "Die Sonne ist hell.", "category": "eigenschaften"},
+  {"adjektiv": "kräftig",     "comparativ": "kräftiger",     "superlativ": "am kräftigsten",    "traducere": "puternic/tare",  "exemplu": "Er hat kräftige Arme.", "category": "eigenschaften"},
+  {"adjektiv": "natürlich",   "comparativ": "natürlicher",   "superlativ": "am natürlichsten",  "traducere": "natural",        "exemplu": "Das ist natürliches Licht.", "category": "eigenschaften"},
+  {"adjektiv": "künstlich",   "comparativ": "künstlicher",   "superlativ": "am künstlichsten",  "traducere": "artificial",     "exemplu": "Das Licht ist künstlich.", "category": "eigenschaften"},
+  {"adjektiv": "hoch",        "comparativ": "höher",         "superlativ": "am höchsten",       "traducere": "înalt",          "exemplu": "Der Berg ist hoch.", "category": "eigenschaften"},
+  {"adjektiv": "niedrig",     "comparativ": "niedriger",     "superlativ": "am niedrigsten",    "traducere": "jos",            "exemplu": "Der Tisch ist niedrig.", "category": "eigenschaften"},
+  {"adjektiv": "nah",         "comparativ": "näher",         "superlativ": "am nächsten",       "traducere": "aproape",        "exemplu": "Die Schule ist nah.", "category": "eigenschaften"},
+  {"adjektiv": "weit",        "comparativ": "weiter",        "superlativ": "am weitesten",      "traducere": "departe",        "exemplu": "Die Stadt ist weit.", "category": "eigenschaften"},
+  {"adjektiv": "fern",        "comparativ": "ferner",        "superlativ": "am fernsten",       "traducere": "îndepărtat",     "exemplu": "Das Land ist fern.", "category": "eigenschaften"},
+  {"adjektiv": "dick",        "comparativ": "dicker",        "superlativ": "am dicksten",       "traducere": "gras",           "exemplu": "Das Buch ist dick.", "category": "eigenschaften"},
+  {"adjektiv": "dünn",        "comparativ": "dünner",        "superlativ": "am dünnsten",       "traducere": "subțire",        "exemplu": "Das Papier ist dünn.", "category": "eigenschaften"},
+  {"adjektiv": "lockig",      "comparativ": "lockiger",      "superlativ": "am lockigsten",     "traducere": "creț",           "exemplu": "Sie hat lockige Haare.", "category": "eigenschaften"},
+  {"adjektiv": "leicht",      "comparativ": "leichter",      "superlativ": "am leichtesten",    "traducere": "ușor",           "exemplu": "Die Tasche ist leicht.", "category": "eigenschaften"},
+  {"adjektiv": "schwer",      "comparativ": "schwerer",      "superlativ": "am schwersten",     "traducere": "greu",           "exemplu": "Der Koffer ist schwer.", "category": "eigenschaften"},
 
-  // Adjective utile pentru descrieri
-  {"adjektiv": "stark",       "comparativ": "stärker",       "superlativ": "am stärksten",      "traducere": "puternic",       "exemplu": "Er ist sehr stark."},
-  {"adjektiv": "schwach",     "comparativ": "schwächer",     "superlativ": "am schwächsten",    "traducere": "slab",           "exemplu": "Sie fühlt sich schwach."},
-  
-  // Adjective noi adăugate - Luminozitate și putere
-  {"adjektiv": "dunkel",      "comparativ": "dunkler",       "superlativ": "am dunkelsten",     "traducere": "întunecat",      "exemplu": "Das Zimmer ist dunkel."},
-  {"adjektiv": "hell",        "comparativ": "heller",        "superlativ": "am hellsten",       "traducere": "luminos",        "exemplu": "Die Sonne ist hell."},
-  {"adjektiv": "kräftig",     "comparativ": "kräftiger",     "superlativ": "am kräftigsten",    "traducere": "puternic/tare",  "exemplu": "Er hat kräftige Arme."},
-  
-  // Viteză și caracter  
-  {"adjektiv": "mutig",       "comparativ": "mutiger",       "superlativ": "am mutigsten",      "traducere": "curajos",        "exemplu": "Der Soldat ist mutig."},
-  {"adjektiv": "feig",        "comparativ": "feiger",        "superlativ": "am feigsten",       "traducere": "laș",            "exemplu": "Er ist feig vor Spinnen."},
-  {"adjektiv": "ängstlich",   "comparativ": "ängstlicher",   "superlativ": "am ängstlichsten",  "traducere": "fricos",         "exemplu": "Das Kind ist ängstlich."},
-  {"adjektiv": "lustig",      "comparativ": "lustiger",      "superlativ": "am lustigsten",     "traducere": "amuzant",        "exemplu": "Der Clown ist lustig."},
-  {"adjektiv": "wolkig",      "comparativ": "wolkiger",      "superlativ": "am wolkigsten",     "traducere": "înnorat",        "exemplu": "Der Himmel ist wolkig."},
-  
-  // Natural și artificial
-  {"adjektiv": "natürlich",   "comparativ": "natürlicher",   "superlativ": "am natürlichsten",  "traducere": "natural",        "exemplu": "Das ist natürliches Licht."},
-  {"adjektiv": "künstlich",   "comparativ": "künstlicher",   "superlativ": "am künstlichsten",  "traducere": "artificial",     "exemplu": "Das Licht ist künstlich."},
-  
-  // Sănătate și stare
-  {"adjektiv": "gesund",      "comparativ": "gesünder",      "superlativ": "am gesündesten",    "traducere": "sănătos",        "exemplu": "Sport ist gesund."},
-  {"adjektiv": "ungesund",    "comparativ": "ungesünder",    "superlativ": "am ungesündesten",  "traducere": "nesănătos",      "exemplu": "Rauchen ist ungesund."},
-  {"adjektiv": "krank",       "comparativ": "kränker",       "superlativ": "am kränksten",      "traducere": "bolnav",         "exemplu": "Er ist heute krank."},
-  {"adjektiv": "hungrig",     "comparativ": "hungriger",     "superlativ": "am hungrigsten",    "traducere": "flămând",        "exemplu": "Ich bin sehr hungrig."},
-  {"adjektiv": "satt",        "comparativ": "satter",        "superlativ": "am sattesten",      "traducere": "sătul",          "exemplu": "Nach dem Essen bin ich satt."},
-  
-  // Înălțime și distanță
-  {"adjektiv": "hoch",        "comparativ": "höher",         "superlativ": "am höchsten",       "traducere": "înalt",          "exemplu": "Der Berg ist hoch."},
-  {"adjektiv": "niedrig",     "comparativ": "niedriger",     "superlativ": "am niedrigsten",    "traducere": "jos",            "exemplu": "Der Tisch ist niedrig."},
-  {"adjektiv": "nah",         "comparativ": "näher",         "superlativ": "am nächsten",       "traducere": "aproape",        "exemplu": "Die Schule ist nah."},
-  {"adjektiv": "weit",        "comparativ": "weiter",        "superlativ": "am weitesten",      "traducere": "departe",        "exemplu": "Die Stadt ist weit."},
-  {"adjektiv": "fern",        "comparativ": "ferner",        "superlativ": "am fernsten",       "traducere": "îndepărtat",     "exemplu": "Das Land ist fern."},
-  
-  // Gust și textură
-  {"adjektiv": "süß",         "comparativ": "süßer",         "superlativ": "am süßesten",       "traducere": "dulce",          "exemplu": "Der Kuchen ist süß."},
-  {"adjektiv": "sauer",       "comparativ": "saurer",        "superlativ": "am sauersten",      "traducere": "acru",           "exemplu": "Die Zitrone ist sauer."},
-  {"adjektiv": "dick",        "comparativ": "dicker",        "superlativ": "am dicksten",       "traducere": "gras",           "exemplu": "Das Buch ist dick."},
-  {"adjektiv": "dünn",        "comparativ": "dünner",        "superlativ": "am dünnsten",       "traducere": "subțire",        "exemplu": "Das Papier ist dünn."},
-  
-  // Inteligență și caracter
-  {"adjektiv": "dumm",        "comparativ": "dümmer",        "superlativ": "am dümmsten",       "traducere": "prost",          "exemplu": "Das war dumm von mir."},
-  {"adjektiv": "klug",        "comparativ": "klüger",        "superlativ": "am klügsten",       "traducere": "deștept",        "exemplu": "Sie ist sehr klug."},
-  {"adjektiv": "schlau",      "comparativ": "schlauer",      "superlativ": "am schlauesten",    "traducere": "isteț",          "exemplu": "Der Fuchs ist schlau."},
-  {"adjektiv": "clever",      "comparativ": "cleverer",      "superlativ": "am cleversten",     "traducere": "inteligent",     "exemplu": "Das war eine clevere Idee."},
-  {"adjektiv": "intelligent", "comparativ": "intelligenter", "superlativ": "am intelligentesten", "traducere": "inteligent",   "exemplu": "Er ist sehr intelligent."},
-  
-  // Bogăție și corectitudine
-  {"adjektiv": "arm",         "comparativ": "ärmer",         "superlativ": "am ärmsten",        "traducere": "sărac",          "exemplu": "Die Familie ist arm."},
-  {"adjektiv": "reich",       "comparativ": "reicher",       "superlativ": "am reichsten",      "traducere": "bogat",          "exemplu": "Er ist sehr reich."},
-  {"adjektiv": "falsch",      "comparativ": "falscher",      "superlativ": "am falschesten",    "traducere": "greșit",         "exemplu": "Die Antwort ist falsch."},
-  {"adjektiv": "schlimm",     "comparativ": "schlimmer",     "superlativ": "am schlimmsten",    "traducere": "rău/grav",       "exemplu": "Das ist sehr schlimm."},
-  
-  // Comportament și aspect
-  {"adjektiv": "faul",        "comparativ": "fauler",        "superlativ": "am faulsten",       "traducere": "leneș",          "exemplu": "Er ist heute faul."},
-  {"adjektiv": "fleißig",     "comparativ": "fleißiger",     "superlativ": "am fleißigsten",    "traducere": "harnic",         "exemplu": "Sie ist sehr fleißig."},
-  {"adjektiv": "brav",        "comparativ": "braver",        "superlativ": "am bravsten",       "traducere": "cuminte",        "exemplu": "Das Kind ist brav."},
-  {"adjektiv": "geschlossen", "comparativ": "geschlossener", "superlativ": "am geschlossensten", "traducere": "închis",        "exemplu": "Die Tür ist geschlossen."},
-  {"adjektiv": "glatt",       "comparativ": "glatter",       "superlativ": "am glättesten",     "traducere": "neted",          "exemplu": "Das Eis ist glatt."},
-  {"adjektiv": "lockig",      "comparativ": "lockiger",      "superlativ": "am lockigsten",     "traducere": "creț",           "exemplu": "Sie hat lockige Haare."},
-  {"adjektiv": "leicht",      "comparativ": "leichter",      "superlativ": "am leichtesten",    "traducere": "ușor",           "exemplu": "Die Tasche ist leicht."},
-  {"adjektiv": "schwer",      "comparativ": "schwerer",      "superlativ": "am schwersten",     "traducere": "greu",           "exemplu": "Der Koffer ist schwer."},
-  {"adjektiv": "teuer",       "comparativ": "teurer",        "superlativ": "am teuersten",      "traducere": "scump",          "exemplu": "Das Auto ist teuer."},
-  {"adjektiv": "billig",      "comparativ": "billiger",      "superlativ": "am billigsten",     "traducere": "ieftin",         "exemplu": "Das Brot ist billig."}
+  // -- wetter_temperatur
+  {"adjektiv": "warm",        "comparativ": "wärmer",        "superlativ": "am wärmsten",       "traducere": "cald",           "exemplu": "Es ist warm heute.", "category": "wetter_temperatur"},
+  {"adjektiv": "kalt",        "comparativ": "kälter",        "superlativ": "am kältesten",      "traducere": "rece",           "exemplu": "Der Winter ist kalt.", "category": "wetter_temperatur"},
+  {"adjektiv": "heiß",        "comparativ": "heißer",        "superlativ": "am heißesten",      "traducere": "fierbinte",      "exemplu": "Der Sommer ist heiß.", "category": "wetter_temperatur"},
+  {"adjektiv": "wolkig",      "comparativ": "wolkiger",      "superlativ": "am wolkigsten",     "traducere": "înnorat",        "exemplu": "Der Himmel ist wolkig.", "category": "wetter_temperatur"},
+
+  // -- geschmack_textur
+  {"adjektiv": "süß",         "comparativ": "süßer",         "superlativ": "am süßesten",       "traducere": "dulce",          "exemplu": "Der Kuchen ist süß.", "category": "geschmack_textur"},
+  {"adjektiv": "sauer",       "comparativ": "saurer",        "superlativ": "am sauersten",      "traducere": "acru",           "exemplu": "Die Zitrone ist sauer.", "category": "geschmack_textur"},
+  {"adjektiv": "glatt",       "comparativ": "glatter",       "superlativ": "am glättesten",     "traducere": "neted",          "exemplu": "Das Eis ist glatt.", "category": "geschmack_textur"},
+
+  // -- intelligenz
+  {"adjektiv": "dumm",        "comparativ": "dümmer",        "superlativ": "am dümmsten",       "traducere": "prost",          "exemplu": "Das war dumm von mir.", "category": "intelligenz"},
+  {"adjektiv": "klug",        "comparativ": "klüger",        "superlativ": "am klügsten",       "traducere": "deștept",        "exemplu": "Sie ist sehr klug.", "category": "intelligenz"},
+  {"adjektiv": "schlau",      "comparativ": "schlauer",      "superlativ": "am schlauesten",    "traducere": "isteț",          "exemplu": "Der Fuchs ist schlau.", "category": "intelligenz"},
+  {"adjektiv": "clever",      "comparativ": "cleverer",      "superlativ": "am cleversten",     "traducere": "inteligent",     "exemplu": "Das war eine clevere Idee.", "category": "intelligenz"},
+  {"adjektiv": "intelligent", "comparativ": "intelligenter", "superlativ": "am intelligentesten", "traducere": "inteligent",   "exemplu": "Er ist sehr intelligent.", "category": "intelligenz"},
+
+  // -- wert_qualitaet
+  {"adjektiv": "gut",         "comparativ": "besser",        "superlativ": "am besten",         "traducere": "bun",            "exemplu": "Das Essen ist gut.", "category": "wert_qualitaet"},
+  {"adjektiv": "schlecht",    "comparativ": "schlechter",    "superlativ": "am schlechtesten",  "traducere": "rău",            "exemplu": "Das Wetter ist schlecht.", "category": "wert_qualitaet"},
+  {"adjektiv": "arm",         "comparativ": "ärmer",         "superlativ": "am ärmsten",        "traducere": "sărac",          "exemplu": "Die Familie ist arm.", "category": "wert_qualitaet"},
+  {"adjektiv": "reich",       "comparativ": "reicher",       "superlativ": "am reichsten",      "traducere": "bogat",          "exemplu": "Er ist sehr reich.", "category": "wert_qualitaet"},
+  {"adjektiv": "schlimm",     "comparativ": "schlimmer",     "superlativ": "am schlimmsten",    "traducere": "rău/grav",       "exemplu": "Das ist sehr schlimm.", "category": "wert_qualitaet"},
+  {"adjektiv": "teuer",       "comparativ": "teurer",        "superlativ": "am teuersten",      "traducere": "scump",          "exemplu": "Das Auto ist teuer.", "category": "wert_qualitaet"},
+  {"adjektiv": "billig",      "comparativ": "billiger",      "superlativ": "am billigsten",     "traducere": "ieftin",         "exemplu": "Das Brot ist billig.", "category": "wert_qualitaet"}
 ];
 
 // Load adjectives and populate table with pagination
@@ -120,8 +109,15 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentPage = 1;
   const pageSize = 25;
 
+  // Verifică dacă tabelul adjektivTable există (pentru compatibility cu multiple pagini)
+  const adjektivTableEl = document.getElementById('adjektivTable');
+  if (!adjektivTableEl) {
+    console.log('adjektivTable nu a fost găsit - probabili suntem pe o pagină de test');
+    return; // Oprește execuția dacă nu este pagina cu tabel
+  }
+
   // Create pagination elements
-  const tableContainer = document.getElementById('adjektivTable').parentElement;
+  const tableContainer = adjektivTableEl.parentElement;
   const paginationInfo = document.createElement('div');
   paginationInfo.id = 'aPaginationInfo';
   paginationInfo.style.cssText = 'margin-top:8px;color:#444;';

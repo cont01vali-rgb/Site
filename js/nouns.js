@@ -243,22 +243,98 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentPage = 1;
   const pageSize = 25;
   let selectedRowIndex = -1; // index în pagina curentă
+  let selectedCategory = 'all'; // categoria selectată
 
   render();
 
-  // Căutare live
-  searchInput?.addEventListener('input', () => {
-    const term = normalize(searchInput.value || '');
+  // Category filters
+  const categoryFilters = document.querySelectorAll('.category-filter-btn');
+  
+  // Initialize category counts after categoryFilters is defined
+  updateCategoryCounts();
+  
+  categoryFilters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update button states
+      categoryFilters.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Update selected category
+      selectedCategory = btn.getAttribute('data-category');
+      
+      // Clear search when changing categories
+      if (searchInput) {
+        searchInput.value = '';
+      }
+      
+      // Apply filters
+      applyFilters();
+    });
+  });
+
+  // Function to update category counts in buttons
+  function updateCategoryCounts() {
+    const counts = {};
+    nounsData.forEach(item => {
+      const cat = item.categorie || 'unknown';
+      counts[cat] = (counts[cat] || 0) + 1;
+    });
+    
+    // Map categories to their Romanian names for consistency
+    const categoryMap = {
+      'all': 'Toate',
+      'family': 'Familie',
+      'kleidung': 'Îmbrăcăminte',
+      'essen': 'Alimente', 
+      'haus': 'Casa',
+      'kuche': 'Bucătăria',
+      'schule': 'Școala',
+      'arbeit': 'Munca',
+      'objekte': 'Obiecte',
+      'orte': 'Locuri'
+    };
+    
+    // Update button text with counts
+    categoryFilters.forEach(btn => {
+      const category = btn.getAttribute('data-category');
+      const originalText = categoryMap[category] || btn.textContent.split(' (')[0];
+      
+      if (category === 'all') {
+        btn.textContent = `${originalText} (${nounsData.length})`;
+      } else {
+        const count = counts[category] || 0;
+        btn.textContent = `${originalText} (${count})`;
+      }
+    });
+  }
+
+  // Function to apply both search and category filters
+  function applyFilters() {
+    const searchTerm = normalize(searchInput?.value || '');
+    
     filtered = nounsData
-      .filter(item =>
-        normalize(item.nomen).includes(term) ||
-        normalize(item.traducere || '').includes(term) ||
-        normalize(item.plural || '').includes(term)
-      )
+      .filter(item => {
+        // Category filter
+        const categoryMatch = selectedCategory === 'all' || item.categorie === selectedCategory;
+        
+        // Search filter
+        const searchMatch = !searchTerm || 
+          normalize(item.nomen).includes(searchTerm) ||
+          normalize(item.traducere || '').includes(searchTerm) ||
+          normalize(item.plural || '').includes(searchTerm);
+        
+        return categoryMatch && searchMatch;
+      })
       .sort((a,b)=>a.nomen.localeCompare(b.nomen,'de'));
+    
     currentPage = 1;
     selectedRowIndex = -1;
     render();
+  }
+
+  // Căutare live (updated to use applyFilters)
+  searchInput?.addEventListener('input', () => {
+    applyFilters();
   });
 
   // Paginare (identic cu Das Verb)

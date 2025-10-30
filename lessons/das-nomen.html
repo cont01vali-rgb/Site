@@ -5,6 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Das Nomen – Lecția</title>
   <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* Category filters styling */
+    .category-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+    
+    .category-filter-btn {
+      background: white;
+      border: 1px solid #dee2e6;
+      color: #495057;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    
+    .category-filter-btn:hover {
+      background: #e9ecef;
+      border-color: #adb5bd;
+    }
+    
+    .category-filter-btn.active {
+      background: #007bff;
+      border-color: #007bff;
+      color: white;
+    }
+    
+    .category-filter-btn.active:hover {
+      background: #0056b3;
+      border-color: #004085;
+    }
+    
+    /* Responsive design for filters */
+    @media (max-width: 768px) {
+      .category-filters {
+        justify-content: center;
+      }
+      
+      .category-filter-btn {
+        font-size: 12px;
+        padding: 4px 8px;
+      }
+    }
+  </style>
   <script defer src="../js/nouns.js"></script>
 </head>
 <body>
@@ -42,6 +95,20 @@
 
     
     <input type="text" id="searchInput" placeholder="Caută un cuvânt (germană sau română)...">
+
+    <!-- Category filters -->
+    <div id="categoryFilters" class="category-filters">
+      <button class="category-filter-btn active" data-category="all">Toate</button>
+      <button class="category-filter-btn" data-category="family">Familie</button>
+      <button class="category-filter-btn" data-category="kleidung">Îmbrăcăminte</button>
+      <button class="category-filter-btn" data-category="essen">Alimente</button>
+      <button class="category-filter-btn" data-category="haus">Casa</button>
+      <button class="category-filter-btn" data-category="kuche">Bucătăria</button>
+      <button class="category-filter-btn" data-category="schule">Școala</button>
+      <button class="category-filter-btn" data-category="arbeit">Munca</button>
+      <button class="category-filter-btn" data-category="objekte">Obiecte</button>
+      <button class="category-filter-btn" data-category="orte">Locuri</button>
+    </div>
 
     <table id="nounsTable">
       <thead>

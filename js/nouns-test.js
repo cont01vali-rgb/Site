@@ -119,7 +119,13 @@
   function setupCategorySelection() {
     const categoryCards = $$('.category-card');
     categoryCards.forEach(card => {
-      card.addEventListener('click', () => {
+      // Click pe card
+      card.addEventListener('click', (e) => {
+        // Dacă click-ul a fost pe buton, nu pe card
+        if (e.target.classList.contains('start-category-btn')) {
+          return; // Butonul își va gestiona propriul click
+        }
+        
         const category = card.getAttribute('data-category');
         if (category === 'custom') {
           showCustomSelection();
@@ -127,6 +133,21 @@
           startCategoryTest(category);
         }
       });
+      
+      // Click pe buton
+      const button = card.querySelector('.start-category-btn');
+      if (button) {
+        button.addEventListener('click', (e) => {
+          e.stopPropagation(); // Previne propagarea către card
+          
+          const category = card.getAttribute('data-category');
+          if (category === 'custom') {
+            showCustomSelection();
+          } else {
+            startCategoryTest(category);
+          }
+        });
+      }
     });
 
     // Custom selection controls
