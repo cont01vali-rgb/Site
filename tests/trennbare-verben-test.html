@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test: Verbe Separabile (Trennbare Verben) - A1 Germană</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Additional test-specific styles */
+        .test-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .test-header {
+            background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .test-progress {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .question-area {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            min-height: 400px;
+        }
+
+        .exercise-container h3 {
+            color: #4e73df;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+
+        .exercise-instruction {
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #4e73df;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .answer-inputs {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .verb-input, .prefix-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .verb-input:focus, .prefix-input:focus {
+            outline: none;
+            border-color: #4e73df;
+            box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.1);
+        }
+
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .word-token {
+            background: #4e73df;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .word-token:hover {
+            background: #224abe;
+            transform: translateY(-2px);
+        }
+
+        .word-token.used {
+            background: #6c757d;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .drop-zone {
+            min-height: 80px;
+            border: 3px dashed #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            transition: border-color 0.3s ease;
+        }
+
+        .drop-zone:empty::after {
+            content: "Hier klicken um Wörter hinzuzufügen...";
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .sentence-word {
+            background: #28a745;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .sentence-word:hover {
+            background: #dc3545;
+        }
+
+        .reset-button {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .reset-button:hover {
+            background: #5a6268;
+        }
+
+        .audio-play-button {
+            background: #17a2b8;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .audio-play-button:hover {
+            background: #138496;
+            transform: scale(1.05);
+        }
+
+        .audio-answer-input, .transform-input, .mistake-input {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 16px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .audio-answer-input:focus, .transform-input:focus, .mistake-input:focus {
+            outline: none;
+            border-color: #4e73df;
+            box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.1);
+        }
+
+        .multiple-choice-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option-label:hover {
+            background: #f8f9fa;
+            border-color: #4e73df;
+        }
+
+        .option-label input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.2);
+        }
+
+        .matching-exercise {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .verbs-column, .meanings-column {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .match-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .match-item:hover {
+            background: #e9ecef;
+        }
+
+        .match-item.selected {
+            border-color: #4e73df;
+            background: rgba(78, 115, 223, 0.1);
+        }
+
+        .matches-display {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .classification-exercise {
+            margin: 20px 0;
+        }
+
+        .verbs-to-classify {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .classify-verb {
+            display: inline-block;
+            background: #4e73df;
+            color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .classify-verb:hover {
+            background: #224abe;
+            transform: scale(1.05);
+        }
+
+        .classification-boxes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .classify-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #dee2e6;
+        }
+
+        .classify-drop-zone {
+            min-height: 100px;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .classified-verb {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 8px 12px;
+            margin: 5px;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .classification-dialog {
+            position: absolute;
+            background: white;
+            border: 2px solid #4e73df;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            top: 100%;
+            left: 0;
+            white-space: nowrap;
+        }
+
+        .classify-btn {
+            background: #4e73df;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .classify-btn:hover {
+            background: #224abe;
+        }
+
+        .dialogue-exercise {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .dialogue-line {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #4e73df;
+        }
+
+        .dialogue-blank {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #4e73df;
+            padding: 5px;
+            margin: 0 5px;
+            min-width: 80px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .dialogue-blank:focus {
+            outline: none;
+            background: rgba(78, 115, 223, 0.1);
+        }
+
+        .test-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .submit-btn, .next-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        .submit-btn:hover, .next-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .next-btn {
+            background: #4e73df;
+        }
+
+        .next-btn:hover {
+            background: #224abe;
+        }
+
+        .feedback-area {
+            margin-top: 30px;
+        }
+
+        .feedback-container {
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid;
+        }
+
+        .feedback-correct {
+            background: #d4edda;
+            border-left-color: #28a745;
+            color: #155724;
+        }
+
+        .feedback-incorrect {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+
+        .feedback-content p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .test-results {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .results-summary {
+            margin: 30px 0;
+        }
+
+        .final-score {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .result-excellent .final-score { color: #28a745; }
+        .result-good .final-score { color: #17a2b8; }
+        .result-okay .final-score { color: #ffc107; }
+        .result-needs-improvement .final-score { color: #dc3545; }
+
+        .results-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .retry-button, .lesson-button, .details-button {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .retry-button {
+            background: #4e73df;
+            color: white;
+        }
+
+        .lesson-button {
+            background: #28a745;
+            color: white;
+        }
+
+        .details-button {
+            background: #6c757d;
+            color: white;
+        }
+
+        .retry-button:hover, .lesson-button:hover, .details-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .detailed-results {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .result-item {
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 5px solid;
+        }
+
+        .result-item.correct {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .result-item.incorrect {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .test-container {
+                padding: 10px;
+            }
+
+            .matching-exercise, .classification-boxes {
+                grid-template-columns: 1fr;
+            }
+
+            .answer-inputs {
+                flex-direction: column;
+            }
+
+            .verb-input, .prefix-input {
+                min-width: auto;
+            }
+
+            .test-actions, .results-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .submit-btn, .next-btn, .retry-button, .lesson-button, .details-button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+  <nav class="navbar-modern">
+    <div class="navbar-content">
+      <div class="nav-section">
+        <a href="../index.html" class="nav-item-modern">
+          Acasă
+        </a>
+        <a href="../learn.html" class="nav-item-modern">
+          Mediu de învățare
+        </a>
+      </div>
+      
+      <div class="nav-section">
+        <div class="language-selector-nav">
+          <select id="languageSelector">
+            <option value="ro">🇷🇴 Română</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="ua">🇺🇦 Українська</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+    <div class="test-container">
+        <!-- Test Header -->
+        <div class="test-header">
+            <h1>🚀 Test: Verbe Separabile (Trennbare Verben)</h1>
+            <p>Testează-ți cunoștințele despre verbele separabile în limba germană!</p>
+            <p><strong>Nivel:</strong> A1 | <strong>Exerciții:</strong> 25 | <strong>Timp:</strong> Nelimitat</p>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="test-progress">
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="progress-info">
+                <span id="progressText">Pregătire test...</span>
+                <span id="scoreDisplay">Puncte: 0/0</span>
+            </div>
+        </div>
+
+        <!-- Question Area -->
+        <div class="question-area">
+            <div id="questionContainer">
+                <div style="text-align: center; padding: 40px; color: #666;">
+                    <h3>Se încarcă testul...</h3>
+                    <p>Vă rugăm să așteptați un moment.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Actions -->
+        <div class="test-actions">
+            <button id="submitButton" class="submit-btn" style="display: none;">
+                ✓ Trimite răspunsul
+            </button>
+            <button id="nextButton" class="next-btn" style="display: none;">
+                → Următorul exercițiu
+            </button>
+        </div>
+
+        <!-- Feedback Area -->
+        <div class="feedback-area" id="feedbackArea"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../data/trennbare-verben-exercises.js"></script>
+    <script src="../js/trennbare-verben-test-runner.js"></script>
+</body>
+</html>
