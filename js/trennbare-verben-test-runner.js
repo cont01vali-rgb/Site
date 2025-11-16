@@ -149,6 +149,15 @@ class TrennbareVerbenTestRunner {
             case 'dialogue-completion':
                 this.displayDialogueExercise(exercise);
                 break;
+            case 'verb-conjugation':
+                this.displayVerbConjugationExercise(exercise);
+                break;
+            case 'conjugation-multiple-choice':
+                this.displayConjugationMultipleChoiceExercise(exercise);
+                break;
+            case 'fill-conjugation-blanks':
+                this.displayFillConjugationBlanksExercise(exercise);
+                break;
             default:
                 console.error('Unknown exercise type:', exercise.type);
         }
@@ -532,6 +541,75 @@ class TrennbareVerbenTestRunner {
         return result;
     }
 
+    displayVerbConjugationExercise(exercise) {
+        const html = `
+            <div class="exercise-container">
+                <h3>🔄 Conjugarea verbelor</h3>
+                <p class="exercise-instruction">${exercise.question}</p>
+                <div class="verb-conjugation-exercise">
+                    <div class="verb-info">
+                        <p><strong>Verb:</strong> ${exercise.verb} (${exercise.prefix} + ${exercise.baseVerb})</p>
+                    </div>
+                    <div class="conjugation-inputs">
+                        ${exercise.persons.map((person, index) => `
+                            <div class="conjugation-row">
+                                <label class="person-label">${person}:</label>
+                                <input type="text" 
+                                       id="conjugation_${index}" 
+                                       data-person="${person}"
+                                       placeholder="ex: stehe auf"
+                                       class="conjugation-input">
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+        this.questionContainer.innerHTML = html;
+    }
+
+    displayConjugationMultipleChoiceExercise(exercise) {
+        const html = `
+            <div class="exercise-container">
+                <h3>✅ Conjugarea corectă</h3>
+                <p class="exercise-instruction">Alege conjugarea corectă:</p>
+                <div class="conjugation-question">
+                    <p class="question-text"><strong>${exercise.question}</strong></p>
+                    <p class="verb-info">Verb: <strong>${exercise.verb}</strong> | Persoana: <strong>${exercise.person}</strong></p>
+                </div>
+                <div class="multiple-choice-options">
+                    ${exercise.options.map((option, index) => `
+                        <label class="option-label">
+                            <input type="radio" name="conjugationChoice" value="${option}" id="conjOption${index}">
+                            <span class="option-text">${option}</span>
+                        </label>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+        this.questionContainer.innerHTML = html;
+    }
+
+    displayFillConjugationBlanksExercise(exercise) {
+        const html = `
+            <div class="exercise-container">
+                <h3>📝 Completează conjugarea</h3>
+                <p class="exercise-instruction">Completează cu forma corectă a verbului:</p>
+                <div class="fill-conjugation-exercise">
+                    <p class="question-text">${this.formatFillBlanksQuestion(exercise.question)}</p>
+                    <div class="verb-info">
+                        <p><strong>Verb:</strong> ${exercise.verb} | <strong>Persoana:</strong> ${exercise.person}</p>
+                    </div>
+                </div>
+                <div class="answer-inputs">
+                    <input type="text" id="verbConjugationInput" placeholder="Forma verbului (ex: macht)" class="verb-input">
+                    <input type="text" id="prefixConjugationInput" placeholder="Prefixul (ex: auf)" class="prefix-input">
+                </div>
+            </div>
+        `;
+        this.questionContainer.innerHTML = html;
+    }
+
     submitAnswer() {
         const exercise = this.exercises[this.currentExerciseIndex];
         let userAnswer = null;
@@ -577,6 +655,18 @@ class TrennbareVerbenTestRunner {
             case 'dialogue-completion':
                 userAnswer = this.getDialogueAnswer();
                 isCorrect = this.checkDialogueAnswer(userAnswer, exercise);
+                break;
+            case 'verb-conjugation':
+                userAnswer = this.getVerbConjugationAnswer();
+                isCorrect = this.checkVerbConjugationAnswer(userAnswer, exercise);
+                break;
+            case 'conjugation-multiple-choice':
+                userAnswer = this.getConjugationMultipleChoiceAnswer();
+                isCorrect = this.checkConjugationMultipleChoiceAnswer(userAnswer, exercise);
+                break;
+            case 'fill-conjugation-blanks':
+                userAnswer = this.getFillConjugationBlanksAnswer();
+                isCorrect = this.checkFillConjugationBlanksAnswer(userAnswer, exercise);
                 break;
         }
 
@@ -659,6 +749,30 @@ class TrennbareVerbenTestRunner {
         return answers;
     }
 
+    getVerbConjugationAnswer() {
+        const answers = {};
+        const inputs = document.querySelectorAll('.conjugation-input');
+        inputs.forEach(input => {
+            const person = input.dataset.person;
+            answers[person] = input.value.trim();
+        });
+        return answers;
+    }
+
+    getConjugationMultipleChoiceAnswer() {
+        const selected = document.querySelector('input[name="conjugationChoice"]:checked');
+        return selected ? selected.value : '';
+    }
+
+    getFillConjugationBlanksAnswer() {
+        const verbInput = document.getElementById('verbConjugationInput');
+        const prefixInput = document.getElementById('prefixConjugationInput');
+        return {
+            verb: verbInput ? verbInput.value.trim() : '',
+            prefix: prefixInput ? prefixInput.value.trim() : ''
+        };
+    }
+
     // Answer checking methods
     checkFillBlanksAnswer(userAnswer, exercise) {
         const [correctVerb, correctPrefix] = exercise.correctAnswer.split('|');
@@ -718,6 +832,27 @@ class TrennbareVerbenTestRunner {
             }
         }
         return true;
+    }
+
+    checkVerbConjugationAnswer(userAnswer, exercise) {
+        for (const person of exercise.persons) {
+            const userResponse = userAnswer[person] ? userAnswer[person].toLowerCase() : '';
+            const correctResponse = exercise.correctAnswers[person].toLowerCase();
+            if (userResponse !== correctResponse) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    checkConjugationMultipleChoiceAnswer(userAnswer, exercise) {
+        return userAnswer === exercise.correctAnswer;
+    }
+
+    checkFillConjugationBlanksAnswer(userAnswer, exercise) {
+        const [correctVerb, correctPrefix] = exercise.correctAnswer.split('|');
+        return userAnswer.verb.toLowerCase() === correctVerb.toLowerCase() && 
+               userAnswer.prefix.toLowerCase() === correctPrefix.toLowerCase();
     }
 
     normalizeString(str) {

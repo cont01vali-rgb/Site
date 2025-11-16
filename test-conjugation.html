@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test exerciții conjugare</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+        button { margin: 5px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Test pentru exercițiile de conjugare</h1>
+    
+    <div class="test-section">
+        <h3>Test pentru exercițiul 26 (verb-conjugation)</h3>
+        <div id="exercise26"></div>
+        <button onclick="testExercise26()">Testează exercițiul 26</button>
+    </div>
+
+    <div class="test-section">
+        <h3>Test pentru exercițiul 30 (conjugation-multiple-choice)</h3>
+        <div id="exercise30"></div>
+        <button onclick="testExercise30()">Testează exercițiul 30</button>
+    </div>
+
+    <div class="test-section">
+        <h3>Test pentru exercițiul 33 (fill-conjugation-blanks)</h3>
+        <div id="exercise33"></div>
+        <button onclick="testExercise33()">Testează exercițiul 33</button>
+    </div>
+
+    <script src="data/trennbare-verben-exercises.js"></script>
+    <script>
+        function testExercise26() {
+            const exercise = trennbareVerbenExercises.exercises[25]; // ID 26
+            document.getElementById('exercise26').innerHTML = `
+                <p><strong>Tip:</strong> ${exercise.type}</p>
+                <p><strong>Întrebare:</strong> ${exercise.question}</p>
+                <p><strong>Verb:</strong> ${exercise.verb}</p>
+                <p><strong>Persoane:</strong> ${exercise.persons.join(', ')}</p>
+                <p><strong>Răspunsuri corecte:</strong> ${JSON.stringify(exercise.correctAnswers)}</p>
+            `;
+        }
+
+        function testExercise30() {
+            const exercise = trennbareVerbenExercises.exercises[29]; // ID 30
+            document.getElementById('exercise30').innerHTML = `
+                <p><strong>Tip:</strong> ${exercise.type}</p>
+                <p><strong>Întrebare:</strong> ${exercise.question}</p>
+                <p><strong>Opțiuni:</strong> ${exercise.options.join(', ')}</p>
+                <p><strong>Răspuns corect:</strong> ${exercise.correctAnswer}</p>
+            `;
+        }
+
+        function testExercise33() {
+            const exercise = trennbareVerbenExercises.exercises[32]; // ID 33
+            document.getElementById('exercise33').innerHTML = `
+                <p><strong>Tip:</strong> ${exercise.type}</p>
+                <p><strong>Întrebare:</strong> ${exercise.question}</p>
+                <p><strong>Verb:</strong> ${exercise.verb}</p>
+                <p><strong>Persoana:</strong> ${exercise.person}</p>
+                <p><strong>Răspuns corect:</strong> ${exercise.correctAnswer}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

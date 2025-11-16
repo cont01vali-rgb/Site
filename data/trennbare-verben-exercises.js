@@ -314,6 +314,141 @@ const trennbareVerbenExercises = {
             verb: "anrufen",
             explanation: "Das Verb 'anrufen' wird in Frage (rufst...an) und Antwort (rufe...an) getrennt.",
             rule: "Personenwechsel ändert nur die Verbkonjugation, nicht die Trennung."
+        },
+
+        // 11. Verb conjugation exercises (5 exercises)
+        {
+            id: 26,
+            type: "verb-conjugation",
+            difficulty: "A1",
+            question: "Conjugă verbul 'aufstehen' (a se scula) pentru următoarele persoane:",
+            verb: "aufstehen",
+            prefix: "auf",
+            baseVerb: "stehen",
+            persons: ["ich", "er/sie/es", "wir"],
+            correctAnswers: {
+                "ich": "stehe auf",
+                "er/sie/es": "steht auf", 
+                "wir": "stehen auf"
+            },
+            explanation: "Verbul 'aufstehen' se conjugă ca 'stehen' + prefixul 'auf' la sfârșitul propoziției. Conjugarea: ich stehe, du stehst, er/sie/es steht, wir stehen, ihr steht, sie stehen.",
+            rule: "REGULĂ: La verbele separabile, se conjugă doar partea principală a verbului, iar prefixul rămâne nemodificat și se pune la sfârșitul propoziției."
+        },
+        {
+            id: 27,
+            type: "verb-conjugation",
+            difficulty: "A1", 
+            question: "Conjugă verbul 'anrufen' (a suna/telefona) pentru următoarele persoane:",
+            verb: "anrufen",
+            prefix: "an",
+            baseVerb: "rufen",
+            persons: ["du", "sie (ea)", "ihr"],
+            correctAnswers: {
+                "du": "rufst an",
+                "sie (ea)": "ruft an",
+                "ihr": "ruft an"
+            },
+            explanation: "Verbul 'anrufen' se conjugă ca 'rufen' + prefixul 'an'. Observă că la persoana a II-a singular (du) se adaugă 's': rufst.",
+            rule: "REGULĂ: Verbele cu baza în -f- la persoana a II-a singular (du) primesc terminația -st: du rufst an."
+        },
+        {
+            id: 28,
+            type: "conjugation-multiple-choice",
+            difficulty: "A1",
+            question: "Alege conjugarea corectă pentru 'einladen' (a invita) la persoana a III-a singular (er/sie/es):",
+            verb: "einladen",
+            person: "er/sie/es",
+            options: ["ladet ein", "lädt ein", "laden ein", "ladt ein"],
+            correctAnswer: "lädt ein",
+            explanation: "Verbul 'einladen' are o conjugare neregulată: 'laden' devine 'lädt' la persoana a III-a singular (er/sie/es). Atenție la schimbarea vocalei a → ä!",
+            rule: "REGULĂ: Unele verbe au conjugări neregulate cu schimbarea vocalei: laden → lädt, fahren → fährt, laufen → läuft."
+        },
+        {
+            id: 29,
+            type: "conjugation-multiple-choice",
+            difficulty: "A1",
+            question: "Cum se conjugă 'abfahren' (a pleca - transport) la persoana a II-a plural (ihr)?",
+            verb: "abfahren", 
+            person: "ihr",
+            options: ["fahrt ab", "fährt ab", "fahren ab", "fahrst ab"],
+            correctAnswer: "fahrt ab",
+            explanation: "La persoana a II-a plural (ihr), verbul 'fahren' se conjugă ca 'fahrt' (fără schimbarea vocalei care apare doar la singular). Prefixul 'ab' rămâne la sfârșitul propoziției.",
+            rule: "REGULĂ: Schimbarea vocalei (a→ä, e→i) apare doar la persoanele II și III singular, nu și la plural."
+        },
+        {
+            id: 30,
+            type: "verb-conjugation",
+            difficulty: "A1",
+            question: "Conjugă verbul 'zumachen' (a închide) pentru următoarele persoane:",
+            verb: "zumachen",
+            prefix: "zu",
+            baseVerb: "machen", 
+            persons: ["ich", "du", "sie (ei)"],
+            correctAnswers: {
+                "ich": "mache zu",
+                "du": "machst zu",
+                "sie (ei)": "machen zu"
+            },
+            explanation: "Verbul 'zumachen' are conjugare regulată ca 'machen': ich mache, du machst, er macht, etc. Prefixul 'zu' se pune la sfârșitul propoziției.",
+            rule: "REGULĂ: Verbele regulate se conjugă predictibil: -e (ich), -st (du), -t (er/sie/es), -en (wir/sie), -t (ihr)."
+        },
+        {
+            id: 31,
+            type: "conjugation-multiple-choice",
+            difficulty: "A1",
+            question: "Care este conjugarea corectă pentru 'mitkommen' (a veni cu) la persoana I plural (wir)?",
+            verb: "mitkommen",
+            person: "wir", 
+            options: ["kommen mit", "kommt mit", "kommst mit", "komme mit"],
+            correctAnswer: "kommen mit",
+            explanation: "La persoana I plural (wir), verbul 'kommen' rămâne în forma de bază 'kommen'. Prefixul 'mit' se pune la sfârșitul propoziției: 'Wir kommen mit.'",
+            rule: "REGULĂ: La persoana I plural (wir) și a III-a plural (sie), verbul rămâne în forma infinitivului fără 'zu'."
+        },
+
+        // 12. Fill-in conjugation blanks (4 exercises)
+        {
+            id: 32,
+            type: "fill-conjugation-blanks",
+            difficulty: "A1",
+            question: "Completează cu forma corectă: Du _____ heute früh _____ (aufwachen - a se trezi).",
+            verb: "aufwachen",
+            person: "du",
+            correctAnswer: "wachst|auf",
+            explanation: "Verbul 'aufwachen' la persoana a II-a singular (du) se conjugă: 'wachst' + prefixul 'auf' la sfârșit. Conjugarea: du wachst auf.",
+            rule: "REGULĂ: Persoana a II-a singular (du) primește terminația -st: du wachst, du machst, du gehst."
+        },
+        {
+            id: 33,
+            type: "fill-conjugation-blanks", 
+            difficulty: "A1",
+            question: "Completează: Sie (ea) _____ die Tür _____ (aufmachen - a deschide).",
+            verb: "aufmachen",
+            person: "sie",
+            correctAnswer: "macht|auf",
+            explanation: "Verbul 'aufmachen' la persoana a III-a singular feminin (sie) se conjugă: 'macht' + prefixul 'auf'. Conjugarea: sie macht auf.",
+            rule: "REGULĂ: Persoana a III-a singular (er/sie/es) primește terminația -t: er macht, sie kommt, es geht."
+        },
+        {
+            id: 34,
+            type: "fill-conjugation-blanks",
+            difficulty: "A1", 
+            question: "Completează cu forma corectă: Ihr _____ morgen _____ (ankommen - a ajunge).",
+            verb: "ankommen",
+            person: "ihr",
+            correctAnswer: "kommt|an",
+            explanation: "Verbul 'ankommen' la persoana a II-a plural (ihr) se conjugă: 'kommt' + prefixul 'an' la sfârșit. Conjugarea: ihr kommt an.",
+            rule: "REGULĂ: Persoana a II-a plural (ihr) primește terminația -t: ihr kommt, ihr macht, ihr geht."
+        },
+        {
+            id: 35,
+            type: "fill-conjugation-blanks",
+            difficulty: "A1",
+            question: "Completează: Wir _____ unsere Freunde _____ (einladen - a invita).",
+            verb: "einladen", 
+            person: "wir",
+            correctAnswer: "laden|ein",
+            explanation: "Verbul 'einladen' la persoana I plural (wir) se conjugă: 'laden' (forma de bază) + prefixul 'ein'. Conjugarea: wir laden ein. Atenție: nu este 'läden'!",
+            rule: "REGULĂ: La plural (wir, ihr, sie), nu se schimbă vocala principală: wir laden (nu läden), ihr fahrt (nu fährt)."
         }
     ]
 };

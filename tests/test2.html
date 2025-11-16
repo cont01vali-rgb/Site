@@ -1,34 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <title>Test: Zahlen</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="numbers.test_title">Test: Numerele în Germană (0-9999)</title>
     <link rel="stylesheet" href="../css/style.css">
-    <script defer src="../js/test2.js"></script>
+    <script defer src="../data/numbers-test-data.js"></script>
+    <script defer src="../js/numbers-test-runner.js"></script>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <a href="../index.html" class="nav-item">🏠 Acasă</a>
-            <a href="../learn.html" class="nav-item">📚 Mediu de învățare</a>
-            <a href="../tests/general-test.html" class="nav-item">🧩 Test general</a>
-            <a href="../progress.html" class="nav-item">📊 Progres</a>
-        </nav>
-    </header>
+<header>
+    <nav class="navbar-modern">
+        <div class="navbar-content">
+            <div class="nav-section">
+                <a href="../index.html" class="nav-item-modern" data-i18n="nav.home">
+                    🏠 Acasă
+                </a>
+                <a href="../learn.html" class="nav-item-modern" data-i18n="nav.learn">
+                    📚 Mediu de învățare
+                </a>
+            </div>
+            
+            <div class="nav-section">
+                <div class="language-selector-nav">
+                    <select id="languageSelector">
+                        <option value="ro">🇷🇴 Română</option>
+                        <option value="en">🇺🇸 English</option>
+                        <option value="ua">🇺🇦 Українська</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
 
-    <main class="test-page">
-        <h1>Test: Zahlen</h1>
-
-        <div id="question-card" class="question-card"></div>
-
-        <p id="feedback" class="feedback"></p>
-
-        <div class="test-controls">
-            <button id="verify-btn" class="btn">Verifică</button>
-            <button id="next-btn" class="btn" style="display:none;">Următoarea întrebare</button>
+<main class="page-container">
+    <div class="container">
+        <!-- Header modern cu design îmbunătățit -->
+        <div class="test-header">
+            <div class="test-header-content">
+                <h1 class="test-title" data-i18n="numbers.test_title">Test: Numerele în Germană (0-9999)</h1>
+                <div class="test-progress-bar">
+                    <div class="progress-info">
+                        <span data-i18n="numbers.progress_text">Întrebare</span> 
+                        <span class="progress-numbers">
+                            <span id="qIndex">0</span>/<span id="qTotal">0</span>
+                        </span>
+                        <span class="progress-separator">•</span>
+                        <span data-i18n="numbers.score_text">Scor</span>: 
+                        <span id="score" class="score-display">0</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <p id="progress-text"></p>
-    </main>
+        <!-- Container întrebări cu design modern -->
+        <div class="test-question-container">
+            <div id="questionArea" class="question-area"></div>
+        </div>
+
+        <!-- Controale test cu design îmbunătățit -->
+        <div class="test-controls-modern">
+            <button id="verify-btn" class="btn btn-primary" data-i18n="numbers.verify_button">Verifică</button>
+            <button id="next-btn" class="btn btn-success" style="display:none;" data-i18n="numbers.next_button">Următoarea întrebare</button>
+        </div>
+
+        <!-- Feedback cu design modern -->
+        <div id="feedback" class="test-feedback"></div>
+
+        <!-- Navigare cu design îmbunătățit -->
+        <div class="test-navigation">
+            <a id="back-to-lesson" class="btn btn-outline" href="../lessons/lesson2.html" data-i18n="numbers.back_to_lesson">
+                ← Înapoi la lecție
+            </a>
+        </div>
+    </div>
+</main>
 </body>
+<script src="../translate/translate.js"></script>
 </html>
