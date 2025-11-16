@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Debug</title>
+</head>
+<body>
+    <h1>Debug Numbers Test</h1>
+    <div id="debug"></div>
+    
+    <script src="../data/numbers-test-data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const debug = document.getElementById('debug');
+            
+            if (window.numbersTestData) {
+                debug.innerHTML += '<p>✅ numbersTestData loaded</p>';
+                debug.innerHTML += '<p>Basic numbers: ' + window.numbersTestData.basicNumbers.length + '</p>';
+                debug.innerHTML += '<p>Tens: ' + window.numbersTestData.tens.length + '</p>';
+                debug.innerHTML += '<p>Complex numbers: ' + window.numbersTestData.complexNumbers.length + '</p>';
+                
+                try {
+                    const exercises = window.numbersTestData.generateRandomExercises();
+                    debug.innerHTML += '<p>✅ Generated ' + exercises.length + ' exercises</p>';
+                    debug.innerHTML += '<pre>' + JSON.stringify(exercises[0], null, 2) + '</pre>';
+                } catch (e) {
+                    debug.innerHTML += '<p>❌ Error generating exercises: ' + e.message + '</p>';
+                }
+            } else {
+                debug.innerHTML += '<p>❌ numbersTestData not loaded</p>';
+            }
+        });
+    </script>
+</body>
+</html>

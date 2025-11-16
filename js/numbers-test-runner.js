@@ -1,426 +1,404 @@
-// Numbers Test Runner - Modern Design
-// Based on lernziel test system with improved UX
+// Numbers Test Runner - Execută testele de numere germane
+// Versiune simplă și funcțională
 
-class NumbersTestRunner {
-    constructor() {
-        this.currentQuestionIndex = 0;
-        this.score = 0;
-        this.totalQuestions = 15; // 5 de fiecare tip
-        this.exercises = [];
-        this.userAnswers = [];
-        this.testStartTime = new Date();
-        this.currentLanguage = localStorage.getItem('selectedLanguage') || 'ro';
-        
-        this.initializeElements();
-        this.generateExercises();
-        this.updateProgress();
-        this.displayCurrentQuestion();
-        this.setupEventListeners();
+let currentExercise = 0;
+let exercises = [];
+let score = 0;
+
+// Inițializare test
+function initializeTest() {
+    console.log("🎯 Inițializez testul de numere...");
+    
+    // Verifică dacă datele sunt încărcate
+    if (typeof numbersTestData === 'undefined') {
+        showError("Datele testului nu s-au încărcat!");
+        return;
     }
-
-    initializeElements() {
-        this.questionArea = document.getElementById('questionArea');
-        this.verifyBtn = document.getElementById('verify-btn');
-        this.nextBtn = document.getElementById('next-btn');
-        this.feedback = document.getElementById('feedback');
-        this.progressFill = document.getElementById('progressFill');
-        this.qIndex = document.getElementById('qIndex');
-        this.qTotal = document.getElementById('qTotal');
-        this.scoreDisplay = document.getElementById('score');
+    
+    // Generează exerciții
+    exercises = numbersTestData.generateRandomExercises(18);
+    
+    if (!exercises || exercises.length === 0) {
+        showError("Nu s-au putut genera exercițiile!");
+        return;
     }
+    
+    console.log(`✅ Test inițializat cu ${exercises.length} exerciții`);
+    
+    // Afișează primul exercițiu
+    displayCurrentExercise();
+}
 
-    generateExercises() {
-        this.exercises = window.numbersTestData.generateRandomExercises();
-        this.totalQuestions = this.exercises.length;
-        
-        if (this.qTotal) {
-            this.qTotal.textContent = this.totalQuestions;
-        }
+// Afișează exercițiul curent
+function displayCurrentExercise() {
+    if (currentExercise >= exercises.length) {
+        displayFinalResults();
+        return;
     }
+    
+    const exercise = exercises[currentExercise];
+    const progressText = `Întrebare ${currentExercise + 1} din ${exercises.length}`;
+    const scoreText = `Scor: ${score}/${currentExercise}`;
+    
+    // Actualizează elementele din pagină
+    updateElement('progress-text', progressText);
+    updateElement('score-text', scoreText);
+    
+    // Afișează exercițiul pe baza tipului
+    if (exercise.type === 'fill-in') {
+        displayFillInExercise(exercise);
+    } else if (exercise.type === 'audio') {
+        displayAudioExercise(exercise);
+    } else if (exercise.type === 'multiple-choice') {
+        displayMultipleChoiceExercise(exercise);
+    }
+    
+    // Ascunde feedback-ul
+    hideElement('feedback');
+    
+    // Afișează butonul de verificare
+    showElement('verify-btn');
+    hideElement('next-btn');
+    
+    console.log(`📝 Afișez întrearea ${currentExercise + 1} (${exercise.type}): ${exercise.question}`);
+}
 
-    setupEventListeners() {
-        if (this.verifyBtn) {
-            this.verifyBtn.addEventListener('click', () => this.verifyAnswer());
-        }
-        
-        if (this.nextBtn) {
-            this.nextBtn.addEventListener('click', () => this.nextQuestion());
-        }
-
-        // Enter key pentru submit
-        document.addEventListener('keypress', (e) => {
+// Afișează exercițiu fill-in
+function displayFillInExercise(exercise) {
+    const questionContainer = document.getElementById('question-container');
+    questionContainer.innerHTML = `
+        <div id="progress-text" class="progress-text">Întrebare ${currentExercise + 1} din ${exercises.length}</div>
+        <div id="score-text" class="score-text">Scor: ${score}/${currentExercise}</div>
+        <div id="question-text" class="question-text">${exercise.question}</div>
+        <div class="answer-input-container">
+            <input type="text" id="answer-input" placeholder="Scrie răspunsul aici..." autocomplete="off">
+        </div>
+    `;
+    
+    // Pune focus pe input
+    const inputElement = document.getElementById('answer-input');
+    if (inputElement) {
+        inputElement.focus();
+        // Adaugă event listener pentru Enter
+        inputElement.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                if (this.verifyBtn.style.display !== 'none') {
-                    this.verifyAnswer();
-                } else if (this.nextBtn.style.display !== 'none') {
-                    this.nextQuestion();
-                }
+                verifyAnswer();
             }
         });
     }
+}
 
-    displayCurrentQuestion() {
-        if (this.currentQuestionIndex >= this.totalQuestions) {
-            this.showFinalResults();
-            return;
-        }
-
-        const exercise = this.exercises[this.currentQuestionIndex];
-        this.clearFeedback();
-        
-        switch (exercise.type) {
-            case 'fill-in':
-                this.displayFillInQuestion(exercise);
-                break;
-            case 'audio':
-                this.displayAudioQuestion(exercise);
-                break;
-            case 'multiple-choice':
-                this.displayMultipleChoiceQuestion(exercise);
-                break;
-        }
-        
-        this.showVerifyButton();
-        this.hideNextButton();
+// Afișează exercițiu audio cu TTS
+function displayAudioExercise(exercise) {
+    const questionContainer = document.getElementById('question-container');
+    questionContainer.innerHTML = `
+        <div id="progress-text" class="progress-text">Întrebare ${currentExercise + 1} din ${exercises.length}</div>
+        <div id="score-text" class="score-text">Scor: ${score}/${currentExercise}</div>
+        <div id="question-text" class="question-text">${exercise.question}</div>
+        <div class="audio-controls">
+            <button id="play-audio-btn" class="btn btn-audio">🔊 Ascultă numărul</button>
+            <button id="replay-audio-btn" class="btn btn-audio" style="display:none;">🔄 Ascultă din nou</button>
+        </div>
+        <div class="answer-input-container">
+            <input type="text" id="answer-input" placeholder="Scrie numărul în cifre (ex: 25)" autocomplete="off">
+        </div>
+    `;
+    
+    // Adaugă event listeners pentru butoanele audio
+    const playBtn = document.getElementById('play-audio-btn');
+    const replayBtn = document.getElementById('replay-audio-btn');
+    
+    if (playBtn) {
+        playBtn.addEventListener('click', () => playAudio(exercise.audioText, playBtn, replayBtn));
     }
-
-    displayFillInQuestion(exercise) {
-        const html = `
-            <div class="question-container fill-in-question">
-                <div class="question-header">
-                    <h3>🔢 ${this.getTranslation('fill_in_title')}</h3>
-                    <div class="question-number-display">
-                        <span class="number-to-convert">${exercise.number}</span>
-                    </div>
-                </div>
-                <div class="question-content">
-                    <p class="instruction">${this.getTranslation('fill_instruction', 'Scrie numărul în germană:')}</p>
-                    <div class="answer-input-container">
-                        <input type="text" 
-                               id="fillAnswer" 
-                               placeholder="ex: dreiundzwanzig"
-                               class="answer-input number-input"
-                               autocomplete="off">
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        this.questionArea.innerHTML = html;
-        
-        // Focus pe input
-        setTimeout(() => {
-            const input = document.getElementById('fillAnswer');
-            if (input) input.focus();
-        }, 100);
+    
+    if (replayBtn) {
+        replayBtn.addEventListener('click', () => playAudio(exercise.audioText, playBtn, replayBtn));
     }
-
-    displayAudioQuestion(exercise) {
-        const html = `
-            <div class="question-container audio-question">
-                <div class="question-header">
-                    <h3>🎵 ${this.getTranslation('audio_title')}</h3>
-                </div>
-                <div class="question-content">
-                    <p class="instruction">${this.getTranslation('audio_instruction', 'Ascultă numărul și scrie cifra:')}</p>
-                    <div class="audio-controls">
-                        <button id="playAudio" class="audio-play-btn">
-                            🔊 ${this.getTranslation('play_audio', 'Redă audio')}
-                        </button>
-                        <button id="playAgain" class="audio-replay-btn" style="display: none;">
-                            🔄 ${this.getTranslation('play_again', 'Redă din nou')}
-                        </button>
-                    </div>
-                    <div class="answer-input-container">
-                        <input type="number" 
-                               id="audioAnswer" 
-                               placeholder="ex: 23"
-                               class="answer-input number-input"
-                               autocomplete="off">
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        this.questionArea.innerHTML = html;
-        
-        // Setup audio functionality
-        const playBtn = document.getElementById('playAudio');
-        const replayBtn = document.getElementById('playAgain');
-        
-        if (playBtn) {
-            playBtn.addEventListener('click', () => {
-                this.speakGermanNumber(exercise.german);
-                playBtn.style.display = 'none';
-                replayBtn.style.display = 'inline-block';
+    
+    // Pune focus pe input după un mic delay
+    setTimeout(() => {
+        const inputElement = document.getElementById('answer-input');
+        if (inputElement) {
+            inputElement.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    verifyAnswer();
+                }
             });
         }
-        
-        if (replayBtn) {
-            replayBtn.addEventListener('click', () => {
-                this.speakGermanNumber(exercise.german);
-            });
-        }
-    }
+    }, 100);
+}
 
-    displayMultipleChoiceQuestion(exercise) {
-        const shuffledOptions = [...exercise.options];
+// Afișează exercițiu multiple choice
+function displayMultipleChoiceExercise(exercise) {
+    const questionContainer = document.getElementById('question-container');
+    
+    let optionsHTML = '';
+    exercise.options.forEach((option, index) => {
+        const optionLetter = String.fromCharCode(65 + index); // A, B, C, D
+        const colorizedOption = exercise.subtype === 'number-to-german' ? 
+            numbersTestData.colorizeGermanNumber(option) : option;
         
-        const html = `
-            <div class="question-container multiple-choice-question">
-                <div class="question-header">
-                    <h3>🤔 ${this.getTranslation('multiple_choice_title')}</h3>
-                    <div class="question-number-display">
-                        <span class="number-to-convert">${exercise.number}</span>
-                    </div>
-                </div>
-                <div class="question-content">
-                    <p class="instruction">${this.getTranslation('mc_instruction', 'Alege forma corectă în germană:')}</p>
-                    <div class="multiple-choice-options">
-                        ${shuffledOptions.map((option, index) => `
-                            <label class="option-label">
-                                <input type="radio" name="mcAnswer" value="${option}" id="option${index}">
-                                <span class="option-text">${option}</span>
-                            </label>
-                        `).join('')}
-                    </div>
-                </div>
+        optionsHTML += `
+            <div class="multiple-choice-option" data-value="${option}">
+                <span class="option-letter">${optionLetter}.</span>
+                <span class="option-text">${colorizedOption}</span>
             </div>
         `;
-        
-        this.questionArea.innerHTML = html;
-    }
-
-    verifyAnswer() {
-        const exercise = this.exercises[this.currentQuestionIndex];
-        let userAnswer = '';
-        let isCorrect = false;
-
-        switch (exercise.type) {
-            case 'fill-in':
-                const fillInput = document.getElementById('fillAnswer');
-                userAnswer = fillInput ? fillInput.value.trim().toLowerCase() : '';
-                isCorrect = userAnswer === exercise.correctAnswer.toLowerCase();
-                break;
-                
-            case 'audio':
-                const audioInput = document.getElementById('audioAnswer');
-                userAnswer = audioInput ? audioInput.value.trim() : '';
-                isCorrect = userAnswer === exercise.correctAnswer;
-                break;
-                
-            case 'multiple-choice':
-                const selectedOption = document.querySelector('input[name="mcAnswer"]:checked');
-                userAnswer = selectedOption ? selectedOption.value : '';
-                isCorrect = userAnswer === exercise.correctAnswer;
-                break;
-        }
-
-        // Salvează răspunsul utilizatorului
-        this.userAnswers.push({
-            questionIndex: this.currentQuestionIndex,
-            userAnswer: userAnswer,
-            correctAnswer: exercise.correctAnswer,
-            isCorrect: isCorrect,
-            exercise: exercise
+    });
+    
+    questionContainer.innerHTML = `
+        <div id="progress-text" class="progress-text">Întrebare ${currentExercise + 1} din ${exercises.length}</div>
+        <div id="score-text" class="score-text">Scor: ${score}/${currentExercise}</div>
+        <div id="question-text" class="question-text">${exercise.question}</div>
+        <div class="multiple-choice-container">
+            ${optionsHTML}
+        </div>
+        <input type="hidden" id="answer-input" value="">
+    `;
+    
+    // Adaugă event listeners pentru opțiuni
+    const options = document.querySelectorAll('.multiple-choice-option');
+    options.forEach(option => {
+        option.addEventListener('click', function() {
+            // Elimină selecția anterioară
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Selectează opțiunea curentă
+            this.classList.add('selected');
+            
+            // Setează valoarea în input-ul ascuns
+            const hiddenInput = document.getElementById('answer-input');
+            if (hiddenInput) {
+                hiddenInput.value = this.dataset.value;
+            }
         });
+    });
+}
 
-        if (isCorrect) {
-            this.score++;
-        }
-
-        this.showFeedback(exercise, isCorrect, userAnswer);
-        this.updateScore();
-        this.hideVerifyButton();
-        this.showNextButton();
-    }
-
-    showFeedback(exercise, isCorrect, userAnswer) {
-        const feedbackClass = isCorrect ? 'feedback-correct' : 'feedback-incorrect';
-        const feedbackIcon = isCorrect ? '🎉' : '❌';
-        const feedbackTitle = isCorrect ? 
-            this.getTranslation('correct_answer', 'Excelent! Răspuns corect!') :
-            this.getTranslation('wrong_answer', 'Nu este corect. Încearcă din nou!');
+// Funcție pentru redarea audio cu Speech Synthesis
+function playAudio(text, playBtn, replayBtn) {
+    if ('speechSynthesis' in window) {
+        // Oprește orice audio anterior
+        window.speechSynthesis.cancel();
         
-        let feedbackContent = `
-            <div class="feedback-container ${feedbackClass}">
-                <div class="feedback-header">
-                    <span class="feedback-icon">${feedbackIcon}</span>
-                    <h4 class="feedback-title">${feedbackTitle}</h4>
-                </div>
-                <div class="feedback-content">
+        const utterance = new SpeechSynthesisUtterance(text);
+        
+        // Configurează vocea pentru germană
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.8; // Viteză mai lentă pentru învățare
+        utterance.pitch = 1.0;
+        utterance.volume = 1.0;
+        
+        // Event listeners pentru butoane
+        utterance.onstart = function() {
+            playBtn.style.display = 'none';
+            replayBtn.style.display = 'inline-block';
+            playBtn.disabled = true;
+        };
+        
+        utterance.onend = function() {
+            playBtn.disabled = false;
+        };
+        
+        utterance.onerror = function(event) {
+            console.error('Eroare TTS:', event.error);
+            showError('Nu s-a putut reda audio-ul. Încearcă din nou.');
+            playBtn.disabled = false;
+        };
+        
+        // Redă audio
+        window.speechSynthesis.speak(utterance);
+        
+        console.log(`🔊 Redau audio pentru: ${text}`);
+    } else {
+        showError('Browser-ul nu suportă sinteza vocală.');
+    }
+}
+
+// Verifică răspunsul utilizatorului
+function verifyAnswer() {
+    const inputElement = document.getElementById('answer-input');
+    if (!inputElement) {
+        showError("Câmpul de răspuns nu a fost găsit!");
+        return;
+    }
+    
+    const exercise = exercises[currentExercise];
+    let userAnswer = inputElement.value.trim().toLowerCase();
+    let correctAnswer = exercise.correctAnswer.toLowerCase();
+    
+    // Pentru exercițiile multiple choice, verifică dacă s-a selectat o opțiune
+    if (exercise.type === 'multiple-choice' && !userAnswer) {
+        showError("Te rog selectează o opțiune!");
+        return;
+    }
+    
+    console.log(`🔍 Verific ${exercise.type}: "${userAnswer}" vs "${correctAnswer}"`);
+    
+    const feedbackElement = document.getElementById('feedback');
+    if (!feedbackElement) return;
+    
+    let isCorrect = false;
+    
+    // Verifică răspunsul pe baza tipului de exercițiu
+    if (exercise.type === 'audio') {
+        // Pentru audio, verifică doar numărul
+        isCorrect = userAnswer === exercise.number.toString();
+        correctAnswer = exercise.number.toString();
+    } else {
+        // Pentru fill-in și multiple choice
+        isCorrect = userAnswer === correctAnswer;
+    }
+    
+    if (isCorrect) {
+        // Răspuns corect
+        score++;
+        let feedbackHTML = `
+            <div class="correct-answer">
+                🎉 Excelent! Răspuns corect!
+            </div>
         `;
         
-        if (!isCorrect) {
-            feedbackContent += `
-                <div class="correct-answer-display">
-                    <strong>✔️ ${this.getTranslation('correct_answer_was', 'Răspunsul corect era')}:</strong> 
-                    <span class="correct-answer">${exercise.correctAnswer}</span>
+        // Adaugă informații suplimentare pentru exercițiile audio
+        if (exercise.type === 'audio') {
+            feedbackHTML += `
+                <div class="audio-feedback">
+                    <strong>${exercise.number}</strong> se pronunță: 
+                    <span class="german-number-display">${exercise.colorizedGerman}</span>
                 </div>
             `;
         }
         
-        feedbackContent += `
-                    <div class="explanation">
-                        <strong>💡 ${this.getTranslation('explanation', 'Explicație')}:</strong> 
-                        <span>${exercise.explanation}</span>
-                    </div>
-                    <div class="grammar-rule">
-                        <strong>📖 ${this.getTranslation('rule', 'Regulă')}:</strong> 
-                        <span>${exercise.rule}</span>
-                    </div>
-                </div>
+        feedbackElement.innerHTML = feedbackHTML;
+        feedbackElement.className = 'feedback correct';
+    } else {
+        // Răspuns greșit
+        let wrongAnswerHTML = `
+            <div class="wrong-answer">
+                ❌ Nu este corect.<br>
+                Răspunsul corect era: <strong>${exercise.correctAnswer}</strong>
             </div>
         `;
         
-        this.feedback.innerHTML = feedbackContent;
-        this.feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    nextQuestion() {
-        this.currentQuestionIndex++;
-        this.updateProgress();
-        this.displayCurrentQuestion();
-    }
-
-    updateProgress() {
-        const progress = ((this.currentQuestionIndex) / this.totalQuestions) * 100;
-        
-        if (this.progressFill) {
-            this.progressFill.style.width = `${progress}%`;
-        }
-        
-        if (this.qIndex) {
-            this.qIndex.textContent = this.currentQuestionIndex + 1;
-        }
-    }
-
-    updateScore() {
-        if (this.scoreDisplay) {
-            this.scoreDisplay.textContent = this.score;
-        }
-    }
-
-    showFinalResults() {
-        const testEndTime = new Date();
-        const testDuration = Math.round((testEndTime - this.testStartTime) / 1000 / 60);
-        const percentage = Math.round((this.score / this.totalQuestions) * 100);
-        
-        let resultMessage = '';
-        let resultClass = '';
-        
-        if (percentage >= 90) {
-            resultMessage = this.getTranslation('excellent_result', 'Excelent! Stăpânești foarte bine numerele germane!');
-            resultClass = 'result-excellent';
-        } else if (percentage >= 75) {
-            resultMessage = this.getTranslation('good_result', 'Foarte bine! Ai o înțelegere bună a numerelor.');
-            resultClass = 'result-good';
-        } else if (percentage >= 60) {
-            resultMessage = this.getTranslation('okay_result', 'Bine făcut! Cu puțină practică vei fi și mai bun.');
-            resultClass = 'result-okay';
-        } else {
-            resultMessage = this.getTranslation('needs_improvement', 'Nu e rău! Repetă lecția și încearcă din nou.');
-            resultClass = 'result-needs-improvement';
-        }
-
-        const resultsHTML = `
-            <div class="final-results ${resultClass}">
-                <div class="results-header">
-                    <h2>${this.getTranslation('test_completed', 'Test finalizat!')}</h2>
-                    <div class="final-score-circle">
-                        <span class="score-percentage">${percentage}%</span>
-                    </div>
+        // Adaugă informații suplimentare pentru exercițiile audio
+        if (exercise.type === 'audio') {
+            wrongAnswerHTML += `
+                <div class="audio-feedback">
+                    Numărul era <strong>${exercise.number}</strong>, care se pronunță: 
+                    <span class="german-number-display">${exercise.colorizedGerman}</span>
                 </div>
-                
-                <div class="results-summary">
-                    <div class="result-stat">
-                        <span class="stat-label">${this.getTranslation('final_score', 'Scor final')}</span>
-                        <span class="stat-value">${this.score}/${this.totalQuestions}</span>
-                    </div>
-                    <div class="result-stat">
-                        <span class="stat-label">${this.getTranslation('test_duration', 'Durata testului')}</span>
-                        <span class="stat-value">${testDuration} min</span>
-                    </div>
-                    <div class="result-message">${resultMessage}</div>
-                </div>
-                
-                <div class="results-actions">
-                    <button onclick="location.reload()" class="btn btn-primary">
-                        🔄 ${this.getTranslation('retry_test', 'Repetă testul')}
-                    </button>
-                    <a href="../lessons/lesson2.html" class="btn btn-outline">
-                        📚 ${this.getTranslation('back_to_lesson', 'Înapoi la lecție')}
-                    </a>
-                </div>
-            </div>
-        `;
-
-        this.questionArea.innerHTML = resultsHTML;
-        this.hideVerifyButton();
-        this.hideNextButton();
-        this.clearFeedback();
+            `;
+        }
         
-        // Update progress to 100%
-        if (this.progressFill) {
-            this.progressFill.style.width = '100%';
-        }
+        feedbackElement.innerHTML = wrongAnswerHTML;
+        feedbackElement.className = 'feedback wrong';
     }
+    
+    // Afișează feedback-ul și butonul pentru întrebarea următoare
+    showElement('feedback');
+    hideElement('verify-btn');
+    showElement('next-btn');
+    
+    // Actualizează scorul
+    updateElement('score-text', `Scor: ${score}/${currentExercise + 1}`);
+}
 
-    speakGermanNumber(germanText) {
-        if ('speechSynthesis' in window) {
-            const utterance = new SpeechSynthesisUtterance(germanText);
-            utterance.lang = 'de-DE';
-            utterance.rate = 0.8;
-            utterance.pitch = 1;
-            window.speechSynthesis.speak(utterance);
-        }
-    }
+// Trece la următorul exercițiu
+function nextQuestion() {
+    currentExercise++;
+    displayCurrentExercise();
+}
 
-    getTranslation(key, defaultText = '') {
-        if (window.numbersTestData && window.numbersTestData.translations) {
-            const translations = window.numbersTestData.translations[this.currentLanguage];
-            return translations && translations[key] ? translations[key] : defaultText;
-        }
-        return defaultText;
-    }
+// Afișează rezultatele finale
+function displayFinalResults() {
+    const percentage = Math.round((score / exercises.length) * 100);
+    const resultText = `
+        <div class="final-results">
+            <h2>🎯 Test Finalizat!</h2>
+            <p>Ai obținut <strong>${score}</strong> din <strong>${exercises.length}</strong> puncte</p>
+            <p>Procentaj: <strong>${percentage}%</strong></p>
+            ${percentage >= 70 ? 
+                '<p class="success">🎉 Felicitări! Ai trecut testul!</p>' : 
+                '<p class="retry">💪 Mai exercițiu și vei reuși!</p>'
+            }
+        </div>
+    `;
+    
+    // Actualizează interfața
+    updateElement('question-container', resultText);
+    hideElement('verify-btn');
+    hideElement('next-btn');
+    hideElement('feedback');
+    
+    console.log(`🎉 Test finalizat: ${score}/${exercises.length} (${percentage}%)`);
+}
 
-    clearFeedback() {
-        if (this.feedback) {
-            this.feedback.innerHTML = '';
-        }
-    }
-
-    showVerifyButton() {
-        if (this.verifyBtn) {
-            this.verifyBtn.style.display = 'block';
-        }
-    }
-
-    hideVerifyButton() {
-        if (this.verifyBtn) {
-            this.verifyBtn.style.display = 'none';
-        }
-    }
-
-    showNextButton() {
-        if (this.nextBtn) {
-            this.nextBtn.style.display = 'block';
-        }
-    }
-
-    hideNextButton() {
-        if (this.nextBtn) {
-            this.nextBtn.style.display = 'none';
-        }
+// Funcții helper pentru manipularea DOM
+function updateElement(id, content) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.innerHTML = content;
     }
 }
 
-// Initialize test when page loads
-document.addEventListener('DOMContentLoaded', () => {
-    // Wait for data to be loaded
-    if (window.numbersTestData) {
-        new NumbersTestRunner();
-    } else {
-        console.error('Numbers test data not loaded');
+function showElement(id) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.style.display = 'block';
     }
+}
+
+function hideElement(id) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.style.display = 'none';
+    }
+}
+
+function showError(message) {
+    console.error(`❌ ${message}`);
+    updateElement('question-container', `
+        <div class="error-message">
+            <h3>⚠️ Eroare</h3>
+            <p>${message}</p>
+            <button onclick="location.reload()" class="retry-btn">🔄 Încearcă din nou</button>
+        </div>
+    `);
+}
+
+// Event listeners pentru butoane
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("🔄 DOM încărcat, inițializez testul...");
+    
+    // Adaugă event listeners pentru butoane
+    const verifyBtn = document.getElementById('verify-btn');
+    if (verifyBtn) {
+        verifyBtn.addEventListener('click', verifyAnswer);
+    }
+    
+    const nextBtn = document.getElementById('next-btn');
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextQuestion);
+    }
+    
+    // Event listener pentru Enter în câmpul de input
+    const inputElement = document.getElementById('answer-input');
+    if (inputElement) {
+        inputElement.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const verifyBtn = document.getElementById('verify-btn');
+                const nextBtn = document.getElementById('next-btn');
+                
+                if (verifyBtn && verifyBtn.style.display !== 'none') {
+                    verifyAnswer();
+                } else if (nextBtn && nextBtn.style.display !== 'none') {
+                    nextQuestion();
+                }
+            }
+        });
+    }
+    
+    // Inițializează testul
+    setTimeout(initializeTest, 100);
 });

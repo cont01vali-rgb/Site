@@ -2463,6 +2463,12 @@ body {
     box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
 }
 
+.german-number-display {
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 1.8rem;
+}
+
 /* Stiluri specifice pentru fill-in questions */
 .fill-in-question {
     border-left: 5px solid #28a745;
@@ -2787,5 +2793,305 @@ body {
     .results-actions {
         flex-direction: column;
         align-items: center;
+    }
+}
+
+/* Numbers Test Simple Styling */
+.progress-text {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.score-text {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #2c5aa0;
+}
+
+.question-text {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.answer-input-container {
+    margin: 20px 0;
+}
+
+.answer-input-container input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 16px;
+    font-size: 1.2em;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.answer-input-container input:focus {
+    border-color: #2c5aa0;
+    box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+}
+
+.feedback {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1em;
+}
+
+.feedback.correct {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.feedback.wrong {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.final-results {
+    text-align: center;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.final-results h2 {
+    margin-bottom: 20px;
+    color: #2c5aa0;
+}
+
+.final-results .success {
+    color: #28a745;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.final-results .retry {
+    color: #ffc107;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.error-message {
+    text-align: center;
+    padding: 30px;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 12px;
+    color: #721c24;
+}
+
+.retry-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.retry-btn:hover {
+    background: #c82333;
+}
+
+/* Colorare componente numere germane */
+.number-unit {
+    color: #2196F3; /* Albastru pentru unități */
+    font-weight: bold;
+}
+
+.number-tens {
+    color: #4CAF50; /* Verde pentru zeci */
+    font-weight: bold;
+}
+
+.number-hundreds {
+    color: #FF9800; /* Portocaliu pentru sute */
+    font-weight: bold;
+}
+
+.number-thousands {
+    color: #F44336; /* Roșu pentru mii */
+    font-weight: bold;
+}
+
+.number-connector {
+    color: #333333; /* Negru pentru conectori (und) */
+    font-weight: bold;
+    font-style: italic;
+}
+
+.number-special {
+    color: #9C27B0; /* Violet pentru forme speciale (0-19) */
+    font-weight: bold;
+}
+
+.romanian-number {
+    color: #1976D2;
+    font-weight: bold;
+    font-size: 1.2em;
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 2px solid #90CAF9;
+}
+
+/* Îmbunătățiri pentru german-number-display */
+.german-number-display {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 1.4em;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    padding: 16px 24px;
+    border-radius: 15px;
+    border: 3px solid #e9ecef;
+    display: inline-block;
+    margin: 12px 8px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.german-number-display:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-color: #ced4da;
+}
+
+/* Separator vizual pentru numerele lungi */
+.number-separator {
+    color: #6c757d;
+    font-weight: normal;
+    margin: 0 2px;
+}
+
+/* Efect hover pentru componentele numerelor */
+.german-number-display .number-unit:hover,
+.german-number-display .number-tens:hover,
+.german-number-display .number-hundreds:hover,
+.german-number-display .number-thousands:hover,
+.german-number-display .number-special:hover {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
+
+/* Audio Controls Styling */
+.audio-controls {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.btn-audio {
+    background: linear-gradient(135deg, #6f42c1, #5a32a3);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 12px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin: 0 10px;
+    box-shadow: 0 4px 8px rgba(111, 66, 193, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-audio:hover {
+    background: linear-gradient(135deg, #5a32a3, #4c2a87);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(111, 66, 193, 0.4);
+}
+
+.btn-audio:active {
+    transform: translateY(0);
+}
+
+.btn-audio:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Multiple Choice Styling */
+.multiple-choice-container {
+    margin: 20px 0;
+    max-width: 600px;
+}
+
+.multiple-choice-option {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    margin: 10px 0;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+}
+
+.multiple-choice-option:hover {
+    border-color: #2c5aa0;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(44, 90, 160, 0.15);
+}
+
+.multiple-choice-option.selected {
+    border-color: #28a745;
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.25);
+}
+
+.option-letter {
+    font-weight: bold;
+    color: #2c5aa0;
+    margin-right: 15px;
+    min-width: 25px;
+    font-size: 1.1em;
+}
+
+.multiple-choice-option.selected .option-letter {
+    color: #28a745;
+}
+
+.option-text {
+    font-size: 1.1em;
+    line-height: 1.4;
+}
+
+/* Audio Feedback Styling */
+.audio-feedback {
+    margin-top: 15px;
+    padding: 15px;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border-radius: 8px;
+    border-left: 4px solid #2196f3;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .multiple-choice-option {
+        padding: 12px 15px;
+        margin: 8px 0;
+    }
+    
+    .btn-audio {
+        padding: 12px 20px;
+        font-size: 1em;
+        margin: 5px;
+    }
+    
+    .audio-controls {
+        margin: 20px 0;
     }
 }

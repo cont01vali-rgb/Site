@@ -1,222 +1,378 @@
 // Numbers Test Data - German Numbers (0-9999)
-// Exerciții aleatorii pentru testarea numerelor germane
+// Exerciții simple pentru testarea numerelor germane
 
 const numbersTestData = {
-    // Numere de bază 0-20 (pentru fill-in și audio)
-    basicNumbers: [
-        { number: 0, german: "null", audio: "null" },
-        { number: 1, german: "eins", audio: "eins" },
-        { number: 2, german: "zwei", audio: "zwei" },
-        { number: 3, german: "drei", audio: "drei" },
-        { number: 4, german: "vier", audio: "vier" },
-        { number: 5, german: "fünf", audio: "fünf" },
-        { number: 6, german: "sechs", audio: "sechs" },
-        { number: 7, german: "sieben", audio: "sieben" },
-        { number: 8, german: "acht", audio: "acht" },
-        { number: 9, german: "neun", audio: "neun" },
-        { number: 10, german: "zehn", audio: "zehn" },
-        { number: 11, german: "elf", audio: "elf" },
-        { number: 12, german: "zwölf", audio: "zwölf" },
-        { number: 13, german: "dreizehn", audio: "dreizehn" },
-        { number: 14, german: "vierzehn", audio: "vierzehn" },
-        { number: 15, german: "fünfzehn", audio: "fünfzehn" },
-        { number: 16, german: "sechzehn", audio: "sechzehn" },
-        { number: 17, german: "siebzehn", audio: "siebzehn" },
-        { number: 18, german: "achtzehn", audio: "achtzehn" },
-        { number: 19, german: "neunzehn", audio: "neunzehn" },
-        { number: 20, german: "zwanzig", audio: "zwanzig" }
+    // Toate numerele disponibile pentru testare
+    allNumbers: [
+        { number: 0, german: "null" },
+        { number: 1, german: "eins" },
+        { number: 2, german: "zwei" },
+        { number: 3, german: "drei" },
+        { number: 4, german: "vier" },
+        { number: 5, german: "fünf" },
+        { number: 6, german: "sechs" },
+        { number: 7, german: "sieben" },
+        { number: 8, german: "acht" },
+        { number: 9, german: "neun" },
+        { number: 10, german: "zehn" },
+        { number: 11, german: "elf" },
+        { number: 12, german: "zwölf" },
+        { number: 13, german: "dreizehn" },
+        { number: 14, german: "vierzehn" },
+        { number: 15, german: "fünfzehn" },
+        { number: 16, german: "sechzehn" },
+        { number: 17, german: "siebzehn" },
+        { number: 18, german: "achtzehn" },
+        { number: 19, german: "neunzehn" },
+        { number: 20, german: "zwanzig" },
+        { number: 21, german: "einundzwanzig" },
+        { number: 22, german: "zweiundzwanzig" },
+        { number: 23, german: "dreiundzwanzig" },
+        { number: 24, german: "vierundzwanzig" },
+        { number: 25, german: "fünfundzwanzig" },
+        { number: 26, german: "sechsundzwanzig" },
+        { number: 27, german: "siebenundzwanzig" },
+        { number: 28, german: "achtundzwanzig" },
+        { number: 29, german: "neunundzwanzig" },
+        { number: 30, german: "dreißig" },
+        { number: 31, german: "einunddreißig" },
+        { number: 32, german: "zweiunddreißig" },
+        { number: 33, german: "dreiunddreißig" },
+        { number: 34, german: "vierunddreißig" },
+        { number: 35, german: "fünfunddreißig" },
+        { number: 36, german: "sechsunddreißig" },
+        { number: 37, german: "siebenunddreißig" },
+        { number: 38, german: "achtunddreißig" },
+        { number: 39, german: "neununddreißig" },
+        { number: 40, german: "vierzig" },
+        { number: 41, german: "einundvierzig" },
+        { number: 42, german: "zweiundvierzig" },
+        { number: 43, german: "dreiundvierzig" },
+        { number: 44, german: "vierundvierzig" },
+        { number: 45, german: "fünfundvierzig" },
+        { number: 46, german: "sechsundvierzig" },
+        { number: 47, german: "siebenundvierzig" },
+        { number: 48, german: "achtundvierzig" },
+        { number: 49, german: "neunundvierzig" },
+        { number: 50, german: "fünfzig" },
+        { number: 51, german: "einundfünfzig" },
+        { number: 52, german: "zweiundfünfzig" },
+        { number: 53, german: "dreiundfünfzig" },
+        { number: 54, german: "vierundfünfzig" },
+        { number: 55, german: "fünfundfünfzig" },
+        { number: 56, german: "sechsundfünfzig" },
+        { number: 57, german: "siebenundfünfzig" },
+        { number: 58, german: "achtundfünfzig" },
+        { number: 59, german: "neunundfünfzig" },
+        { number: 60, german: "sechzig" },
+        { number: 61, german: "einundsechzig" },
+        { number: 62, german: "zweiundsechzig" },
+        { number: 63, german: "dreiundsechzig" },
+        { number: 64, german: "vierundsechzig" },
+        { number: 65, german: "fünfundsechzig" },
+        { number: 66, german: "sechsundsechzig" },
+        { number: 67, german: "siebenundsechzig" },
+        { number: 68, german: "achtundsechzig" },
+        { number: 69, german: "neunundsechzig" },
+        { number: 70, german: "siebzig" },
+        { number: 71, german: "einundsiebzig" },
+        { number: 72, german: "zweiundsiebzig" },
+        { number: 73, german: "dreiundsiebzig" },
+        { number: 74, german: "vierundsiebzig" },
+        { number: 75, german: "fünfundsiebzig" },
+        { number: 76, german: "sechsundsiebzig" },
+        { number: 77, german: "siebenundsiebzig" },
+        { number: 78, german: "achtundsiebzig" },
+        { number: 79, german: "neunundsiebzig" },
+        { number: 80, german: "achtzig" },
+        { number: 81, german: "einundachtzig" },
+        { number: 82, german: "zweiundachtzig" },
+        { number: 83, german: "dreiundachtzig" },
+        { number: 84, german: "vierundachtzig" },
+        { number: 85, german: "fünfundachtzig" },
+        { number: 86, german: "sechsundachtzig" },
+        { number: 87, german: "siebenundachtzig" },
+        { number: 88, german: "achtundachtzig" },
+        { number: 89, german: "neunundachtzig" },
+        { number: 90, german: "neunzig" },
+        { number: 91, german: "einundneunzig" },
+        { number: 92, german: "zweiundneunzig" },
+        { number: 93, german: "dreiundneunzig" },
+        { number: 94, german: "vierundneunzig" },
+        { number: 95, german: "fünfundneunzig" },
+        { number: 96, german: "sechsundneunzig" },
+        { number: 97, german: "siebenundneunzig" },
+        { number: 98, german: "achtundneunzig" },
+        { number: 99, german: "neunundneunzig" },
+        { number: 100, german: "hundert" },
+        { number: 101, german: "hunderteins" },
+        { number: 111, german: "hundertelf" },
+        { number: 123, german: "hundertdreiundzwanzig" },
+        { number: 200, german: "zweihundert" },
+        { number: 205, german: "zweihundertfünf" },
+        { number: 212, german: "zweihundertzwölf" },
+        { number: 221, german: "zweihunderteinundzwanzig" },
+        { number: 234, german: "zweihundertvierunddreißig" },
+        { number: 250, german: "zweihundertfünfzig" },
+        { number: 267, german: "zweihundertsiebenundsechzig" },
+        { number: 289, german: "zweihundertneunundachtzig" },
+        { number: 300, german: "dreihundert" },
+        { number: 315, german: "dreihundertfünfzehn" },
+        { number: 332, german: "dreihundertzweiunddreißig" },
+        { number: 345, german: "dreihundertfünfundvierzig" },
+        { number: 378, german: "dreihundertachtundsiebzig" },
+        { number: 400, german: "vierhundert" },
+        { number: 411, german: "vierhundertelf" },
+        { number: 432, german: "vierhundertzweiunddreißig" },
+        { number: 456, german: "vierhundertsechsundfünfzig" },
+        { number: 489, german: "vierhundertneunundachtzig" },
+        { number: 500, german: "fünfhundert" },
+        { number: 517, german: "fünfhundertsiebzehn" },
+        { number: 543, german: "fünfhundertdreiundvierzig" },
+        { number: 567, german: "fünfhundertsiebenundsechzig" },
+        { number: 591, german: "fünfhunderteinundneunzig" },
+        { number: 600, german: "sechshundert" },
+        { number: 624, german: "sechshundertvierundzwanzig" },
+        { number: 655, german: "sechshundertfünfundfünfzig" },
+        { number: 678, german: "sechshundertachtundsiebzig" },
+        { number: 700, german: "siebenhundert" },
+        { number: 719, german: "siebenhundertneunzehn" },
+        { number: 746, german: "siebenhundertsechsundvierzig" },
+        { number: 789, german: "siebenhundertneunundachtzig" },
+        { number: 800, german: "achthundert" },
+        { number: 825, german: "achthundertfünfundzwanzig" },
+        { number: 857, german: "achthundertsiebenundfünfzig" },
+        { number: 890, german: "achthundertneunzig" },
+        { number: 900, german: "neunhundert" },
+        { number: 913, german: "neunhundertdreizehn" },
+        { number: 948, german: "neunhundertachtundvierzig" },
+        { number: 975, german: "neunhundertfünfundsiebzig" },
+        { number: 999, german: "neunhundertneunundneunzig" },
+        { number: 1000, german: "tausend" },
+        { number: 1001, german: "tausendeins" },
+        { number: 1111, german: "tausendelf" },
+        { number: 1234, german: "tausendzweihundertvierunddreißig" },
+        { number: 2000, german: "zweitausend" },
+        { number: 2345, german: "zweitausenddreihundertfünfundvierzig" },
+        { number: 3456, german: "dreitausendvierhundertsechsundfünfzig" },
+        { number: 4567, german: "viertausendfünfhundertsiebenundsechzig" },
+        { number: 5678, german: "fünftausendsechshundertachtundsiebzig" },
+        { number: 6789, german: "sechstausendsiebenhundertneunundachtzig" },
+        { number: 7890, german: "siebentausendachthundertneunzig" },
+        { number: 8901, german: "achttausendneunhunderteins" },
+        { number: 9999, german: "neuntausendneunhundertneunundneunzig" }
     ],
 
-    // Zeci (20-90)
-    tens: [
-        { number: 20, german: "zwanzig", audio: "zwanzig" },
-        { number: 30, german: "dreißig", audio: "dreißig" },
-        { number: 40, german: "vierzig", audio: "vierzig" },
-        { number: 50, german: "fünfzig", audio: "fünfzig" },
-        { number: 60, german: "sechzig", audio: "sechzig" },
-        { number: 70, german: "siebzig", audio: "siebzig" },
-        { number: 80, german: "achtzig", audio: "achtzig" },
-        { number: 90, german: "neunzig", audio: "neunzig" }
-    ],
+    // Funcție pentru colorarea numerelor germane
+    colorizeGermanNumber: function(germanNumber) {
+        let colorizedNumber = germanNumber;
 
-    // Numere complexe (21-99, 100-999, 1000-9999)
-    complexNumbers: [
-        { number: 21, german: "einundzwanzig", audio: "einundzwanzig" },
-        { number: 35, german: "fünfunddreißig", audio: "fünfunddreißig" },
-        { number: 48, german: "achtundvierzig", audio: "achtundvierzig" },
-        { number: 73, german: "dreiundsiebzig", audio: "dreiundsiebzig" },
-        { number: 99, german: "neunundneunzig", audio: "neunundneunzig" },
-        { number: 100, german: "hundert", audio: "hundert" },
-        { number: 101, german: "hunderteins", audio: "hunderteins" },
-        { number: 115, german: "hundertfünfzehn", audio: "hundertfünfzehn" },
-        { number: 230, german: "zweihundertdreißig", audio: "zweihundertdreißig" },
-        { number: 342, german: "dreihundertzweiundvierzig", audio: "dreihundertzweiundvierzig" },
-        { number: 456, german: "vierhundertsechsundfünfzig", audio: "vierhundertsechsundfünfzig" },
-        { number: 789, german: "siebenhundertneunundachtzig", audio: "siebenhundertneunundachtzig" },
-        { number: 999, german: "neunhundertneunundneunzig", audio: "neunhundertneunundneunzig" },
-        { number: 1000, german: "tausend", audio: "tausend" },
-        { number: 1001, german: "tausendeins", audio: "tausendeins" },
-        { number: 1234, german: "tausendzweihundertvierunddreißig", audio: "tausendzweihundertvierunddreißig" },
-        { number: 2016, german: "zweitausendsechzehn", audio: "zweitausendsechzehn" },
-        { number: 3456, german: "dreitausendvierhundertsechsundfünfzig", audio: "dreitausendvierhundertsechsundfünfzig" },
-        { number: 5678, german: "fünftausendsechshundertachtundsiebzig", audio: "fünftausendsechshundertachtundsiebzig" },
-        { number: 7890, german: "siebentausendachthundertneunzig", audio: "siebentausendachthundertneunzig" },
-        { number: 9999, german: "neuntausendneunhundertneunundneunzig", audio: "neuntausendneunhundertneunundneunzig" }
-    ],
+        // 1. Mai întâi colorează formele speciale complete (0-19)
+        const specialNumbers = ['null', 'elf', 'zwölf', 'dreizehn', 'vierzehn', 'fünfzehn', 'sechzehn', 'siebzehn', 'achtzehn', 'neunzehn'];
+        specialNumbers.forEach(word => {
+            const regex = new RegExp(`\\b${word}\\b`, 'g');
+            colorizedNumber = colorizedNumber.replace(regex, `<span class="number-special">${word}</span>`);
+        });
 
-    // Traduceri și explicații
-    translations: {
-        ro: {
-            test_title: "Test: Numerele în Germană (0-9999)",
-            progress_text: "Întrebare",
-            score_text: "Scor",
-            verify_button: "Verifică",
-            next_button: "Următoarea întrebare",
-            back_to_lesson: "← Înapoi la lecție",
+        // 2. Colorează prefixele pentru sute (ein, zwei, drei etc. + hundert)
+        const unitPrefixes = ['ein', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun'];
+        unitPrefixes.forEach(unit => {
+            // Pentru sute: "einh", "zweih", etc.
+            const hundredRegex = new RegExp(`\\b(${unit})(?=hundert)`, 'g');
+            colorizedNumber = colorizedNumber.replace(hundredRegex, `<span class="number-unit">$1</span>`);
             
-            // Tipuri de exerciții
-            fill_in_title: "🔢 Completează cu numărul în germană",
-            audio_title: "🎵 Ascultă și scrie numărul",
-            multiple_choice_title: "🤔 Alege răspunsul corect",
+            // Pentru mii: "eint", "zweit", etc.
+            const thousandRegex = new RegExp(`\\b(${unit})(?=tausend)`, 'g');
+            colorizedNumber = colorizedNumber.replace(thousandRegex, `<span class="number-unit">$1</span>`);
             
-            // Mesaje de feedback
-            correct_answer: "🎉 Excelent! Răspuns corect!",
-            wrong_answer: "❌ Nu este corect. Încearcă din nou!",
-            correct_answer_was: "Răspunsul corect era",
-            
-            // Explicații pentru reguli
-            basic_numbers_rule: "Numerele de bază (0-20) se învață pe dinafară ca forme speciale.",
-            compound_numbers_rule: "Pentru 21-99: unitate + und + zeci (ex: einundzwanzig = unu și douăzeci)",
-            hundreds_rule: "Sutele: numărul + hundert (ex: dreihundert = trei sute)",
-            thousands_rule: "Miile: numărul + tausend (ex: zweitausend = două mii)",
-            special_forms_rule: "Atenție la formele speciale: sechzehn (16), siebzehn (17), dreißig (30), vierzig (40)"
-        },
-        en: {
-            test_title: "Test: German Numbers (0-9999)",
-            progress_text: "Question",
-            score_text: "Score", 
-            verify_button: "Check",
-            next_button: "Next question",
-            back_to_lesson: "← Back to lesson"
-        },
-        ua: {
-            test_title: "Тест: Німецькі числівники (0-9999)",
-            progress_text: "Питання",
-            score_text: "Оцінка",
-            verify_button: "Перевірити", 
-            next_button: "Наступне питання",
-            back_to_lesson: "← Назад до уроку"
-        }
+            // Pentru unități în numerele compuse (21-99): "einund", "zweiund", etc.
+            const compoundRegex = new RegExp(`\\b(${unit})(?=und)`, 'g');
+            colorizedNumber = colorizedNumber.replace(compoundRegex, `<span class="number-unit">$1</span>`);
+        });
+
+        // 3. Colorează "hundert"
+        colorizedNumber = colorizedNumber.replace(/\bhundert\b/g, '<span class="number-hundreds">hundert</span>');
+
+        // 4. Colorează "tausend"  
+        colorizedNumber = colorizedNumber.replace(/\btausend\b/g, '<span class="number-thousands">tausend</span>');
+
+        // 5. Colorează zecile
+        const tens = ['zwanzig', 'dreißig', 'vierzig', 'fünfzig', 'sechzig', 'siebzig', 'achtzig', 'neunzig'];
+        tens.forEach(ten => {
+            const regex = new RegExp(`\\b${ten}\\b`, 'g');
+            colorizedNumber = colorizedNumber.replace(regex, `<span class="number-tens">${ten}</span>`);
+        });
+
+        // 6. Colorează "zehn" (când apare separat, nu în 10-19)
+        colorizedNumber = colorizedNumber.replace(/\bzehn(?![\w])/g, '<span class="number-tens">zehn</span>');
+
+        // 7. Colorează conectorul "und"
+        colorizedNumber = colorizedNumber.replace(/\bund\b/g, '<span class="number-connector">und</span>');
+
+        return colorizedNumber;
     },
 
-    // Generare exerciții aleatorii
-    generateRandomExercises: function() {
+    // Generare exerciții variate (fill-in, audio, multiple choice)
+    generateRandomExercises: function(count = 18) {
+        console.log("📝 Generez exerciții pentru test...");
+        
         const exercises = [];
         const usedNumbers = new Set();
         
-        // 5 exerciții fill-in (din toate categoriile)
-        for (let i = 0; i < 5; i++) {
-            const data = this.getRandomNumberData(usedNumbers);
-            exercises.push({
-                type: 'fill-in',
-                id: exercises.length + 1,
-                number: data.number,
-                correctAnswer: data.german,
-                explanation: this.getExplanationForNumber(data.number),
-                rule: this.getRuleForNumber(data.number)
-            });
+        // Verifică dacă avem date
+        if (!this.allNumbers || this.allNumbers.length === 0) {
+            console.error("❌ Nu am date pentru numere!");
+            return [];
         }
-        
-        // 5 exerciții audio 
-        for (let i = 0; i < 5; i++) {
-            const data = this.getRandomNumberData(usedNumbers);
-            exercises.push({
-                type: 'audio',
-                id: exercises.length + 1,
-                number: data.number,
-                german: data.german,
-                correctAnswer: data.number.toString(),
-                explanation: this.getExplanationForNumber(data.number),
-                rule: this.getRuleForNumber(data.number)
-            });
-        }
-        
-        // 5 exerciții multiple choice
-        for (let i = 0; i < 5; i++) {
-            const data = this.getRandomNumberData(usedNumbers);
-            const wrongOptions = this.generateWrongOptions(data);
-            exercises.push({
-                type: 'multiple-choice',
-                id: exercises.length + 1,
-                number: data.number,
-                correctAnswer: data.german,
-                options: this.shuffleArray([data.german, ...wrongOptions]),
-                explanation: this.getExplanationForNumber(data.number),
-                rule: this.getRuleForNumber(data.number)
-            });
-        }
-        
-        return this.shuffleArray(exercises);
-    },
 
-    getRandomNumberData: function(usedNumbers) {
-        const allNumbers = [...this.basicNumbers, ...this.tens, ...this.complexNumbers];
-        let data;
-        do {
-            data = allNumbers[Math.floor(Math.random() * allNumbers.length)];
-        } while (usedNumbers.has(data.number));
-        
-        usedNumbers.add(data.number);
-        return data;
-    },
+        console.log(`✅ Am ${this.allNumbers.length} numere disponibile`);
 
-    generateWrongOptions: function(correctData) {
-        const allNumbers = [...this.basicNumbers, ...this.tens, ...this.complexNumbers];
-        const wrongOptions = [];
-        const correctAnswer = correctData.german;
-        
-        while (wrongOptions.length < 3) {
-            const randomData = allNumbers[Math.floor(Math.random() * allNumbers.length)];
-            if (randomData.german !== correctAnswer && !wrongOptions.includes(randomData.german)) {
-                wrongOptions.push(randomData.german);
+        // Tipuri de exerciții cu distribuție echitabilă
+        const exerciseTypes = ['fill-in', 'audio', 'multiple-choice'];
+        const exercisesPerType = Math.ceil(count / exerciseTypes.length);
+
+        exerciseTypes.forEach((type, typeIndex) => {
+            for (let i = 0; i < exercisesPerType && exercises.length < count; i++) {
+                // Alege un număr random care nu a fost folosit
+                let numberData;
+                let attempts = 0;
+                do {
+                    const randomIndex = Math.floor(Math.random() * this.allNumbers.length);
+                    numberData = this.allNumbers[randomIndex];
+                    attempts++;
+                } while (usedNumbers.has(numberData.number) && attempts < 50);
+                
+                if (attempts >= 50) {
+                    // Dacă nu găsim număr nou, folosim unul random
+                    const randomIndex = Math.floor(Math.random() * this.allNumbers.length);
+                    numberData = this.allNumbers[randomIndex];
+                }
+                
+                usedNumbers.add(numberData.number);
+                
+                // Colorează numărul german pentru afișare
+                const colorizedGerman = this.colorizeGermanNumber(numberData.german);
+                
+                let exercise = {
+                    id: exercises.length + 1,
+                    type: type,
+                    number: numberData.number,
+                    german: numberData.german,
+                    colorizedGerman: colorizedGerman
+                };
+
+                // Configurează exercițiul pe baza tipului
+                if (type === 'fill-in') {
+                    // Alternează între german-to-number și number-to-german
+                    const isGermanToNumber = i % 2 === 0;
+                    exercise.subtype = isGermanToNumber ? 'german-to-number' : 'number-to-german';
+                    exercise.question = isGermanToNumber ? 
+                        `Câte este: <span class="german-number-display">${colorizedGerman}</span>?` : 
+                        `Cum se spune <span class="romanian-number">${numberData.number}</span> în germană?`;
+                    exercise.correctAnswer = isGermanToNumber ? 
+                        numberData.number.toString() : 
+                        numberData.german;
+                        
+                } else if (type === 'audio') {
+                    exercise.question = `🎵 Ascultă și scrie numărul în cifre:`;
+                    exercise.correctAnswer = numberData.number.toString();
+                    exercise.audioText = numberData.german;
+                    
+                } else if (type === 'multiple-choice') {
+                    // Alternează între german-to-number și number-to-german
+                    const isGermanToNumber = i % 2 === 0;
+                    exercise.subtype = isGermanToNumber ? 'german-to-number' : 'number-to-german';
+                    
+                    if (isGermanToNumber) {
+                        exercise.question = `Câte este: <span class="german-number-display">${colorizedGerman}</span>?`;
+                        exercise.correctAnswer = numberData.number.toString();
+                        exercise.options = this.generateMultipleChoiceNumbers(numberData.number);
+                    } else {
+                        exercise.question = `Cum se spune <span class="romanian-number">${numberData.number}</span> în germană?`;
+                        exercise.correctAnswer = numberData.german;
+                        exercise.options = this.generateMultipleChoiceWords(numberData.german);
+                    }
+                }
+                
+                exercises.push(exercise);
             }
-        }
-        
-        return wrongOptions;
+        });
+
+        // Amestecă exercițiile pentru varietate
+        this.shuffleArray(exercises);
+
+        console.log(`✅ Generat ${exercises.length} exerciții (${exerciseTypes.join(', ')})`);
+        return exercises;
     },
 
-    getExplanationForNumber: function(number) {
-        if (number <= 20) {
-            return `Numărul ${number} este o formă de bază care se învață pe dinafară.`;
-        } else if (number <= 99) {
-            if (number % 10 === 0) {
-                return `Numărul ${number} este o zeci care se formează cu terminația -zig.`;
+    // Generează opțiuni multiple choice pentru numere
+    generateMultipleChoiceNumbers: function(correctNumber) {
+        const options = [correctNumber.toString()];
+        const usedNumbers = new Set([correctNumber]);
+        
+        while (options.length < 4) {
+            // Generează numere în aceeași categorie (2 cifre, 3 cifre, etc.)
+            let wrongNumber;
+            if (correctNumber < 100) {
+                // Pentru numere 2 cifre, generează alte numere 2 cifre
+                wrongNumber = Math.floor(Math.random() * 80) + 20; // 20-99
+            } else if (correctNumber < 1000) {
+                // Pentru numere 3 cifre
+                wrongNumber = Math.floor(Math.random() * 900) + 100; // 100-999
             } else {
-                const units = number % 10;
-                const tens = Math.floor(number / 10) * 10;
-                return `Numărul ${number} se formează: unitatea (${units}) + "und" + zecile (${tens}).`;
+                // Pentru numere 4 cifre
+                wrongNumber = Math.floor(Math.random() * 9000) + 1000; // 1000-9999
             }
-        } else if (number <= 999) {
-            const hundreds = Math.floor(number / 100);
-            return `Numărul ${number} se formează cu ${hundreds} + "hundert" + restul.`;
-        } else {
-            const thousands = Math.floor(number / 1000);
-            return `Numărul ${number} se formează cu ${thousands} + "tausend" + restul.`;
+            
+            if (!usedNumbers.has(wrongNumber)) {
+                options.push(wrongNumber.toString());
+                usedNumbers.add(wrongNumber);
+            }
         }
+        
+        return this.shuffleArray(options);
     },
 
-    getRuleForNumber: function(number) {
-        if (number <= 20) {
-            return "REGULĂ: Numerele 0-20 sunt forme de bază care se memorează.";
-        } else if (number <= 99) {
-            return "REGULĂ: Pentru 21-99 → unitate + 'und' + zeci (ordinea inversă față de română).";
-        } else if (number <= 999) {
-            return "REGULĂ: Pentru sute → numărul + 'hundert' + restul (într-un singur cuvânt).";
-        } else {
-            return "REGULĂ: Pentru mii → numărul + 'tausend' + restul (într-un singur cuvânt).";
+    // Generează opțiuni multiple choice pentru cuvinte germane
+    generateMultipleChoiceWords: function(correctGerman) {
+        const options = [correctGerman];
+        const usedWords = new Set([correctGerman]);
+        
+        // Găsește numere similare din baza de date
+        const similarNumbers = this.allNumbers.filter(num => {
+            const german = num.german;
+            // Exclude numărul corect și caută numere cu lungime similară
+            return german !== correctGerman && 
+                   Math.abs(german.length - correctGerman.length) <= 5;
+        });
+        
+        while (options.length < 4 && similarNumbers.length > 0) {
+            const randomIndex = Math.floor(Math.random() * similarNumbers.length);
+            const wrongGerman = similarNumbers[randomIndex].german;
+            
+            if (!usedWords.has(wrongGerman)) {
+                options.push(wrongGerman);
+                usedWords.add(wrongGerman);
+                // Elimină din array pentru a evita repetarea
+                similarNumbers.splice(randomIndex, 1);
+            }
         }
+        
+        // Dacă nu avem destule opțiuni similare, adaugă aleatoriu
+        while (options.length < 4) {
+            const randomIndex = Math.floor(Math.random() * this.allNumbers.length);
+            const wrongGerman = this.allNumbers[randomIndex].german;
+            
+            if (!usedWords.has(wrongGerman)) {
+                options.push(wrongGerman);
+                usedWords.add(wrongGerman);
+            }
+        }
+        
+        return this.shuffleArray(options);
     },
 
+    // Funcție pentru amestecarea array-urilor
     shuffleArray: function(array) {
         const newArray = [...array];
         for (let i = newArray.length - 1; i > 0; i--) {

@@ -59,7 +59,14 @@
 
         <!-- Container întrebări cu design modern -->
         <div class="test-question-container">
-            <div id="questionArea" class="question-area"></div>
+            <div id="question-container">
+                <div id="progress-text" class="progress-text">Întrebare 1 din 10</div>
+                <div id="score-text" class="score-text">Scor: 0/0</div>
+                <div id="question-text" class="question-text">Se încarcă...</div>
+                <div class="answer-input-container">
+                    <input type="text" id="answer-input" placeholder="Scrie răspunsul aici..." autocomplete="off">
+                </div>
+            </div>
         </div>
 
         <!-- Controale test cu design îmbunătățit -->
@@ -69,7 +76,7 @@
         </div>
 
         <!-- Feedback cu design modern -->
-        <div id="feedback" class="test-feedback"></div>
+        <div id="feedback" class="test-feedback" style="display:none;"></div>
 
         <!-- Navigare cu design îmbunătățit -->
         <div class="test-navigation">
